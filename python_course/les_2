@@ -1,0 +1,51 @@
+# print (7/3)
+
+# print (9 ** 19 - int(float(9 ** 19)))
+
+
+# bool mat = true
+
+# bool mat = 1
+
+# print (type(false))
+
+# a = 2
+# b = 3
+
+# print (a + b)
+
+# a = 6
+
+# print (a + b)
+
+# b = b + 2
+
+# print (b)
+
+#print (c)
+# name = input('Enter your name:')
+
+# print ("Hello", name)
+
+# a = int(input())
+
+# print (a * 2)
+
+# a = int(input())
+
+# b = int(input())
+
+# print (a + b)
+
+# a = int(input())
+
+# print (a // 60)
+
+# print (a % 60)
+
+# X = int(input())
+# H = int(input())
+# M = int(input())
+
+# print((((H * 60) + M) + X) // 60)
+# print((((H * 60) + M) + X) % 60)
