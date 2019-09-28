@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Categories=Network;
+
+Name=TeamViewer 14
+Comment=Remote control and meeting solution.
+Exec=/opt/teamviewer/tv_bin/script/teamviewer
+
+Icon=TeamViewer

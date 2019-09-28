@@ -1,0 +1,18 @@
+2019/09/24-07:05:18.696 493 Reusing MANIFEST /home/pi/.config/chromium/Default/IndexedDB/https_manage.realvnc.com_0.indexeddb.leveldb/MANIFEST-000001
+2019/09/24-07:05:18.697 493 Recovering log #28
+2019/09/24-07:05:18.697 493 Reusing old log /home/pi/.config/chromium/Default/IndexedDB/https_manage.realvnc.com_0.indexeddb.leveldb/000028.log 
+2019/09/24-07:05:21.254 848 Current memtable full; waiting...
+2019/09/24-07:05:21.254 723 Level-0 table #33: started
+2019/09/24-07:05:21.272 723 Level-0 table #33: 416 bytes OK
+2019/09/24-07:05:21.284 723 Delete type=0 #28
+2019/09/24-07:05:21.285 723 Level-0 table #35: started
+2019/09/24-07:05:21.285 723 Level-0 table #35: 0 bytes OK
+2019/09/24-07:05:21.300 723 Delete type=0 #32
+2019/09/24-07:05:21.301 723 Manual compaction at level-0 from '\x00\x06\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x07\x00\x00\x00' @ 0 : 0; will stop at '\x00\x06\x00\x00\x05' @ 56 : 1
+2019/09/24-07:05:21.301 723 Compacting 1@0 + 1@1 files
+2019/09/24-07:05:21.316 723 Generated table #36@0: 7 keys, 582 bytes
+2019/09/24-07:05:21.316 723 Compacted 1@0 + 1@1 files => 582 bytes
+2019/09/24-07:05:21.329 723 compacted to: files[ 0 1 1 0 0 0 0 ]
+2019/09/24-07:05:21.329 723 Delete type=2 #30
+2019/09/24-07:05:21.329 723 Delete type=2 #33
+2019/09/24-07:05:21.330 723 Manual compaction at level-0 from '\x00\x06\x00\x00\x05' @ 56 : 1 .. '\x00\x07\x00\x00\x00' @ 0 : 0; will stop at (end)

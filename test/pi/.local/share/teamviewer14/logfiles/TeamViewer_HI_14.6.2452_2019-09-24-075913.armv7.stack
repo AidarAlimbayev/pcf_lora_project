@@ -1,0 +1,5 @@
+/opt/teamviewer/tv_bin/TeamViewer[0x952084]
+/opt/teamviewer/tv_bin/TeamViewer[0x9515ec]
+/opt/teamviewer/tv_bin/TeamViewer[0x994e54]
+/lib/arm-linux-gnueabihf/libc.so.6(__default_rt_sa_restorer+0x0)[0x73596130]
+/usr/lib/arm-linux-gnueabihf/libQt5Core.so.5(_ZNK18QThreadStorageData3getEv+0x38)[0x737f9420]
