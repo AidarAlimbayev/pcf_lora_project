@@ -104,4 +104,4 @@ def Connect_RFID_reader(): # TCP Socket connection output animal_id
 while 1:
         animal_id = Connect_RFID_reader()
         print(animal_id)
-        print("#########") 
+        print("This mark is main loop sign!")
