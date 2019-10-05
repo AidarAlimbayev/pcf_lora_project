@@ -2,21 +2,21 @@ from datetime import datetime, date, time
 
 
 id = 0
+weight_list = []
 weight = 0
 date_now = str(datetime.now())
 
 def connect_weight():
     print("Measure weight of cow")
     weight = input("Enter weight: ")
-    if weight == 0 :
-        mark = 0
-        connect_weight()
-    elif weight != 0:
-        mark = 1
-        connect_weight()
-    elif mark == 1 and weight == 0:
-        mark = 0
-        return(weight)
+    if weight != 0:
+        weight = input("Enter weight:_")
+        weight_list.append(weight)
+        #connect_weight()
+    else: 
+        print("Array:", weight_list)
+        return(0)
+    
 
 def connect_id():
     print("Try to connect RFID")
