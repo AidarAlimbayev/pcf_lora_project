@@ -22,17 +22,19 @@ def connect_weight():
         weight = input("Enter weight:___")
         weight_list.append(float(weight))
         #connect_weight()
-    del weight_list[-1]
+    
     if weight_list == 0:
         return(0)
     else:
+        if weight_list != 0:
+            del weight_list[-1]
+        
         weight_finall =  sum(weight_list) / len(weight_list) 
         weight_list = []
         return(weight_finall)
     
 
 def connect_id():
-    cow_id = '0'
     print("Try to connect RFID")
     cow_id = str(input("Enter ID: "))
     return(cow_id)
@@ -66,6 +68,7 @@ def main():
         if weight_finall != 0:
             send_server(cow_id, weight_finall)
             collect_data(cow_id, weight_finall)
+            main()
         else:
             #return(0)
             main()
