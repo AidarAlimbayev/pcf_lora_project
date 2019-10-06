@@ -7,8 +7,7 @@ import binascii
 import csv
 import re
 
-cow_id = ''
-weight_list = [0]
+
 weight = 0
 weight_finall = 0
 date_now = ''
@@ -16,10 +15,11 @@ type_scales = "Scale_A"
 row = []
 
 def connect_weight():
+    weight_list = []
     print("Measure weight of cow")
     weight = float(input("Enter weight: "))
     while (float(weight) != 0):
-        weight = input("Enter weight:_")
+        weight = input("Enter weight:___")
         weight_list.append(float(weight))
         #connect_weight()
     del weight_list[-1]
@@ -32,20 +32,19 @@ def connect_weight():
     
 
 def connect_id():
+    cow_id = '0'
     print("Try to connect RFID")
     cow_id = str(input("Enter ID: "))
     return(cow_id)
     
-def send_server():
-    print("ID:", id)
+def send_server(cow_id, weight_finall):
+    print("ID:", cow_id)
     print("Weight:", weight_finall)
     print("Date:", str(datetime.now()))
     print ("Scale type:", type_scales)
 
-def collect_data():
+def collect_data(cow_id, weight_finall):
     date_now = (str(datetime.now()))
-    #cow_id = '0'
-    #weight_finall = 0
     row = [cow_id, weight_finall,  date_now, type_scales]
     with open('test_algorithm.csv', 'a', newline='') as writeFile:
         writer = csv.writer(writeFile)
@@ -65,8 +64,8 @@ def main():
     if cow_id != 0:
         weight_finall = connect_weight()
         if weight_finall != 0:
-            send_server()
-            collect_data()
+            send_server(cow_id, weight_finall)
+            collect_data(cow_id, weight_finall)
         else:
             #return(0)
             main()
