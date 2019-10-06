@@ -50,34 +50,31 @@ def Send_data_to_server():# Sending data to Igor's server
         print(response)
 
 def Connect_ARD_get_weight(): # Connection to arduino and collection data of weight
-        output = 325
-        return(output)
-
-                #     s = serial.Serial('/dev/ttyACM0',9600)
-                #     weight = str(s.readline())
-                #     weight=re.sub("b|'|\r|\n", "", weight[:-5])
-                #     weight_list = []
-                #     mid_weight = 0
-                #     while float(weight) != 0: # Collecting weight to array 
-                #         weight = str(s.readline())
-                #         weight = float(re.sub("b|'|\r|\n", "", weight[:-5]))
-                #         weight_list.append(weight)
-                #         print('Value of weight:', weight)
-                #     else:
-                #         if len(weight_list) == 0 and sum(weight_list) == 0: # Check array to null lenth and null sum
-                #                 print("NuLL WEIGHT EXCEPTION")
-                #                 Connect_ARD_get_weight() # Return to connect arduino and collecting weight
-                #         else:
-                #                 del weight_list[len(weight_list)-1]
-                #                 for y in weight_list:
-                #                         mid_weight = mid_weight + y # Averaging weight 
-                #                         if mid_weight == 0:
-                #                                 Connect_ARD_get_weight() # Return to connect arduino and collecting weight
-                #                         else: 
-                #                                 mid_weight = mid_weight / len(weight_list)  
-                #                                 print("Averaged weight: ", mid_weight)
-                #                                 animal_id = "b'0700010101001e4b'"
-                #                                 return(mid_weight) # Output averaged weight from function
+                    s = serial.Serial('/dev/ttyACM0',9600)
+                    weight = str(s.readline())
+                    weight=re.sub("b|'|\r|\n", "", weight[:-5])
+                    weight_list = []
+                    mid_weight = 0
+                    while float(weight) != 0: # Collecting weight to array 
+                        weight = str(s.readline())
+                        weight = float(re.sub("b|'|\r|\n", "", weight[:-5]))
+                        weight_list.append(weight)
+                        print('Value of weight:', weight)
+                    else:
+                        if len(weight_list) == 0 and sum(weight_list) == 0: # Check array to null lenth and null sum
+                                print("NuLL WEIGHT EXCEPTION")
+                                Connect_ARD_get_weight() # Return to connect arduino and collecting weight
+                        else:
+                                del weight_list[len(weight_list)-1]
+                                for y in weight_list:
+                                        mid_weight = mid_weight + y # Averaging weight 
+                                        if mid_weight == 0:
+                                                Connect_ARD_get_weight() # Return to connect arduino and collecting weight
+                                        else: 
+                                                mid_weight = mid_weight / len(weight_list)  
+                                                print("Averaged weight: ", mid_weight)
+                                                animal_id = "b'0700010101001e4b'"
+                                                return(mid_weight) # Output averaged weight from function
 
 
 def Connect_RFID_reader(): # TCP Socket connection output animal_id
