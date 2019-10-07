@@ -21,9 +21,6 @@ def connect_weight():
     while (float(weight) != 0):
         weight = input("Enter weight:___")
         weight_list.append(float(weight))
-        
-        #connect_weight()
-    
     if weight_list == 0 or weight_list == []:
         return(0)
     else:
