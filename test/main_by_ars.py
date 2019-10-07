@@ -13,10 +13,6 @@ import re
 #####################################################
 # global variables used
 type_scales = 'typeA' #type of scales
-a=[]
-val=0
-datatext=''
-weignt=''
 date_now=''
 animal_id = "b'0700010101001e4b'" # void animal id
 
@@ -52,7 +48,7 @@ def Send_data_to_server():# Sending data to Igor's server
 def Connect_ARD_get_weight(): # Connection to arduino and collection data of weight
                     s = serial.Serial('/dev/ttyACM0',9600)
                     weight = str(s.readline())
-                    weight=re.sub("b|'|\r|\n", "", weight[:-5])
+                    weight = re.sub("b|'|\r|\n", "", weight[:-5])
                     weight_list = []
                     mid_weight = 0
                     while float(weight) != 0: # Collecting weight to array 

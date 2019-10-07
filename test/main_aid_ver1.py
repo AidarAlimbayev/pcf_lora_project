@@ -1,4 +1,5 @@
 from datetime import datetime, date, time
+#import serial
 import time
 import socket
 import json
@@ -12,14 +13,17 @@ type_scales = "Scale_A"
 SN = 0
 
 def Connect_ARD_get_weight():
-    s = serial.Serial('/dev/ttyACM0',9600)
-        weight = str(s.readline())
-        weight=re.sub("b|'|\r|\n", "", weight[:-5])
+        #s = serial.Serial('/dev/ttyACM0',9600)
+        #weight = (str(s.readline()))
+        weight = 'adfnvakondfvlakndfvlaf'
+        weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
+        print(weight_new)
+
         weight_list = []
         mid_weight = 0
-        while (float(weight) != 0): # Collecting weight to array 
-            weight = str(s.readline())
-            weight = float(re.sub("b|'|\r|\n", "", weight[:-5]))
+        while (float(weight_new) != 0): # Collecting weight to array 
+            weight = (str(s.readline()))
+            weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
             weight_list.append(float(weight))
         if weight_list == 0 or weight_list == []:
             return(0)
