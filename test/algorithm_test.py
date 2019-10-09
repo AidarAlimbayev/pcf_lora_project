@@ -19,7 +19,7 @@ def connect_weight():
     print("Measure weight of cow")
     weight = float(input("Enter weight: "))
     while (float(weight) != 0):
-        weight = input("Enter weight:___")
+        weight = float(input("Enter weight:___"))
         weight_list.append(float(weight))
     if weight_list == 0 or weight_list == []:
         return(0)
