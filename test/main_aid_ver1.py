@@ -47,32 +47,36 @@ def Connect_RFID_reader():
 
     animal_id = "b'0700010101001e4b'" # Id null starting variable
     null_id = "b'0700010101001e4b'" # Id null
-        
-        while animal_id == null_id: # Send command to reader waiting id of animal
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            s.connect((TCP_IP, TCP_PORT))
-            s.send(bytearray([0x06, 0x00, 0x01, 0x04, 0xff, 0xd4, 0x39])) #
-            data = s.recv(BUFFER_SIZE)
-            animal_id= str(binascii.hexlify(data))
-            s.close()             
-        if animal_id == null_id: # Id null return(0)
-            Connect_RFID_reader()
-        else: # Id checkt return(1)
-            return(animal_id)
+
+    print(null_id)
+    print("________")
+    print(animal_id)
+    
+    if animal_id == null_id: # Send command to reader waiting id of animal
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect((TCP_IP, TCP_PORT))
+        s.send(bytearray([0x06, 0x00, 0x01, 0x04, 0xff, 0xd4, 0x39])) #
+        data = s.recv(BUFFER_SIZE)
+        animal_id= str(binascii.hexlify(data))
+        s.close()             
+    if animal_id == null_id: # Id null return(0)
+        Connect_RFID_reader()
+    else: # Id checkt return(1)
+        return(animal_id)
 
     
 def Send_data_to_server(animal_id, weight_finall, type_scales):
     print("Sending DATA TO SERVER:")
-        url = ('http://87.247.28.238:8501/api/weights')
-        headers = {'Content-type': 'application/json'}
-        data = {"AnimalNumber" : animal_id,
-                "Date" : str(datetime.now()),
-                "Weight" : weight_finall,
-                "ScalesModel" : type_scales}
-        answer = requests.post(url, data=json.dumps(data), headers=headers)
-        print("RESULT:",answer)
-        response = answer.json()
-        print(response)
+    url = ('http://87.247.28.238:8501/api/weights')
+    headers = {'Content-type': 'application/json'}
+    data = {"AnimalNumber" : animal_id,
+            "Date" : str(datetime.now()),
+            "Weight" : weight_finall,
+            "ScalesModel" : type_scales}
+    answer = requests.post(url, data=json.dumps(data), headers=headers)
+    print("RESULT:",answer)
+    response = answer.json()
+    print(response)
 
 
 def Collect_data_CSV(cow_id, weight_finall, type_scales):

@@ -12,41 +12,33 @@
 
 HX711 scale;   // DT, CLK
 
+
 float calibration_factor = 0.1; // this calibration factor is adjusted according to my load cell
 float units;
-float ounces;
-
-int marker = 0;
-
-void setup_scale()
-{
-  if (marker == 0)
-    {
-      Serial.begin(9600);
-      scale.begin(A1, A0);
-      scale.set_scale();
-      scale.tare();  //Reset the scale to 0
-      long zero_factor = scale.read_average(); //Get a baseline reading
-      scale.set_scale(calibration_factor); //Adjust to this calibration factor
-      marker == 1;
-    }
-}
-
+float ounces;     
+     
 void setup() {
   
-  setup_scale();
-}
+  Serial.begin(9600);
+      scale.begin(A1, A0);
+      //scale.set_scale();
+      scale.tare(); //Reset the scale to 0
+      long zero_factor = scale.read_average(); //Get a baseline reading
+      scale.set_scale(calibration_factor); //Adjust to this calibration factor
+  }
 
 void loop() {
-delay (1000);
 
-  units = scale.get_units(), 10;
-  if (units < 0)
-  {
-    units = 0.00;
+  while (1 == 1){
+    units = scale.get_units(), 10;
+    if (units < 0)
+      {
+          units = 0.00;
+      }
+    ounces = units * 0.035274;
+    Serial.println(ounces);
+    delay (1000);
   }
   
-  ounces = units * 0.035274;
-  Serial.println(ounces);
 
 }
