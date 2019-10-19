@@ -62,7 +62,7 @@ def Connect_RFID_reader():
         print(animal_id)
         
         animal_id_new = animal_id[:-7]
-        animal_id_new = animal_id_new[-40:]
+        animal_id_new = animal_id_new[-24:]
         
         print("CUT ID cow: ")
         print(animal_id_new)
@@ -72,7 +72,8 @@ def Connect_RFID_reader():
     if animal_id_new == null_id: # Id null return(0)
         Connect_RFID_reader()
     else: # Id checkt return(1)
-        return(animal_id)
+        
+        return(animal_id_new)
 
     
 def Send_data_to_server(animal_id, weight_finall, type_scales):
@@ -105,7 +106,7 @@ def main():
     print ("1 step rfid")
     
     cow_id = Connect_RFID_reader()
-    if cow_id != "b'0700010101001e4b'":
+    if cow_id != "b'0700010101":
         print ("2 step weight")
         weight_finall = float(Connect_ARD_get_weight())
         if float(weight_finall) != 0:
