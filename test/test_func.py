@@ -1,17 +1,32 @@
+from datetime import datetime, date, time
+import serial
+import time
+import socket
+import json
+import requests
+import binascii
+import csv
+import re
 
-weight_list = [0.00, 0.00, 0.00]
+cow_id = "test"
+type_scales = "Scale_A"
+s = serial.Serial('/dev/ttyACM0',9600)
 
-print(len(weight_list))
-print(sum(weight_list))
+def Connect_ARD_get_weight():
+        
+        weight = (str(s.readline()))
+        
+        weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
+        print(weight_new)
 
+        weight_list = []      
+        date_now = (str(datetime.now()))
+        row = [cow_id, weight_list,  date_now, type_scales]
+        with open('cows_test.csv', 'a', newline='') as writeFile:
+            writer = csv.writer(writeFile)
+            writer.writerow(row)
+        writeFile.close()
+        weight_new = 0 
+        Connect_ARD_get_weight()
 
-#  if len(weight_list)==0 or sum(weight_list) == 0:
-#                 print("NuLL WEIGHT EXCEPTION")
-#         else:
-#                 del weight_list[len(weight_list)-1]
-#                 #weight_list.remove(len(weight_list)-1)
-#                 for y in weight_list:
-#                         mid_weight = mid_weight + y
-#                 mid_weight = mid_weight / len(weight_list)
-#                 print(mid_weight)
-#                 animal_id = "b'0700010101001e4b'"
+Connect_ARD_get_weight()

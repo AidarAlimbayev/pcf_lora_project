@@ -33,10 +33,9 @@ def Connect_ARD_get_weight():
         else:
             if weight_list != 0:
                 del weight_list[-1]
-
             weight_finall =  sum(weight_list) / len(weight_list) 
             weight_list = []
-            return(weight_finall/1000)
+            return(weight_new)
     
 
 def Connect_RFID_reader():
@@ -84,12 +83,17 @@ def Send_data_to_server(animal_id, weight_finall, type_scales):
             "Date" : str(datetime.now()),
             "Weight" : weight_finall,
             "ScalesModel" : type_scales}
-    print(str(datetime.now)
-          )
-    answer = requests.post(url, data=json.dumps(data), headers=headers)
-    print("RESULT:",answer)
-    response = answer.json()
-    print(response)
+    print(str(datetime.now))
+    
+    #answer = requests.post(url, data=json.dumps(data), headers=headers)
+    try: 
+        answer = requests.post(url, data=json.dumps(data), headers=headers)
+    except expression as identifier:
+        print(expression)
+        
+    #print("RESULT:",answer)
+    #response = answer.json()
+    #print(response)
 
 
 def Collect_data_CSV(cow_id, weight_finall, type_scales):
@@ -99,7 +103,7 @@ def Collect_data_CSV(cow_id, weight_finall, type_scales):
         writer = csv.writer(writeFile)
         writer.writerow(row)
     writeFile.close()
-    weight_finall = 0; 
+    weight_finall = 0 
 
 
 def main():
@@ -110,10 +114,10 @@ def main():
         print ("2 step weight")
         weight_finall = float(Connect_ARD_get_weight())
         if float(weight_finall) != 0:
-            print ("3 step send data")
-            Send_data_to_server(cow_id, weight_finall, type_scales)
-            print ("4 step collect data")
+            print ("3 step collect data")
             Collect_data_CSV(cow_id, weight_finall, type_scales)
+            print ("4 step send data")
+            Send_data_to_server(cow_id, weight_finall, type_scales)
             main()
         else:
             main()
