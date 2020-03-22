@@ -1,0 +1,82 @@
+DEBUG:root:This is a debug message
+INFO:root:This is a info message
+WARNING:root:This is a warning message
+ERROR:root:This is a error message
+CRITICAL:root:This is a critical message
+root - DEBUG - This is a debug message
+root - INFO - This is a info message
+root - WARNING - This is a warning message
+root - ERROR - This is a error message
+root - CRITICAL - This is a critical message
+2020-03-22 18:24:18,152 - root - DEBUG - This is a debug message
+2020-03-22 18:24:18,152 - root - INFO - This is a info message
+2020-03-22 18:24:18,152 - root - WARNING - This is a warning message
+2020-03-22 18:24:18,152 - root - ERROR - This is a error message
+2020-03-22 18:24:18,152 - root - CRITICAL - This is a critical message
+18628 - 2020-03-22 18:26:32,596 - root - DEBUG - This is a debug message
+18628 - 2020-03-22 18:26:32,596 - root - INFO - This is a info message
+18628 - 2020-03-22 18:26:32,596 - root - WARNING - This is a warning message
+18628 - 2020-03-22 18:26:32,596 - root - ERROR - This is a error message
+18628 - 2020-03-22 18:26:32,596 - root - CRITICAL - This is a critical message
+18651 - 2020-03-22 18:26:45,876 - root - DEBUG - This is a debug message
+18651 - 2020-03-22 18:26:45,876 - root - INFO - This is a info message
+18651 - 2020-03-22 18:26:45,876 - root - WARNING - This is a warning message
+18651 - 2020-03-22 18:26:45,877 - root - ERROR - This is a error message
+18651 - 2020-03-22 18:26:45,877 - root - CRITICAL - This is a critical message
+18750 - 22-Mar-20 18:28:23 - root - DEBUG - This is a debug message
+18750 - 22-Mar-20 18:28:23 - root - INFO - This is a info message
+18750 - 22-Mar-20 18:28:23 - root - WARNING - This is a warning message
+18750 - 22-Mar-20 18:28:23 - root - ERROR - This is a error message
+18750 - 22-Mar-20 18:28:23 - root - CRITICAL - This is a critical message
+18842 - 22-Mar-20 18:29:45 - root - DEBUG - This is a debug message
+18842 - 22-Mar-20 18:29:45 - root - INFO - Belka catched to log
+18842 - 22-Mar-20 18:29:45 - root - WARNING - This is a warning message
+18842 - 22-Mar-20 18:29:45 - root - ERROR - This is a error message
+18842 - 22-Mar-20 18:29:45 - root - CRITICAL - This is a critical message
+19105 - 22-Mar-20 18:30:36 - root - DEBUG - This is a debug message
+19105 - 22-Mar-20 18:30:36 - root - INFO - {name} catched to log
+19105 - 22-Mar-20 18:30:36 - root - WARNING - This is a warning message
+19105 - 22-Mar-20 18:30:36 - root - ERROR - This is a error message
+19105 - 22-Mar-20 18:30:36 - root - CRITICAL - This is a critical message
+19120 - 22-Mar-20 18:30:46 - root - DEBUG - This is a debug message
+19120 - 22-Mar-20 18:30:46 - root - INFO - Belka catched to log
+19120 - 22-Mar-20 18:30:46 - root - WARNING - This is a warning message
+19120 - 22-Mar-20 18:30:46 - root - ERROR - This is a error message
+19120 - 22-Mar-20 18:30:46 - root - CRITICAL - This is a critical message
+19160 - 22-Mar-20 18:31:26 - root - DEBUG - This is a debug message
+19160 - 22-Mar-20 18:31:26 - root - INFO - Belka catched to log with ID: 15365
+19160 - 22-Mar-20 18:31:26 - root - WARNING - This is a warning message
+19160 - 22-Mar-20 18:31:26 - root - ERROR - This is a error message
+19160 - 22-Mar-20 18:31:26 - root - CRITICAL - This is a critical message
+19670 - 22-Mar-20 18:48:42 - root - DEBUG - This is a debug message
+19670 - 22-Mar-20 18:48:42 - root - INFO - Belka catched to log with ID: 15365
+19670 - 22-Mar-20 18:48:42 - root - WARNING - This is a warning message
+19670 - 22-Mar-20 18:48:42 - root - ERROR - Exception occured
+Traceback (most recent call last):
+  File "/home/aidar/Documents/Projects/pcf_lora_project/test/sandbox/logging_webdev.py", line 19, in <module>
+    c = a / b
+ZeroDivisionError: division by zero
+19670 - 22-Mar-20 18:48:42 - root - CRITICAL - This is a critical message
+19701 - 22-Mar-20 18:49:37 - root - DEBUG - This is a debug message
+19701 - 22-Mar-20 18:49:37 - root - INFO - Belka catched to log with ID: 15365
+19701 - 22-Mar-20 18:49:37 - root - WARNING - This is a warning message
+19701 - 22-Mar-20 18:49:37 - root - ERROR - Exception occured
+19701 - 22-Mar-20 18:49:37 - root - CRITICAL - This is a critical message
+19825 - 22-Mar-20 18:51:31 - root - DEBUG - This is a debug message
+19825 - 22-Mar-20 18:51:31 - root - INFO - Belka catched to log with ID: 15365
+19825 - 22-Mar-20 18:51:31 - root - WARNING - This is a warning message
+19825 - 22-Mar-20 18:51:31 - root - ERROR - Exception occured
+Traceback (most recent call last):
+  File "/home/aidar/Documents/Projects/pcf_lora_project/test/sandbox/logging_webdev.py", line 19, in <module>
+    c = a / b
+ZeroDivisionError: division by zero
+19825 - 22-Mar-20 18:51:31 - root - CRITICAL - This is a critical message
+21606 - 22-Mar-20 19:43:25 - test_logger_pcf - DEBUG - This is a debug message
+21606 - 22-Mar-20 19:43:25 - test_logger_pcf - INFO - Belka catched to log with ID: 15365
+21606 - 22-Mar-20 19:43:25 - test_logger_pcf - WARNING - This is a warning message
+21606 - 22-Mar-20 19:43:25 - test_logger_pcf - ERROR - Exception occured
+Traceback (most recent call last):
+  File "/home/aidar/Documents/Projects/pcf_lora_project/test/sandbox/logging_webdev.py", line 20, in <module>
+    c = a / b
+ZeroDivisionError: division by zero
+21606 - 22-Mar-20 19:43:25 - root - CRITICAL - This is a critical message
