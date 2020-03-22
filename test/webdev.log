@@ -80,3 +80,7 @@ Traceback (most recent call last):
     c = a / b
 ZeroDivisionError: division by zero
 21606 - 22-Mar-20 19:43:25 - root - CRITICAL - This is a critical message
+2020-03-22 20:22:06,812 - __main__ - ERROR - This is an error
+2020-03-22 20:24:54,005 - __main__ - ERROR - This is an error
+2020-03-22 20:47:59,133 - logging_webdev - ERROR - This is an error
+2020-03-22 20:48:42,177 - logging_webdev - ERROR - This is an error
