@@ -7,7 +7,6 @@ import binascii
 import csv
 import re
 
-
 weight = 0
 weight_finall = 0
 date_now = ''
