@@ -1,0 +1,7 @@
+INFO:root:Information message
+ERROR:root:An error has happened
+ERROR:ex:Error!
+Traceback (most recent call last):
+  File "/home/aidar/Documents/Projects/pcf_lora_project/test/logging_test.py", line 9, in <module>
+    raise RuntimeError
+RuntimeError
