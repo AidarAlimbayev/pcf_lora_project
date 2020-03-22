@@ -1,32 +1,65 @@
 ###logging_test
 
-import logging 
+#log_with_config.py
+
+import logging
+import logging.config
 import otherMod2
 
 def main():
     """
-    The main entry point of the application
+    Based on http://docs.python.org/howto/logging.html#configuring-logging
     """
 
+    dictLogConfig = {
+        "version":1,
+        "handlers":{
+            "fileHandler":{
+            "class": "logging.FileHandler",
+            "formatter":"myFormatter",
+            "filename":"config2.log"
+            }
+        },
+        "loggers":{
+            "exampleApp":{
+                "handlers":["fileHandler"],
+                "level":"INFO",
+                }
+        },
+        "formatters":{
+            "myFormatter":{
+                "format":"%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+            }
+        }
+    }
+
+    logging.config.dictConfig(dictLogConfig)
     logger = logging.getLogger("exampleApp")
-    logger.setLevel(logging.INFO)
-
-    #create the logging file handler
-    fh = logging.FileHandler("new_snake.log")
-
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    fh.setFormatter(formatter)
-
-    #add handle to logger object
-    logger.addHandler(fh)
-
     logger.info("Program started")
-    result = otherMod2.add(90, 54)
+    result = otherMod2.add(22, 33)
     logger.info("Done!")
 
 if __name__ == "__main__":
     main()
 
+# log_with_config.py
+# import logging
+# import logging.config
+# import otherMod2
+ 
+# def main():
+#     """
+#     Based on http://docs.python.org/howto/logging.html#configuring-logging
+#     """
+#     logging.config.fileConfig('logging.config')
+#     logger = logging.getLogger("exampleApp")
+    
+#     logger.info("Program started")
+#     result = otherMod2.add(7, 8)
+#     logger.info("Done!")
+ 
+# if __name__ == "__main__":
+#     main()
 
 
 # import logging
