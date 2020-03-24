@@ -1,5 +1,0 @@
-[0x952084]
-[0x9515ec]
-[0x994e54]
-/lib/arm-linux-gnueabihf/libc.so.6(__default_rt_sa_restorer+0x0)[0x73509130]
-/usr/lib/arm-linux-gnueabihf/libQt5Core.so.5(_ZNK18QThreadStorageData3getEv+0x38)[0x7376c420]

@@ -3,10 +3,7 @@ from datetime import datetime, date, time
 import time
 import csv
 
-
-
 type_scales = "Scale_A"
-
 
 #connect_id.py
 def connect_id():

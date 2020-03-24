@@ -1,7 +1,0 @@
-ERROR: Opening tab menu
-Traceback (most recent call last):
-  File "/usr/lib/python3/dist-packages/thonny/ui_utils.py", line 369, in _right_btn_press
-    index = self.index("@%d,%d" % (event.x, event.y))
-  File "/usr/lib/python3.7/tkinter/ttk.py", line 873, in index
-    return self.tk.getint(self.tk.call(self._w, "index", tab_id))
-_tkinter.TclError: expected integer but got ""
