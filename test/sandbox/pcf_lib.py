@@ -2,6 +2,12 @@
 from datetime import datetime, date, time
 import time
 import csv
+import serial
+import socket
+import json
+import requests
+import binascii
+import csv
 
 type_scales = "Scale_A"
 
@@ -49,3 +55,9 @@ def send_server(cow_id, weight_finall):
     print("Weight:", weight_finall)
     print("Date:", str(datetime.now()))
     print ("Scale type:", type_scales)
+
+
+def irradiation_func()
+    # подключение к базе
+    # проверка данных да/нет
+    # опрыскивание (GPIO вывод сигнала)

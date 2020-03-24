@@ -22,7 +22,7 @@ def main():
         if weight > 100:
             cow_id = pcf_lib.connect_id()
             logging.info("Cow is catched!")
-            if weight != 0:
+            if cow_id != 0:
                 pcf_lib.send_server(cow_id, weight_finall)
                 logging.info("Data to server senden")
                 pcf_lib.collect_data(cow_id, weight_finall)
