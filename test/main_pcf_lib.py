@@ -102,3 +102,17 @@ def Collect_data_CSV(cow_id, weight_finall, type_scales):
     writeFile.close()
     weight_finall = 0 
 
+
+def spray_func(spray_period)
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(22, GPIO.OUT)
+    GPIO.setup(22, GPIO.OUT, GPIO.LOW)
+    # подключение к базе
+    # проверка данных да/нет
+    #if spray_period/next_spray_time != 0
+    # опрыскивание (GPIO вывод сигнала)
+    GPIO.output(22, TRUE)
+    #delay()
+    #return()
+
+def delay_wait()
