@@ -1,7 +1,0 @@
-/home/aidar/Documents/test_rfid_2/test_rfid_2/test_rfid_2/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/home/aidar/Documents/test_rfid_2/test_rfid_2/test_rfid_2/bin/Debug/UHFReader09CSharp.dll
-/home/aidar/Documents/test_rfid_2/test_rfid_2/test_rfid_2/bin/Debug/Properties.Resources.Designer.cs.dll
-/home/aidar/Documents/test_rfid_2/test_rfid_2/test_rfid_2/bin/Debug/test_rfid_2.exe.mdb
-/home/aidar/Documents/test_rfid_2/test_rfid_2/test_rfid_2/bin/Debug/test_rfid_2.exe
-/home/aidar/Documents/test_rfid_2/test_rfid_2/test_rfid_2/obj/x86/Debug/test_rfid_2.exe
-/home/aidar/Documents/test_rfid_2/test_rfid_2/test_rfid_2/obj/x86/Debug/test_rfid_2.exe.mdb
