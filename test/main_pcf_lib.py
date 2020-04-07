@@ -9,7 +9,7 @@ import binascii
 import csv
 import re
 
-def Connect_ARD_get_weight():
+def Connect_ARD_get_weight(): # подключение к ардуино по сути чтение данных с последовательного порта  
         
         weight = (str(s.readline()))
         
@@ -35,7 +35,7 @@ def Connect_ARD_get_weight():
             return(float(weight_new))
     
 
-def Connect_RFID_reader():
+def Connect_RFID_reader(): # подключение к считывателю через TCP получение ID коровы формат str
     ###########################################
     # TCP connection settings and socket
     TCP_IP = '192.168.0.250'
@@ -72,7 +72,7 @@ def Connect_RFID_reader():
         return(animal_id_new)
 
     
-def Send_data_to_server(animal_id, weight_finall, type_scales):
+def Send_data_to_server(animal_id, weight_finall, type_scales): # Отправка данных на сервер КАТУ по JSON
     print("Sending DATA TO SERVER:")
     url = ('http://87.247.28.238:8501/api/weights')
     headers = {'Content-type': 'application/json'}
@@ -93,7 +93,7 @@ def Send_data_to_server(animal_id, weight_finall, type_scales):
     #print(response)
 
 
-def Collect_data_CSV(cow_id, weight_finall, type_scales):
+def Collect_data_CSV(cow_id, weight_finall, type_scales): # Запись данный в CSV файл по хорошему будет в sqlite
     date_now = (str(datetime.now()))
     row = [cow_id, weight_finall,  date_now, type_scales]
     with open('cows_database.csv', 'a', newline='') as writeFile:
@@ -103,7 +103,7 @@ def Collect_data_CSV(cow_id, weight_finall, type_scales):
     weight_finall = 0 
 
 
-def spray_func(spray_period)
+def spray_func(spray_period) # Команда опрыскивания коровы. Запрос в базу и чекание
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(22, GPIO.OUT)
     GPIO.setup(22, GPIO.OUT, GPIO.LOW)
@@ -115,4 +115,4 @@ def spray_func(spray_period)
     #delay()
     #return()
 
-def delay_wait()
+def delay_wait() # Может быть пригодится
