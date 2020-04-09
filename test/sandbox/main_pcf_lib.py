@@ -1,4 +1,3 @@
-#main_pcf_lib.py
 from datetime import datetime, date, time
 import serial
 import time
