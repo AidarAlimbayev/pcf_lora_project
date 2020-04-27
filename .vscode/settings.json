@@ -4,6 +4,11 @@
             "database": "${workspaceFolder}/cow.db",
             "dialect": "SQLite",
             "name": "cow"
+        },
+        {
+            "database": "${workspaceFolder}/employee.db",
+            "dialect": "SQLite",
+            "name": "employee"
         }
     ],
     "sqltools.useNodeRuntime": true

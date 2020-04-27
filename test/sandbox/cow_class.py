@@ -1,4 +1,3 @@
-
 class Cow:
 
     def __init__(id, rf_id, weight, spray_period, next_spray_time, last_drink_duration):
