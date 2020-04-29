@@ -1,8 +1,7 @@
-# Код для создания таблиц баз данных коров
-# Здесь же бибиотека функций питновских функций для обращения к ним
 
 import sqlite3
 from sqlite3 import Error
+
 
 
 def create_connection(cows_database):
@@ -29,22 +28,12 @@ def create_table(conn, create_table_sql):
     try:
         c = conn.cursor()
         c.execute(create_table_sql)
+        conn.commit() # Добавленная мною строка, может быть лишняя
     except Error as e:
         print(e)
     
     return conn
 
-def create_table(conn, create_table_sql):
-    """create a table from the create_table_sql statement
-    :param conn: Connection object
-    :param create_table_sql: a CREATE TABLE statement
-    :retrun:
-    """
-    try:
-        c = conn.cursor()
-        c.execute(create_table_sql)
-    except Error as e:
-        print(e)    
     
 def main():
     database = "cows_database.db"   

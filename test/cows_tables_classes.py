@@ -22,21 +22,23 @@ class Cow: # Класс для основной базы коров
 class Raw_data: # Класс для базы сырых данных
     """ Cows raw_data table class """ 
 
-    def __init__(self, id, weight, timestamp):
+    def __init__(self, id, cow_id,  weight, timestamp):
         self.id = id
+        self.cow_id = cow_id
         self.weight = weight
         self.timestamp = timestamp
 
     def __repr__(self):
-        return "Cow('{}', '{}', '{}')".format(self.id, self.weight, self.timestamp)
+        return "Cow('{}', '{}', '{}')".format(self.id, self.cow_id, self.weight, self.timestamp)
 
 class Processed_data: # Класс для базы обработанных данных
     """ Cows raw_data table class """
 
-    def __init__(self, id, weight, timestamp):
+    def __init__(self, id, cow_id,  weight, timestamp):
         self.id = id
+        self.cow_id = cow_id
         self.weight = weight
-        self.iimestamp = timestamp
+        self.timestamp = timestamp
 
     def __repr__(self):
-        return "Cow('{}', '{}', '{}')".format(self.id, self.weight, self.timestamp)
+        return "Cow('{}', '{}', '{}')".format(self.id, self.cow_id, self.weight, self.timestamp)
