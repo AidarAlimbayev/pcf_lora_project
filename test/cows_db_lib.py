@@ -2,6 +2,7 @@
 # Библиотека функций обращений к базам 
 
 import sqlite3
+import datetime as dt
 from sqlite3 import Error
 from cows_tables_classes import Cow_class
 from cows_tables_classes import Raw_data_class
@@ -20,26 +21,34 @@ c = conn.cursor()
 def insert_cow(rf_id, weight, spray_period, next_spray_time, last_drink_duration):
     with conn:
         c.execute("INSERT INTO cow(rf_id, weight, spray_period, next_spray_time, last_drink_duration) VALUES (?, ?, ?, ?, ?);", (rf_id, weight, spray_period, next_spray_time, last_drink_duration))
+        return("cow data inserted")
 
 def get_cow_by_id(id):
-    c.execute("SELECT * FROM cow WHERE id=:id", {'id': id})
-    return c.fetchall()
+    with conn:
+        c.execute("SELECT * FROM cow WHERE id = ?;", (id,))
+        return c.fetchall()
         
 def get_cow_by_rf_id(rf_id):
     with conn:
-        c.execute("SELECT * FROM cow VALUES ()")
+        c.execute("SELECT * FROM cow WHERE rf_id = ?;", (rf_id,))
+        return c.fetchall()
 
 #----------------------------------------------------------------------------
 # Функции для таблицы сырых данных
-def insert_raw_data(id, cow_id,  weight, timestamp):
+def insert_raw_data(cow_id, weight):
     with conn:
-        c.execute("INSERT INTO processed_data VALUES ")
-    
-def get_raw_data_by_cow_id(cow_id):
-    pass
+        c.execute("INSERT INTO raw_data(cow_id, weight, timestamp) VALUES (?, ?, datetime('now'));", (cow_id, weight,))
+        return("raw data inserted")
 
 def get_raw_data_by_id(id):
-    pass
+  with conn:
+        c.execute("SELECT * FROM raw_data WHERE id = ?;", (id,))
+        return c.fetchall()
+
+def get_raw_data_by_cow_id(cow_id):
+  with conn:
+        c.execute("SELECT * FROM raw_data WHERE cow_id = ?;", (cow_id,))
+        return c.fetchall()
 
 #----------------------------------------------------------------------------
 # Функции для таблицы обработанных данных
@@ -52,10 +61,10 @@ def get_processed_data_by_cow_id(cow_id):
 def get_processed_data_by_id(id):
     pass
 
-def update_processed_data(id, cow_id,  weight, timestamp): # обновление данных в таблице обработанных данных
-    with conn:
-        c.execute("""UPDATE processed_data SET weight = :weight AND timestamp =: timestamp WHERE cow_id =: cow_id""", 
-        {'id':processed_data_1.id, 'cow_id':processed_data_1.cow_id, 'weight':processed_data_1.weight, 'timestamp':processed_data_1.timestamp})
+#def update_processed_data(id, cow_id,  weight, timestamp): # обновление данных в таблице обработанных данных
+#    with conn:
+#        c.execute("""UPDATE processed_data SET weight = :weight AND timestamp =: timestamp WHERE cow_id =: cow_id""", 
+#        {'id'.id, 'cow_id':processed_data_1.cow_id, 'weight':processed_data_1.weight, 'timestamp':processed_data_1.timestamp})
 
 
 #----------------------------------------------------------------------------
@@ -74,15 +83,20 @@ def remove_processed_data():
 
 # cow_1 = Cow_class(123, 300.1, '14 days', 'after 14 days', '300 min')
 
-insert_cow(122, 301.1, '7 days', 'after 6 days', '500 min')
+#print(insert_cow(124, 321.1, '7 days', 'after 6 days', '500 min'))
 
-c.execute("SELECT * FROM cow")
+print(insert_raw_data(7, 377.12))
 
-print(c.fetchall())
+#c.execute("SELECT * FROM cow")
+
+print(get_cow_by_id(7))
+
+print(get_cow_by_rf_id(122))
+
+#print(c.fetchall())
 
 conn.commit()
 conn.close()
-
 
 # cow_1 = Cow(3, 133, 330.1, '14 days', 'after 14 days', '300 min') # Пример в таблицу cow
 # raw_data_1 = Raw_data(3, 11, 300.9, '2:45 AM') # Пример в таблицу raw_data
