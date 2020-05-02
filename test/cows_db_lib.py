@@ -53,7 +53,9 @@ def get_raw_data_by_cow_id(cow_id):
 #----------------------------------------------------------------------------
 # Функции для таблицы обработанных данных
 def insert_processed_data(id, cow_id,  weight, timestamp):
-    pass
+    with conn:
+        c.execute("INSERT INTO cow(rf_id, weight, spray_period, next_spray_time, last_drink_duration) VALUES (?, ?, ?, ?, ?);", (rf_id, weight, spray_period, next_spray_time, last_drink_duration))
+        return("cow data inserted")
 
 def get_processed_data_by_cow_id(cow_id):
     pass
