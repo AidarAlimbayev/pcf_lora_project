@@ -50,7 +50,7 @@ def main():
     database = "cows_database.db"   
         
     sql_create_cow_table = """CREATE TABLE IF NOT EXISTS cow (
-                            id integer PRIMARY KEY,
+                            id integer PRIMARY KEY AUTOINCREMENT,
                             rf_id text NOT NULL,
                             weight real NOT NULL,
                             spray_period text NOT NULL,
@@ -59,7 +59,7 @@ def main():
                             ); """
 
     sql_create_raw_data_table = """CREATE TABLE IF NOT EXISTS raw_data (
-                                id integer PRIMARY KEY,
+                                id integer PRIMARY KEY AUTOINCREMENT,
                                 cow_id integer NOT NULL, 
                                 weight real NOT NULL,
                                 timestamp text NOT NULL, 
@@ -67,7 +67,7 @@ def main():
                                 ); """
 
     sql_create_processed_data_table = """CREATE TABLE IF NOT EXISTS processed_data (
-                                        id integer PRIMARY KEY,
+                                        id integer PRIMARY KEY AUTOINCREMENT,
                                         cow_id integer NOT NULL, 
                                         weight real NOT NULL,
                                         timestamp text NOT NULL,

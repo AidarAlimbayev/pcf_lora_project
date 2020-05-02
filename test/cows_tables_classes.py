@@ -5,11 +5,24 @@
 
 
 
-class Cow: # Класс для основной базы коров
+# class Cow_class: # Класс для основной базы коров
+#     """ Cows main table class """
+
+#     def __init__(self, id, rf_id, weight, spray_period, next_spray_time, last_drink_duration):
+#         self.id = id
+#         self.rf_id = rf_id
+#         self.weight = weight
+#         self.spray_period = spray_period
+#         self.next_spray_time = next_spray_time
+#         self.last_drink_duration = last_drink_duration
+
+#     def __repr__(self):
+#         return "Cow('{}', '{}', '{}', '{}', '{}', '{}')".format(self.id, self.rf_id, self.weight, self.spray_period, self.next_spray_time, self.last_drink_duration )
+
+class Cow_class: # Класс для основной базы коров
     """ Cows main table class """
 
-    def __init__(self, id, rf_id, weight, spray_period, next_spray_time, last_drink_duration):
-        self.id = id
+    def __init__(self, rf_id, weight, spray_period, next_spray_time, last_drink_duration):
         self.rf_id = rf_id
         self.weight = weight
         self.spray_period = spray_period
@@ -17,9 +30,10 @@ class Cow: # Класс для основной базы коров
         self.last_drink_duration = last_drink_duration
 
     def __repr__(self):
-        return "Cow('{}', '{}', '{}', '{}', '{}', '{}')".format(self.id, self.rf_id, self.weight, self.spray_period, self.next_spray_time, self.last_drink_duration )
+        return "Cow('{}', '{}', '{}', '{}', '{}')".format(self.rf_id, self.weight, self.spray_period, self.next_spray_time, self.last_drink_duration )
 
-class Raw_data: # Класс для базы сырых данных
+
+class Raw_data_class: # Класс для базы сырых данных
     """ Cows raw_data table class """ 
 
     def __init__(self, id, cow_id,  weight, timestamp):
@@ -31,7 +45,7 @@ class Raw_data: # Класс для базы сырых данных
     def __repr__(self):
         return "Cow('{}', '{}', '{}')".format(self.id, self.cow_id, self.weight, self.timestamp)
 
-class Processed_data: # Класс для базы обработанных данных
+class Processed_data_class: # Класс для базы обработанных данных
     """ Cows raw_data table class """
 
     def __init__(self, id, cow_id,  weight, timestamp):
