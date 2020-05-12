@@ -81,15 +81,15 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Отправк
             "ScalesModel" : type_scales}
     print(str(datetime.now))
     
-    #answer = requests.post(url, data=json.dumps(data), headers=headers)
-    try: 
-        answer = requests.post(url, data=json.dumps(data), headers=headers)
-    except expression as identifier:
-        print(expression)
+    answer = requests.post(url, data=json.dumps(data), headers=headers)
+    #try: 
+    #    answer = requests.post(url, data=json.dumps(data), headers=headers)
+    #except expression as identifier:
+    #    print(expression)
         
-    #print("RESULT:",answer)
-    #response = answer.json()
-    #print(response)
+    print("RESULT:",answer)
+    response = answer.json()
+    print(response)
 
 
 def Collect_data_CSV(cow_id, weight_finall, type_scales): # Запись данный в CSV файл по хорошему будет в sqlite
@@ -102,7 +102,7 @@ def Collect_data_CSV(cow_id, weight_finall, type_scales): # Запись дан�
     weight_finall = 0 
 
 
-def spray_func(spray_period) # Команда опрыскивания коровы. Запрос в базу и чекание
+#def spray_func(spray_period) # Команда опрыскивания коровы. Запрос в базу и чекание
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(22, GPIO.OUT)
     GPIO.setup(22, GPIO.OUT, GPIO.LOW)
@@ -114,4 +114,4 @@ def spray_func(spray_period) # Команда опрыскивания коро�
     #delay()
     #return()
 
-def delay_wait() # Может быть пригодится
+#def delay_wait() # Может быть пригодится
