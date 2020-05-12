@@ -46,7 +46,7 @@ def get_raw_data_by_id(id):
         return c.fetchall()
 
 def get_raw_data_by_cow_id(cow_id):
-  with conn:
+  with conn: 
         c.execute("SELECT * FROM raw_data WHERE cow_id = ?;", (cow_id,))
         return c.fetchall()
 
