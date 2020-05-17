@@ -7,6 +7,7 @@ import requests
 import binascii
 import csv
 import re
+import pandas as pd # библиотека для записи массива в CSV файл
 
 def Connect_ARD_get_weight(): # подключение к ардуино по сути чтение данных с последовательного порта  
         
@@ -30,6 +31,11 @@ def Connect_ARD_get_weight(): # подключение к ардуино по с
             if weight_list != 0:
                 del weight_list[-1]
             weight_finall =  sum(weight_list) / len(weight_list) 
+
+            # Часть кода для записи массива в CSV файл
+            frame = pd.DataFrame([weight_list]) # собираем фрейм
+            frame.to_csv('my_csv_export.csv',index=False) #экспортируем в файл
+
             weight_list = []
             return(float(weight_new))
     

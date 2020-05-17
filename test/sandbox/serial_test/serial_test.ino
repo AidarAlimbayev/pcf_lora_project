@@ -11,8 +11,10 @@ void loop(){
     delay(500);
     Serial.println(350);
     delay(500);
-    Serial.println();
+    Serial.println(380);
     delay(500);
-    Serial.println(data);
+    Serial.println(400);
+    delay(500);
+    Serial.println(0);
     delay(500);
 }
