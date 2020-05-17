@@ -81,15 +81,15 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Отправк
             "ScalesModel" : type_scales}
     print(str(datetime.now))
     
-    answer = requests.post(url, data=json.dumps(data), headers=headers)
+    #answer = requests.post(url, data=json.dumps(data), headers=headers)
     #try: 
     #    answer = requests.post(url, data=json.dumps(data), headers=headers)
     #except expression as identifier:
     #    print(expression)
         
-    print("RESULT:",answer)
-    response = answer.json()
-    print(response)
+    #print("RESULT:",answer)
+    #response = answer.json()
+    #print(response)
 
 
 def Collect_data_CSV(cow_id, weight_finall, type_scales): # Запись данный в CSV файл по хорошему будет в sqlite
