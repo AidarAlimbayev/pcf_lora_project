@@ -9,7 +9,7 @@ import csv
 import re
 import pandas as pd # библиотека для записи массива в CSV файл
 
-def Connect_ARD_get_weight(): # подключение к ардуино по сути чтение данных с последовательного порта  
+def Connect_ARD_get_weight(cow_id): # подключение к ардуино по сути чтение данных с последовательного порта  
         
         weight = (str(s.readline()))
         
@@ -32,9 +32,15 @@ def Connect_ARD_get_weight(): # подключение к ардуино по с
                 del weight_list[-1]
             weight_finall =  sum(weight_list) / len(weight_list) 
 
-            # Часть кода для записи массива в CSV файл
-            frame = pd.DataFrame([weight_list]) # собираем фрейм
-            frame.to_csv('my_csv_export.csv',index=False) #экспортируем в файл
+            # Часть кода для записи массива в CSV файл сырых данных
+            sep_line = "__________"
+            with open('raw_data.csv', 'a+', newline='') as csvfile:
+                wtr = csv.writer(csvfile)
+                wtr.writerow([sep_line])
+                wtr.writerow([cow_id])
+                for x in weight_list : wtr.writerow ([x])
+                csvfile.close()
+            # конец части кода записи сырых данных
 
             weight_list = []
             return(float(weight_new))
