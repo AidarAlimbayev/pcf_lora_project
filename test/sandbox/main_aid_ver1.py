@@ -1,10 +1,11 @@
 import main_pcf_lib.py as pcf
 
-type_scales = "Scale_A"
-cow_id = "b'0700010101"
+type_scales = "Scale_A" # Тип весов. Дано на каждые весы по отдельности
+cow_id = "b'0700010101" # Значение пустого ответа от считывателя 
 
+# Часть кода для первого подключения к Ардуино
 try:
-    s = pcf.serial.Serial('/dev/ttyACM0',9600)
+    s = pcf.serial.Serial('/dev/ttyACM0',9600) 
 except Exception as e:
     print("Ошибка подключения к Ардуино, нету файла /dev/ttyACM0")
     print(e)
@@ -14,7 +15,7 @@ else:
 def main():
     print ("Start script")
     try: 
-        cow_id = pcf.Connect_RFID_reader()
+        weight_finall = pcf.Connect_ARD_get_weight(cow_id)
     except Exception as e:
         print(e)
         print("Ошибка подключения к Ардуино")
@@ -25,7 +26,7 @@ def main():
 
     while(cow_id != 0):
         try: 
-            cow_id = pcf.Connect_RFID_reader()
+            weight_finall = pcf.Connect_ARD_get_weight(cow_id)
         except Exception as e:
             print(e)
             print("Ошибка подключения к Ардуино")
@@ -35,7 +36,7 @@ def main():
         if cow_id != "b'0700010101":
             
             try:
-                weight_finall = pcf.Connect_ARD_get_weight(cow_id)
+                cow_id= pcf.Connect_RFID_reader()
             except Exception as e:
                 print(e)
                 print("Ошибка подключения к Ардуино ")
