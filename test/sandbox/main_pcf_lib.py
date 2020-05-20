@@ -7,9 +7,9 @@ import requests
 import binascii
 import csv
 import re
-import pandas as pd # библиотека для записи массива в CSV файл
+#import pandas as pd # библиотека для записи массива в CSV файл
 
-def Connect_ARD_get_weight(cow_id): # подключение к ардуино по сути чтение данных с последовательного порта  
+def Connect_ARD_get_weight(cow_id, s): # подключение к ардуино по сути чтение данных с последовательного порта  
         
         weight = (str(s.readline()))
         
@@ -34,26 +34,31 @@ def Connect_ARD_get_weight(cow_id): # подключение к ардуино �
 
             # Часть кода для записи массива в CSV файл сырых данных
             sep_line = "__________"
-            with open('raw_data.csv', 'a+', newline='') as csvfile:
-                wtr = csv.writer(csvfile)
-                wtr.writerow([sep_line])
-                wtr.writerow([cow_id])
-                for x in weight_list : wtr.writerow ([x])
+            if cow_id != b'0700010101001e4b':            
+                with open('raw_data.csv', 'a+', newline='') as csvfile:
+                    wtr = csv.writer(csvfile)
+                    wtr.writerow([sep_line])
+                    wtr.writerow([cow_id])
+                    wtr.writerow([datetime.now()])
+                    for x in weight_list : wtr.writerow ([x])
                 csvfile.close()
             # конец части кода записи сырых данных
-
+            
+            print("Finish of the collect data")
+            
             weight_list = []
-            return(float(weight_new))
+            return(float(weight_finall))
     
 
 def Connect_RFID_reader(): # подключение к считывателю через TCP получение ID коровы формат str
     ###########################################
     # TCP connection settings and socket
-    TCP_IP = '192.168.0.250'
-    TCP_PORT = 27001
+    TCP_IP = '192.168.1.250' #chafon 5300 reader address
+    TCP_PORT = 60000 #chafon 5300 port
     BUFFER_SIZE = 1024
 
     animal_id = "b'0700010101001e4b'" # Id null starting variable
+    animal_id_new = "b'0700010101001e4b'"
     null_id = "b'0700010101001e4b'" # Id null
 
     print("Connect RFID state")
@@ -61,25 +66,24 @@ def Connect_RFID_reader(): # подключение к считывателю ч
     if animal_id == null_id: # Send command to reader waiting id of animal
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((TCP_IP, TCP_PORT))
-        s.send(bytearray([0x06, 0x00, 0x01, 0x04, 0xff, 0xd4, 0x39])) #
+        #s.send(bytearray([0x06, 0x00, 0x01, 0x04, 0xff, 0xd4, 0x39])) # Chafon RU6403 reading command
+        s.send(bytearray([0x53, 0x57, 0x00, 0x03, 0xff, 0xe0, 0x74])) #Chafon RU5300 reading mode command
         data = s.recv(BUFFER_SIZE)
         animal_id= str(binascii.hexlify(data))
+                #print("Received ID cow: ")
+        #print(animal_id)
         
-        print("Received ID cow: ")
-        print(animal_id)
-        
-        animal_id_new = animal_id[:-7]
-        animal_id_new = animal_id_new[-24:]
+        animal_id_new = animal_id[:-7] #Cutting the string from unnecessary information after 7 signs 
+        animal_id_new = animal_id_new[-24:] #Cutting the string from unnecessary information before 24 signs
         
         print("CUT ID cow: ")
         print(animal_id_new)
-        
-        
+                
         s.close()             
     if animal_id_new == null_id: # Id null return(0)
         Connect_RFID_reader()
     else: # Id checkt return(1)
-        
+        animal_id = "b'0700010101001e4b'"
         return(animal_id_new)
 
     
@@ -115,14 +119,14 @@ def Collect_data_CSV(cow_id, weight_finall, type_scales): # Запись дан�
 
 
 #def spray_func(spray_period) # Команда опрыскивания коровы. Запрос в базу и чекание
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(22, GPIO.OUT)
-    GPIO.setup(22, GPIO.OUT, GPIO.LOW)
+    #GPIO.setmode(GPIO.BOARD)
+    #GPIO.setup(22, GPIO.OUT)
+    #GPIO.setup(22, GPIO.OUT, GPIO.LOW)
     # подключение к базе
     # проверка данных да/нет
     #if spray_period/next_spray_time != 0
     # опрыскивание (GPIO вывод сигнала)
-    GPIO.output(22, TRUE)
+    #GPIO.output(22, TRUE)
     #delay()
     #return()
 

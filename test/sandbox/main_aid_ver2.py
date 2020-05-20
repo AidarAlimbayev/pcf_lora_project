@@ -2,6 +2,7 @@ import main_pcf_lib as pcf
 
 type_scales = "Scale_A" # Тип весов. Дано на каждые весы по отдельности
 cow_id = "b'0700010101001e4b'" # Значение пустого ответа от считывателя 
+weight_finall = 0
 
 # Часть кода для первого подключения к Ардуино
 try:
@@ -34,14 +35,14 @@ def main():
             print("Ошибка подключения к Ардуино 2")
         else:
             print("1 step rfid")
-            print(cow_id)
-            print(weight_finall)
+            #print(cow_id)
+            #print(weight_finall)
             
-        if weight_finall != 0:
+        if cow_id != 0:
             
             try:
                 #print("1.3 step connect to RFID reader to get id")
-                cow_id= pcf.Connect_RFID_reader()
+                cow_id = pcf.Connect_RFID_reader()
             except Exception as e:
                 print(e)
                 print("Ошибка подключения к RFID reader")
@@ -70,6 +71,7 @@ def main():
                     print("Ошибка передачи данных на сервер")
                 else:
                     print ("4 step send data")
+                    print ("End of the cycle")
 
             else:
                 return 0
