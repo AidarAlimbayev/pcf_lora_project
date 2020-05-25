@@ -13,6 +13,9 @@ except Exception as e:
 else:
     print("Arduino подключено успешно")
 
+
+
+
 def main():
     print ("Start script")
     try: 
@@ -26,7 +29,7 @@ def main():
     
     #cow_id = 1 # Проверочная переменная для тестирования исключений
 
-    while(cow_id != 0):
+    while(weight_finall != 0):
         try: 
             #print("1.2 step connect to Arduino weight measure")
             weight_finall = pcf.Connect_ARD_get_weight(cow_id, s)

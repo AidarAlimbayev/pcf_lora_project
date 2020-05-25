@@ -8,7 +8,7 @@ import json
 import requests
 import binascii
 import csv
-import RPi.GPIO as GPIO #тут можно так сделать?
+#import RPi.GPIO as GPIO #тут можно так сделать?
 
 type_scales = "Scale_A"
 
@@ -58,16 +58,16 @@ def send_server(cow_id, weight_finall):
     print ("Scale type:", type_scales)
 
 
-def spray_func(spray_period)
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(22, GPIO.OUT)
-    GPIO.setup(22, GPIO.OUT, GPIO.LOW)
-    # подключение к базе
-    # проверка данных да/нет
-    #if spray_period/next_spray_time != 0
-    # опрыскивание (GPIO вывод сигнала)
-    GPIO.output(22, TRUE)
-    #delay()
-    #return()
+# def spray_func(spray_period)
+#     GPIO.setmode(GPIO.BOARD)
+#     GPIO.setup(22, GPIO.OUT)
+#     GPIO.setup(22, GPIO.OUT, GPIO.LOW)
+#     # подключение к базе
+#     # проверка данных да/нет
+#     #if spray_period/next_spray_time != 0
+#     # опрыскивание (GPIO вывод сигнала)
+#     GPIO.output(22, TRUE)
+#     #delay()
+#    #return()
 
-def delay_wait()
+#def delay_wait()

@@ -28,13 +28,13 @@ def Connect_ARD_get_weight(cow_id, s): # подключение к ардуин�
         if weight_list == 0 or weight_list == []:
             return(0)
         else:
-            if weight_list != 0:
+            if weight_list != 0: # Здесь в будущем нужно добавить поверку на массив из одного элемента
                 del weight_list[-1]
-            weight_finall =  sum(weight_list) / len(weight_list) 
+            weight_finall = sum(weight_list) / len(weight_list) 
 
             # Часть кода для записи массива в CSV файл сырых данных
             sep_line = "__________"
-            if cow_id != b'0700010101001e4b':            
+            if cow_id != "b'0700010101001e4b'":            
                 with open('raw_data.csv', 'a+', newline='') as csvfile:
                     wtr = csv.writer(csvfile)
                     wtr.writerow([sep_line])
