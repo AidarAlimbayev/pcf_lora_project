@@ -89,7 +89,8 @@ def Connect_RFID_reader(): # подключение к считывателю ч
     
 def Send_data_to_server(animal_id, weight_finall, type_scales): # Отправка данных на сервер КАТУ по JSON
     print("Sending DATA TO SERVER:")
-    url = ('http://87.247.28.238:8501/api/weights')
+    #url = ('http://87.247.28.238:8501/api/weights')
+    url = ('http://194.4.56.86:8501/api/weights')
     headers = {'Content-type': 'application/json'}
     data = {"AnimalNumber" : animal_id,
             "Date" : str(datetime.now()),
