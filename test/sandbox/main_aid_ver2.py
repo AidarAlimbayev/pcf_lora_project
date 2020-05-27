@@ -19,8 +19,6 @@ else:
 
 def main():
     print ("Start script")
-         
-      
        
     while(True):
         

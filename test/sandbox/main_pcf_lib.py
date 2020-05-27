@@ -55,7 +55,7 @@ def Connect_ARD_get_weight(cow_id, s): # подключение к ардуин�
         print("1 step rfid")
 
 def Connect_RFID_reader(): # подключение к считывателю через TCP получение ID коровы формат str
-    
+    try:    
         ###########################################
         # TCP connection settings and socket
         TCP_IP = '192.168.1.250' #chafon 5300 reader address
@@ -67,7 +67,8 @@ def Connect_RFID_reader(): # подключение к считывателю ч
         null_id = "b'0700010101001e4b'" # Id null
 
         print("Connect RFID state")
-    try:    
+        
+
         if animal_id == null_id: # Send command to reader waiting id of animal
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s.connect((TCP_IP, TCP_PORT))
@@ -75,8 +76,8 @@ def Connect_RFID_reader(): # подключение к считывателю ч
             s.send(bytearray([0x53, 0x57, 0x00, 0x03, 0xff, 0xe0, 0x74])) #Chafon RU5300 reading mode command
             data = s.recv(BUFFER_SIZE)
             animal_id= str(binascii.hexlify(data))
-                    #print("Received ID cow: ")
-            #print(animal_id)
+            print("Received ID cow: ")
+            print(animal_id)
             
             animal_id_new = animal_id[:-7] #Cutting the string from unnecessary information after 7 signs 
             animal_id_new = animal_id_new[-24:] #Cutting the string from unnecessary information before 24 signs
@@ -91,15 +92,15 @@ def Connect_RFID_reader(): # подключение к считывателю ч
             animal_id = "b'0700010101001e4b'"
             return(animal_id_new)
     except Exception as e:
-                print(e)
-                print("Ошибка подключения к RFID reader")
-            else: 
-                print ("2 step RFID")
+        print(e)
+        print("Ошибка подключения к RFID reader")
+    else: 
+        print ("2 step RFID")
     
 def Send_data_to_server(animal_id, weight_finall, type_scales): # Отправка данных на сервер КАТУ по JSON
+    try:        
         print("Sending DATA TO SERVER:")
         #url = ('http://87.247.28.238:8501/api/weights')
-    try:    
         url = ('http://194.4.56.86:8501/api/weights')
         headers = {'Content-type': 'application/json'}
         data = {"AnimalNumber" : animal_id,
@@ -125,9 +126,10 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Отправк
 
 
 def Collect_data_CSV(cow_id, weight_finall, type_scales): # Запись данный в CSV файл по хорошему будет в sqlite
+        
+    try:        
         date_now = (str(datetime.now()))
         row = [cow_id, weight_finall,  date_now, type_scales]
-    try:
         with open('cows_database.csv', 'a', newline='') as writeFile:
             writer = csv.writer(writeFile)
             writer.writerow(row)
