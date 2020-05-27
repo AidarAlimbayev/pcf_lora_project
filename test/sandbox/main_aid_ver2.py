@@ -32,7 +32,7 @@ def main():
             #print()
             weight_finall = pcf.Connect_ARD_get_weight(cow_id, s)
             
-            if float(weight_finall) != 0:
+            if str(weight_finall) != '0':
                 pcf.Collect_data_CSV(cow_id, weight_finall, type_scales)
                 pcf.Send_data_to_server(cow_id, weight_finall, type_scales)
             else:
