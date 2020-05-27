@@ -17,9 +17,9 @@
 # AnimalNumber: "KZC154000000",
 #     Date: "2019-04-16T13:15:00",
 #     Weight: 300.5,
-# 	ScalesModel: ""
+#   ScalesModel: ""
 
-
+from datetime import datetime, date, time
 import requests
 import json
 
@@ -28,8 +28,8 @@ url = 'http://194.4.56.86:8501/api/weights'
 headers = {'Content-type': 'application/json'}
 
 data = {"AnimalNumber" : "AZT120000010", 
-        "Date" : "2020-05-25T10:03:00",
-        "Weight" : "555.5" ,
+        "Date" : str(datetime.now()),
+        "Weight" : "400" ,
         "ScalesModel" : "test_2"}  # Если по одному ключу находится несколько словарей, формируем список словарей
 
 answer = requests.post(url, data=json.dumps(data), headers=headers)
