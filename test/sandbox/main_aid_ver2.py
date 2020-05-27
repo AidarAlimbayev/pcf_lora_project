@@ -1,4 +1,4 @@
-import main_pcf_lib as pcf
+import main_pcf_lib2 as pcf
 
 type_scales = "Scale_A" # Тип весов. Дано на каждые весы по отдельности
 cow_id = "b'0700010101001e4b'" # Значение пустого ответа от считывателя 
@@ -20,19 +20,21 @@ else:
 def main():
     print ("Start script")
          
-    weight_finall = pcf.Connect_ARD_get_weight(cow_id, s)
-    
+      
        
     while(True):
-        weight_finall = pcf.Connect_ARD_get_weight(cow_id, s)
+        
+        cow_id = pcf.Connect_RFID_reader()
+        #print("Cow ID: ")
+        #print(cow_id)
             
-        if float(weight_finall) != 0:
-            cow_id = pcf.Connect_RFID_reader()
-            if cow_id != null_id
-                weight_finall = pcf.Connect_ARD_get_weight(cow_id, s)
-                if float(weight_finall) != 0:
-                    pcf.Collect_data_CSV(cow_id, weight_finall, type_scales)
-                    pcf.Send_data_to_server(cow_id, weight_finall, type_scales)
+        if cow_id != '070106156079':
+            #print()
+            weight_finall = pcf.Connect_ARD_get_weight(cow_id, s)
+            
+            if float(weight_finall) != 0:
+                pcf.Collect_data_CSV(cow_id, weight_finall, type_scales)
+                pcf.Send_data_to_server(cow_id, weight_finall, type_scales)
             else:
                 return 0
 
