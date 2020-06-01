@@ -3,7 +3,7 @@ Description=test.service Service
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python /home/pi/demon_test.py
+ExecStart=/usr/bin/python3 /home/pi/main_aid_ver2.py
 WorkingDirectory=/home/pi/
 StandardOutput=inherit
 StandardError=inherit
