@@ -2163,3 +2163,49 @@ INFO:root:None
 2020-06-09 22:56:31,247 main: Infinite cycle
 2020-06-09 22:56:34,303 main: After read cow ID
 2020-06-09 22:56:34,304 None
+2020-06-09 22:59:37,988 main: Start script
+2020-06-09 22:59:37,988 main: Arduino didnt connected
+2020-06-09 22:59:37,988 [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-06-09 22:59:37,988 main: Start main code
+2020-06-09 22:59:37,988 main: Infinite cycle
+2020-06-09 22:59:41,055 main: After read cow ID
+2020-06-09 22:59:41,056 None
+2020-06-09 23:01:53,256 main: Start script
+2020-06-09 23:01:53,257 main: Arduino didnt connected
+2020-06-09 23:01:53,257 [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-06-09 23:01:53,257 main: Start main code
+2020-06-09 23:01:53,257 main: Infinite cycle
+2020-06-09 23:01:53,257 lib: Start RFID Function
+2020-06-09 23:01:56,319 main: After read cow ID
+2020-06-09 23:01:56,320 None
+2020-06-10 00:08:14,279 main: Start script
+2020-06-10 00:08:14,280 main: Arduino didnt connected
+2020-06-10 00:08:14,280 [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-06-10 00:08:14,280 main: Start main code
+2020-06-10 00:08:14,280 main: Infinite cycle
+2020-06-10 00:08:14,280 lib:RFID_reader: Start RFID Function
+2020-06-10 00:08:14,280 lib:RFID_reader: Err connect to Arduino 
+2020-06-10 00:08:14,280 name 'logggin' is not defined
+2020-06-10 00:08:14,280 main: After read cow ID
+2020-06-10 00:08:14,280 None
+2020-06-10 00:09:06,323 main: Start script
+2020-06-10 00:09:06,323 main: Arduino didnt connected
+2020-06-10 00:09:06,323 [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-06-10 00:09:06,323 main: Start main code
+2020-06-10 00:09:06,323 main: Infinite cycle
+2020-06-10 00:09:06,323 lib:RFID_reader: Start RFID Function
+2020-06-10 00:09:06,323 lib:RFID_reader: Connect RFID state
+2020-06-10 00:09:09,375 lib:RFID_reader: Err connect to Arduino 
+2020-06-10 00:09:09,375 [Errno 113] No route to host
+2020-06-10 00:09:09,376 main: After read cow ID
+2020-06-10 00:09:09,376 None
+2020-06-10 00:15:31,339 main: Start script
+2020-06-10 00:15:31,340 main: Arduino didnt connected
+2020-06-10 00:15:31,340 [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-06-10 00:15:31,340 main: Start main code
+2020-06-10 00:15:31,340 main: Infinite cycle
+2020-06-10 00:15:31,340 lib:RFID_reader: Start RFID Function
+2020-06-10 00:15:34,399 lib:RFID_reader: Err connect to Arduino 
+2020-06-10 00:15:34,399 [Errno 113] No route to host
+2020-06-10 00:15:34,400 main: After read cow ID
+2020-06-10 00:15:34,400 None

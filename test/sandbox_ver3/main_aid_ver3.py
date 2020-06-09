@@ -50,7 +50,7 @@ def main():
             logging.info(cow_id)
             
             weight_finall = pcf.Connect_ARD_get_weight(cow_id, s)
-            logging.info('Weight: ')
+            logging.info('main: Weight: ')
             logging.info(weight_finall)
             
             if str(weight_finall) != '0':
