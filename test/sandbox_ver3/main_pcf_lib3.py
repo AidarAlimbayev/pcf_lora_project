@@ -13,9 +13,12 @@ logging.basicConfig(filename = 'pcf_file.log', level = logging.DEBUG, format='%(
 
 def Connect_ARD_get_weight(cow_id, s): # подключение к ардуино по сути чтение данных с последовательного порта  
     try:
+        print("lib:Con_ARD: Start collect weight")
         logging.info("lib:Con_ARD: Start collect weight")
         weight = (str(s.readline()))
         weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
+        print("lib:Con_ARD: weight new: ")
+        print(float(weight_new))
         logging.info("lib:Con_ARD: weight new: ")
         logging.info(float(weight_new))
         
@@ -28,9 +31,9 @@ def Connect_ARD_get_weight(cow_id, s): # подключение к ардуин�
         if weight_list == 0 or weight_list == []:
             return(0)
         else:
-            if weight_list != 0: # Здесь в будущем нужно добавить поверку на массив из одного элемента
+            if weight_list != []: # Здесь в будущем нужно добавить поверку на массив из одного элемента
                 del weight_list[-1]
-            weight_finall = sum(weight_list) / len(weight_list) 
+            weight_finall = sum(weight_list) / len(weight_list) # усреднение веса делением кол-во эл. массива на сумму
             logging.info("lib:Con_ARD: weight_finall new: ")
             logging.info(weight_finall)
             # Часть кода для записи массива в CSV файл сырых данных
@@ -55,11 +58,13 @@ def Connect_ARD_get_weight(cow_id, s): # подключение к ардуин�
         logging.info("lib: Con_ARD: Err connection to Arduino")
         logging.info(e)
     else:
+        print("lid:RFID_reader: 1 step")
         logging.info("lid:RFID_reader: 1 step")
 
 def Connect_RFID_reader(): # подключение к считывателю через TCP получение ID коровы формат str
     try:    
-        logging.info('lib:RFID_reader: Start RFID Function')
+        print("lib:RFID_reader: Start RFID Function")
+        logging.info("lib:RFID_reader: Start RFID Function")
         ###########################################
         # TCP connection settings and socket
         TCP_IP = '192.168.1.250' #chafon 5300 reader address
@@ -94,6 +99,7 @@ def Connect_RFID_reader(): # подключение к считывателю ч
     
 def Send_data_to_server(animal_id, weight_finall, type_scales): # Отправка данных на сервер КАТУ по JSON
     try:
+        print("lib:RFID_reader: Start sending DATA TO SERVER:")
         logging.info("lib:RFID_reader: Start sending DATA TO SERVER:")
         url = 'http://194.4.56.86:8501/api/weights'
         headers = {'Content-type': 'application/json'}
@@ -104,6 +110,8 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Отправк
         answer = requests.post(url, data=json.dumps(data), headers=headers)
         logging.info("lib:RFID_reader: Answer from server: ")
         logging.info(answer) # можно ли как-то на этой строке остановиться вдебаге?
+        print("lib:RFID_reader: Answer from server: ")
+        print(answer)
     except Exception as e:
         logging.info("lib:RFID_reader: Err send data to server")
         logging.info(e)
@@ -113,6 +121,7 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Отправк
 
 def Collect_data_CSV(cow_id, weight_finall, type_scales): # Запись данный в CSV файл по хорошему будет в sqlite
     try:
+        print("lib:CSV_data: Start write to file")
         logging.info("lib:CSV_data: Start write to file")
         date_now = (str(datetime.now()))
         row = [cow_id, weight_finall,  date_now, type_scales]

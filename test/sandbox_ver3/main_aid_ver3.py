@@ -34,16 +34,15 @@ else:
 
 
 def main():
-    #print ("main: Start script")
+    print ("main: Start script")
     logging.info('main: Start main code')
 
     while(True):
         logging.info('main: Infinite cycle')
         cow_id = pcf.Connect_RFID_reader()
-        #print("Cow ID: ")
-        #print(cow_id)
+        print("Cow ID: ")
+        print(cow_id)
         
-
         if cow_id != '070106156079':
             
             logging.info('main: After read cow ID')
@@ -55,8 +54,10 @@ def main():
             
             if str(weight_finall) != '0':
                 logging.info('main: Collect data to CSV')
+                print('main: Collect data to CSV')
                 pcf.Collect_data_CSV(cow_id, weight_finall, type_scales)
                 logging.info('main: Send data to server')
+                print('main: Send data to server')
                 pcf.Send_data_to_server(cow_id, weight_finall, type_scales)
                 cow_id = '070106156079'
 
