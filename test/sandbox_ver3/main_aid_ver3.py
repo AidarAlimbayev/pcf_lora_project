@@ -1,12 +1,14 @@
 #!/usr/bin/sudo python3
-import main_pcf_lib2 as pcf
+import main_pcf_lib3 as pcf
 import serial
 from datetime import datetime, date, time
 import csv
 import logging
 
 
-logging.basicConfig(filename = 'pcf_file.log', level = logging.DEBUG)
+logging.basicConfig(filename = 'pcf_file.log', level = logging.DEBUG, format='%(asctime)s %(message)s')
+#logging.basicConfig(format='%(asctime)s %(message)s')
+#logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(funcName)s - line %(lineno)d") 
 
 type_scales = "Scale_A" # Тип весов. Дано на каждые весы по отдельности
 cow_id = "b'0700010101001e4b'" # Значение пустого ответа от считывателя
