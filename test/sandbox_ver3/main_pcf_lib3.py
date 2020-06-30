@@ -53,6 +53,8 @@ def Connect_ARD_get_weight(cow_id, s): # подключение к ардуин�
             # конец части кода записи сырых данных
                         
             weight_list = []
+            weight_finall = 0
+            weight = 0
             return(float(weight_finall))
     except Exception as e:
         logging.info("lib: Con_ARD: Err connection to Arduino")
@@ -67,7 +69,7 @@ def Connect_RFID_reader(): # подключение к считывателю ч
         logging.info("lib:RFID_reader: Start RFID Function")
         ###########################################
         # TCP connection settings and socket
-        TCP_IP = '192.168.1.250' #chafon 5300 reader address
+        TCP_IP = '192.168.0.250' #chafon 5300 reader address
         TCP_PORT = 60000 #chafon 5300 port
         BUFFER_SIZE = 1024
         animal_id = "b'0700010101001e4b'" # Id null starting variable

@@ -21,7 +21,7 @@ logging.info('main: Start script')
 
 # Часть кода для первого подключения к Ардуино
 try:
-    s = serial.Serial('/dev/ttyACM0',9600)
+    s = serial.Serial("/dev/ttyACM0",9600)
     print("main: connect arduino")
     logging.info('main: connect arduino')
     logging.info(s)
@@ -62,5 +62,7 @@ def main():
                 
                 pcf.Send_data_to_server(cow_id, weight_finall, type_scales)
                 cow_id = '070106156079'
+                weight_finall = 0
+                weight = 0
 
 main()
