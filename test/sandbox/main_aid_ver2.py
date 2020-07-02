@@ -15,8 +15,6 @@ else:
     print("Arduino подключено успешно")
 
 
-
-
 def main():
     print ("Start script")
        
