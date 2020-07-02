@@ -36,7 +36,12 @@ void loop() {
           units = 0.00;
       }
     ounces = units * 0.035274;
-    Serial.println(ounces);
+    if (ounces < 1000) {
+
+    }else {
+        Serial.println(ounces);
+    }
+    
     delay (1000);
   }
   
