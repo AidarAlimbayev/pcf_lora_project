@@ -8,6 +8,9 @@ main scientific head - Nabiyev Nabi nabi.nabiyev@gmail.com
 engineer - Alimbayev Aidar transcription@rambler.ru
 engineer - Baiguanysh Sanat kvenecusghost@gmail.com 
 
+h1 Настройка нового Распбери 
+============================
+
 * Настроить Ethernet на Распбери 
 * 192.168.1.249/24 
 * Raspberry pi = ping 192.168.1.250 
@@ -17,6 +20,8 @@ engineer - Baiguanysh Sanat kvenecusghost@gmail.com
 * VNC = astana.integration@gmail.com
 * Teamviewer = aidar.alimbayev@nu.edu.kz
 * Настроить автоматический запуск демона
+* Загрузить файл test.service в /etc/systemd/system/
+* Загрузить файл 99-serial-logger.rules в /etc/udev/rules.d
 * 5-7 раз перезагрузить распбери и проверить статус программы
 * 5-7 раз перезагрузить ручным отключением питания
 * Перезагрузить с отключенным монитором
@@ -25,8 +30,8 @@ engineer - Baiguanysh Sanat kvenecusghost@gmail.com
 * Открыть права на ttyACM0 chown
 * Проверить программу на работу через 1,3,6,9,25 часов
 
-
-* Модули которые нужно добавить и ошибки которые нужно исправить
+h2 Модули которые нужно добавить и ошибки которые нужно исправить
+-----------------------------------------------------------------
 
 * Отправка данных при появлении сети WiFi или 4G
 * Логирование данных с программы в файл systemctl +

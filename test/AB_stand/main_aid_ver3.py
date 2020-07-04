@@ -1,17 +1,13 @@
 #!/usr/bin/sudo python3
 import main_pcf_lib3 as pcf
 import time
-
 time.sleep(60)
 from datetime import datetime, date, time
-
 import serial
 import csv
 import logging
 
-
-
-logging.basicConfig(filename = 'pcf_file.log', level = logging.DEBUG, format='%(asctime)s %(message)s')
+#logging.basicConfig(filename = 'pcf_file.log', level = logging.DEBUG, format='%(asctime)s %(message)s')
 #logging.basicConfig(format='%(asctime)s %(message)s')
 #logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(funcName)s - line %(lineno)d") 
 
@@ -20,8 +16,8 @@ cow_id = "b'0700010101001e4b'" # Значение пустого ответа о
 null_id = "b'0700010101001e4b'"
 weight_finall = 0
 
+logging.info('--------------------------------------------------------')
 logging.info('main: Start script')
-
 
 # Часть кода для первого подключения к Ардуино
 try:
