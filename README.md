@@ -34,22 +34,22 @@ engineer - Baiguanysh Sanat kvenecusghost@gmail.com
 Модули которые нужно добавить и ошибки которые нужно исправить
 -----------------------------------------------------------------
 
-:black_square_button: Отправка данных при появлении сети WiFi или 4G
-:white_check_mark: Логирование данных с программы в файл systemctl +
-:black_square_button: Перевод RFID считывателя на USB 
-:black_square_button: Мягкое выключение через ИБП с сигналом отключения на Rasberry
-:black_square_button: Исправить кода на отправку 0 веса к серверу 
-:black_square_button: Оставить десятые доли на значении веса которые отправляются
-:black_square_button: Установка мощности антенны перед началом программы функция установки
-:black_square_button: Поставить больше равно на проверку веса
-:black_square_button: Права для программы root sudo
-:black_square_button: Отдельное питание для Ардуино
-:black_square_button: Закрывать файл после записи, проверить повторное открытие файла
-:black_square_button: Проверить правильность функции открытия и записи файлов csv. 
-:white_check_mark: Установка времени на логирование +
-:black_square_button: Почему не работает продолжительное время?
-:black_square_button: Проверить какие функции занимают порт ардуино
-:black_square_button: Проверить weight_list != [] lib -> 34 строка
+:black_square_button: Отправка данных при появлении сети WiFi или 4G    
+:white_check_mark: Логирование данных с программы в файл systemctl +    
+:black_square_button: Перевод RFID считывателя на USB     
+:black_square_button: Мягкое выключение через ИБП с сигналом отключения на Rasberry    
+:black_square_button: Исправить кода на отправку 0 веса к серверу     
+:black_square_button: Оставить десятые доли на значении веса которые отправляются    
+:black_square_button: Установка мощности антенны перед началом программы функция установки    
+:black_square_button: Поставить больше равно на проверку веса    
+:white_check_mark: Права для программы root sudo    
+:black_square_button: Отдельное питание для Ардуино    
+:black_square_button: Закрывать файл после записи, проверить повторное открытие файла    
+:black_square_button: Проверить правильность функции открытия и записи файлов csv.     
+:white_check_mark: Установка времени на логирование +       
+:white_check_mark: Почему не работает продолжительное время?    
+:black_square_button: Проверить какие функции занимают порт ардуино    
+:black_square_button: Проверить weight_list != [] lib -> 34 строка    
 
 
 Код для автоматического запуска программы
