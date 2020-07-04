@@ -1,0 +1,15 @@
+[Unit]
+Description=test.service Service
+
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/pi/main_aid_ver3.py
+WorkingDirectory=/home/pi/
+StandardOutput=inherit
+StandardError=inherit
+Restart=o
+User=root
+
+[Install]
+WantedBy=multi-user.target

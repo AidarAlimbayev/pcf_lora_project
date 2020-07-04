@@ -9,14 +9,26 @@ import csv
 import re
 import logging
 
-logging.basicConfig(filename = 'pcf_file.log', level = logging.DEBUG, format='%(asctime)s %(message)s')
+logging.basicConfig(filename = '%s.log'%str(datetime.now()), level = logging.DEBUG, format='%(asctime)s %(message)s')
 
 def Connect_ARD_get_weight(cow_id, s): # подключение к ардуино по сути чтение данных с последовательного порта  
     try:
+        s.flushInput() # Обнуление входного буфера последовательного порта
+        s.flushOutput() # обнуление выходного буфера последовательного порта
+        logging.info('lib: Con_ARD: connect arduino after flush')
+        logging.info(s)
+        logging.info('lib: Con_ARD: connect arduino s.name fuction answer:')
+        logging.info(s.name)
         print("lib:Con_ARD: Start collect weight")
         logging.info("lib:Con_ARD: Start collect weight")
-        weight = (str(s.readline()))
+
+        weight = (str(s.readline())) # начало сбора данныз с Ардуино
+        logging.info("lib:Con_ARD: Start collect weight")
+        logging.info(weight)
+        logging.info("lib:Con_ARD: after s.readline function")
+
         weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
+
         print("lib:Con_ARD: weight new: ")
         print(float(weight_new))
         logging.info("lib:Con_ARD: weight new: ")
@@ -24,9 +36,13 @@ def Connect_ARD_get_weight(cow_id, s): # подключение к ардуин�
         
         weight_list = []
         mid_weight = 0
-        while (float(weight_new) > 10000): # Collecting weight to array 
+        while (float(weight_new) > 10): # Collecting weight to array 
             weight = (str(s.readline()))
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
+            print("weight from Arduino: ")
+            print(weight_new)
+            logging.info("lib:Con_ARD: weight from arduino: ")
+            logging.info(weight_new)
             weight_list.append(float(weight_new))
         if weight_list == 0 or weight_list == []:
             return(0)
@@ -34,12 +50,9 @@ def Connect_ARD_get_weight(cow_id, s): # подключение к ардуин�
             if weight_list != []: # Здесь в будущем нужно добавить поверку на массив из одного элемента
                 del weight_list[-1]
             weight_finall = sum(weight_list) / len(weight_list) # усреднение веса делением кол-во эл. массива на сумму
-            logging.info("lib:Con_ARD: weight_list new: ")
-            logging.info(weight_list)
-
+            weight_finall = weight_finall/1000 # деление на 1000 для сервера Игоря 
             logging.info("lib:Con_ARD: weight_finall new: ")
-            logging.info(float(weight_finall))
-            
+            logging.info("{0:.2f}".format(weight_finall))
             # Часть кода для записи массива в CSV файл сырых данных
             sep_line = "__________"
             if cow_id != "b'0700010101001e4b'":            
@@ -57,11 +70,7 @@ def Connect_ARD_get_weight(cow_id, s): # подключение к ардуин�
             # конец части кода записи сырых данных
                         
             weight_list = []
-            weight = 0
-            logging.info("lib:Con_ARD: weight_finall to return: ")
-            logging.info(float(weight_finall))
-
-            return(float(weight_finall))
+            return(float("{0:.2f}".format(weight_finall)))
     except Exception as e:
         logging.info("lib: Con_ARD: Err connection to Arduino")
         logging.info(e)
@@ -142,7 +151,6 @@ def Collect_data_CSV(cow_id, weight_finall, type_scales): # Запись дан�
         logging.info("lib:CSV_data: Err to write file")
     else:
         logging.info("lib:CSV_data: 3 step collect data")   
-        weight_finall = 0 
 
 
 #def spray_func(spray_period) # Команда опрыскивания коровы. Запрос в базу и чекание
