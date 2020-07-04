@@ -8,7 +8,7 @@ ExecStart=/usr/bin/python3 /home/pi/main_aid_ver3.py
 WorkingDirectory=/home/pi/
 StandardOutput=inherit
 StandardError=inherit
-Restart=o
+Restart=always
 User=root
 
 [Install]

@@ -54,21 +54,22 @@ engineer - Baiguanysh Sanat kvenecusghost@gmail.com
 
 Код для автоматического запуска программы
 -----------------------------------------
-* [9:06 PM, 6/1/2020] . S: [Unit]
-* Description=Sheala_B Service
-* After=network.target
+[Unit]    
+Description=test.service Service       
+After=network.target      
 
-* [Service]
-* ExecStart=/usr/bin/python /opt/sh* eala_b/rx_cont.py
-* WorkingDirectory=/opt/sheala* _b
-* StandardOutput=inher* it
-* StandardError=inher* it
-* Restart=alwa* ys
-* User=* pi
+[Service]
+ExecStart=/usr/bin/python3 /home/pi/main_aid_ver3.py        
+WorkingDirectory=/home/pi/        
+StandardOutput=inherit    
+StandardError=inherit    
+Restart=always    
+User=root    
 
-* [Install]
-* Wante* dBy=multi-user.target
-* [9:09*  PM, 6/1/2020] . S: /etc/systemd/system/
-* [9:14*  PM, 6/1/2020] . S: winSCP
-* [9:16* *  PM, 6/1/2020] . S: sudo systemctl start sheala_b.se* rvi* c* * e
-* [9:22*  PM, 6/1/2020] . S: sudo systemctl enable sheala_b.ser* vi* * * c**  * e
+[Install]
+dBy=multi-user.target        
+
+/etc/systemd/system/    
+winSCP    
+sudo systemctl start test.service       
+sudo systemctl enable test.service       
