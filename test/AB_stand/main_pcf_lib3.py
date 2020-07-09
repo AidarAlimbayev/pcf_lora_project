@@ -23,7 +23,7 @@ def Connect_ARD_get_weight(cow_id, s): # подключение к ардуин�
         logging.info("lib:Con_ARD: Start collect weight")
 
         weight = (str(s.readline())) # начало сбора данныз с Ардуино
-        logging.info("lib:Con_ARD: Start collect weight")
+        logging.info("lib:Con_ARD: Start collect weight after readline")
         logging.info(weight)
         logging.info("lib:Con_ARD: after s.readline function")
 
