@@ -6,6 +6,7 @@ from datetime import datetime, date, time
 import serial
 import csv 
 import logging # Библиотека логгирования
+import sqlite3
 
 
 
@@ -36,11 +37,22 @@ except Exception as e:
     print(e)
 else:
     logging.info('main: else step Arduino')
+    
 
 
 def main(): # Основная часть алгоритма
     print ("main: Start script")
     logging.info('main: Start main code')
+
+    conn = 0
+    cursor = 0
+    try:
+        print("Try to connect to database")
+        conn = sqlite3.connect("mydb.db")
+        cursor = conn.cursor()
+        print("Sucessfully connected to database")
+    except Exception as e:
+        print("Could not connect to database")
 
     while(True): # Бесконечный цикл программы
         logging.info('main: Infinite cycle')
@@ -62,8 +74,16 @@ def main(): # Основная часть алгоритма
                 print('main: Collect data to CSV')
                 pcf.Collect_data_CSV(cow_id, weight_finall, type_scales) # Функция для записи данных в табличный файл
                 logging.info('main: Send data to server')
-                print('main: Send data to server')
-                pcf.Send_data_to_server(cow_id, weight_finall, type_scales) # Функиця отправки данных на сервер
+                
+                #Saving to database
+                sql = """INSERT INTO cow_weight VALUES (?, ?, ?, ?)"""
+                cursor.execute(sql, [(cow_id, weight_finall, type_scales, 0)])
+                conn.commit()
+
+                
+                
+                # print('main: Send data to server')
+                # pcf.Send_data_to_server(cow_id, weight_finall, type_scales) # Функиця отправки данных на сервер
                 cow_id = '070106156079'
 
 main() # Запуск программы
