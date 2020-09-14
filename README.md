@@ -49,8 +49,10 @@ engineer - Baiguanysh Sanat kvenecusghost@gmail.com
 :white_check_mark: Установка времени на логирование +       
 :white_check_mark: Почему не работает продолжительное время?    
 :black_square_button: Проверить какие функции занимают порт ардуино    
-:black_square_button: Проверить weight_list != [] lib -> 34 строка    
-
+:black_square_button: Проверить weight_list != [] lib -> 34 строка 
+:black_square_button: Отправка тестового пакета при включении или перегрузки
+:black_square_button: Отправка идентификационного пакета при отсутсвии связи с весами
+:black_square_button: Отправка данных через LoRa32u4
 
 Код для автоматического запуска программы
 -----------------------------------------
