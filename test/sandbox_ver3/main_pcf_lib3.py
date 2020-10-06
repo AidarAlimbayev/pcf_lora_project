@@ -101,8 +101,8 @@ def Connect_RFID_reader(): # подключение к считывателю ч
     
 def Send_data_to_server(animal_id, weight_finall, type_scales): # Отправка данных на сервер КАТУ по JSON
     try:
-        print("lib:RFID_reader: Start sending DATA TO SERVER:")
-        logging.info("lib:RFID_reader: Start sending DATA TO SERVER:")
+        print("lib: Send_server: Start sending DATA TO SERVER:")
+        logging.info("lib: Send_server: Start sending DATA TO SERVER:")
         url = 'http://194.4.56.86:8501/api/weights'
         headers = {'Content-type': 'application/json'}
         data = {"AnimalNumber" : animal_id,
@@ -110,9 +110,9 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Отправк
                 "Weight" : weight_finall,
                 "ScalesModel" : type_scales}
         answer = requests.post(url, data=json.dumps(data), headers=headers)
-        logging.info("lib:RFID_reader: Answer from server: ")
+        logging.info("lib: Send_server: Answer from server: ")
         logging.info(answer) # можно ли как-то на этой строке остановиться вдебаге?
-        print("lib:RFID_reader: Answer from server: ")
+        print("lib: Send_server: Answer from server: ")
         print(answer)
     except Exception as e:
         logging.info("lib:RFID_reader: Err send data to server")
@@ -137,6 +137,15 @@ def Collect_data_CSV(cow_id, weight_finall, type_scales): # Запись дан�
     else:
         logging.info("lib:CSV_data: 3 step collect data")   
         weight_finall = 0 
+
+def Send_data_to_Lora(cow_id, weight_finall, type_scales):
+    try:
+        print("lib: Lora: Start sending DATA TO LORA:")
+        logging.info("lib: Lora: Start sending DATA TO LORA:")
+        
+
+
+
 
 
 #def spray_func(spray_period) # Команда опрыскивания коровы. Запрос в базу и чекание

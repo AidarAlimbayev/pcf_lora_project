@@ -19,12 +19,16 @@ weight_finall = 0
 logging.info('main: Start script')
 
 
-# Часть кода для первого подключения к Ардуино
+# Часть кода для первого подключения к Ардуино и Lora
 try:
     s = serial.Serial("/dev/ttyACM0",9600)
     print("main: connect arduino")
     logging.info('main: connect arduino')
     logging.info(s)
+    uart_serial = serial.Serial("/dev/ttyS0", 9600, timeout = 3.0) # Подключение к Lora32u4
+    print("main: connect Lora32u4")
+    logging.info('main: connect Lora32u4')
+    logging.info(uart_serial)
 except Exception as e:
     print("main: Ошибка подключения к Ардуино, нету файла /dev/ttyACM0")
     logging.info('main: Arduino didnt connected')
