@@ -138,6 +138,12 @@ def Collect_data_CSV(cow_id, weight_finall, type_scales): # Запись дан�
         logging.info("lib:CSV_data: 3 step collect data")   
         weight_finall = 0 
 
+def Send_data_to_Lora(cow_id, weight_finall, type_scales):
+    try:
+        print("lib: Lora: Start sending DATA TO LORA:")
+        logging.info("lib: Lora: Start sending DATA TO LORA:")
+        
+        message_in_bytes ()
 
 #def spray_func(spray_period) # Команда опрыскивания коровы. Запрос в базу и чекание
     #GPIO.setmode(GPIO.BOARD)
