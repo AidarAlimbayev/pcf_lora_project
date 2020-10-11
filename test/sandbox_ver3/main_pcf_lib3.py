@@ -142,7 +142,13 @@ def Send_data_to_Lora(cow_id, weight_finall, type_scales):
     try:
         print("lib: Lora: Start sending DATA TO LORA:")
         logging.info("lib: Lora: Start sending DATA TO LORA:")
-        
+
+        # data = {"AnimalNumber" : animal_id,
+        #         "Date" : str(datetime.now()),
+        #         "Weight" : weight_finall,
+        #         "ScalesModel" : type_scales}
+        print ()
+        print
         message_in_bytes ()
 
 #def spray_func(spray_period) # Команда опрыскивания коровы. Запрос в базу и чекание
