@@ -14,6 +14,8 @@ from time import sleep
 
 logging.basicConfig(filename = 'pcf_file.log', level = logging.DEBUG, format='%(asctime)s %(message)s')
 
+
+
 def Connect_ARD_get_weight(cow_id, s): # подключение к ардуино по сути чтение данных с последовательного порта  
     try:
         print("lib:Con_ARD: Start collect weight")
@@ -150,20 +152,27 @@ def Send_data_to_Lora(cow_id, weight_finall, type_scales):
         #         "Date" : str(datetime.now()),
         #         "Weight" : weight_finall,
         #         "ScalesModel" : type_scales}
-        print ()
-        print
-        message_in_bytes ()
+        #print ()
+        #print
+        #message_in_bytes ()
+    except Exception as e:
+        logging.info("lib: lorem ipsum")
+    else:
+        logging.info("lib: lorem ipsum")
 
-def gpio_setup():
-    logging.info("lib: gpio: Start setup ")
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(14, GPIO.OUT)
-    GPIO.setup(14, GPIO.OUT, GPIO.LOW)
+def Gpio_Setup(pin):
+    try:
+        logging.info("lib: gpio: Start setup ")
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(pin, GPIO.OUT)
+        GPIO.setup(pin, GPIO.OUT, GPIO.LOW)
+    except Exception as e:
+        logging.info("lib: gpio")
 
-def spray_func(spray_period): # Команда опрыскивания коровы. Запрос в базу и чекание
+def Spray_Func(spray_period, pin): # Команда опрыскивания коровы. Запрос в базу и чекание
     logging.info("lib: spray: Start ")
-    GPIO.output(14, True)
+    GPIO.output(pin, True)
     sleep(3)
-    GPIO.output(14, False)
+    GPIO.output(pin, False)
 
 #def delay_wait() # Может быть пригодится

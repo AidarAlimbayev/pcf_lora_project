@@ -2145,3 +2145,11 @@ INFO:root:main: Infinite cycle
 2020-06-10 00:39:37,503 [Errno 113] No route to host
 2020-06-10 00:39:37,504 main: After read cow ID
 2020-06-10 00:39:37,504 None
+2020-11-02 16:54:31,294 lib: gpio: Start setup 
+2020-11-02 16:54:31,297 lib: gpio
+2020-11-02 16:54:31,297 main: Start script
+2020-11-02 16:54:31,299 main: Arduino didnt connected
+2020-11-02 16:54:31,300 [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-11-02 16:54:31,301 main: Start script
+2020-11-02 16:54:31,302 main: Infinite cycle
+2020-11-02 16:54:31,303 lib:RFID_reader: Start RFID Function
