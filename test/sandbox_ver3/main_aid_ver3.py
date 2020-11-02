@@ -5,7 +5,7 @@ from datetime import datetime, date, time
 import csv
 import logging
 
-
+gpio_setup()
 
 logging.basicConfig(filename = 'pcf_logs/pcf_file-%s.log' % str(datetime.now()), level = logging.DEBUG, format='%(asctime)s %(message)s')
 #logging.basicConfig(format='%(asctime)s %(message)s')
@@ -50,8 +50,13 @@ def main():
             
             weight_finall = pcf.Connect_ARD_get_weight(cow_id, s)
             logging.info('main: Weight: %s' % str(weight_finall))
+
+            
             
             if str(weight_finall) != '0':
+                logging.info('main: Spray liquid drug')
+                spray_func()
+
                 logging.info('main: Collect data to CSV')
                 print('main: Collect data to CSV')
 

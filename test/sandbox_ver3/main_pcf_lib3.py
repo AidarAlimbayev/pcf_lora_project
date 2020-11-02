@@ -8,6 +8,9 @@ import binascii
 import csv
 import re
 import logging
+import RPi.GPIO as GPIO
+from time import sleep
+
 
 logging.basicConfig(filename = 'pcf_file.log', level = logging.DEBUG, format='%(asctime)s %(message)s')
 
@@ -151,16 +154,16 @@ def Send_data_to_Lora(cow_id, weight_finall, type_scales):
         print
         message_in_bytes ()
 
-#def spray_func(spray_period) # Команда опрыскивания коровы. Запрос в базу и чекание
-    #GPIO.setmode(GPIO.BOARD)
-    #GPIO.setup(22, GPIO.OUT)
-    #GPIO.setup(22, GPIO.OUT, GPIO.LOW)
-    # подключение к базе
-    # проверка данных да/нет
-    #if spray_period/next_spray_time != 0
-    # опрыскивание (GPIO вывод сигнала)
-    #GPIO.output(22, TRUE)
-    #delay()
-    #return()
+def gpio_setup():
+    logging.info("lib: gpio: Start setup ")
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(14, GPIO.OUT)
+    GPIO.setup(14, GPIO.OUT, GPIO.LOW)
+
+def spray_func(spray_period): # Команда опрыскивания коровы. Запрос в базу и чекание
+    logging.info("lib: spray: Start ")
+    GPIO.output(14, True)
+    sleep(3)
+    GPIO.output(14, False)
 
 #def delay_wait() # Может быть пригодится
