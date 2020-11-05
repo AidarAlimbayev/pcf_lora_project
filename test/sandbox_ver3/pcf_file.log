@@ -2153,3 +2153,11 @@ INFO:root:main: Infinite cycle
 2020-11-02 16:54:31,301 main: Start script
 2020-11-02 16:54:31,302 main: Infinite cycle
 2020-11-02 16:54:31,303 lib:RFID_reader: Start RFID Function
+2020-11-05 14:08:50,964 lib: gpio: Start setup 
+2020-11-05 14:08:50,969 lib: gpio setup error
+2020-11-05 14:08:50,969 main: Start script
+2020-11-05 14:08:50,971 main: Arduino didnt connected
+2020-11-05 14:08:50,972 [Errno 2] could not open port /dev/ttyACM0: [Errno 2] No such file or directory: '/dev/ttyACM0'
+2020-11-05 14:08:50,974 main: Start script
+2020-11-05 14:08:50,975 main: Infinite cycle
+2020-11-05 14:08:50,976 lib:RFID_reader: Start RFID Function
