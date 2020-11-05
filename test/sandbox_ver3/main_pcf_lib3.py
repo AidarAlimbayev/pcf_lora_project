@@ -14,8 +14,6 @@ from time import sleep
 
 logging.basicConfig(filename = 'pcf_file.log', level = logging.DEBUG, format='%(asctime)s %(message)s')
 
-
-
 def Connect_ARD_get_weight(cow_id, s): # подключение к ардуино по сути чтение данных с последовательного порта  
     try:
         print("lib:Con_ARD: Start collect weight")
@@ -156,9 +154,9 @@ def Send_data_to_Lora(cow_id, weight_finall, type_scales):
         #print
         #message_in_bytes ()
     except Exception as e:
-        logging.info("lib: lorem ipsum")
+        logging.info("lib: Lora sending Error")
     else:
-        logging.info("lib: lorem ipsum")
+        logging.info("lib: Lora sending successful")
 
 def Gpio_Setup(pin):
     try:
@@ -167,7 +165,7 @@ def Gpio_Setup(pin):
         GPIO.setup(pin, GPIO.OUT)
         GPIO.setup(pin, GPIO.OUT, GPIO.LOW)
     except Exception as e:
-        logging.info("lib: gpio")
+        logging.info("lib: gpio setup error")
 
 def Spray_Func(spray_period, pin): # Команда опрыскивания коровы. Запрос в базу и чекание
     logging.info("lib: spray: Start ")
