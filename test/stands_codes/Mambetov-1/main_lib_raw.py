@@ -1,3 +1,7 @@
+# код с отправкой всех взвешиваний на сервер сырых данных
+
+
+
 from datetime import datetime, date, time
 import serial
 import time
@@ -22,7 +26,7 @@ def Connect_ARD_get_weight(cow_id, s): # подключение к ардуин�
         print("lib:Con_ARD: Start collect weight")
         logging.info("lib:Con_ARD: Start collect weight")
 
-        weight = (str(s.readline())) # начало сбора данныз с Ардуино
+        weight = (str(s.readline())) # начало сбора данныx с Ардуино
         logging.info("lib:Con_ARD: Start collect weight")
         logging.info(weight)
         logging.info("lib:Con_ARD: after s.readline function")
@@ -33,44 +37,48 @@ def Connect_ARD_get_weight(cow_id, s): # подключение к ардуин�
         print(float(weight_new))
         logging.info("lib:Con_ARD: weight new: ")
         logging.info(float(weight_new))
+        if (float(weight_new) > 50):
+            return(float(weight_new))
+
+        # Часть кода сбора данных в массив и усреднение, далее сбор сырых данных закоменитрован 
+        # weight_list = []
+        # mid_weight = 0
         
-        weight_list = []
-        mid_weight = 0
-        while (float(weight_new) > 10): # Collecting weight to array 
-            weight = (str(s.readline()))
-            weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
-            print("weight from Arduino: ")
-            print(weight_new)
-            logging.info("lib:Con_ARD: weight from arduino: ")
-            logging.info(weight_new)
-            weight_list.append(float(weight_new))
-        if weight_list == 0 or weight_list == []:
-            return(0)
-        else:
-            if weight_list != []: # Здесь в будущем нужно добавить поверку на массив из одного элемента
-                del weight_list[-1]
-            weight_finall = sum(weight_list) / len(weight_list) # усреднение веса делением кол-во эл. массива на сумму
-            #weight_finall = weight_finall/1000 # деление на 1000 для сервера Игоря 
-            logging.info("lib:Con_ARD: weight_finall new: ")
-            logging.info("{0:.2f}".format(weight_finall))
-            # Часть кода для записи массива в CSV файл сырых данных
-            sep_line = "__________"
-            if cow_id != "b'0700010101001e4b'":            
-                with open('raw_data.csv', 'a+', newline='') as csvfile:
-                    wtr = csv.writer(csvfile)
-                    wtr.writerow([sep_line])
-                    wtr.writerow([cow_id])
-                    wtr.writerow([datetime.now()])
-                    for x in weight_list : wtr.writerow ([x])
-                    logging.info("lib: weight_list: ")
-                    logging.info(weight_list)
-                csvfile.close()
-            logging.info("lib:Con_ARD:End of write raw data list: ")
-            logging.info(weight_list)
-            # конец части кода записи сырых данных
-                        
-            weight_list = []
-            return(float("{0:.2f}".format(weight_finall)))
+        # while (float(weight_new) > 10): # Collecting weight to array 
+        #     weight = (str(s.readline()))
+        #     weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
+        #     print("weight from Arduino: ")
+        #     print(weight_new)
+        #     logging.info("lib:Con_ARD: weight from arduino: ")
+        #     logging.info(weight_new)
+        #     weight_list.append(float(weight_new))
+        # if weight_list == 0 or weight_list == []:
+        #     return(0)
+        # else:
+        #     if weight_list != []: # Здесь в будущем нужно добавить поверку на массив из одного элемента
+        #         del weight_list[-1]
+        #     weight_finall = sum(weight_list) / len(weight_list) # усреднение веса делением кол-во эл. массива на сумму
+        #     #weight_finall = weight_finall/1000 # деление на 1000 для сервера Игоря 
+        #     logging.info("lib:Con_ARD: weight_finall new: ")
+        #     logging.info("{0:.2f}".format(weight_finall))
+            # # Часть кода для записи массива в CSV файл сырых данных
+            # sep_line = "__________"
+            # if cow_id != "b'0700010101001e4b'":            
+            #     with open('raw_data.csv', 'a+', newline='') as csvfile:
+            #         wtr = csv.writer(csvfile)
+            #         wtr.writerow([sep_line])
+            #         wtr.writerow([cow_id])
+            #         wtr.writerow([datetime.now()])
+            #         for x in weight_list : wtr.writerow ([x])
+            #         logging.info("lib: weight_list: ")
+            #         logging.info(weight_list)
+            #     csvfile.close()
+            # logging.info("lib:Con_ARD:End of write raw data list: ")
+            # logging.info(weight_list)
+            # # конец части кода записи сырых данных
+            # weight_list = []
+            # return(float("{0:.2f}".format(weight_finall)))
+
     except Exception as e:
         logging.info("lib: Con_ARD: Err connection to Arduino")
         logging.info(e)
@@ -116,9 +124,9 @@ def Connect_RFID_reader(): # подключение к считывателю ч
     
 def Send_data_to_server(animal_id, weight_finall, type_scales): # Отправка данных на сервер КАТУ по JSON
     try:
-        print("lib:RFID_reader: Start sending DATA TO SERVER:")
-        logging.info("lib:RFID_reader: Start sending DATA TO SERVER:")
-        url = 'http://194.4.56.86:8501/api/weights'
+        print("lib:RFID_reader: Start sending Raw data TO SERVER:")
+        logging.info("lib:RFID_reader: Start sending Raw data TO SERVER:")
+        url = 'http://194.4.56.86:8501/api/rawWeights'
         headers = {'Content-type': 'application/json'}
         data = {"AnimalNumber" : animal_id,
                 "Date" : str(datetime.now()),
