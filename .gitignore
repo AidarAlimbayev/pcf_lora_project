@@ -1,3 +1,9 @@
 __pycache__/
 .vscode/
 __Previews/
+
+$ 3D.ZIP
+$ Hardware.zip
+
+# exclude everything except directory foo/bar
+!/test/sandbox_ver3
