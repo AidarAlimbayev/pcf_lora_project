@@ -13,14 +13,15 @@ engineer - Baiguanysh Sanat kvenecusghost@gmail.com
 
 * Настроить Ethernet на Распбери 
 * 192.168.1.249/24 
-* Raspberry pi = ping 192.168.1.250 
+* Проверить связь через команду в терминале raspberry pi = ping 192.168.1.250 
 * Ручной запуск программы тест
 * Проверить калибровку ардуино
+* *set_calibration.ino*
 * Настроить удаленный доступ
-* VNC = astana.integration@gmail.com
-* Teamviewer = aidar.alimbayev@nu.edu.kz
+* VNC = pfc.kazatu@gmail.com
+* Teamviewer = pcf.kazatu@nu.edu.kz
 * Настроить автоматический запуск демона
-* Загрузить файл *test.service* в __/etc/systemd/system/__
+* Загрузить файл *pcf.service* в __/etc/systemd/system/__
 * Загрузить файл *99-serial-logger.rules* в __/etc/udev/rules.d__
 * 5-7 раз перезагрузить распбери и проверить статус программы
 * 5-7 раз перезагрузить ручным отключением питания
