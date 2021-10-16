@@ -19,7 +19,7 @@ engineer - Baiguanysh Sanat kvenecusghost@gmail.com
 * *set_calibration.ino*
 * Настроить удаленный доступ
 * VNC = pfc.kazatu@gmail.com
-* Teamviewer = pcf.kazatu@nu.edu.kz
+* Teamviewer = pcf.kazatu@gmail.com
 * Настроить автоматический запуск демона
 * Загрузить файл *pcf.service* в __/etc/systemd/system/__
 * Загрузить файл *99-serial-logger.rules* в __/etc/udev/rules.d__
