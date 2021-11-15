@@ -14,7 +14,7 @@ from time import sleep
 
 logging.basicConfig(filename = 'pcf_file.log', level = logging.DEBUG, format='%(asctime)s %(message)s')
 
-def Connect_ARD_get_weight(cow_id, s): # подключение к ардуино по сути чтение данных с последовательного порта  
+def Connect_ARD_get_weight(cow_id, s): # connecting to arduino is essentially reading data from a serial port
     try:
         print("lib:Con_ARD: Start collect weight")
         logging.info("lib:Con_ARD: Start collect weight")
@@ -34,12 +34,12 @@ def Connect_ARD_get_weight(cow_id, s): # подключение к ардуин�
         if weight_list == 0 or weight_list == []:
             return(0)
         else:
-            if weight_list != []: # Здесь в будущем нужно добавить поверку на массив из одного элемента
+            if weight_list != []: #There in future must be added check on one element array
                 del weight_list[-1]
-            weight_finall = sum(weight_list) / len(weight_list) # усреднение веса делением кол-во эл. массива на сумму
+            weight_finall = sum(weight_list) / len(weight_list) # weight averaging by dividing the number of el. array for the amount
             logging.info("lib:Con_ARD: weight_finall new: ")
             logging.info(weight_finall)
-            # Часть кода для записи массива в CSV файл сырых данных
+            # Part of the code for writing an array to a CSV raw data file
             sep_line = "__________"
             if cow_id != "b'0700010101001e4b'":            
                 with open('raw_data.csv', 'a+', newline='') as csvfile:
@@ -66,13 +66,13 @@ def Connect_ARD_get_weight(cow_id, s): # подключение к ардуин�
         print("lid:RFID_reader: 1 step")
         logging.info("lid:RFID_reader: 1 step")
 
-def Connect_RFID_reader(): # подключение к считывателю через TCP получение ID коровы формат str
+def Connect_RFID_reader(): # connect to reader via TCP receive cow ID str format
     try:    
         print("lib:RFID_reader: Start RFID Function")
         logging.info("lib:RFID_reader: Start RFID Function")
         ###########################################
         # TCP connection settings and socket
-        TCP_IP = '192.168.0.250' #chafon 5300 reader address
+        TCP_IP = '192.168.1.250' #chafon 5300 reader address
         TCP_PORT = 60000 #chafon 5300 port
         BUFFER_SIZE = 1024
         animal_id = "b'0700010101001e4b'" # Id null starting variable
@@ -102,7 +102,7 @@ def Connect_RFID_reader(): # подключение к считывателю ч
     else: 
         logging.info("lib:RFID_reader: 2 step RFID")
     
-def Send_data_to_server(animal_id, weight_finall, type_scales): # Отправка данных на сервер КАТУ по JSON
+def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data to the KATU server via JSON
     try:
         print("lib:RFID_reader: Start sending DATA TO SERVER:")
         logging.info("lib:RFID_reader: Start sending DATA TO SERVER:")
@@ -114,7 +114,7 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Отправк
                 "ScalesModel" : type_scales}
         answer = requests.post(url, data=json.dumps(data), headers=headers)
         logging.info("lib:RFID_reader: Answer from server: ")
-        logging.info(answer) # можно ли как-то на этой строке остановиться вдебаге?
+        logging.info(answer) # is it possible to stop in the debug somehow on this line?
         print("lib:RFID_reader: Answer from server: ")
         print(answer)
     except Exception as e:
@@ -124,7 +124,7 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Отправк
         logging.info("lib:RFID_reader: 4 step send data")
         logging.info("lib:RFID_reader: End of the cycle")  
 
-def Collect_data_CSV(cow_id, weight_finall, type_scales): # Запись данный в CSV файл по хорошему будет в sqlite
+def Collect_data_CSV(cow_id, weight_finall, type_scales): # Writing data to a CSV file will be good in sqlite
     try:
         print("lib:CSV_data: Start write to file")
         logging.info("lib:CSV_data: Start write to file")
@@ -167,10 +167,10 @@ def Gpio_Setup(pin):
     except Exception as e:
         logging.info("lib: gpio setup error")
 
-def Spray_Func(spray_period, pin): # Команда опрыскивания коровы. Запрос в базу и чекание
+def Spray_Func(spray_period, pin): # Cow spraying team. Base query and checkout
     logging.info("lib: spray: Start ")
     GPIO.output(pin, True)
     sleep(3)
     GPIO.output(pin, False)
 
-#def delay_wait() # Может быть пригодится
+#def delay_wait() # May be useful
