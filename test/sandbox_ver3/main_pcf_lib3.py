@@ -107,6 +107,7 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data t
         print("lib:RFID_reader: Start sending DATA TO SERVER:")
         logging.info("lib:RFID_reader: Start sending DATA TO SERVER:")
         url = 'http://194.4.56.86:8501/api/weights'
+        #url = 'http://194.4.56.86:8501/api/rawWeights' # Raw weights API
         headers = {'Content-type': 'application/json'}
         data = {"AnimalNumber" : animal_id,
                 "Date" : str(datetime.now()),
