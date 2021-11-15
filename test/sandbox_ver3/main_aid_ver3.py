@@ -12,15 +12,15 @@ logging.basicConfig(filename = 'pcf_logs/pcf_file-%s.log' % str(datetime.now()),
 #logging.basicConfig(format='%(asctime)s %(message)s')
 #logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(funcName)s - line %(lineno)d") 
 
-type_scales = "Scale_A" # Тип весов. Дано на каждые весы по отдельности
-cow_id = "b'0700010101001e4b'" # Значение пустого ответа от считывателя
+type_scales = "Scale_A" # Scale type. Given for each scale separately
+cow_id = "b'0700010101001e4b'" # The value of an empty response from the reader
 null_id = "b'0700010101001e4b'"
 weight_finall = 0
 
 logging.info('main: Start script')
 
 
-# Часть кода для первого подключения к Ардуино
+# Part of the code for the first connection to Arduino
 try:
     s = serial.Serial("/dev/ttyACM0",9600)
     print("main: connect arduino")
