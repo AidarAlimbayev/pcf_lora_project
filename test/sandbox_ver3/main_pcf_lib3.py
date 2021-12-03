@@ -175,3 +175,6 @@ def Spray_Func(spray_period, pin): # Cow spraying team. Base query and checkout
     GPIO.output(pin, False)
 
 #def delay_wait() # May be useful
+###
+###
+###
