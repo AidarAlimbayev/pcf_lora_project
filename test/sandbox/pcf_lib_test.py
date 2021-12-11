@@ -90,9 +90,3 @@ def send_server(animal_id, weight_finall):
 #    #return()
 
 #def delay_wait()
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
