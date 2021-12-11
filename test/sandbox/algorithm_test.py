@@ -1,5 +1,5 @@
 
-import pcf_lib_test
+import pcf_lib_test as pcf_lib
 import logging
 
 weight = 0
