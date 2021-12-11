@@ -8,6 +8,7 @@ import json
 import requests
 import binascii
 import csv
+import logging
 #import RPi.GPIO as GPIO #тут можно так сделать?
 
 type_scales = "Scale_A"
@@ -57,7 +58,7 @@ def connect_weight():
 def send_server(animal_id, weight_finall):
     try:
         print("lib:RFID_reader: Start sending DATA TO SERVER:")
-        logging.info("lib:RFID_reader: Start sending DATA TO SERVER:")
+        #logging.info("lib:RFID_reader: Start sending DATA TO SERVER:")
         url = 'http://194.4.56.86:8501/api/weights'
         #url = 'http://194.4.56.86:8501/api/rawWeights' # Raw weights API
         headers = {'Content-type': 'application/json'}
@@ -66,16 +67,18 @@ def send_server(animal_id, weight_finall):
                 "Weight" : weight_finall,
                 "ScalesModel" : "Post test"}
         answer = requests.post(url, data=json.dumps(data), headers=headers)
-        logging.info("lib:RFID_reader: Answer from server: ")
-        logging.info(answer) # is it possible to stop in the debug somehow on this line?
+        #logging.info("lib:RFID_reader: Answer from server: ")
+        #logging.info(answer) # is it possible to stop in the debug somehow on this line?
         print("lib:RFID_reader: Answer from server: ")
         print(answer)
     except Exception as e:
-        logging.info("lib:RFID_reader: Err send data to server")
-        logging.info(e)
+        #logging.info("lib:RFID_reader: Err send data to server")
+        print("lib:RFID_reader: Err send data to server")
+        #logging.info(e)
     else:
-        logging.info("lib:RFID_reader: 4 step send data")
-        logging.info("lib:RFID_reader: End of the cycle")
+        #logging.info("lib:RFID_reader: 4 step send data")
+        #logging.info("lib:RFID_reader: End of the cycle")
+        print("lib:RFID_reader: 4 step send data")
     
 # def spray_func(spray_period)
 #     GPIO.setmode(GPIO.BOARD)
