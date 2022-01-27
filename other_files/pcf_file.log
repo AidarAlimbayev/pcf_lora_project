@@ -1,0 +1,914 @@
+2020-07-02 21:19:42,779 main: Start script
+2020-07-02 21:19:42,781 main: connect arduino
+2020-07-02 21:19:42,782 Serial<id=0x766f7290, open=True>(port='/dev/ttyACM0', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+2020-07-02 21:19:42,782 main: else step Arduino
+2020-07-02 21:19:42,782 main: Start script
+2020-07-02 21:19:42,782 main: Infinite cycle
+2020-07-02 21:19:42,783 lib:RFID_reader: Start RFID Function
+2020-07-02 21:19:42,847 lib:RFID_reader: new ID: 
+2020-07-02 21:19:42,847 013716606d10
+2020-07-02 21:19:42,847 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:19:42,848 main: Get weight from Arduino
+2020-07-02 21:19:42,848 lib:Con_ARD: Start collect weight
+2020-07-02 21:19:46,768 lib:Con_ARD: weight new: 
+2020-07-02 21:19:46,769 45.16
+2020-07-02 21:19:46,773 main: Weight: 0
+2020-07-02 21:19:46,773 main: Infinite cycle
+2020-07-02 21:19:46,774 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:14,981 lib:RFID_reader: new ID: 
+2020-07-02 21:21:14,982 0124190052cf
+2020-07-02 21:21:14,983 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:14,984 main: Get weight from Arduino
+2020-07-02 21:21:14,985 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:14,987 lib:Con_ARD: weight new: 
+2020-07-02 21:21:14,988 70.22
+2020-07-02 21:21:14,989 main: Weight: 0
+2020-07-02 21:21:14,989 main: Infinite cycle
+2020-07-02 21:21:14,990 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:15,041 lib:RFID_reader: new ID: 
+2020-07-02 21:21:15,041 0124190052cf
+2020-07-02 21:21:15,042 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:15,043 main: Get weight from Arduino
+2020-07-02 21:21:15,043 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:15,044 lib:Con_ARD: weight new: 
+2020-07-02 21:21:15,045 60.0
+2020-07-02 21:21:15,045 main: Weight: 0
+2020-07-02 21:21:15,046 main: Infinite cycle
+2020-07-02 21:21:15,046 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:15,100 lib:RFID_reader: new ID: 
+2020-07-02 21:21:15,101 0124190052cf
+2020-07-02 21:21:15,102 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:15,102 main: Get weight from Arduino
+2020-07-02 21:21:15,103 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:15,104 lib:Con_ARD: weight new: 
+2020-07-02 21:21:15,105 50.44
+2020-07-02 21:21:15,105 main: Weight: 0
+2020-07-02 21:21:15,105 main: Infinite cycle
+2020-07-02 21:21:15,106 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:15,160 lib:RFID_reader: new ID: 
+2020-07-02 21:21:15,161 0124190052cf
+2020-07-02 21:21:15,162 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:15,162 main: Get weight from Arduino
+2020-07-02 21:21:15,163 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:15,164 lib:Con_ARD: weight new: 
+2020-07-02 21:21:15,165 73.84
+2020-07-02 21:21:15,165 main: Weight: 0
+2020-07-02 21:21:15,165 main: Infinite cycle
+2020-07-02 21:21:15,166 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:15,221 lib:RFID_reader: new ID: 
+2020-07-02 21:21:15,221 0124190052cf
+2020-07-02 21:21:15,222 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:15,222 main: Get weight from Arduino
+2020-07-02 21:21:15,223 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:15,224 lib:Con_ARD: weight new: 
+2020-07-02 21:21:15,225 52.09
+2020-07-02 21:21:15,225 main: Weight: 0
+2020-07-02 21:21:15,226 main: Infinite cycle
+2020-07-02 21:21:15,226 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:15,281 lib:RFID_reader: new ID: 
+2020-07-02 21:21:15,282 0124190052cf
+2020-07-02 21:21:15,282 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:15,283 main: Get weight from Arduino
+2020-07-02 21:21:15,283 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:15,285 lib:Con_ARD: weight new: 
+2020-07-02 21:21:15,285 41.87
+2020-07-02 21:21:15,285 main: Weight: 0
+2020-07-02 21:21:15,286 main: Infinite cycle
+2020-07-02 21:21:15,286 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:15,341 lib:RFID_reader: new ID: 
+2020-07-02 21:21:15,342 0124190052cf
+2020-07-02 21:21:15,342 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:15,343 main: Get weight from Arduino
+2020-07-02 21:21:15,343 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:15,345 lib:Con_ARD: weight new: 
+2020-07-02 21:21:15,345 72.2
+2020-07-02 21:21:15,346 main: Weight: 0
+2020-07-02 21:21:15,346 main: Infinite cycle
+2020-07-02 21:21:15,347 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:15,400 lib:RFID_reader: new ID: 
+2020-07-02 21:21:15,401 0124190052cf
+2020-07-02 21:21:15,402 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:15,403 main: Get weight from Arduino
+2020-07-02 21:21:15,404 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:15,405 lib:Con_ARD: weight new: 
+2020-07-02 21:21:15,405 97.91
+2020-07-02 21:21:15,406 main: Weight: 0
+2020-07-02 21:21:15,406 main: Infinite cycle
+2020-07-02 21:21:15,407 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:15,460 lib:RFID_reader: new ID: 
+2020-07-02 21:21:15,461 0124190052cf
+2020-07-02 21:21:15,462 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:15,462 main: Get weight from Arduino
+2020-07-02 21:21:15,464 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:15,465 lib:Con_ARD: weight new: 
+2020-07-02 21:21:15,466 65.27
+2020-07-02 21:21:15,466 main: Weight: 0
+2020-07-02 21:21:15,466 main: Infinite cycle
+2020-07-02 21:21:15,467 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:15,520 lib:RFID_reader: new ID: 
+2020-07-02 21:21:15,521 0124190052cf
+2020-07-02 21:21:15,522 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:15,522 main: Get weight from Arduino
+2020-07-02 21:21:15,523 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:15,525 lib:Con_ARD: weight new: 
+2020-07-02 21:21:15,526 59.67
+2020-07-02 21:21:15,526 main: Weight: 0
+2020-07-02 21:21:15,526 main: Infinite cycle
+2020-07-02 21:21:15,527 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:15,581 lib:RFID_reader: new ID: 
+2020-07-02 21:21:15,581 0124190052cf
+2020-07-02 21:21:15,582 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:15,583 main: Get weight from Arduino
+2020-07-02 21:21:15,584 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:15,586 lib:Con_ARD: weight new: 
+2020-07-02 21:21:15,586 70.22
+2020-07-02 21:21:15,587 main: Weight: 0
+2020-07-02 21:21:15,587 main: Infinite cycle
+2020-07-02 21:21:15,587 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:15,640 lib:RFID_reader: new ID: 
+2020-07-02 21:21:15,641 0124190052cf
+2020-07-02 21:21:15,642 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:15,642 main: Get weight from Arduino
+2020-07-02 21:21:15,643 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:15,645 lib:Con_ARD: weight new: 
+2020-07-02 21:21:15,645 94.28
+2020-07-02 21:21:15,646 main: Weight: 0
+2020-07-02 21:21:15,646 main: Infinite cycle
+2020-07-02 21:21:15,647 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:15,701 lib:RFID_reader: new ID: 
+2020-07-02 21:21:15,701 0124190052cf
+2020-07-02 21:21:15,702 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:15,703 main: Get weight from Arduino
+2020-07-02 21:21:15,703 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:15,704 lib:Con_ARD: weight new: 
+2020-07-02 21:21:15,705 78.13
+2020-07-02 21:21:15,706 main: Weight: 0
+2020-07-02 21:21:15,706 main: Infinite cycle
+2020-07-02 21:21:15,706 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:15,761 lib:RFID_reader: new ID: 
+2020-07-02 21:21:15,761 0124190052cf
+2020-07-02 21:21:15,762 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:15,763 main: Get weight from Arduino
+2020-07-02 21:21:15,763 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:15,765 lib:Con_ARD: weight new: 
+2020-07-02 21:21:15,765 50.44
+2020-07-02 21:21:15,766 main: Weight: 0
+2020-07-02 21:21:15,766 main: Infinite cycle
+2020-07-02 21:21:15,767 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:15,820 lib:RFID_reader: new ID: 
+2020-07-02 21:21:15,821 0124190052cf
+2020-07-02 21:21:15,822 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:15,823 main: Get weight from Arduino
+2020-07-02 21:21:15,823 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:15,825 lib:Con_ARD: weight new: 
+2020-07-02 21:21:15,825 85.38
+2020-07-02 21:21:15,826 main: Weight: 0
+2020-07-02 21:21:15,826 main: Infinite cycle
+2020-07-02 21:21:15,827 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:15,881 lib:RFID_reader: new ID: 
+2020-07-02 21:21:15,881 0124190052cf
+2020-07-02 21:21:15,882 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:15,883 main: Get weight from Arduino
+2020-07-02 21:21:15,883 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:15,885 lib:Con_ARD: weight new: 
+2020-07-02 21:21:15,885 55.05
+2020-07-02 21:21:15,885 main: Weight: 0
+2020-07-02 21:21:15,886 main: Infinite cycle
+2020-07-02 21:21:15,886 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:15,941 lib:RFID_reader: new ID: 
+2020-07-02 21:21:15,941 0124190052cf
+2020-07-02 21:21:15,942 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:15,943 main: Get weight from Arduino
+2020-07-02 21:21:15,944 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:15,945 lib:Con_ARD: weight new: 
+2020-07-02 21:21:15,946 66.92
+2020-07-02 21:21:15,946 main: Weight: 0
+2020-07-02 21:21:15,947 main: Infinite cycle
+2020-07-02 21:21:15,947 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:16,841 lib:RFID_reader: new ID: 
+2020-07-02 21:21:16,841 0124190052cf
+2020-07-02 21:21:16,842 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:16,843 main: Get weight from Arduino
+2020-07-02 21:21:16,843 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:16,845 lib:Con_ARD: weight new: 
+2020-07-02 21:21:16,845 91.32
+2020-07-02 21:21:16,846 main: Weight: 0
+2020-07-02 21:21:16,846 main: Infinite cycle
+2020-07-02 21:21:16,846 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:16,900 lib:RFID_reader: new ID: 
+2020-07-02 21:21:16,901 0124190052cf
+2020-07-02 21:21:16,902 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:16,903 main: Get weight from Arduino
+2020-07-02 21:21:16,903 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:16,904 lib:Con_ARD: weight new: 
+2020-07-02 21:21:16,905 74.83
+2020-07-02 21:21:16,905 main: Weight: 0
+2020-07-02 21:21:16,906 main: Infinite cycle
+2020-07-02 21:21:16,906 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:16,960 lib:RFID_reader: new ID: 
+2020-07-02 21:21:16,961 0124190052cf
+2020-07-02 21:21:16,962 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:16,963 main: Get weight from Arduino
+2020-07-02 21:21:16,963 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:16,965 lib:Con_ARD: weight new: 
+2020-07-02 21:21:16,965 69.89
+2020-07-02 21:21:16,966 main: Weight: 0
+2020-07-02 21:21:16,966 main: Infinite cycle
+2020-07-02 21:21:16,966 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:17,020 lib:RFID_reader: new ID: 
+2020-07-02 21:21:17,021 0124190052cf
+2020-07-02 21:21:17,022 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:17,022 main: Get weight from Arduino
+2020-07-02 21:21:17,023 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:17,024 lib:Con_ARD: weight new: 
+2020-07-02 21:21:17,025 67.58
+2020-07-02 21:21:17,025 main: Weight: 0
+2020-07-02 21:21:17,026 main: Infinite cycle
+2020-07-02 21:21:17,026 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:17,080 lib:RFID_reader: new ID: 
+2020-07-02 21:21:17,081 0124190052cf
+2020-07-02 21:21:17,082 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:17,083 main: Get weight from Arduino
+2020-07-02 21:21:17,083 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:17,084 lib:Con_ARD: weight new: 
+2020-07-02 21:21:17,085 64.28
+2020-07-02 21:21:17,085 main: Weight: 0
+2020-07-02 21:21:17,086 main: Infinite cycle
+2020-07-02 21:21:17,086 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:17,140 lib:RFID_reader: new ID: 
+2020-07-02 21:21:17,141 0124190052cf
+2020-07-02 21:21:17,142 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:17,143 main: Get weight from Arduino
+2020-07-02 21:21:17,143 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:17,144 lib:Con_ARD: weight new: 
+2020-07-02 21:21:17,145 61.98
+2020-07-02 21:21:17,145 main: Weight: 0
+2020-07-02 21:21:17,146 main: Infinite cycle
+2020-07-02 21:21:17,146 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:17,200 lib:RFID_reader: new ID: 
+2020-07-02 21:21:17,201 0124190052cf
+2020-07-02 21:21:17,202 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:17,202 main: Get weight from Arduino
+2020-07-02 21:21:17,203 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:17,204 lib:Con_ARD: weight new: 
+2020-07-02 21:21:17,205 81.76
+2020-07-02 21:21:17,206 main: Weight: 0
+2020-07-02 21:21:17,206 main: Infinite cycle
+2020-07-02 21:21:17,207 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:17,260 lib:RFID_reader: new ID: 
+2020-07-02 21:21:17,261 0124190052cf
+2020-07-02 21:21:17,262 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:17,263 main: Get weight from Arduino
+2020-07-02 21:21:17,263 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:17,264 lib:Con_ARD: weight new: 
+2020-07-02 21:21:17,265 79.45
+2020-07-02 21:21:17,265 main: Weight: 0
+2020-07-02 21:21:17,266 main: Infinite cycle
+2020-07-02 21:21:17,266 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:17,320 lib:RFID_reader: new ID: 
+2020-07-02 21:21:17,321 0124190052cf
+2020-07-02 21:21:17,322 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:17,322 main: Get weight from Arduino
+2020-07-02 21:21:17,323 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:17,324 lib:Con_ARD: weight new: 
+2020-07-02 21:21:17,325 74.83
+2020-07-02 21:21:17,325 main: Weight: 0
+2020-07-02 21:21:17,326 main: Infinite cycle
+2020-07-02 21:21:17,326 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:17,980 lib:RFID_reader: new ID: 
+2020-07-02 21:21:17,981 0124190052cf
+2020-07-02 21:21:17,982 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:17,983 main: Get weight from Arduino
+2020-07-02 21:21:17,983 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:17,985 lib:Con_ARD: weight new: 
+2020-07-02 21:21:17,985 95.93
+2020-07-02 21:21:17,986 main: Weight: 0
+2020-07-02 21:21:17,986 main: Infinite cycle
+2020-07-02 21:21:17,987 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:18,040 lib:RFID_reader: new ID: 
+2020-07-02 21:21:18,041 0124190052cf
+2020-07-02 21:21:18,042 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:18,043 main: Get weight from Arduino
+2020-07-02 21:21:18,043 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:18,044 lib:Con_ARD: weight new: 
+2020-07-02 21:21:18,045 74.17
+2020-07-02 21:21:18,046 main: Weight: 0
+2020-07-02 21:21:18,046 main: Infinite cycle
+2020-07-02 21:21:18,046 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:18,100 lib:RFID_reader: new ID: 
+2020-07-02 21:21:18,101 0124190052cf
+2020-07-02 21:21:18,102 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:18,102 main: Get weight from Arduino
+2020-07-02 21:21:18,103 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:18,104 lib:Con_ARD: weight new: 
+2020-07-02 21:21:18,105 82.42
+2020-07-02 21:21:18,105 main: Weight: 0
+2020-07-02 21:21:18,106 main: Infinite cycle
+2020-07-02 21:21:18,106 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:18,160 lib:RFID_reader: new ID: 
+2020-07-02 21:21:18,161 0124190052cf
+2020-07-02 21:21:18,162 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:18,162 main: Get weight from Arduino
+2020-07-02 21:21:18,163 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:18,164 lib:Con_ARD: weight new: 
+2020-07-02 21:21:18,165 72.86
+2020-07-02 21:21:18,165 main: Weight: 0
+2020-07-02 21:21:18,166 main: Infinite cycle
+2020-07-02 21:21:18,166 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:18,220 lib:RFID_reader: new ID: 
+2020-07-02 21:21:18,221 0124190052cf
+2020-07-02 21:21:18,222 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:18,222 main: Get weight from Arduino
+2020-07-02 21:21:18,223 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:18,224 lib:Con_ARD: weight new: 
+2020-07-02 21:21:18,225 90.0
+2020-07-02 21:21:18,225 main: Weight: 0
+2020-07-02 21:21:18,226 main: Infinite cycle
+2020-07-02 21:21:18,226 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:18,280 lib:RFID_reader: new ID: 
+2020-07-02 21:21:18,281 0124190052cf
+2020-07-02 21:21:18,282 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:18,282 main: Get weight from Arduino
+2020-07-02 21:21:18,283 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:18,284 lib:Con_ARD: weight new: 
+2020-07-02 21:21:18,285 56.7
+2020-07-02 21:21:18,285 main: Weight: 0
+2020-07-02 21:21:18,286 main: Infinite cycle
+2020-07-02 21:21:18,286 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:18,340 lib:RFID_reader: new ID: 
+2020-07-02 21:21:18,341 0124190052cf
+2020-07-02 21:21:18,342 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:18,342 main: Get weight from Arduino
+2020-07-02 21:21:18,343 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:18,344 lib:Con_ARD: weight new: 
+2020-07-02 21:21:18,344 65.93
+2020-07-02 21:21:18,345 main: Weight: 0
+2020-07-02 21:21:18,345 main: Infinite cycle
+2020-07-02 21:21:18,346 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:18,400 lib:RFID_reader: new ID: 
+2020-07-02 21:21:18,401 0124190052cf
+2020-07-02 21:21:18,402 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:18,402 main: Get weight from Arduino
+2020-07-02 21:21:18,403 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:18,404 lib:Con_ARD: weight new: 
+2020-07-02 21:21:18,405 67.58
+2020-07-02 21:21:18,405 main: Weight: 0
+2020-07-02 21:21:18,406 main: Infinite cycle
+2020-07-02 21:21:18,406 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:18,460 lib:RFID_reader: new ID: 
+2020-07-02 21:21:18,461 0124190052cf
+2020-07-02 21:21:18,462 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:18,462 main: Get weight from Arduino
+2020-07-02 21:21:18,463 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:18,464 lib:Con_ARD: weight new: 
+2020-07-02 21:21:18,465 79.12
+2020-07-02 21:21:18,465 main: Weight: 0
+2020-07-02 21:21:18,466 main: Infinite cycle
+2020-07-02 21:21:18,466 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:19,720 lib:RFID_reader: new ID: 
+2020-07-02 21:21:19,721 0124190052cf
+2020-07-02 21:21:19,722 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:19,722 main: Get weight from Arduino
+2020-07-02 21:21:19,723 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:19,724 lib:Con_ARD: weight new: 
+2020-07-02 21:21:19,725 61.32
+2020-07-02 21:21:19,725 main: Weight: 0
+2020-07-02 21:21:19,726 main: Infinite cycle
+2020-07-02 21:21:19,726 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:19,780 lib:RFID_reader: new ID: 
+2020-07-02 21:21:19,781 0124190052cf
+2020-07-02 21:21:19,782 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:19,783 main: Get weight from Arduino
+2020-07-02 21:21:19,783 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:19,784 lib:Con_ARD: weight new: 
+2020-07-02 21:21:19,785 57.03
+2020-07-02 21:21:19,785 main: Weight: 0
+2020-07-02 21:21:19,786 main: Infinite cycle
+2020-07-02 21:21:19,786 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:19,840 lib:RFID_reader: new ID: 
+2020-07-02 21:21:19,841 0124190052cf
+2020-07-02 21:21:19,842 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:19,843 main: Get weight from Arduino
+2020-07-02 21:21:19,843 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:19,845 lib:Con_ARD: weight new: 
+2020-07-02 21:21:19,845 71.87
+2020-07-02 21:21:19,845 main: Weight: 0
+2020-07-02 21:21:19,846 main: Infinite cycle
+2020-07-02 21:21:19,846 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:19,900 lib:RFID_reader: new ID: 
+2020-07-02 21:21:19,901 0124190052cf
+2020-07-02 21:21:19,902 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:19,902 main: Get weight from Arduino
+2020-07-02 21:21:19,903 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:19,904 lib:Con_ARD: weight new: 
+2020-07-02 21:21:19,905 72.86
+2020-07-02 21:21:19,905 main: Weight: 0
+2020-07-02 21:21:19,906 main: Infinite cycle
+2020-07-02 21:21:19,906 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:19,960 lib:RFID_reader: new ID: 
+2020-07-02 21:21:19,961 0124190052cf
+2020-07-02 21:21:19,962 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:19,963 main: Get weight from Arduino
+2020-07-02 21:21:19,963 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:19,965 lib:Con_ARD: weight new: 
+2020-07-02 21:21:19,965 72.86
+2020-07-02 21:21:19,966 main: Weight: 0
+2020-07-02 21:21:19,966 main: Infinite cycle
+2020-07-02 21:21:19,966 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:20,020 lib:RFID_reader: new ID: 
+2020-07-02 21:21:20,021 0124190052cf
+2020-07-02 21:21:20,025 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:20,026 main: Get weight from Arduino
+2020-07-02 21:21:20,027 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:20,028 lib:Con_ARD: weight new: 
+2020-07-02 21:21:20,029 68.57
+2020-07-02 21:21:20,029 main: Weight: 0
+2020-07-02 21:21:20,030 main: Infinite cycle
+2020-07-02 21:21:20,030 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:20,080 lib:RFID_reader: new ID: 
+2020-07-02 21:21:20,081 0124190052cf
+2020-07-02 21:21:20,082 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:20,083 main: Get weight from Arduino
+2020-07-02 21:21:20,083 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:20,084 lib:Con_ARD: weight new: 
+2020-07-02 21:21:20,085 59.01
+2020-07-02 21:21:20,085 main: Weight: 0
+2020-07-02 21:21:20,086 main: Infinite cycle
+2020-07-02 21:21:20,086 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:20,140 lib:RFID_reader: new ID: 
+2020-07-02 21:21:20,141 0124190052cf
+2020-07-02 21:21:20,142 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:20,142 main: Get weight from Arduino
+2020-07-02 21:21:20,143 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:20,144 lib:Con_ARD: weight new: 
+2020-07-02 21:21:20,145 74.5
+2020-07-02 21:21:20,145 main: Weight: 0
+2020-07-02 21:21:20,146 main: Infinite cycle
+2020-07-02 21:21:20,146 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:20,200 lib:RFID_reader: new ID: 
+2020-07-02 21:21:20,201 0124190052cf
+2020-07-02 21:21:20,202 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:20,203 main: Get weight from Arduino
+2020-07-02 21:21:20,203 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:20,205 lib:Con_ARD: weight new: 
+2020-07-02 21:21:20,205 44.5
+2020-07-02 21:21:20,206 main: Weight: 0
+2020-07-02 21:21:20,206 main: Infinite cycle
+2020-07-02 21:21:20,206 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:20,260 lib:RFID_reader: new ID: 
+2020-07-02 21:21:20,261 0124190052cf
+2020-07-02 21:21:20,262 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:20,262 main: Get weight from Arduino
+2020-07-02 21:21:20,263 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:20,264 lib:Con_ARD: weight new: 
+2020-07-02 21:21:20,265 84.06
+2020-07-02 21:21:20,265 main: Weight: 0
+2020-07-02 21:21:20,266 main: Infinite cycle
+2020-07-02 21:21:20,266 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:20,320 lib:RFID_reader: new ID: 
+2020-07-02 21:21:20,321 0124190052cf
+2020-07-02 21:21:20,322 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:20,322 main: Get weight from Arduino
+2020-07-02 21:21:20,323 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:20,324 lib:Con_ARD: weight new: 
+2020-07-02 21:21:20,325 92.64
+2020-07-02 21:21:20,326 main: Weight: 0
+2020-07-02 21:21:20,326 main: Infinite cycle
+2020-07-02 21:21:20,326 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:22,420 lib:RFID_reader: new ID: 
+2020-07-02 21:21:22,421 0124190052cf
+2020-07-02 21:21:22,422 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:22,422 main: Get weight from Arduino
+2020-07-02 21:21:22,423 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:22,424 lib:Con_ARD: weight new: 
+2020-07-02 21:21:22,425 89.67
+2020-07-02 21:21:22,425 main: Weight: 0
+2020-07-02 21:21:22,426 main: Infinite cycle
+2020-07-02 21:21:22,426 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:22,480 lib:RFID_reader: new ID: 
+2020-07-02 21:21:22,481 0124190052cf
+2020-07-02 21:21:22,482 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:22,482 main: Get weight from Arduino
+2020-07-02 21:21:22,483 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:22,484 lib:Con_ARD: weight new: 
+2020-07-02 21:21:22,485 74.83
+2020-07-02 21:21:22,485 main: Weight: 0
+2020-07-02 21:21:22,485 main: Infinite cycle
+2020-07-02 21:21:22,486 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:22,540 lib:RFID_reader: new ID: 
+2020-07-02 21:21:22,541 0124190052cf
+2020-07-02 21:21:22,542 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:22,542 main: Get weight from Arduino
+2020-07-02 21:21:22,543 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:22,544 lib:Con_ARD: weight new: 
+2020-07-02 21:21:22,545 80.44
+2020-07-02 21:21:22,545 main: Weight: 0
+2020-07-02 21:21:22,546 main: Infinite cycle
+2020-07-02 21:21:22,546 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:22,600 lib:RFID_reader: new ID: 
+2020-07-02 21:21:22,601 0124190052cf
+2020-07-02 21:21:22,602 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:22,602 main: Get weight from Arduino
+2020-07-02 21:21:22,603 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:22,604 lib:Con_ARD: weight new: 
+2020-07-02 21:21:22,605 77.14
+2020-07-02 21:21:22,605 main: Weight: 0
+2020-07-02 21:21:22,606 main: Infinite cycle
+2020-07-02 21:21:22,606 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:22,660 lib:RFID_reader: new ID: 
+2020-07-02 21:21:22,661 0124190052cf
+2020-07-02 21:21:22,662 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:22,662 main: Get weight from Arduino
+2020-07-02 21:21:22,663 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:22,664 lib:Con_ARD: weight new: 
+2020-07-02 21:21:22,665 72.53
+2020-07-02 21:21:22,665 main: Weight: 0
+2020-07-02 21:21:22,666 main: Infinite cycle
+2020-07-02 21:21:22,666 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:22,720 lib:RFID_reader: new ID: 
+2020-07-02 21:21:22,721 0124190052cf
+2020-07-02 21:21:22,722 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:22,722 main: Get weight from Arduino
+2020-07-02 21:21:22,723 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:22,724 lib:Con_ARD: weight new: 
+2020-07-02 21:21:22,725 70.88
+2020-07-02 21:21:22,725 main: Weight: 0
+2020-07-02 21:21:22,726 main: Infinite cycle
+2020-07-02 21:21:22,726 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:22,780 lib:RFID_reader: new ID: 
+2020-07-02 21:21:22,781 0124190052cf
+2020-07-02 21:21:22,782 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:22,782 main: Get weight from Arduino
+2020-07-02 21:21:22,783 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:22,784 lib:Con_ARD: weight new: 
+2020-07-02 21:21:22,784 75.16
+2020-07-02 21:21:22,785 main: Weight: 0
+2020-07-02 21:21:22,785 main: Infinite cycle
+2020-07-02 21:21:22,786 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:22,840 lib:RFID_reader: new ID: 
+2020-07-02 21:21:22,841 0124190052cf
+2020-07-02 21:21:22,842 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:22,842 main: Get weight from Arduino
+2020-07-02 21:21:22,843 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:22,844 lib:Con_ARD: weight new: 
+2020-07-02 21:21:22,844 74.5
+2020-07-02 21:21:22,845 main: Weight: 0
+2020-07-02 21:21:22,845 main: Infinite cycle
+2020-07-02 21:21:22,846 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:22,900 lib:RFID_reader: new ID: 
+2020-07-02 21:21:22,901 0124190052cf
+2020-07-02 21:21:22,902 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:22,902 main: Get weight from Arduino
+2020-07-02 21:21:22,903 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:22,904 lib:Con_ARD: weight new: 
+2020-07-02 21:21:22,904 81.1
+2020-07-02 21:21:22,905 main: Weight: 0
+2020-07-02 21:21:22,905 main: Infinite cycle
+2020-07-02 21:21:22,906 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:22,960 lib:RFID_reader: new ID: 
+2020-07-02 21:21:22,961 0124190052cf
+2020-07-02 21:21:22,962 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:22,962 main: Get weight from Arduino
+2020-07-02 21:21:22,962 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:22,964 lib:Con_ARD: weight new: 
+2020-07-02 21:21:22,965 69.23
+2020-07-02 21:21:22,965 main: Weight: 0
+2020-07-02 21:21:22,966 main: Infinite cycle
+2020-07-02 21:21:22,966 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:23,020 lib:RFID_reader: new ID: 
+2020-07-02 21:21:23,021 0124190052cf
+2020-07-02 21:21:23,022 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:23,022 main: Get weight from Arduino
+2020-07-02 21:21:23,023 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:23,024 lib:Con_ARD: weight new: 
+2020-07-02 21:21:23,024 71.54
+2020-07-02 21:21:23,025 main: Weight: 0
+2020-07-02 21:21:23,025 main: Infinite cycle
+2020-07-02 21:21:23,026 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:26,560 lib:RFID_reader: new ID: 
+2020-07-02 21:21:26,561 0124190052cf
+2020-07-02 21:21:26,562 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:26,562 main: Get weight from Arduino
+2020-07-02 21:21:26,563 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:26,564 lib:Con_ARD: weight new: 
+2020-07-02 21:21:26,564 97.25
+2020-07-02 21:21:26,565 main: Weight: 0
+2020-07-02 21:21:26,565 main: Infinite cycle
+2020-07-02 21:21:26,566 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:26,620 lib:RFID_reader: new ID: 
+2020-07-02 21:21:26,621 0124190052cf
+2020-07-02 21:21:26,621 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:26,622 main: Get weight from Arduino
+2020-07-02 21:21:26,622 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:26,624 lib:Con_ARD: weight new: 
+2020-07-02 21:21:26,624 95.93
+2020-07-02 21:21:26,625 main: Weight: 0
+2020-07-02 21:21:26,625 main: Infinite cycle
+2020-07-02 21:21:26,626 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:26,680 lib:RFID_reader: new ID: 
+2020-07-02 21:21:26,681 0124190052cf
+2020-07-02 21:21:26,681 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:26,682 main: Get weight from Arduino
+2020-07-02 21:21:26,683 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:26,684 lib:Con_ARD: weight new: 
+2020-07-02 21:21:26,684 86.37
+2020-07-02 21:21:26,685 main: Weight: 0
+2020-07-02 21:21:26,685 main: Infinite cycle
+2020-07-02 21:21:26,686 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:26,740 lib:RFID_reader: new ID: 
+2020-07-02 21:21:26,740 0124190052cf
+2020-07-02 21:21:26,742 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:26,742 main: Get weight from Arduino
+2020-07-02 21:21:26,743 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:26,744 lib:Con_ARD: weight new: 
+2020-07-02 21:21:26,744 70.22
+2020-07-02 21:21:26,745 main: Weight: 0
+2020-07-02 21:21:26,745 main: Infinite cycle
+2020-07-02 21:21:26,746 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:26,800 lib:RFID_reader: new ID: 
+2020-07-02 21:21:26,801 0124190052cf
+2020-07-02 21:21:26,802 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:26,802 main: Get weight from Arduino
+2020-07-02 21:21:26,803 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:26,804 lib:Con_ARD: weight new: 
+2020-07-02 21:21:26,804 80.44
+2020-07-02 21:21:26,805 main: Weight: 0
+2020-07-02 21:21:26,805 main: Infinite cycle
+2020-07-02 21:21:26,806 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:26,860 lib:RFID_reader: new ID: 
+2020-07-02 21:21:26,861 0124190052cf
+2020-07-02 21:21:26,861 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:26,862 main: Get weight from Arduino
+2020-07-02 21:21:26,862 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:26,864 lib:Con_ARD: weight new: 
+2020-07-02 21:21:26,864 72.53
+2020-07-02 21:21:26,865 main: Weight: 0
+2020-07-02 21:21:26,865 main: Infinite cycle
+2020-07-02 21:21:26,866 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:27,160 lib:RFID_reader: new ID: 
+2020-07-02 21:21:27,160 0124190052cf
+2020-07-02 21:21:27,162 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:27,162 main: Get weight from Arduino
+2020-07-02 21:21:27,163 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:27,164 lib:Con_ARD: weight new: 
+2020-07-02 21:21:27,164 87.36
+2020-07-02 21:21:27,165 main: Weight: 0
+2020-07-02 21:21:27,165 main: Infinite cycle
+2020-07-02 21:21:27,166 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:27,220 lib:RFID_reader: new ID: 
+2020-07-02 21:21:27,220 0124190052cf
+2020-07-02 21:21:27,221 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:27,222 main: Get weight from Arduino
+2020-07-02 21:21:27,223 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:27,224 lib:Con_ARD: weight new: 
+2020-07-02 21:21:27,225 87.03
+2020-07-02 21:21:27,226 main: Weight: 0
+2020-07-02 21:21:27,227 main: Infinite cycle
+2020-07-02 21:21:27,227 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:27,280 lib:RFID_reader: new ID: 
+2020-07-02 21:21:27,280 0124190052cf
+2020-07-02 21:21:27,281 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:27,282 main: Get weight from Arduino
+2020-07-02 21:21:27,282 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:27,284 lib:Con_ARD: weight new: 
+2020-07-02 21:21:27,285 64.28
+2020-07-02 21:21:27,285 main: Weight: 0
+2020-07-02 21:21:27,286 main: Infinite cycle
+2020-07-02 21:21:27,286 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:29,259 lib:RFID_reader: new ID: 
+2020-07-02 21:21:29,260 0124190052cf
+2020-07-02 21:21:29,261 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:29,262 main: Get weight from Arduino
+2020-07-02 21:21:29,262 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:29,263 lib:Con_ARD: weight new: 
+2020-07-02 21:21:29,264 95.6
+2020-07-02 21:21:29,264 main: Weight: 0
+2020-07-02 21:21:29,265 main: Infinite cycle
+2020-07-02 21:21:29,265 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:29,319 lib:RFID_reader: new ID: 
+2020-07-02 21:21:29,320 0124190052cf
+2020-07-02 21:21:29,321 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:29,321 main: Get weight from Arduino
+2020-07-02 21:21:29,322 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:29,323 lib:Con_ARD: weight new: 
+2020-07-02 21:21:29,323 82.42
+2020-07-02 21:21:29,324 main: Weight: 0
+2020-07-02 21:21:29,324 main: Infinite cycle
+2020-07-02 21:21:29,325 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:29,379 lib:RFID_reader: new ID: 
+2020-07-02 21:21:29,380 0124190052cf
+2020-07-02 21:21:29,381 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:29,381 main: Get weight from Arduino
+2020-07-02 21:21:29,382 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:29,383 lib:Con_ARD: weight new: 
+2020-07-02 21:21:29,384 70.55
+2020-07-02 21:21:29,384 main: Weight: 0
+2020-07-02 21:21:29,384 main: Infinite cycle
+2020-07-02 21:21:29,385 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:29,439 lib:RFID_reader: new ID: 
+2020-07-02 21:21:29,440 0124190052cf
+2020-07-02 21:21:29,441 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:29,441 main: Get weight from Arduino
+2020-07-02 21:21:29,442 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:29,443 lib:Con_ARD: weight new: 
+2020-07-02 21:21:29,444 86.37
+2020-07-02 21:21:29,444 main: Weight: 0
+2020-07-02 21:21:29,445 main: Infinite cycle
+2020-07-02 21:21:29,445 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:29,499 lib:RFID_reader: new ID: 
+2020-07-02 21:21:29,500 0124190052cf
+2020-07-02 21:21:29,501 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:29,501 main: Get weight from Arduino
+2020-07-02 21:21:29,502 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:29,503 lib:Con_ARD: weight new: 
+2020-07-02 21:21:29,504 89.67
+2020-07-02 21:21:29,504 main: Weight: 0
+2020-07-02 21:21:29,504 main: Infinite cycle
+2020-07-02 21:21:29,505 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:29,559 lib:RFID_reader: new ID: 
+2020-07-02 21:21:29,560 0124190052cf
+2020-07-02 21:21:29,561 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:29,561 main: Get weight from Arduino
+2020-07-02 21:21:29,561 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:29,563 lib:Con_ARD: weight new: 
+2020-07-02 21:21:29,563 69.56
+2020-07-02 21:21:29,564 main: Weight: 0
+2020-07-02 21:21:29,564 main: Infinite cycle
+2020-07-02 21:21:29,565 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:31,779 lib:RFID_reader: new ID: 
+2020-07-02 21:21:31,780 0124190052cf
+2020-07-02 21:21:31,784 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:31,785 main: Get weight from Arduino
+2020-07-02 21:21:31,786 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:31,787 lib:Con_ARD: weight new: 
+2020-07-02 21:21:31,787 81.76
+2020-07-02 21:21:31,788 main: Weight: 0
+2020-07-02 21:21:31,788 main: Infinite cycle
+2020-07-02 21:21:31,788 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:31,839 lib:RFID_reader: new ID: 
+2020-07-02 21:21:31,840 0124190052cf
+2020-07-02 21:21:31,841 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:31,841 main: Get weight from Arduino
+2020-07-02 21:21:31,842 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:31,843 lib:Con_ARD: weight new: 
+2020-07-02 21:21:31,843 91.65
+2020-07-02 21:21:31,844 main: Weight: 0
+2020-07-02 21:21:31,845 main: Infinite cycle
+2020-07-02 21:21:31,845 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:31,899 lib:RFID_reader: new ID: 
+2020-07-02 21:21:31,900 0124190052cf
+2020-07-02 21:21:31,901 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:31,901 main: Get weight from Arduino
+2020-07-02 21:21:31,902 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:31,903 lib:Con_ARD: weight new: 
+2020-07-02 21:21:31,903 73.84
+2020-07-02 21:21:31,904 main: Weight: 0
+2020-07-02 21:21:31,904 main: Infinite cycle
+2020-07-02 21:21:31,904 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:31,959 lib:RFID_reader: new ID: 
+2020-07-02 21:21:31,960 0124190052cf
+2020-07-02 21:21:31,961 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:31,961 main: Get weight from Arduino
+2020-07-02 21:21:31,962 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:31,963 lib:Con_ARD: weight new: 
+2020-07-02 21:21:31,963 66.26
+2020-07-02 21:21:31,964 main: Weight: 0
+2020-07-02 21:21:31,964 main: Infinite cycle
+2020-07-02 21:21:31,964 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:35,139 lib:RFID_reader: new ID: 
+2020-07-02 21:21:35,140 0124190052cf
+2020-07-02 21:21:35,141 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:35,141 main: Get weight from Arduino
+2020-07-02 21:21:35,142 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:35,143 lib:Con_ARD: weight new: 
+2020-07-02 21:21:35,143 62.31
+2020-07-02 21:21:35,144 main: Weight: 0
+2020-07-02 21:21:35,144 main: Infinite cycle
+2020-07-02 21:21:35,144 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:35,199 lib:RFID_reader: new ID: 
+2020-07-02 21:21:35,200 0124190052cf
+2020-07-02 21:21:35,200 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:35,201 main: Get weight from Arduino
+2020-07-02 21:21:35,201 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:35,202 lib:Con_ARD: weight new: 
+2020-07-02 21:21:35,203 91.32
+2020-07-02 21:21:35,203 main: Weight: 0
+2020-07-02 21:21:35,204 main: Infinite cycle
+2020-07-02 21:21:35,204 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:35,259 lib:RFID_reader: new ID: 
+2020-07-02 21:21:35,260 0124190052cf
+2020-07-02 21:21:35,261 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:35,261 main: Get weight from Arduino
+2020-07-02 21:21:35,261 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:35,263 lib:Con_ARD: weight new: 
+2020-07-02 21:21:35,263 62.31
+2020-07-02 21:21:35,264 main: Weight: 0
+2020-07-02 21:21:35,264 main: Infinite cycle
+2020-07-02 21:21:35,264 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:36,279 lib:RFID_reader: new ID: 
+2020-07-02 21:21:36,280 0124190052cf
+2020-07-02 21:21:36,280 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:36,281 main: Get weight from Arduino
+2020-07-02 21:21:36,281 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:36,282 lib:Con_ARD: weight new: 
+2020-07-02 21:21:36,283 73.84
+2020-07-02 21:21:36,283 main: Weight: 0
+2020-07-02 21:21:36,284 main: Infinite cycle
+2020-07-02 21:21:36,284 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:36,339 lib:RFID_reader: new ID: 
+2020-07-02 21:21:36,340 0124190052cf
+2020-07-02 21:21:36,340 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:36,341 main: Get weight from Arduino
+2020-07-02 21:21:36,341 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:36,343 lib:Con_ARD: weight new: 
+2020-07-02 21:21:36,343 82.75
+2020-07-02 21:21:36,343 main: Weight: 0
+2020-07-02 21:21:36,344 main: Infinite cycle
+2020-07-02 21:21:36,344 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:36,399 lib:RFID_reader: new ID: 
+2020-07-02 21:21:36,400 0124190052cf
+2020-07-02 21:21:36,400 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:36,401 main: Get weight from Arduino
+2020-07-02 21:21:36,401 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:36,402 lib:Con_ARD: weight new: 
+2020-07-02 21:21:36,403 78.46
+2020-07-02 21:21:36,403 main: Weight: 0
+2020-07-02 21:21:36,404 main: Infinite cycle
+2020-07-02 21:21:36,404 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:38,139 lib:RFID_reader: new ID: 
+2020-07-02 21:21:38,140 0124190052cf
+2020-07-02 21:21:38,140 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:38,141 main: Get weight from Arduino
+2020-07-02 21:21:38,141 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:38,142 lib:Con_ARD: weight new: 
+2020-07-02 21:21:38,143 74.83
+2020-07-02 21:21:38,143 main: Weight: 0
+2020-07-02 21:21:38,144 main: Infinite cycle
+2020-07-02 21:21:38,144 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:38,199 lib:RFID_reader: new ID: 
+2020-07-02 21:21:38,200 0124190052cf
+2020-07-02 21:21:38,200 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:38,201 main: Get weight from Arduino
+2020-07-02 21:21:38,201 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:38,202 lib:Con_ARD: weight new: 
+2020-07-02 21:21:38,203 82.09
+2020-07-02 21:21:38,203 main: Weight: 0
+2020-07-02 21:21:38,204 main: Infinite cycle
+2020-07-02 21:21:38,204 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:38,259 lib:RFID_reader: new ID: 
+2020-07-02 21:21:38,259 0124190052cf
+2020-07-02 21:21:38,260 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:38,261 main: Get weight from Arduino
+2020-07-02 21:21:38,261 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:38,262 lib:Con_ARD: weight new: 
+2020-07-02 21:21:38,262 66.59
+2020-07-02 21:21:38,263 main: Weight: 0
+2020-07-02 21:21:38,263 main: Infinite cycle
+2020-07-02 21:21:38,264 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:38,319 lib:RFID_reader: new ID: 
+2020-07-02 21:21:38,320 0124190052cf
+2020-07-02 21:21:38,320 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:38,321 main: Get weight from Arduino
+2020-07-02 21:21:38,321 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:38,322 lib:Con_ARD: weight new: 
+2020-07-02 21:21:38,323 84.72
+2020-07-02 21:21:38,323 main: Weight: 0
+2020-07-02 21:21:38,323 main: Infinite cycle
+2020-07-02 21:21:38,324 lib:RFID_reader: Start RFID Function
+2020-07-02 21:21:38,379 lib:RFID_reader: new ID: 
+2020-07-02 21:21:38,379 0124190052cf
+2020-07-02 21:21:38,380 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:21:38,380 main: Get weight from Arduino
+2020-07-02 21:21:38,381 lib:Con_ARD: Start collect weight
+2020-07-02 21:21:38,382 lib:Con_ARD: weight new: 
+2020-07-02 21:21:38,383 53740.43
+2020-07-02 21:22:17,936 lib:Con_ARD: weight_finall new: 
+2020-07-02 21:22:17,937 57054.83174603174
+2020-07-02 21:22:17,940 lib: weight_list: 
+2020-07-02 21:22:17,941 [57642.0, 57143.55, 57621.56, 57350.91, 58113.09, 57447.17, 57372.66, 57322.89, 57036.08, 57264.53, 57251.68, 56955.31, 57321.23, 57123.77, 57210.14, 56960.25, 57241.13, 57008.39, 57260.91, 56820.81, 56850.81, 57182.45, 56669.16, 57125.42, 57096.41, 57008.05, 57312.66, 57253.66, 57232.56, 57200.91, 57218.71, 57254.64, 57214.42, 57228.93, 57277.39, 57199.59, 57168.6, 57257.94, 57127.4, 57251.68, 57161.68, 57363.1, 57408.92, 57105.64, 57140.25, 57056.85, 57626.51, 57679.91, 57205.19, 57462.33, 57337.39, 57304.42, 57303.1, 57212.44, 57241.79, 57927.49, 57120.8, 57013.66, 57269.81, 57166.96, 56649.71, 57538.82, 45558.18]
+2020-07-02 21:22:17,942 lib:Con_ARD:End of write raw data list: 
+2020-07-02 21:22:17,943 [57642.0, 57143.55, 57621.56, 57350.91, 58113.09, 57447.17, 57372.66, 57322.89, 57036.08, 57264.53, 57251.68, 56955.31, 57321.23, 57123.77, 57210.14, 56960.25, 57241.13, 57008.39, 57260.91, 56820.81, 56850.81, 57182.45, 56669.16, 57125.42, 57096.41, 57008.05, 57312.66, 57253.66, 57232.56, 57200.91, 57218.71, 57254.64, 57214.42, 57228.93, 57277.39, 57199.59, 57168.6, 57257.94, 57127.4, 57251.68, 57161.68, 57363.1, 57408.92, 57105.64, 57140.25, 57056.85, 57626.51, 57679.91, 57205.19, 57462.33, 57337.39, 57304.42, 57303.1, 57212.44, 57241.79, 57927.49, 57120.8, 57013.66, 57269.81, 57166.96, 56649.71, 57538.82, 45558.18]
+2020-07-02 21:22:17,945 main: Weight: 0.0
+2020-07-02 21:22:17,945 main: Collect data to CSV
+2020-07-02 21:22:17,946 lib:CSV_data: Start write to file
+2020-07-02 21:22:17,947 lib:CSV_data: 3 step collect data
+2020-07-02 21:22:17,948 main: Send data to server
+2020-07-02 21:22:17,949 lib:RFID_reader: Start sending DATA TO SERVER:
+2020-07-02 21:22:17,981 Starting new HTTP connection (1): 194.4.56.86:8501
+2020-07-02 21:22:22,721 http://194.4.56.86:8501 "POST /api/weights HTTP/1.1" 200 5
+2020-07-02 21:22:22,726 lib:RFID_reader: Answer from server: 
+2020-07-02 21:22:22,726 <Response [200]>
+2020-07-02 21:22:22,727 lib:RFID_reader: 4 step send data
+2020-07-02 21:22:22,727 lib:RFID_reader: End of the cycle
+2020-07-02 21:22:22,728 main: Infinite cycle
+2020-07-02 21:22:22,729 lib:RFID_reader: Start RFID Function
+2020-07-02 21:22:22,835 lib:RFID_reader: new ID: 
+2020-07-02 21:22:22,836 0124190052cf
+2020-07-02 21:22:22,837 lib:RFID_reader: Success step 2 RFID
+2020-07-02 21:22:22,837 main: Get weight from Arduino
+2020-07-02 21:22:22,837 lib:Con_ARD: Start collect weight
+2020-07-02 21:22:22,839 lib:Con_ARD: weight new: 
+2020-07-02 21:22:22,839 5561.75
+2020-07-02 21:22:22,840 main: Weight: 0
+2020-07-02 21:22:22,840 main: Infinite cycle
+2020-07-02 21:22:22,841 lib:RFID_reader: Start RFID Function
