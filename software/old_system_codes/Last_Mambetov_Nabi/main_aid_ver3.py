@@ -15,7 +15,7 @@ logging.basicConfig(filename = 'pcf_file.log', level = logging.DEBUG, format='%(
 #logging.basicConfig(format='%(asctime)s %(message)s')
 #logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(funcName)s - line %(lineno)d") 
 
-type_scales = "Mambetov-2" # Types of weights
+type_scales = "Test_raspberry" # Types of weights
 cow_id = "b'0700010101001e4b'" # value of null answer of RFID reader
 null_id = "b'0700010101001e4b'"
 weight_finall = 0
