@@ -25,7 +25,7 @@ logging.info('main: Start script')
 
 # Connection to arduino
 try:
-    s = serial.Serial('/dev/ttyACM0',9600) # path inside rapberry pi to arduino into dev folder
+    s = serial.Serial('/dev/ttyUSB0',9600) # path inside rapberry pi to arduino into dev folder
     print("main: connect arduino")
     print(s.name)
     logging.info('main: connect arduino')

@@ -127,8 +127,12 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data i
         answer = requests.post(url, data=json.dumps(data), headers=headers)
         logging.info("lib:RFID_reader: Answer from server: ")
         logging.info(answer) # Is it possible to stop on this line in the debug?
+        logging.info("Content of answer from server")
+        logging.info(answer.content)
         print("lib:RFID_reader: Answer from server: ")
         print(answer)
+        print("Content of answer from server")
+        print(answer.content)
     except Exception as e:
         logging.info("lib:RFID_reader: Err send data to server")
         logging.info(e)
