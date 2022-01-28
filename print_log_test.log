@@ -1,0 +1,32 @@
+[print_log_test.py:27 -            print_log() ] 2022-01-27 14:38:49,393 test message with value:
+[print_log_test.py:28 -            print_log() ] 2022-01-27 14:38:49,393 111
+[print_log_test.py:27 -            print_log() ] 2022-01-27 14:39:04,846 Next test message with value:
+[print_log_test.py:28 -            print_log() ] 2022-01-27 14:39:04,847 0
+[print_log_test.py:29 -            print_log() ] 2022-01-27 14:39:52,166 Next test message with value:
+[print_log_test.py:30 -            print_log() ] 2022-01-27 14:39:52,166 <class 'numpy.void'>
+[print_log_test.py:29 -            print_log() ] 2022-01-27 14:40:18,219 Next test message with value:
+[print_log_test.py:30 -            print_log() ] 2022-01-27 14:40:18,222 0
+[print_log_test.py:29 -            print_log() ] 2022-01-27 14:40:33,103 Next test message with value:
+[print_log_test.py:30 -            print_log() ] 2022-01-27 14:40:33,103 0
+[print_log_test.py:29 -            print_log() ] 2022-01-27 14:40:50,284 Next test message with value:
+[print_log_test.py:30 -            print_log() ] 2022-01-27 14:40:50,284 123
+[print_log_test.py:29 -            print_log() ] 2022-01-27 14:41:19,385 0
+[print_log_test.py:30 -            print_log() ] 2022-01-27 14:41:19,385 0
+[print_log_test.py:29 -            print_log() ] 2022-01-27 14:42:33,375 0
+[print_log_test.py:30 -            print_log() ] 2022-01-27 14:42:33,376 0
+[print_log_test.py:29 -            print_log() ] 2022-01-27 15:29:31,786 0
+[print_log_test.py:30 -            print_log() ] 2022-01-27 15:29:31,786 0
+[print_log_test.py:29 -            print_log() ] 2022-01-27 15:30:35,257 third message
+[print_log_test.py:30 -            print_log() ] 2022-01-27 15:30:35,257 333
+[print_log_test.py:30 -            print_log() ] 2022-01-27 15:31:00,696 third message
+[print_log_test.py:31 -            print_log() ] 2022-01-27 15:31:00,696 333
+[print_log_test.py:31 -            print_log() ] 2022-01-27 15:32:46,769 third message
+[print_log_test.py:32 -            print_log() ] 2022-01-27 15:32:46,769 333
+[print_log_test.py:31 -            print_log() ] 2022-01-27 15:33:44,778 third message
+[print_log_test.py:32 -            print_log() ] 2022-01-27 15:33:44,778 333
+[print_log_test.py:31 -            print_log() ] 2022-01-27 15:35:44,682 third message
+[print_log_test.py:32 -            print_log() ] 2022-01-27 15:35:44,682 333
+[print_log_test.py:31 -            print_log() ] 2022-01-27 15:36:25,794 third message
+[print_log_test.py:32 -            print_log() ] 2022-01-27 15:36:25,796 333
+[print_log_test.py:31 -            print_log() ] 2022-01-27 15:36:38,797 third message
+[print_log_test.py:32 -            print_log() ] 2022-01-27 15:36:38,798 333
