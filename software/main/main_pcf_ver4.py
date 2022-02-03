@@ -1,5 +1,5 @@
 #!/usr/bin/sudo python3
-import main_pcf_lib3 as pcf
+import lib_pcf_ver4 as pcf
 import time
 
 time.sleep(60)
@@ -15,7 +15,7 @@ logging.basicConfig(filename = 'pcf_file.log', level = logging.DEBUG, format='%(
 #logging.basicConfig(format='%(asctime)s %(message)s')
 #logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(funcName)s - line %(lineno)d") 
 
-type_scales = "Test_raspberry" # Types of weights
+type_scales = "Test_raspberry_ver4" # Types of weights
 cow_id = "b'0700010101001e4b'" # value of null answer of RFID reader
 null_id = "b'0700010101001e4b'"
 weight_finall = 0
@@ -25,7 +25,7 @@ logging.info('main: Start script')
 
 # Connection to arduino
 try:
-    s = serial.Serial('/dev/ttyACM0',9600) # path inside rapberry pi to arduino into dev folder
+    s = serial.Serial('/dev/ttyUSB0',9600) # path inside rapberry pi to arduino into dev folder
     print("main: connect arduino")
     print(s.name)
     logging.info('main: connect arduino')
@@ -55,7 +55,7 @@ def main():
             logging.info('main: After read cow ID')
             logging.info(cow_id)
             
-            weight_finall = pcf.Connect_ARD_get_weight(cow_id, s) # Grab weight from arduino and collect to weight_finall
+            weight_finall = pcf.Connect_ARD_get_weight(cow_id, s, type_scales) # Grab weight from arduino and collect to weight_finall
             logging.info('main: Weight: ')
             logging.info(weight_finall)
             
