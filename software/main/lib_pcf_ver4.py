@@ -11,6 +11,7 @@ import logging
 import os
 import statistics
 
+
 #logging.basicConfig(filename = '%s.log'%str(datetime.now()), level = logging.DEBUG, format='%(asctime)s %(message)s')
 #logging format with names of funstions
 logging.basicConfig(filename = '%s.log'%str(datetime.now()), level = logging.DEBUG, format='[%(filename)s:%(lineno)s - %(funcName)20s() ] %(asctime)s %(message)s')
@@ -78,9 +79,9 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
                 del weight_list[-1]
             
             # new method of averaging
-            weight_finall = statistics.median(weight_list)
+            #weight_finall = statistics.median(weight_list)
         
-            #weight_finall = sum(weight_list) / len(weight_list) # Averaging weight array by sum and lenght
+            weight_finall = sum(weight_list) / len(weight_list) # Averaging weight array by sum and lenght
             #weight_finall = weight_finall/1000 # Dividing to 1000 for Igor's server  
             print_log("Weight_finall median :", "{0:.2f}".format(weight_finall))
             
