@@ -1,5 +1,5 @@
 #!/usr/bin/sudo python3
-import lib_pcf_ver4 as pcf
+import lib.lib_pcf_ver4 as pcf
 import time
 
 time.sleep(60)

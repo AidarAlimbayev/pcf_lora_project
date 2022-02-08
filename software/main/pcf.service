@@ -4,7 +4,7 @@ Description=pcf.service Service
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python /home/pi/pcf_main_ver4.py
+ExecStart=/usr/bin/python /home/pi/main_pcf_ver4.py
 WorkingDirectory=/home/pi/S
 StandardOutput=inherit
 StandardError=inherit
