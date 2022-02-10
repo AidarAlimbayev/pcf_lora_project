@@ -61,7 +61,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         print_log("Weight new after cleaning :", float(weight_new))
                 
         weight_list = []
-        mid_weight = 0
+        #mid_weight = 0
         while (float(weight_new) > 10): # Collecting weight to array 
             weight = (str(s.readline()))
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
@@ -79,9 +79,9 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
                 del weight_list[-1]
             
             # new method of averaging
-            #weight_finall = statistics.median(weight_list)
+            weight_finall = statistics.median(weight_list)
         
-            weight_finall = sum(weight_list) / len(weight_list) # Averaging weight array by sum and lenght
+            #weight_finall = sum(weight_list) / len(weight_list) # Averaging weight array by sum and lenght
             #weight_finall = weight_finall/1000 # Dividing to 1000 for Igor's server  
             print_log("Weight_finall median :", "{0:.2f}".format(weight_finall))
             

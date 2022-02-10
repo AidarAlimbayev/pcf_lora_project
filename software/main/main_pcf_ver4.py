@@ -1,5 +1,5 @@
 #!/usr/bin/sudo python3
-import lib_pcf_ver4 as pcf
+import lib.lib_pcf_ver4 as pcf
 import time
 
 time.sleep(10)
@@ -11,11 +11,11 @@ import logging
 
 
 
-logging.basicConfig(filename = 'pcf_file.log', level = logging.DEBUG, format='%(asctime)s %(message)s')
+logging.basicConfig(filename = 'pcf_file.log', level = logging.DEBUG, format='%(asctime)s %(message)s') # logging format 
 #logging.basicConfig(format='%(asctime)s %(message)s')
 #logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(funcName)s - line %(lineno)d") 
 
-type_scales = "Test_raspberry_ver4" # Types of weights
+type_scales = "SHOS_scale_dairy_1" # Types of weights
 cow_id = "b'0700010101001e4b'" # value of null answer of RFID reader
 null_id = "b'0700010101001e4b'"
 another_null_id = "b'435400040001'"
@@ -41,12 +41,24 @@ def main():
     while(True):
         pcf.print_log("Infinite cycle")
         cow_id = pcf.Connect_RFID_reader() # Connection to RFID reader 
+<<<<<<< HEAD
         pcf.print_log("First step cow ID :", cow_id)
         
         if cow_id != '435400040001': # Comparision to null cow_id answer 
             # second ID is also null 
             pcf.print_log("After read cow ID :", cow_id)
                         
+=======
+        print("Cow ID: ")
+        print(cow_id)
+
+        # Comparision to null cow_id answer 
+        if cow_id != '070106156079': # Change this to 43000001
+                        
+            logging.info('main: After read cow ID')
+            logging.info(cow_id)
+            
+>>>>>>> 46abdac082302d7c75e1eb1deeffb418ff5417c8
             weight_finall = pcf.Connect_ARD_get_weight(cow_id, s, type_scales) # Grab weight from arduino and collect to weight_finall
             pcf.print_log("main: weight_finall", weight_finall)
                         
