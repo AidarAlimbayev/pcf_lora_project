@@ -68,7 +68,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             print_log("Weight from Arduino :", weight_new)
             
             # Here the place to add RawWeights sending function
-            Send_RawData_to_server(cow_id, weight_new, type_scales)
+            #Send_RawData_to_server(cow_id, weight_new, type_scales)
             # End of Raw data function
 
             weight_list.append(float(weight_new))
@@ -122,6 +122,7 @@ def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting c
         animal_id = "b'0700010101001e4b'" # Id null starting variable
         animal_id_new = "b'0700010101001e4b'"
         null_id = "b'0700010101001e4b'" # Id null
+        another_null_id = "b'435400040001'"
     
         if animal_id == null_id: # Send command to reader waiting id of animal
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
