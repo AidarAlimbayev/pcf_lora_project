@@ -2,21 +2,23 @@
 set -Eeuo pipefail
 
 
-sudo apt update
-sudo apt -y upgrade
+apt update
+apt -y upgrade
 echo `python3 -V`
-sudo apt install -y python3-pip
+apt install -y python3-pip
 echo `python3 -V`
 echo 'The Python has loaded'
 echo '###########################################################################################'
 sleep 3
 
-cd Documents/
+cd ~/Documents/
 git clone https://github.com/AidarAlimbayev/pcf_lora_project.git
-sudo cp pcf_lora_project/software/main/main_pcf_ver4.py /home/pi/
-sudo cp pcf_lora_project/software/main/lib_pcf_ver4.py /home/pcf/
-sudo cp pcf_lora_project/software/main/pcf.service /etc/systemd/system/
-sudo cp pcf_lora_project/software/main/99-serial-logger.rules /etc/udev/rules.d/
+#cp pcf_lora_project/software/main/main_pcf_ver4.py /home/pi/
+#cp pcf_lora_project/software/main/lib_pcf_ver4.py /home/pi/
+cp pcf_lora_project/software/main/main_aid_ver3.py /home/pi/
+cp pcf_lora_project/software/main/main_lib_ver3.py /home/pi/
+cp pcf_lora_project/software/main/pcf.service /etc/systemd/system/
+cp pcf_lora_project/software/main/99-serial-logger.rules /etc/udev/rules.d/
 
 
 
@@ -41,5 +43,10 @@ echo '##########################################################################
 sleep 3
 
 
+#cd "/dev"
+#chmod 777 ttyUSB0
+#chmpd 777 ttyASM0 
 
 
+
+#merge git узнать
