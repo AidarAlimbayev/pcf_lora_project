@@ -32,7 +32,7 @@ network={
 }
 
 6. Erase SD
-7. Put SD to raspberrypi and turn it on
+7. Put SD to raspberrypi and then turn it on
 8. Wait 1-3 min, then you can check connection !! ping pi@raspberrypi.local
     8.1 If that's not work you can also check on your router settings (192.168.$1.$1) raspberry's ip address. For example $ip=192.168.1.100
 9. ssh pi@192.168.1.100

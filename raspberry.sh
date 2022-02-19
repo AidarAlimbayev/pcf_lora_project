@@ -1,6 +1,11 @@
 #!/usr/bin/env bash 
 set -Eeuo pipefail
 
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+
+#Установка Git
+apt-get install git
+
 
 apt update
 apt -y upgrade
@@ -9,7 +14,11 @@ apt install -y python3-pip
 echo `python3 -V`
 echo 'The Python has loaded'
 echo '###########################################################################################'
-sleep 3
+for ((i = 1; i <= 3; i++))
+do
+echo "...$i"
+sleep 1
+done 
 
 cd ~/Documents/
 git clone https://github.com/AidarAlimbayev/pcf_lora_project.git
@@ -24,7 +33,11 @@ cp pcf_lora_project/software/main/99-serial-logger.rules /etc/udev/rules.d/
 
 echo 'Project has loaded'
 echo '###########################################################################################'
-sleep 3
+for ((i = 1; i <= 3; i++))
+do
+echo "...$i"
+sleep 1
+done 
 
 pip install serial          #import serial
 pip install python-time     #import time
@@ -40,12 +53,16 @@ pip install statistics      #import statistics
 
 echo 'All libraries has loaded'
 echo '###########################################################################################'
-sleep 3
+for ((i = 1; i <= 3; i++))
+do
+echo "...$i"
+sleep 1
+done 
 
 
 #cd "/dev"
-#chmod 777 ttyUSB0
-#chmpd 777 ttyASM0 
+#chmod +x ttyUSB0
+#chmpd +x ttyASM0 
 
 
 
