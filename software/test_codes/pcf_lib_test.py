@@ -71,6 +71,7 @@ def send_server(animal_id, weight_finall):
         #logging.info(answer) # is it possible to stop in the debug somehow on this line?
         print("lib:RFID_reader: Answer from server: ")
         print(answer)
+        print(answer.content)
     except Exception as e:
         #logging.info("lib:RFID_reader: Err send data to server")
         print("lib:RFID_reader: Err send data to server")

@@ -7,5 +7,4 @@ $ Hardware.zip
 
 
 # exclude everything except directory foo/bar
-!/test/sandbox_ver3
 !/software
