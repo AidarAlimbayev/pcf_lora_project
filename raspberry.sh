@@ -21,7 +21,11 @@ sleep 1
 done 
 
 cd ~/Documents/
+<<<<<<< HEAD
 #git clone https://github.com/AidarAlimbayev/pcf_lora_project.git  ds;fl;sdf
+=======
+#git clone https://github.com/AidarAlimbayev/pcf_lora_project.git  dsa
+>>>>>>> Maxat
 #cp pcf_lora_project/software/main/main_pcf_ver4.py /home/pi/
 #cp pcf_lora_project/software/main/lib_pcf_ver4.py /home/pi/
 cp pcf_lora_project/software/main/main_aid_ver3.py /home/pi/
