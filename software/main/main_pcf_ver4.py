@@ -1,5 +1,5 @@
-#!/usr/bin/sudo python3
-import lib.lib_pcf_ver4 as pcf
+#!/usr/bin/sudo python
+import lib_pcf_ver4 as pcf
 import time
 
 time.sleep(10)
@@ -16,8 +16,10 @@ logging.basicConfig(filename = 'pcf_file.log', level = logging.DEBUG, format='%(
 #logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(funcName)s - line %(lineno)d") 
 
 type_scales = "Test_raspberry_ver4" # Types of weights
-cow_id = "b'0700010101001e4b'" # value of null answer of RFID reader
-null_id = "b'0700010101001e4b'"
+#cow_id = "b'0700010101001e4b'" # value of null answer of RFID reader
+#null_id = "b'0700010101001e4b'"
+cow_id = "b'435400040001'" # value of null answer of RFID reader
+null_id = "b'435400040001'"
 another_null_id = "b'435400040001'"
 weight_finall = 0
 
@@ -50,7 +52,7 @@ def main():
             weight_finall = pcf.Connect_ARD_get_weight(cow_id, s, type_scales) # Grab weight from arduino and collect to weight_finall
             pcf.print_log("main: weight_finall", weight_finall)
                         
-            if str(weight_finall) != '0':
+            if str(weight_finall) > '0':
 
                 pcf.print_log("main: Collect data")
                 pcf.Collect_data_CSV(cow_id, weight_finall, type_scales) # Save weight data into CSV file
@@ -58,6 +60,6 @@ def main():
                 pcf.print_log("main: Send data to server")
                 pcf.Send_data_to_server(cow_id, weight_finall, type_scales) # Send data to server by JSON post request
                 #cow_id = '070106156079'
-                cow_id = '435400040001'
+                cow_id = "b'435400040001'"
 
 main()

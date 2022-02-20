@@ -68,7 +68,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             print_log("Weight from Arduino :", weight_new)
             
             # Here the place to add RawWeights sending function
-            #Send_RawData_to_server(cow_id, weight_new, type_scales)
+            Send_RawData_to_server(cow_id, weight_new, type_scales)
             # End of Raw data function
 
             weight_list.append(float(weight_new))
@@ -119,10 +119,12 @@ def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting c
         TCP_IP = '192.168.1.250' #chafon 5300 reader address
         TCP_PORT = 60000 #chafon 5300 port
         BUFFER_SIZE = 1024
-        animal_id = "b'0700010101001e4b'" # Id null starting variable
-        animal_id_new = "b'0700010101001e4b'"
-        null_id = "b'0700010101001e4b'" # Id null
-        another_null_id = "b'435400040001'"
+        animal_id = "b'435400040001'" # Id null starting variable
+        animal_id_new = "b'435400040001'"
+        #null_id = 435400040001 # Id null
+        null_id = "b'435400040001'"
+        print_log("START Animal ID animal_id: ", animal_id)
+        print_log("START Null id null_id : ", null_id)
     
         if animal_id == null_id: # Send command to reader waiting id of animal
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -132,13 +134,14 @@ def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting c
             animal_id= str(binascii.hexlify(data))
             animal_id_new = animal_id[:-4] #Cutting the string from unnecessary information after 4 signs 
             animal_id_new = animal_id_new[-12:] #Cutting the string from unnecessary information before 24 signs
-            print_log("Raw ID: ", animal_id)
-            print_log("New ID: ", animal_id_new)
+            print_log("Raw ID animal_id: ", animal_id)
+            print_log("New ID animal_id_new: ", animal_id_new)
+            print_log("Null id null_id : ", str(null_id))
             s.close()             
         if animal_id_new == null_id: # Id null return(0)
             Connect_RFID_reader()
         else: # Id checkt return(1)
-            animal_id = "b'0700010101001e4b'"
+            animal_id = "b'435400040001'"
             print_log("Success step 2 RFID. animal id new:", animal_id_new)
             return(animal_id_new)
     except Exception as e:
@@ -157,7 +160,7 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data i
                 "ScalesModel" : type_scales}
         answer = requests.post(url, data=json.dumps(data), headers=headers)
         print_log("Answer from server: ", answer) # Is it possible to stop on this line in the debug?
-        print_log("Content from server: ", answer.content)
+        print_log("Content from main server: ", answer.content)
     except Exception as e:
         print_log("Error send data to server", e)
     else:
