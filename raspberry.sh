@@ -21,14 +21,14 @@ echo "...$i"
 sleep 1
 done 
 
-#cd ~/Documents/
-#git clone https://github.com/AidarAlimbayev/pcf_lora_project.git  
+cd ~/Documents/
 cp software/main/main_pcf_ver4.py /home/pi/
 cp software/main/lib_pcf_ver4.py /home/pi/
 #cp pcf_lora_project/software/main/main_aid_ver3.py /home/pi/
 #cp pcf_lora_project/software/main/main_lib_ver3.py /home/pi/
 cp software/main/pcf.service /etc/systemd/system/
 cp software/main/99-serial-logger.rules /etc/udev/rules.d/
+
 
 
 
