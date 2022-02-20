@@ -1,5 +1,3 @@
-
-
 from datetime import datetime, date, time
 import serial
 import time
@@ -11,10 +9,15 @@ import csv
 import re
 import logging
 import os
+import statistics
+
 
 #logging.basicConfig(filename = '%s.log'%str(datetime.now()), level = logging.DEBUG, format='%(asctime)s %(message)s')
 #logging format with names of funstions
 logging.basicConfig(filename = '%s.log'%str(datetime.now()), level = logging.DEBUG, format='[%(filename)s:%(lineno)s - %(funcName)20s() ] %(asctime)s %(message)s')
+
+
+
 
 def print_log(message = None, value = None): # Function to logging and printing messages into terminal for debug
     logging.info(message)
@@ -22,7 +25,25 @@ def print_log(message = None, value = None): # Function to logging and printing 
     print(message)
     print(value)
 
-def Connect_ARD_get_weight(cow_id, s): # Connection to aruino through USB by Serial Port   
+
+def Send_RawData_to_server(animal_id, weight_new, type_scales): # Sending data into Igor's server through JSON
+    try:
+        print_log("START SEND RawDATA TO SERVER:")
+        url = 'http://194.4.56.86:8501/api/RawWeights'
+        headers = {'Content-type': 'application/json'}
+        data = {"AnimalNumber" : animal_id,
+                "Date" : str(datetime.now()),
+                "Weight" : weight_new,
+                "ScalesModel" : type_scales}
+        answer = requests.post(url, data=json.dumps(data), headers=headers)
+        print_log("Answer from RawData server: ", answer) # Is it possible to stop on this line in the debug?
+        print_log("Content from RawData server: ", answer.content)
+    except Exception as e:
+        print_log("Error send data to RawData server", e)
+    else:
+        print_log("4 step send RawData")
+
+def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino through USB by Serial Port   
     try:
         print_log("CONNECT ARDUINO")
         s.flushInput() # Cleaning buffer of Serial Port
@@ -40,13 +61,15 @@ def Connect_ARD_get_weight(cow_id, s): # Connection to aruino through USB by Ser
         print_log("Weight new after cleaning :", float(weight_new))
                 
         weight_list = []
-        mid_weight = 0
+        #mid_weight = 0
         while (float(weight_new) > 10): # Collecting weight to array 
             weight = (str(s.readline()))
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
             print_log("Weight from Arduino :", weight_new)
             
             # Here the place to add RawWeights sending function
+            Send_RawData_to_server(cow_id, weight_new, type_scales)
+            # End of Raw data function
 
             weight_list.append(float(weight_new))
         if weight_list == 0 or weight_list == []:
@@ -54,9 +77,13 @@ def Connect_ARD_get_weight(cow_id, s): # Connection to aruino through USB by Ser
         else:
             if weight_list != []: # Here must added check on weight array null value and one element array
                 del weight_list[-1]
-            weight_finall = sum(weight_list) / len(weight_list) # Averaging weight array by sum and lenght
+            
+            # new method of averaging
+            weight_finall = statistics.median(weight_list)
+        
+            #weight_finall = sum(weight_list) / len(weight_list) # Averaging weight array by sum and lenght
             #weight_finall = weight_finall/1000 # Dividing to 1000 for Igor's server  
-            print_log("Weight_finall after averaging :", "{0:.2f}".format(weight_finall))
+            print_log("Weight_finall median :", "{0:.2f}".format(weight_finall))
             
             # Part of code to save all raw data into CSV file
             sep_line = "__________"
@@ -92,9 +119,12 @@ def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting c
         TCP_IP = '192.168.1.250' #chafon 5300 reader address
         TCP_PORT = 60000 #chafon 5300 port
         BUFFER_SIZE = 1024
-        animal_id = "b'0700010101001e4b'" # Id null starting variable
-        animal_id_new = "b'0700010101001e4b'"
-        null_id = "b'0700010101001e4b'" # Id null
+        animal_id = "b'435400040001'" # Id null starting variable
+        animal_id_new = "b'435400040001'"
+        #null_id = 435400040001 # Id null
+        null_id = "b'435400040001'"
+        print_log("START Animal ID animal_id: ", animal_id)
+        print_log("START Null id null_id : ", null_id)
     
         if animal_id == null_id: # Send command to reader waiting id of animal
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -104,13 +134,14 @@ def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting c
             animal_id= str(binascii.hexlify(data))
             animal_id_new = animal_id[:-4] #Cutting the string from unnecessary information after 4 signs 
             animal_id_new = animal_id_new[-12:] #Cutting the string from unnecessary information before 24 signs
-            print_log("Raw ID: ", animal_id)
-            print_log("New ID: ", animal_id_new)
+            print_log("Raw ID animal_id: ", animal_id)
+            print_log("New ID animal_id_new: ", animal_id_new)
+            print_log("Null id null_id : ", str(null_id))
             s.close()             
         if animal_id_new == null_id: # Id null return(0)
             Connect_RFID_reader()
         else: # Id checkt return(1)
-            animal_id = "b'0700010101001e4b'"
+            animal_id = "b'435400040001'"
             print_log("Success step 2 RFID. animal id new:", animal_id_new)
             return(animal_id_new)
     except Exception as e:
@@ -129,7 +160,7 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data i
                 "ScalesModel" : type_scales}
         answer = requests.post(url, data=json.dumps(data), headers=headers)
         print_log("Answer from server: ", answer) # Is it possible to stop on this line in the debug?
-        print_log("Content from server: ", answer.content)
+        print_log("Content from main server: ", answer.content)
     except Exception as e:
         print_log("Error send data to server", e)
     else:

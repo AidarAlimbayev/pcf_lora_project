@@ -1,5 +1,3 @@
-
-
 from datetime import datetime, date, time
 import serial
 import time
