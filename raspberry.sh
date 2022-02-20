@@ -10,6 +10,7 @@ apt-get install git
 apt update
 apt -y upgrade
 echo `python3 -V`
+apt install python2
 apt install -y python3-pip
 echo `python3 -V`
 echo 'The Python has loaded'
@@ -20,11 +21,11 @@ echo "...$i"
 sleep 1
 done 
 
-cd ~/Documents/
+#cd ~/Documents/
 <<<<<<< HEAD
-#git clone https://github.com/AidarAlimbayev/pcf_lora_project.git  ds;fl;sdf
+#git clone https://github.com/AidarAlimbayev/pcf_lora_project.git  
 =======
-#git clone https://github.com/AidarAlimbayev/pcf_lora_project.git  dsa
+#git clone https://github.com/AidarAlimbayev/pcf_lora_project.git  
 >>>>>>> Maxat
 #cp pcf_lora_project/software/main/main_pcf_ver4.py /home/pi/
 #cp pcf_lora_project/software/main/lib_pcf_ver4.py /home/pi/
@@ -43,17 +44,17 @@ echo "...$i"
 sleep 1
 done 
 
-pip install serial          #import serial
-pip install python-time     #import time
-pip install sockets         #import socket
-pip install jsonlib         # - Не уверен /import json 
-pip install requests        #import requests
-pip install pycopy-binascii #import binascii
-pip install python-csv      #import csv
-pip insatll regex           #import re
-pip install logging         #import logging
-pip install os-sys          #import os
-pip install statistics      #import statistics
+#pip install serial          #import serial
+#pip install python-time     #import time
+#pip install sockets         #import socket
+#pip install jsonlib         # - Не уверен /import json 
+#pip install requests        #import requests
+#pip install pycopy-binascii #import binascii
+#pip install python-csv      #import csv
+#pip insatll regex           #import re
+#pip install logging         #import logging
+#pip install os-sys          #import os
+#pip install statistics      #import statistics
 
 echo 'All libraries has loaded'
 echo '###########################################################################################'
