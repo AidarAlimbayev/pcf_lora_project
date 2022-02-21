@@ -3,12 +3,18 @@ set -Eeuo pipefail
 
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
-#Установка Git
-apt-get install git
 
+apt update                          #Проверка обновлении
+apt -y upgrade                      #Установка обновлении 
+apt-get dist-upgrade                #Обновление raspbian до последней версии
 
-apt update
-apt -y upgrade
+apt-get install git                 #Установка Git
+apt-get install tightvncserver      #Установка VNC
+
+#wget https://www.teamviewer.com/ru/%d1%81%d0%ba%d0%b0%d1%87%d0%b0%d1%82%d1%8c/raspberry-pi/teamviewer_15.26.4_armhf.deb
+#dpkg -i teamviewer-host_armhf.deb
+#apt --fix-broken install           #Установка TeamViewer
+
 echo `python3 -V`
 apt install python2
 apt install -y python3-pip
@@ -23,6 +29,7 @@ done
 
 <<<<<<< HEAD
 cd ~/Documents/
+<<<<<<< HEAD
 #git clone https://github.com/AidarAlimbayev/pcf_lora_project.git  dsa
 =======
 #cd ~/Documents/
@@ -39,15 +46,21 @@ cp pcf_lora_project/software/main/main_lib_ver3.py /home/pi/
 cp pcf_lora_project/software/main/pcf.service /etc/systemd/system/
 cp pcf_lora_project/software/main/99-serial-logger.rules /etc/udev/rules.d/
 =======
+=======
+git clone git@github.com:AidarAlimbayev/pcf_lora_project.git
+>>>>>>> d1fa12d (upgrade raspbian, probably install teamviewer)
 cp software/main/main_pcf_ver4.py /home/pi/
 cp software/main/lib_pcf_ver4.py /home/pi/
 #cp pcf_lora_project/software/main/main_aid_ver3.py /home/pi/
 #cp pcf_lora_project/software/main/main_lib_ver3.py /home/pi/
 cp software/main/pcf.service /etc/systemd/system/
 cp software/main/99-serial-logger.rules /etc/udev/rules.d/
+<<<<<<< HEAD
 >>>>>>> ee070a2 (raspberry.sh)
 
 
+=======
+>>>>>>> d1fa12d (upgrade raspbian, probably install teamviewer)
 
 echo 'Project has loaded'
 echo '###########################################################################################'
@@ -78,10 +91,11 @@ sleep 1
 done 
 
 
+
+
 #cd /dev
 #chmod +x ttyUSB0
 #chmpd +x ttyASM0 
 
 
 
-#merge git узнать
