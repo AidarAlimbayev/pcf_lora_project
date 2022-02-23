@@ -41,9 +41,9 @@ def main():
     pcf.print_log("Start main script")
 
     while(True):
-        pcf.print_log("Infinite cycle")
+        #pcf.print_log("Infinite cycle")
         cow_id = pcf.Connect_RFID_reader() # Connection to RFID reader 
-        pcf.print_log("First step cow ID :", cow_id)
+        #pcf.print_log("First step cow ID :", cow_id)
         
         if cow_id != '435400040001': # Comparision to null cow_id answer 
             # second ID is also null 
