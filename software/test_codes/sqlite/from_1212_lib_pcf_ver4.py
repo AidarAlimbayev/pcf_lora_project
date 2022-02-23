@@ -1,4 +1,5 @@
 from datetime import datetime, date, time
+#from httplib2 import RETRIES
 import serial
 import time
 import socket
@@ -14,7 +15,12 @@ import statistics
 
 #logging.basicConfig(filename = '%s.log'%str(datetime.now()), level = logging.DEBUG, format='%(asctime)s %(message)s')
 #logging format with names of funstions
+<<<<<<< HEAD:software/test_codes/sqlite/from_1212_lib_pcf_ver4.py
 logging.basicConfig(filename = '%s.log'%str(datetime.now().strftime("%Y_%m_%d_%H_%M_%S")), level = logging.DEBUG, format='[%(filename)s:%(lineno)s - %(funcName)20s() ] %(asctime)s %(message)s')
+=======
+logging.basicConfig(filename = '%s.log'%str(datetime.now().strftime("%Y_%m_%d_%H:%M:%S")), level = logging.DEBUG, format='[%(filename)s:%(lineno)s - %(funcName)20s() ] %(asctime)s %(message)s')
+
+>>>>>>> d5cee44 (New null ID correction 4354*., commented print_log):software/main/lib_pcf_ver4.py
 
 #onew_log = logging.basicConfig(filename = 'new_start_datetime_log.log, level = logging.DEBUG)
 
@@ -58,7 +64,11 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         print_log("First weight from Arduino", weight)
         print_log("After s.readline function")
 
+<<<<<<< HEAD:software/test_codes/sqlite/from_1212_lib_pcf_ver4.py
         weight_new = re.sub("b|'|\r|\n", "", weight[:-6])
+=======
+        weight_new = re.sub("b|'|\r|\n", "", weight[:-4])
+>>>>>>> d5cee44 (New null ID correction 4354*., commented print_log):software/main/lib_pcf_ver4.py
 
         print_log("Weight new after cleaning :", float(weight_new))
         weight_list = []
@@ -66,7 +76,11 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         start_datetime = str(datetime.now())
         while (float(weight_new) > 10): # Collecting weight to array
             weight = (str(s.readline()))
+<<<<<<< HEAD:software/test_codes/sqlite/from_1212_lib_pcf_ver4.py
             weight_new = re.sub("b|'|\r|\n", "", weight[:-6])
+=======
+            weight_new = re.sub("b|'|\r|\n", "", weight[:-4])
+>>>>>>> d5cee44 (New null ID correction 4354*., commented print_log):software/main/lib_pcf_ver4.py
             print_log("Weight from Arduino :", weight_new)
             
             # Here the place to add RawWeights sending function
@@ -118,18 +132,22 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
 
 def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting cow ID in str format
     try:    
-        print_log("START RFID FUNCTION")
+        #print_log("START RFID FUNCTION")
         ###########################################
         # TCP connection settings and socket
         TCP_IP = '192.168.1.250' #chafon 5300 reader address
         TCP_PORT = 60000 #chafon 5300 port
         BUFFER_SIZE = 1024
-        animal_id = "b'435400040001'" # Id null starting variable
-        animal_id_new = "b'435400040001'"
-        #null_id = 435400040001 # Id null
-        null_id = "b'435400040001'"
-        print_log("START Animal ID animal_id: ", animal_id)
-        print_log("START Null id null_id : ", null_id)
+        # animal_id = "b'435400040001'" # Id null starting variable
+        # animal_id_new = "b'435400040001'"
+        # null_id = "b'435400040001'"
+        animal_id = 435400040001 # Id null starting variable
+        animal_id_new = 435400040001
+        null_id = 435400040001 # Id null
+
+
+        # print_log("1: START Animal ID animal_id: ", animal_id)
+        # print_log("2: START Null id null_id : ", null_id)
     
         if animal_id == null_id: # Send command to reader waiting id of animal
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -139,6 +157,7 @@ def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting c
             animal_id= str(binascii.hexlify(data))
             animal_id_new = animal_id[:-6] #Cutting the string from unnecessary information after 4 signs 
             animal_id_new = animal_id_new[-12:] #Cutting the string from unnecessary information before 24 signs
+<<<<<<< HEAD:software/test_codes/sqlite/from_1212_lib_pcf_ver4.py
             print_log("Raw ID animal_id: ", animal_id)
             print_log("New ID animal_id_new: ", animal_id_new)
             print_log("Null id null_id : ", null_id)
@@ -151,10 +170,27 @@ def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting c
             animal_id = "b'435400040001'"
             print_log("Success step 2 RFID. animal id new:", animal_id_new)
             return(animal_id_new)
+=======
+            #print_log("--------------------------------------")
+            #print_log("3: Raw ID animal_id: ", animal_id)
+            #print_log("4: New ID animal_id_new: ", animal_id_new)
+            #print_log("5: Null id null_id : ", null_id)
+            #print_log("6: Null id string null id", str(null_id))
+            #print_log("--------------------------------------")
+            s.close()             
+        # if animal_id_new == null_id: # Id null return(0)
+        #     print_log("8: Success, Aidar stop logging!")
+            #return("animal id = null id")
+        # else: # Id checkt return(1)
+        #     animal_id = "b'435400040001'"
+        #     print_log("7: Success step 2 RFID. animal id new:", animal_id_new)
+        #     return(animal_id_new)
+>>>>>>> d5cee44 (New null ID correction 4354*., commented print_log):software/main/lib_pcf_ver4.py
     except Exception as e:
-        print_log("Error connect to Arduino ", e)
+        print_log("Error connect to RFID reader", e)
     else: 
-        print_log("2 step RFID")
+        #print_log("2 step RFID")
+        return animal_id_new
     
 def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data into Igor's server through JSON
     try:
