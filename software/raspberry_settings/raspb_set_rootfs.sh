@@ -1,47 +1,48 @@
 #!/usr/bin/env bash                                                                       
 set -Eeuo pipefail
+SCRIPT_PATH=$( cd $(dirname $0)/../ ; pwd )
 
-cp /home/maxat/.Projects/.Agrarka/pcf_lora_project/software/raspberry_settings/ssh /media/maxat/boot1
-chmod +x /media/maxat/boot1/ssh
-echo `ls -l` /media/maxat/boot1/ssh
+cp ${SCRIPT_PATH}/raspberry_settings/ssh ${HOME}/boot1
+chmod +x ${HOME}/boot1/ssh
+echo `ls -l` ${HOME}/boot1/ssh
 sleep 1
 echo "1#############"
 
-cp /home/maxat/.Projects/.Agrarka/pcf_lora_project/software/raspberry_settings/wpa_supplicant.conf /media/maxat/boot1
-chmod +x /media/maxat/boot1/wpa_supplicant.conf
-echo `ls -l` /media/maxat/boot1/wpa_supplicant.conf
+cp ${SCRIPT_PATH}/raspberry_settings/wpa_supplicant.conf ${HOME}/boot1
+chmod +x ${HOME}/boot1/wpa_supplicant.conf
+echo `ls -l` ${HOME}/boot1/wpa_supplicant.conf
 sleep 1
 echo "2#############"
 
-cp /home/maxat/.Projects/.Agrarka/pcf_lora_project/software/main/main_pcf_ver4.py /media/maxat/rootfs/home/pi
-chmod 777 /media/maxat/rootfs/home/pi/main_pcf_ver4.py
-echo `ls -l` /media/maxat/rootfs/home/pi/main_pcf_ver4.py
+cp ${SCRIPT_PATH}/main/main_pcf_ver4.py ${HOME}/rootfs/home/pi
+chmod 777 ${HOME}/rootfs/home/pi/main_pcf_ver4.py
+echo `ls -l` ${HOME}/rootfs/home/pi/main_pcf_ver4.py
 sleep 1
 echo "3#############"
 
-cp /home/maxat/.Projects/.Agrarka/pcf_lora_project/software/main/lib_pcf_ver4.py /media/maxat/rootfs/home/pi
-chmod 777 /media/maxat/rootfs/home/pi/lib_pcf_ver4.py
-echo `ls -l` /media/maxat/rootfs/home/pi/lib_pcf_ver4.py
+cp ${SCRIPT_PATH}/main/lib_pcf_ver4.py ${HOME}/rootfs/home/pi
+chmod 777 ${HOME}/rootfs/home/pi/lib_pcf_ver4.py
+echo `ls -l` ${HOME}/rootfs/home/pi/lib_pcf_ver4.py
 sleep 1
 echo "4#############"
 
-cp /home/maxat/.Projects/.Agrarka/pcf_lora_project/software/main/pcf.service /media/maxat/rootfs/etc/systemd/system
-chmod 777 /media/maxat/rootfs/etc/systemd/system/pcf.service
+cp ${SCRIPT_PATH}/main/pcf.service ${HOME}/rootfs/etc/systemd/system
+chmod 777 ${HOME}/rootfs/etc/systemd/system/pcf.service
 echo `ls -l` media/maxat/rootfs/etc/systemd/system/pcf.service
 sleep 1
 echo "5#############"
 
-cp /home/maxat/.Projects/.Agrarka/pcf_lora_project/software/main/99-serial-logger.rules /media/maxat/rootfs/etc/udev/rules.d
-chmod 777 /media/maxat/rootfs/etc/udev/rules.d/99-serial-logger.rules
-echo `ls -l` /media/maxat/rootfs/etc/udev/rules.d/99-serial-logger.rules
+cp ${SCRIPT_PATH}/main/99-serial-logger.rules ${HOME}/rootfs/etc/udev/rules.d
+chmod 777 ${HOME}/rootfs/etc/udev/rules.d/99-serial-logger.rules
+echo `ls -l` ${HOME}/rootfs/etc/udev/rules.d/99-serial-logger.rules
 sleep 1
 echo "6#############"
 
-chmod 777 /media/maxat/rootfs/etc/dhcpcd.conf
-cat /home/maxat/.Projects/.Agrarka/pcf_lora_project/software/raspberry_settings/dhcpcd.conf > /media/maxat/rootfs/etc/dhcpcd.conf
-chmod 777 /media/maxat/rootfs/etc/dhcpcd.conf
+chmod 777 ${HOME}/rootfs/etc/dhcpcd.conf
+cat ${SCRIPT_PATH}/raspberry_settings/dhcpcd.conf > ${HOME}/rootfs/etc/dhcpcd.conf
+chmod 777 ${HOME}/rootfs/etc/dhcpcd.conf
 echo "7###########"
-cp /home/maxat/.Projects/.Agrarka/pcf_lora_project/software/raspberry_settings/raspberry.sh /media/maxat/rootfs/home
+cp ${SCRIPT_PATH}/raspberry_settings/raspberry.sh ${HOME}/rootfs/home
 echo "8###########"
 
 
