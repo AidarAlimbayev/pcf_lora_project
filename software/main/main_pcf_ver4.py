@@ -60,6 +60,6 @@ def main():
                 pcf.print_log("main: Send data to server")
                 pcf.Send_data_to_server(cow_id, weight_finall, type_scales) # Send data to server by JSON post request
                 #cow_id = '070106156079'
-                cow_id = "b'435400040001'"
+                #cow_id = "b'435400040001'"
 
 main()

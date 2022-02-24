@@ -92,7 +92,11 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
 
             # Part of code to save all raw data into CSV file
             # Function of writing RAW data into internal CSV file
+<<<<<<< HEAD:software/test_codes/sqlite/lib_pcf_ver4.py
             sep_line = "__________"
+=======
+            #sep_line = "__________"    
+>>>>>>> 2dd5852 (24 feb correct main codes):software/main/lib_pcf_ver4.py
             # if cow_id != "b'0700010101001e4b'":            
             #     with open('raw_data.csv', 'a+', newline='') as csvfile:
             #         wtr = csv.writer(csvfile)
@@ -102,9 +106,10 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             #         for x in weight_list : wtr.writerow ([x])
             #         print_log("Weight_list: ",weight_list)
             #     csvfile.close()
-            print_log("End of write raw data list :", weight_list)
-            
+            #print_log("End of write raw data list :", weight_list)
             # End of collectin raw data into CSV file
+
+
             weight_list = []
             print_log("Weight_finall befor return :", weight_finall)
             return(float("{0:.2f}".format(weight_finall)))
