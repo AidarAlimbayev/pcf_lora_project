@@ -88,8 +88,10 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             #weight_finall = weight_finall/1000 # Dividing to 1000 for Igor's server  
             print_log("Weight_finall median :", "{0:.2f}".format(weight_finall))
             
+
             # Part of code to save all raw data into CSV file
-            sep_line = "__________"
+            # Function of writing RAW data into internal CSV file
+            #sep_line = "__________"    
             # if cow_id != "b'0700010101001e4b'":            
             #     with open('raw_data.csv', 'a+', newline='') as csvfile:
             #         wtr = csv.writer(csvfile)
@@ -99,9 +101,10 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             #         for x in weight_list : wtr.writerow ([x])
             #         print_log("Weight_list: ",weight_list)
             #     csvfile.close()
-            print_log("End of write raw data list :", weight_list)
-            
+            #print_log("End of write raw data list :", weight_list)
             # End of collectin raw data into CSV file
+
+
             weight_list = []
             print_log("Weight_finall befor return :", weight_finall)
             return(float("{0:.2f}".format(weight_finall)))
@@ -141,12 +144,12 @@ def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting c
             animal_id= str(binascii.hexlify(data))
             animal_id_new = animal_id[:-4] #Cutting the string from unnecessary information after 4 signs 
             animal_id_new = animal_id_new[-12:] #Cutting the string from unnecessary information before 24 signs
-            #print_log("--------------------------------------")
-            #print_log("3: Raw ID animal_id: ", animal_id)
-            #print_log("4: New ID animal_id_new: ", animal_id_new)
-            #print_log("5: Null id null_id : ", null_id)
-            #print_log("6: Null id string null id", str(null_id))
-            #print_log("--------------------------------------")
+            print_log("--------------------------------------")
+            print_log("3: Raw ID animal_id: ", animal_id)
+            print_log("4: New ID animal_id_new: ", animal_id_new)
+            print_log("5: Null id null_id : ", null_id)
+            print_log("6: Null id string null id", str(null_id))
+            print_log("--------------------------------------")
             s.close()             
         # if animal_id_new == null_id: # Id null return(0)
         #     print_log("8: Success, Aidar stop logging!")
@@ -157,6 +160,12 @@ def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting c
         #     return(animal_id_new)
     except Exception as e:
         print_log("Error connect to RFID reader", e)
+        print("------------------")
+        print_log("null_id :", null_id)
+        print_log("type(null_id) :", type(null_id))
+        print_log("str(null_id) ;", str(null_id))
+        print("------------------")
+        return str(null_id) # returm null Id for stop sending data to server
     else: 
         #print_log("2 step RFID")
         return animal_id_new
