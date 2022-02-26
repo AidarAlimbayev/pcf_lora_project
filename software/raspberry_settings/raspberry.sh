@@ -5,7 +5,7 @@ script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 echo "Введите пароль для системы Raspbian."
 echo "Введите пароль: 321" 
-passwd
+
 
 
 apt update                          #Проверка обновлении
@@ -19,7 +19,7 @@ wget -qO- eth0.me >> myip.txt
 apt-get install git
 
 #Установка часового пояса
-timedatectl set-timezone Asia/Almaty
+
 
 #Установка VNC
 apt-get install tightvncserver     
