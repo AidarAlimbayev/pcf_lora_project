@@ -27,13 +27,13 @@ echo "Введите пароль для подключения к VNC серв�
 echo "Введите пароль: 123456" 
 
 #Установка TeamViewer
-wget https://www.teamviewer.com/ru/%d1%81%d0%ba%d0%b0%d1%87%d0%b0%d1%82%d1%8c/raspberry-pi/teamviewer_15.26.4_armhf.deb
-dpkg -i teamviewer-host_armhf.deb || true
-apt --fix-broken install  
-teamviewer passwd californicatioN 
-cd ${HOME}/Desktop
-echo "#########" >> teamviewer_info.txt
-teamviewer info >> teamviewer_info.txt
+# wget https://www.teamviewer.com/ru/%d1%81%d0%ba%d0%b0%d1%87%d0%b0%d1%82%d1%8c/raspberry-pi/teamviewer_15.26.4_armhf.deb
+# dpkg -i teamviewer-host_armhf.deb || true
+# apt --fix-broken install  
+# teamviewer passwd californicatioN 
+# cd ${HOME}/Desktop
+# echo "#########" >> teamviewer_info.txt
+# teamviewer info >> teamviewer_info.txt
 
 #Установка Python
 echo `python3 -V`
@@ -49,8 +49,8 @@ sleep 1
 done 
 
 #Установка проекта
-cd ~/Documents/
-git clone git@github.com:AidarAlimbayev/pcf_lora_project.git
+cd /home/pi/Documents/
+git clone https://github.com/AidarAlimbayev/pcf_lora_project.git
 #cp software/main/main_pcf_ver4.py /home/pi/
 #cp software/main/lib_pcf_ver4.py /home/pi/
 ##cp pcf_lora_project/software/main/main_aid_ver3.py /home/pi/
