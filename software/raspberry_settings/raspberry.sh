@@ -18,6 +18,9 @@ wget -qO- eth0.me >> myip.txt
 #Установка Git
 apt-get install git
 
+#Установка часового пояса
+timedatectl set-timezone Asia/Almaty
+
 #Установка VNC
 apt-get install tightvncserver     
 echo "Введите пароль для подключения к VNC серверу. Пароль от 6 до 8 символов."
