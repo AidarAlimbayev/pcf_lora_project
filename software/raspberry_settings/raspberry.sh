@@ -43,12 +43,18 @@ done
 #Установка проекта
 cd /home/pi/Documents/
 git clone https://github.com/AidarAlimbayev/pcf_lora_project.git
-#cp software/main/main_pcf_ver4.py /home/pi/
-#cp software/main/lib_pcf_ver4.py /home/pi/
+cp software/main/main_pcf_ver4.py /home/pi/
+chmod +x /home/pi/main_pcf_ver4.py
+cp software/main/lib_pcf_ver4.py /home/pi/
+chmod +x /home/pi/lib_pcf_ver4.py
 ##cp pcf_lora_project/software/main/main_aid_ver3.py /home/pi/
 ##cp pcf_lora_project/software/main/main_lib_ver3.py /home/pi/
-#cp software/main/pcf.service /etc/systemd/system/
-#cp software/main/99-serial-logger.rules /etc/udev/rules.d/
+cp software/main/pcf.service /etc/systemd/system/
+chmod +x /etc/systemd/system/pcf.service
+cp software/main/99-serial-logger.rules /etc/udev/rules.d/
+chmod +x /etc/udev/rules.d/99-serial-logger.rules
+
+
 
 # echo 'Project has loaded'
 # echo '####################'
