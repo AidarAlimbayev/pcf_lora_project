@@ -18,14 +18,6 @@ wget -qO- eth0.me >> myip.txt
 #Установка Git
 apt-get install git
 
-#Установка TeamViewer
-wget https://download.teamviewer.com/download/linux/teamviewer-host_armhf.deb
-# dpkg -i teamviewer-host_armhf.deb || true
-# apt --fix-broken install  
-# teamviewer passwd californicatioN 
-# cd ${HOME}/Desktop
-# echo "#########" >> teamviewer_info.txt
-# teamviewer info >> teamviewer_info.txt
 
 #Установка Python
 echo `python3 -V`
@@ -43,16 +35,16 @@ done
 #Установка проекта
 cd /home/pi/Documents/
 git clone https://github.com/AidarAlimbayev/pcf_lora_project.git
-cp software/main/main_pcf_ver4.py /home/pi/
-chmod +x /home/pi/main_pcf_ver4.py
-cp software/main/lib_pcf_ver4.py /home/pi/
-chmod +x /home/pi/lib_pcf_ver4.py
+#cp software/main/main_pcf_ver4.py /home/pi/
+#chmod +x /home/pi/main_pcf_ver4.py
+#cp software/main/lib_pcf_ver4.py /home/pi/
+#chmod +x /home/pi/lib_pcf_ver4.py
 ##cp pcf_lora_project/software/main/main_aid_ver3.py /home/pi/
 ##cp pcf_lora_project/software/main/main_lib_ver3.py /home/pi/
-cp software/main/pcf.service /etc/systemd/system/
-chmod +x /etc/systemd/system/pcf.service
-cp software/main/99-serial-logger.rules /etc/udev/rules.d/
-chmod +x /etc/udev/rules.d/99-serial-logger.rules
+#cp software/main/pcf.service /etc/systemd/system/
+#chmod +x /etc/systemd/system/pcf.service
+#cp software/main/99-serial-logger.rules /etc/udev/rules.d/
+#chmod +x /etc/udev/rules.d/99-serial-logger.rules
 
 
 
@@ -136,7 +128,15 @@ vnclicensewiz
 
 echo "All Done!"
 
-
+#Установка TeamViewer
+cd /home/pi/Downloads
+wget https://download.teamviewer.com/download/linux/teamviewer-host_armhf.deb
+dpkg -i teamviewer-host_armhf.deb || true
+apt --fix-broken install  
+#teamviewer passwd californicatioN 
+# cd ${HOME}/Desktop
+echo "#########" >> teamviewer_info.txt
+teamviewer info >> teamviewer_info.txt
 
 
 
