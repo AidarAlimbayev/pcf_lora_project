@@ -114,8 +114,6 @@ else
 	fi
 fi
 
-chmod a+rw /dev/ttyACM0
-udevadm trigger
 
 #Установка VNC
 apt-get install realvnc-vnc-server
@@ -125,8 +123,7 @@ wget https://www.realvnc.com.download/file/vnc.files/VNC-Server-6.7.2-Linux-ARM.
 systemctl start vncserver-x11-serviced-service
 systemctl enable vncserver-x11-serviced.service
 vnclicensewiz
-
-echo "All Done!"
+echo "VNC done"
 
 #Установка TeamViewer
 cd /home/pi/Downloads
@@ -137,6 +134,10 @@ apt --fix-broken install
 # cd ${HOME}/Desktop
 echo "#########" >> teamviewer_info.txt
 teamviewer info >> teamviewer_info.txt
+echo "TeamViewer done"
 
+chmod a+rw /dev/ttyACM0
+udevadm trigger
+echo "All Done!"
 
 
