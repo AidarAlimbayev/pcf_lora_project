@@ -18,16 +18,8 @@ wget -qO- eth0.me >> myip.txt
 #Установка Git
 apt-get install git
 
-#Установка часового пояса
-
-
-#Установка VNC
-apt-get install tightvncserver     
-echo "Введите пароль для подключения к VNC серверу. Пароль от 6 до 8 символов."
-echo "Введите пароль: 123456" 
-
 #Установка TeamViewer
-# wget https://www.teamviewer.com/ru/%d1%81%d0%ba%d0%b0%d1%87%d0%b0%d1%82%d1%8c/raspberry-pi/teamviewer_15.26.4_armhf.deb
+wget https://download.teamviewer.com/download/linux/teamviewer-host_armhf.deb
 # dpkg -i teamviewer-host_armhf.deb || true
 # apt --fix-broken install  
 # teamviewer passwd californicatioN 
@@ -75,9 +67,9 @@ pip install serial          #import serial
 pip install python-time     #import time
 pip install sockets         #import socket
 pip install python-csv      #import csv
-pip insatll regex           #import re
-pip install logging         #import logging
-pip install statistics      #import statistics
+pip install regex           #import re
+#pip install logging         #import logging
+#pip install statistics      #import statistics
 echo 'All libraries has loaded'
 echo '####################'
 for ((i = 1; i <= 3; i++))
@@ -126,7 +118,16 @@ fi
 
 chmod a+rw /dev/ttyACM0
 udevadm trigger
-  
+
+#Установка VNC
+apt-get install realvnc-vnc-server
+dpkg --add-architecture armhf && sudo apt update
+apt install libx11-6
+wget https://www.realvnc.com.download/file/vnc.files/VNC-Server-6.7.2-Linux-ARM.deb
+systemctl start vncserver-x11-serviced-service
+systemctl enable vncserver-x11-serviced.service
+vnclicensewiz
+
 echo "All Done!"
 
 
