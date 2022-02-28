@@ -1,9 +1,0 @@
-[main_pcf_ver4.py:26 -             <module>() ] 2022-02-20 12:09:05,148 main: Start script
-[lib_pcf_ver4.py:23 -            print_log() ] 2022-02-20 12:09:05,148 Error to connection to arduino, there is no file: /dev/ttyACM0
-[lib_pcf_ver4.py:24 -            print_log() ] 2022-02-20 12:09:05,149 module 'serial' has no attribute 'Serial'
-[lib_pcf_ver4.py:23 -            print_log() ] 2022-02-20 12:09:05,149 Start main script
-[lib_pcf_ver4.py:24 -            print_log() ] 2022-02-20 12:09:05,149 None
-[lib_pcf_ver4.py:23 -            print_log() ] 2022-02-20 12:09:08,179 Error connect to Arduino 
-[lib_pcf_ver4.py:24 -            print_log() ] 2022-02-20 12:09:08,180 [Errno 113] No route to host
-[lib_pcf_ver4.py:23 -            print_log() ] 2022-02-20 12:09:08,180 After read cow ID :
-[lib_pcf_ver4.py:24 -            print_log() ] 2022-02-20 12:09:08,180 None
