@@ -1,17 +1,17 @@
 #!/usr/bin/env bash                                                                       
 set -Eeuo pipefail
 SCRIPT_PATH=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )/../" &> /dev/null && pwd )
-SD=$( cd "/media/$USER" ; pwd )
+#SD=$( cd "/media/$USER" ; pwd )
 
-cp ${SCRIPT_PATH}/raspberry_settings/ssh /media/maxat/boot1
-chmod +x /media/maxat/boot1/ssh
-echo `ls -l` /media/maxat/boot1/ssh
+cp ${SCRIPT_PATH}/raspberry_settings/ssh /media/maxat/boot2
+chmod +x /media/maxat/boot2/ssh
+echo `ls -l` /media/maxat/boot2/ssh
 sleep 1
 echo "1#############"
 
-cp ${SCRIPT_PATH}/raspberry_settings/wpa_supplicant.conf /media/maxat/boot1
-chmod +x /media/maxat/boot1/wpa_supplicant.conf
-echo `ls -l` /media/maxat/boot1/wpa_supplicant.conf
+cp ${SCRIPT_PATH}/raspberry_settings/wpa_supplicant.conf /media/maxat/boot2
+chmod +x /media/maxat/boot2/wpa_supplicant.conf
+echo `ls -l` /media/maxat/boot2/wpa_supplicant.conf
 sleep 1
 echo "2#############"
 
