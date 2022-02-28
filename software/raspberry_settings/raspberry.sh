@@ -2,11 +2,8 @@
 set -Eeuo pipefail
 
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
-
 echo "Введите пароль для системы Raspbian."
 echo "Введите пароль: 321" 
-
-
 
 apt update                          #Проверка обновлении
 apt -y upgrade                      #Установка обновлении 
@@ -18,6 +15,11 @@ wget -qO- eth0.me >> myip.txt
 #Установка Git
 apt-get install git
 
+#Локали 
+apt-get install locales
+nano /etc/environment >> LANG="ru_RU.UTF-8"
+nano /etc/locale.gen >> ru_RU.UTF-8 UTF-8
+locale-gen #Чтобы проверить ввести `locale -a`. На выходе должно быть POSIX en_US.utf8 ru_RU 
 
 #Установка Python
 echo `python3 -V`
@@ -46,8 +48,6 @@ git clone https://github.com/AidarAlimbayev/pcf_lora_project.git
 #cp software/main/99-serial-logger.rules /etc/udev/rules.d/
 #chmod +x /etc/udev/rules.d/99-serial-logger.rules
 
-
-
 # echo 'Project has loaded'
 # echo '####################'
 # for ((i = 1; i <= 3; i++))
@@ -66,6 +66,8 @@ pip install python-time     #import time
 pip install sockets         #import socket
 pip install python-csv      #import csv
 pip install regex           #import re
+pip3 install firmata
+pip install httplib2 --upgrade
 #pip install logging         #import logging
 #pip install statistics      #import statistics
 echo 'All libraries has loaded'
@@ -77,13 +79,12 @@ sleep 1
 done 
 
 #Установка Arduino IDE. *Примечание, перед установкой соединить с raspberry
-
-mkdir ${HOME}/arduino
-cd ${HOME}/arduino/
-wget https://downloads.arduino.cc/arduino-1.8.15-linux64.tar.xz
-tar -xvf ./arduino-1.8.15-linux64.tar.xz
-cd ${HOME}/arduino/arduino-1.8.15/
-./install.sh
+mkdir /home/pi/arduino
+cd /home/pi/arduino/
+wget https://downloads.arduino.cc/arduino-1.8.19-linuxarm.tar.xz
+tar -xf arduino-1.8.19-linuxarm.tar.xz
+sudo mv arduino-1.8.19 /opt
+sudo /opt/arduino-1.8.19/install.sh
 
 #Сначала проверяем подключен ли arduino 
 TTYACM0=$(find /dev -name ttyACM0)
@@ -114,7 +115,6 @@ else
 	fi
 fi
 
-
 #Установка VNC
 apt-get install realvnc-vnc-server
 dpkg --add-architecture armhf && sudo apt update
@@ -126,7 +126,7 @@ vnclicensewiz
 echo "VNC done"
 
 #Установка TeamViewer
-cd /home/pi/Downloads
+cd /home/pi/Downloads/
 wget https://download.teamviewer.com/download/linux/teamviewer-host_armhf.deb
 dpkg -i teamviewer-host_armhf.deb || true
 apt --fix-broken install  
@@ -139,5 +139,3 @@ echo "TeamViewer done"
 chmod a+rw /dev/ttyACM0
 udevadm trigger
 echo "All Done!"
-
-
