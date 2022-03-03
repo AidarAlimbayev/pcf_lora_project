@@ -16,10 +16,10 @@ wget -qO- eth0.me >> myip.txt
 apt-get install git
 
 #Локали 
-apt-get install locales
-nano /etc/environment >> LANG="ru_RU.UTF-8"
-nano /etc/locale.gen >> ru_RU.UTF-8 UTF-8
-locale-gen #Чтобы проверить ввести `locale -a`. На выходе должно быть POSIX en_US.utf8 ru_RU 
+# apt-get install locales
+# nano /etc/environment >> LANG="ru_RU.UTF-8"
+# nano /etc/locale.gen >> ru_RU.UTF-8 UTF-8
+# locale-gen #Чтобы проверить ввести `locale -a`. На выходе должно быть POSIX en_US.utf8 ru_RU 
 
 #Установка Python
 echo `python3 -V`
@@ -33,6 +33,10 @@ do
 echo "...$i"
 sleep 1
 done 
+
+mkdir /home/pi/update
+cd /home/pi/update
+git clone https://github.com:pcfkazatu/pcf_kazatu_project.git
 
 #Установка проекта
 cd /home/pi/Documents/
@@ -139,3 +143,7 @@ echo "TeamViewer done"
 chmod a+rw /dev/ttyACM0
 udevadm trigger
 echo "All Done!"
+
+raspi-config
+
+#update-locale LC_ALL=ru_RU.UTF-8 LANG=ru_RU.UTF-8 LANGUAGE=ru_RU.UTF-8
