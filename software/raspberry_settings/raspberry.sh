@@ -34,9 +34,9 @@ echo "...$i"
 sleep 1
 done 
 
-mkdir /home/pi/update
-cd /home/pi/update
-git clone https://github.com:pcfkazatu/pcf_kazatu_project.git
+mkdir /home/pi/Update
+cd /home/pi/Update/
+git clone https://github.com/pcfkazatu/pcf_kazatu_project.git
 
 #Установка проекта
 cd /home/pi/Documents/
@@ -70,7 +70,7 @@ pip install python-time     #import time
 pip install sockets         #import socket
 pip install python-csv      #import csv
 pip install regex           #import re
-pip3 install firmata
+#pip3 install firmata
 pip install httplib2 --upgrade
 #pip install logging         #import logging
 #pip install statistics      #import statistics
@@ -87,8 +87,8 @@ mkdir /home/pi/arduino
 cd /home/pi/arduino/
 wget https://downloads.arduino.cc/arduino-1.8.19-linuxarm.tar.xz
 tar -xf arduino-1.8.19-linuxarm.tar.xz
-sudo mv arduino-1.8.19 /opt
-sudo /opt/arduino-1.8.19/install.sh
+mv arduino-1.8.19 /opt
+/opt/arduino-1.8.19/install.sh
 
 #Сначала проверяем подключен ли arduino 
 TTYACM0=$(find /dev -name ttyACM0)
