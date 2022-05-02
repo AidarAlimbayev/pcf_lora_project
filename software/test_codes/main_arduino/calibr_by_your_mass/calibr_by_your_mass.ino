@@ -49,7 +49,7 @@ void setup() {
   }
   else {
     LoadCell.setCalFactor(1.0); // user set calibration value (float), initial value 1.0 may be used for this sketch
-    Serial.println("Startup is complete");
+   // Serial.println("Startup is complete");
   }
   while (!LoadCell.update());
   calibrate(); //start calibration procedure
