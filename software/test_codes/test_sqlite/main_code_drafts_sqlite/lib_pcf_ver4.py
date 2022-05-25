@@ -27,26 +27,50 @@ def print_log(message = None, value = None): # Function to logging and printing 
     print(value)
 
 
-def collect_to_database(animal_id, weight_new, scales_type):
+def collect_to_main_database(animal_id, weight_new, scales_type):
     try:
         case_id = 1
         event_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         spray_status = 'NOT'
         data_status = 'NO'
-        conn = sq3.connect('main.db')
-        print("Opened database successfully")
+        conn = sq3.connect('main_database.db')
+        print("Opening main_database done succesfully")
 
         conn.execute("INSERT INTO COWS (CASE_ID, ANIMAL_ID, EVENT_TIME, WEIGHT, SCALES_TYPE, SPRAY_STATUS, DATA_STATUS) VALUES(?, ?, ?, ?, ?, ?, ?)",
                                         (case_id, animal_id, event_time, weight_new, scales_type, spray_status, data_status))
         conn.commit()
         conn.close()
 
-        print("Operation done succesfully")
+        print_log("Operation main_database done succesfully")
         conn.close()
     except Exception as e:
         print_log("Error in collecting data to main.db", e)
     else:
         print_log("Successfull collect to main database")
+    return 0
+
+
+
+def collect_to_rawdatabase(animal_id, weight_new, scales_type):
+    try:
+        raw_case_id = 1
+        event_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        
+
+        conn = sq3.connect('main_database.db')
+        print_log("Opened raw data database table successfully")
+
+        conn.execute("INSERT INTO RAW (RAW_CASE_ID, ANIMAL_ID, EVENT_TIME, WEIGHT, SCALES_TYPE) VALUES(?, ?, ?, ?, ?)",
+                                        (raw_case_id, animal_id, event_time, weight_new, scales_type))
+        conn.commit()
+        conn.close()
+
+        print_log("Operation save raw data done succesfully")
+        conn.close()
+    except Exception as e:
+        print_log("Error in collecting data to main.db", e)
+    else:
+        print_log("Successfull collect to raw data")
     return 0
 
 
