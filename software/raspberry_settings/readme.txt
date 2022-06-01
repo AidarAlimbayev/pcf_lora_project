@@ -45,7 +45,7 @@ network={
 13. If msg "New 'X' desktop is raspberrypi:2" thats means you are on the way. 
 
 14. ctrl+alt+t and new terminal and call remmina !! remmina
-    14.1 If you don't have remmina first enter  !!sudo apt update
+    14.1 If you don't have remmina first install it  !!sudo apt update
                                                 !!sudo apt install remmina
 15. CLick to "+" on left side of the bar. In Protocl choose Module(plugin) VNC Remmina. In server enter raspberry's $ip+port(For example :1) address Save and connect.
 16. Enter $New_Password. 

@@ -59,7 +59,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         print_log("First weight from Arduino", weight)
         print_log("After s.readline function")
 
-        weight_new = re.sub("b|'|\r|\n", "", weight[:-4])
+        weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
 
         print_log("Weight new after cleaning :", float(weight_new))
                 
@@ -67,7 +67,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         #mid_weight = 0
         while (float(weight_new) > 10): # Collecting weight to array 
             weight = (str(s.readline()))
-            weight_new = re.sub("b|'|\r|\n", "", weight[:-4])
+            weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
             print_log("Weight from Arduino :", weight_new)
             
             # Here the place to add RawWeights sending function
