@@ -38,18 +38,20 @@ if [ $errorCode -ne 0 ]; then
                         #Если раскомментить код остановиться.
 fi
 
+
 post_data_to_file() #Функция сбора инфы для log-a и json-a
 {
     cat <<EOF
 {   
-    EventDate: $date,
-    SerialNumber: $name,
-    Uptime: $uis,
-    BootId: $number,
-    CpuTemp: $proc_temp, 
-    LastShutdown: $shutdown,
-    ErrorCode: $errorCode,
-    pcf.service_Status: $daemon_ac_1, $daemon_en_1,
+    "EventDate": "$date",
+    "SerialNumber": "$name",
+    "Uptime": "$uis",
+    "BootId": "$number",
+    "CpuTemp": "$proc_temp", 
+    "LastShutdown": "$shutdown",
+    "ErrorCode": "$errorCode",
+    "IsActive": "$daemon_ac_1", 
+    "IsEnabled": "$daemon_en_1",
 }
 EOF
 }
