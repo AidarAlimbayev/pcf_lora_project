@@ -31,18 +31,18 @@ def collect_to_main_data_table_sqlite_database(animal_id, weight, scales_type):
     try:
         data_status = 'NO'
         last_drink_duration= 'NULL'
-        data_collected_time = datetime.now()
+        event_time = datetime.now()
         data_transfer_time = 'NULL'
 
         conn = sq3.connect('main_database.db')
-        print("Opened database successfully")
+        #print_log("Opened database successfully")
         conn.execute("INSERT INTO COWS (CASE_ID, ANIMAL_ID, EVENT_TIME, WEIGHT, SCALES_TYPE, SPRAY_STATUS, SPRAY_TIME, DATA_STATUS, DATA_COLLECTED_TIME, DATA_TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
                                             (animal_id, event_time, weight, scales_type, last_drink_duration, data_status, data_collected_time, data_transfer_time))
         conn.commit()
         conn.close()
 
     except Exception as e:
-        print("Error to save data in ", e)
+        #print_log("Error to save data in ", e)
     else:
         return 0
 
@@ -55,14 +55,14 @@ def collect_to_raw_data_table_sqlite_database(animal_id, weight, scales_type):
         data_transfer_time = 'NULL'
 
         conn = sq3.connect('main_database.db')
-        print("Opened database successfully")
+        #print_log("Opened database successfully")
         conn.execute("INSERT INTO RAW_DATA_TABLE (ANIMAL_ID, EVENT_TIME, WEIGHT, SCALES_TYPE, RAW_DATA_STATUS, DATA_TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?)",
                                             (animal_id, event_time, weight, scales_type, raw_data_status, data_transfer_time))
         conn.commit()
         conn.close()
 
     except Exception as e:
-        print("Error to save data in ", e)
+        #print_log("Error to save data in ", e)
     else:
         return 0
 
@@ -70,12 +70,12 @@ def collect_to_raw_data_table_sqlite_database(animal_id, weight, scales_type):
 
 def send_data_to_server_from_main_table(): # Sending data into Igor's server through JSON
     try:
-        print("Extract data from database")
+        #print_log("Extract data from database")
 
         # Extract info from cows table of main_database
         #    
         conn = sq3.connect('main_database.db')
-        print("Opened database successfully")
+        #print_log("Opened database successfully")
 
         cursor = conn.execute("SELECT CASE_ID, ANIMAL_ID, EVENT_TIME, WEIGHT, SCALES_TYPE, LAST_DRINK_DURATION, MAIN_DATA_STATUS, DATA_TRANSFER_TIME from MAIN_DATA_TABLE")
 
@@ -104,9 +104,9 @@ def send_data_to_server_from_main_table(): # Sending data into Igor's server thr
                         "Weight" : weight,
                         "ScalesModel" : scales_type}
                 answer = requests.post(url, data=json.dumps(data), headers=headers)
-                print("Answer from server: ", answer) # Is it possible to stop on this line in the debug?
-                print(answer.content)
-                print(row[0])
+                #print_log("Answer from server: ", answer) # Is it possible to stop on this line in the debug?
+                #print_log(answer.content)
+                #print_log(row[0])
 
                 # Change status of DATA_STATUS in cows table from main_database 
                 if 200 == answer.status_code:
@@ -119,9 +119,9 @@ def send_data_to_server_from_main_table(): # Sending data into Igor's server thr
           
                     
     except Exception as e:
-        print("Error send data to server", e)
+        #print_log("Error send data to server", e)
     else:
-        print("Operation update database and sending to server done succesfully")
+        #print_log("Operation update database and sending to server done succesfully")
         conn.close()
         return 0
 ##########################################################################################
@@ -157,7 +157,7 @@ def check_internet_connection():
         except socket.error:
             pass
     else:
-        print("No internet connection")
+        #print_log("No internet connection")
         return False 
 
 #########################################################################################################################
