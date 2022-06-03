@@ -58,7 +58,9 @@ def main():
                 pcf.Collect_data_CSV(cow_id, weight_finall, type_scales) # Save weight data into CSV file
 
                 pcf.print_log("main: Send data to server")
-                pcf.Send_data_to_server(cow_id, weight_finall, type_scales) # Send data to server by JSON post request
+                #pcf.Send_data_to_server(cow_id, weight_finall, type_scales) # Send data to server by JSON post request
+                #if check_internet_connection() == True :
+                    #pcf.Send_data_to_server_from_sqlite()
                 #cow_id = '070106156079'
                 cow_id = "b'435400040001'"
 
