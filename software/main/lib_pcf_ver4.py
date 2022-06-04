@@ -20,10 +20,13 @@ logging.basicConfig(filename = '%s.log'%str(datetime.now()), level = logging.DEB
 
 
 def print_log(message = None, value = None): # Function to logging and printing messages into terminal for debug
-    logging.info(message)
-    logging.info(value)
-    print(message)
-    print(value)
+    #logging.info(message)
+    #if value != None:
+        #logging.info(value)
+    #print(message)
+    #if value != None:
+        #print(value)
+    return 0
 
 
 def Send_RawData_to_server(animal_id, weight_new, type_scales): # Sending data into Igor's server through JSON
