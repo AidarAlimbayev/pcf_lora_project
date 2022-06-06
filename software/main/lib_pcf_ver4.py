@@ -14,16 +14,18 @@ import statistics
 
 #logging.basicConfig(filename = '%s.log'%str(datetime.now()), level = logging.DEBUG, format='%(asctime)s %(message)s')
 #logging format with names of funstions
-logging.basicConfig(filename = '%s.log'%str(datetime.now()), level = logging.DEBUG, format='[%(filename)s:%(lineno)s - %(funcName)20s() ] %(asctime)s %(message)s')
-
+logging.basicConfig(filename = '%s.log'%str(datetime.now().strftime("%Y-%m-%d_%H_%M_%S")), level = logging.DEBUG, format='[%(filename)s_%(lineno)s - %(funcName)20s() ] %(asctime)s %(message)s')
 
 
 
 def print_log(message = None, value = None): # Function to logging and printing messages into terminal for debug
-    logging.info(message)
-    logging.info(value)
-    print(message)
-    print(value)
+    #logging.info(message)
+    #if value != None:
+        #logging.info(value)
+    #print(message)
+    #if value != None:
+        #print(value)
+    return 0
 
 
 def Send_RawData_to_server(animal_id, weight_new, type_scales): # Sending data into Igor's server through JSON

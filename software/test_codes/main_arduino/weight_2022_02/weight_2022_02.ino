@@ -46,7 +46,7 @@ void setup() {
 						// by the SCALE parameter (not set yet)
 
   //scale.set_scale(2990.f);                      // this value is obtained by calibrating the scale with known weights; see the README for details
-  scale.set_scale(3121.f);
+  scale.set_scale(4149.f);
   scale.tare();				        // reset the scale to 0
 
   //Serial.println("After setting up the scale:");
