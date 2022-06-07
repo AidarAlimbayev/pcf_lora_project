@@ -1,3 +1,5 @@
+
+
 from datetime import datetime, date, time
 import serial
 import time
@@ -8,80 +10,83 @@ import binascii
 import csv
 import re
 import logging
+import os
 
-logging.basicConfig(filename = '%s.log'%str(datetime.now()), level = logging.DEBUG, format='%(asctime)s %(message)s')
+#logging.basicConfig(filename = '%s.log'%str(datetime.now()), level = logging.DEBUG, format='%(asctime)s %(message)s')
+#logging format with names of funstions
+logging.basicConfig(filename = '%s.log'%str(datetime.now()), level = logging.DEBUG, format='[%(filename)s:%(lineno)s - %(funcName)20s() ] %(asctime)s %(message)s')
+
+def print_log(message = None, value = None): # Function to logging and printing messages into terminal for debug
+    logging.info(message)
+    logging.info(value)
+    print(message)
+    print(value)
 
 def Connect_ARD_get_weight(cow_id, s): # Connection to aruino through USB by Serial Port   
     try:
+        print_log("CONNECT ARDUINO")
         s.flushInput() # Cleaning buffer of Serial Port
         s.flushOutput() # Cleaning output buffer of Serial Port
-        logging.info('lib: Con_ARD: connect arduino after flush')
-        logging.info(s)
-        logging.info('lib: Con_ARD: connect arduino s.name fuction answer:')
-        logging.info(s.name)
-        print("lib:Con_ARD: Start collect weight")
-        logging.info("lib:Con_ARD: Start collect weight")
+        print_log('Connect arduino after flush', s)
+        print_log('Connect arduino s.name fuction answer :', s.name)
+        print_log("Start collect weight")
 
         weight = (str(s.readline())) # Start of collecting weight data from Arduino
-        logging.info("lib:Con_ARD: Start collect weight")
-        logging.info(weight)
-        logging.info("lib:Con_ARD: after s.readline function")
+        print_log("First weight from Arduino", weight)
+        print_log("After s.readline function")
 
         weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
 
-        print("lib:Con_ARD: weight new: ")
-        print(float(weight_new))
-        logging.info("lib:Con_ARD: weight new: ")
-        logging.info(float(weight_new))
-        
+        print_log("Weight new after cleaning :", float(weight_new))
+                
         weight_list = []
         mid_weight = 0
         while (float(weight_new) > 10): # Collecting weight to array 
             weight = (str(s.readline()))
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
-            print("weight from Arduino: ")
-            print(weight_new)
-            logging.info("lib:Con_ARD: weight from arduino: ")
-            logging.info(weight_new)
+            print_log("Weight from Arduino :", weight_new)
+            
+            # Here the place to add RawWeights sending function
+
             weight_list.append(float(weight_new))
         if weight_list == 0 or weight_list == []:
-            return(0)
+            return(-11)
         else:
             if weight_list != []: # Here must added check on weight array null value and one element array
                 del weight_list[-1]
             weight_finall = sum(weight_list) / len(weight_list) # Averaging weight array by sum and lenght
             #weight_finall = weight_finall/1000 # Dividing to 1000 for Igor's server  
-            logging.info("lib:Con_ARD: weight_finall new: ")
-            logging.info("{0:.2f}".format(weight_finall))
+            print_log("Weight_finall after averaging :", "{0:.2f}".format(weight_finall))
+            
             # Part of code to save all raw data into CSV file
             sep_line = "__________"
-            if cow_id != "b'0700010101001e4b'":            
-                with open('raw_data.csv', 'a+', newline='') as csvfile:
-                    wtr = csv.writer(csvfile)
-                    wtr.writerow([sep_line])
-                    wtr.writerow([cow_id])
-                    wtr.writerow([datetime.now()])
-                    for x in weight_list : wtr.writerow ([x])
-                    logging.info("lib: weight_list: ")
-                    logging.info(weight_list)
-                csvfile.close()
-            logging.info("lib:Con_ARD:End of write raw data list: ")
-            logging.info(weight_list)
+            # if cow_id != "b'0700010101001e4b'":            
+            #     with open('raw_data.csv', 'a+', newline='') as csvfile:
+            #         wtr = csv.writer(csvfile)
+            #         wtr.writerow([sep_line])
+            #         wtr.writerow([cow_id])
+            #         wtr.writerow([datetime.now()])
+            #         for x in weight_list : wtr.writerow ([x])
+            #         print_log("Weight_list: ",weight_list)
+            #     csvfile.close()
+            print_log("End of write raw data list :", weight_list)
+            
             # End of collectin raw data into CSV file
-                        
             weight_list = []
+            print_log("Weight_finall befor return :", weight_finall)
             return(float("{0:.2f}".format(weight_finall)))
     except Exception as e:
-        logging.info("lib: Con_ARD: Err connection to Arduino")
-        logging.info(e)
+        print_log("Error connection to Arduino", e)
+        return(-22)
     else:
-        print("lid:RFID_reader: 1 step")
-        logging.info("lid:RFID_reader: 1 step")
+        print_log("lid:Con_ARD: 1 step")
+        print_log("lid:Con_ARD: 1 step")
+        print_log("lid:Con_ARD: weight_finall in else", weight_finall)
+        return(weight_finall)
 
 def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting cow ID in str format
     try:    
-        print("lib:RFID_reader: Start RFID Function")
-        logging.info("lib:RFID_reader: Start RFID Function")
+        print_log("START RFID FUNCTION")
         ###########################################
         # TCP connection settings and socket
         TCP_IP = '192.168.1.250' #chafon 5300 reader address
@@ -97,27 +102,25 @@ def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting c
             s.send(bytearray([0x53, 0x57, 0x00, 0x06, 0xff, 0x01, 0x00, 0x00, 0x00, 0x50])) #Chafon RU5300 Answer mode reading mode command
             data = s.recv(BUFFER_SIZE)
             animal_id= str(binascii.hexlify(data))
-            animal_id_new = animal_id[:-5] #Cutting the string from unnecessary information after 7 signs 
+            animal_id_new = animal_id[:-4] #Cutting the string from unnecessary information after 4 signs 
             animal_id_new = animal_id_new[-12:] #Cutting the string from unnecessary information before 24 signs
-            logging.info("lib:RFID_reader: new ID: ")
-            logging.info(animal_id_new)
+            print_log("Raw ID: ", animal_id)
+            print_log("New ID: ", animal_id_new)
             s.close()             
         if animal_id_new == null_id: # Id null return(0)
             Connect_RFID_reader()
         else: # Id checkt return(1)
             animal_id = "b'0700010101001e4b'"
-            logging.info("lib:RFID_reader: Success step 2 RFID")
+            print_log("Success step 2 RFID. animal id new:", animal_id_new)
             return(animal_id_new)
     except Exception as e:
-        logging.info("lib:RFID_reader: Err connect to Arduino ")
-        logging.info(e)
+        print_log("Error connect to Arduino ", e)
     else: 
-        logging.info("lib:RFID_reader: 2 step RFID")
+        print_log("2 step RFID")
     
 def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data into Igor's server through JSON
     try:
-        print("lib:RFID_reader: Start sending DATA TO SERVER:")
-        logging.info("lib:RFID_reader: Start sending DATA TO SERVER:")
+        print_log("START SEND DATA TO SERVER:")
         url = 'http://194.4.56.86:8501/api/weights'
         headers = {'Content-type': 'application/json'}
         data = {"AnimalNumber" : animal_id,
@@ -125,25 +128,16 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data i
                 "Weight" : weight_finall,
                 "ScalesModel" : type_scales}
         answer = requests.post(url, data=json.dumps(data), headers=headers)
-        logging.info("lib:RFID_reader: Answer from server: ")
-        logging.info(answer) # Is it possible to stop on this line in the debug?
-        logging.info("Content of answer from server")
-        logging.info(answer.content)
-        print("lib:RFID_reader: Answer from server: ")
-        print(answer)
-        print("Content of answer from server")
-        print(answer.content)
+        print_log("Answer from server: ", answer) # Is it possible to stop on this line in the debug?
+        print_log("Content from server: ", answer.content)
     except Exception as e:
-        logging.info("lib:RFID_reader: Err send data to server")
-        logging.info(e)
+        print_log("Error send data to server", e)
     else:
-        logging.info("lib:RFID_reader: 4 step send data")
-        logging.info("lib:RFID_reader: End of the cycle")  
+        print_log("4 step send data")
 
 def Collect_data_CSV(cow_id, weight_finall, type_scales): # Collocting datat into CSV, in the future must be in SQLite
     try:
-        print("lib:CSV_data: Start write to file")
-        logging.info("lib:CSV_data: Start write to file")
+        print_log("START COLLECT DATA TO CSV")
         date_now = (str(datetime.now()))
         row = [cow_id, weight_finall,  date_now, type_scales]
     
@@ -152,9 +146,9 @@ def Collect_data_CSV(cow_id, weight_finall, type_scales): # Collocting datat int
             writer.writerow(row)
         writeFile.close()
     except Exception as e:
-        logging.info("lib:CSV_data: Err to write file")
+        print_log("Error to write file")
     else:
-        logging.info("lib:CSV_data: 3 step collect data")   
+        print_log("3 step collect data")   
 
 
 #def spray_func(spray_period) # Function to spray cow. Request to database and check from database 

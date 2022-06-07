@@ -1,1 +1,1 @@
-SUBSYSTEM=="tty",KERNEL=="ttyACM0",TAG+="systemd",ENV{SYSTEMD_WANTS}+="test.service"
+SUBSYSTEM=="tty",KERNEL=="ttyUSB0",TAG+="systemd",ENV{SYSTEMD_WANTS}+="pcf.service"

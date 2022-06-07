@@ -1,5 +1,5 @@
-# pcf_lora_project
-
+<!-- #      -->
+                                                  ===            
 This project started on S.Seifullin University.
 Project was founded by Minsitry of Argoculture of Kazakhstan
 
@@ -7,6 +7,8 @@ head of project - Mirmanov Arman mirmanov.a@mail.ru
 main scientific head - Nabiyev Nabi nabi.nabiyev@gmail.com    
 engineer - Alimbayev Aidar transcription@rambler.ru    
 engineer - Baiguanysh Sanat kvenecusghost@gmail.com     
+engineer - Suieubayev Maxat Maxat.suieubayev@gmail.com
+engineer - Vladimir Sarzhinec wowa3520@gmail.com
 
 Настройка нового Распбери 
 ============================

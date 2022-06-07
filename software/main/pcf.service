@@ -4,11 +4,12 @@ Description=pcf.service Service
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 /home/pi/main_aid_ver3.py
-WorkingDirectory=/home/pi/S
+ExecStart=/usr/bin/python /home/pi/main_pcf_ver4.py
+WorkingDirectory=/home/pi/
 StandardOutput=inherit
 StandardError=inherit
 Restart=always
+RestartSec=10
 User=root
 
 [Install]
