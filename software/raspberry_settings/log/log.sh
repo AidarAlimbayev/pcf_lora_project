@@ -14,13 +14,13 @@ date=$(date '+%Y-%m-%d %H:%M:%S')
 
 proc_temp=$(bc<<<"scale=1;$CPU_temp / 100")
 
-    if [[ $daemon_en_1=="enabled" ]]; then
+    if [[ $daemon_en_1 == "enabled" ]]; then
         dep="true"
     else
         dep="false"
     fi
     
-    if [[ $daemon_ac_1=="active" ]]; then
+    if [[ $daemon_ac_1 == "active" ]]; then
         dap="true"
     else
         dap="false"
@@ -69,7 +69,7 @@ post_data_to_file() #Функция сбора инфы для log-a и json-a
 }
 EOF
 }
-if  (("$uis" < "29"))      #Если система перезагружалась то 
+if  (("$uis" < "20"))      #Если система перезагружалась то 
     then                    # записываем в отдельный лог
         
         echo "$(post_data_to_file)" >> /home/pi/Last_shutdown.txt
