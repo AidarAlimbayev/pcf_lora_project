@@ -1,7 +1,7 @@
 [Unit]
-Description=pcf.service Service
-
+Description=log.service
 After=network.target
+StartLimitIntervalSec=0
 
 [Service]
 ExecStart=/usr/bin/bash /home/pi/log.sh
@@ -9,8 +9,12 @@ WorkingDirectory=/home/pi/
 StandardOutput=inherit
 StandardError=inherit
 Restart=always
-RestartSec=10
+RestartSec=1
 User=root
 
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=30sec
+
 [Install]
-WantedBy=multi-user.target
+WantedBy=timers.target
