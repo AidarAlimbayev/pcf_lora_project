@@ -39,7 +39,7 @@ def collect_to_main_data_table_sqlite_database(animal_id, weight, scales_type):
 
         conn = sq3.connect('main_database.db')
         #print_log("Opened database successfully")
-        conn.execute("INSERT INTO COWS (CASE_ID, ANIMAL_ID, EVENT_TIME, WEIGHT, SCALES_TYPE, SPRAY_STATUS, SPRAY_TIME, DATA_STATUS, DATA_COLLECTED_TIME, DATA_TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        conn.execute("INSERT INTO COWS ( ANIMAL_ID, EVENT_TIME, WEIGHT, SCALES_TYPE, SPRAY_STATUS, SPRAY_TIME, DATA_STATUS, DATA_COLLECTED_TIME, DATA_TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
                                             (animal_id, event_time, weight, scales_type, last_drink_duration, data_status, data_collected_time, data_transfer_time))
         conn.commit()
         conn.close()
@@ -165,7 +165,7 @@ def check_internet_connection():
 
 #########################################################################################################################
 # Send to raw data server directly from main function
-def Send_RawData_to_server(animal_id, weight_new, type_scales): # Sending data into Igor's server through JSON
+def Send_RawData_to_server(animal_id, weight_new, type_scales, start_datetime): # Sending data into Igor's server through JSON
     try:
         print_log("START SEND RawDATA TO SERVER:")
         url = 'http://194.4.56.86:8501/api/RawWeights'
@@ -173,7 +173,8 @@ def Send_RawData_to_server(animal_id, weight_new, type_scales): # Sending data i
         data = {"AnimalNumber" : animal_id,
                 "Date" : str(datetime.now()),
                 "Weight" : weight_new,
-                "ScalesModel" : type_scales}
+                "ScalesModel" : type_scales,
+                "RawWeightId": start_datetime}
         answer = requests.post(url, data=json.dumps(data), headers=headers)
         print_log("Answer from RawData server: ", answer) # Is it possible to stop on this line in the debug?
         print_log("Content from RawData server: ", answer.content)
@@ -201,6 +202,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
                 
         weight_list = []
         #mid_weight = 0
+        #start_datetime = str(datetime.now())
         while (float(weight_new) > 10): # Collecting weight to array 
             weight = (str(s.readline()))
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
@@ -209,6 +211,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             # Here the place to add RawWeights sending function
             #################################################################################
             Send_RawData_to_server(cow_id, weight_new, type_scales)
+            #Send_RawData_to_server(cow_id, weight_new, type_scales, start_datetime)
             # Change this functio to database select type 04/06/2022
             #################################################################################
             # End of Raw data function
