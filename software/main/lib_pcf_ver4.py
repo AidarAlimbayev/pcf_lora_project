@@ -219,8 +219,8 @@ def Collect_data_CSV(cow_id, weight_finall, type_scales): # Collocting datat int
 
 #def delay_wait() # Maybe required later
 
-def PWM_GPIO_RASP(power,duration):
-    GPIO_PWM_0 = 13
+def PWM_GPIO_RASP(power,duration): #function creates pwm signal on 13th pin of the raspberry with 100 Hz frequency. 
+    GPIO_PWM_0 = 13                # power in % (0-100), duration in secs
 
     GPIO.setwarnings(True)
     GPIO.setmode(GPIO.BOARD)
