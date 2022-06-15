@@ -11,6 +11,8 @@ import re
 import logging
 import os
 import statistics
+import RPi.GPIO as GPIO
+from time import sleep
 
 
 #logging.basicConfig(filename = '%s.log'%str(datetime.now()), level = logging.DEBUG, format='%(asctime)s %(message)s')
@@ -216,3 +218,20 @@ def Collect_data_CSV(cow_id, weight_finall, type_scales): # Collocting datat int
     #return()
 
 #def delay_wait() # Maybe required later
+
+def PWM_GPIO_RASP(power,duration):
+    GPIO_PWM_0 = 13
+
+    GPIO.setwarnings(True)
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(GPIO_PWM_0, GPIO.OUT)
+
+    pi_pwm = GPIO.PWM(GPIO_PWM_0, 100)
+    pi_pwm.start(0)
+
+    pi_pwm.ChangeDutyCycle(power)
+    sleep(duration)
+    pi_pwm.ChangeDutyCycle(0)
+
+    pi_pwm.stop()
+
