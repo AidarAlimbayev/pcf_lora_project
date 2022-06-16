@@ -240,7 +240,7 @@ def check_internet_connection():
 
 #########################################################################################################################
 # Send to raw data server directly from main function
-def Send_RawData_to_server(animal_id, weight_new, type_scales): # Sending data into Igor's server through JSON
+def Send_RawData_to_server(animal_id, weight_new, type_scales, start_datetime): # Sending data into Igor's server through JSON
     try:
         print_log("START SEND RawDATA TO SERVER:")
         url = 'http://194.4.56.86:8501/api/RawWeights'
@@ -276,6 +276,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
                 
         weight_list = []
         #mid_weight = 0
+        #start_datetime = str(datetime.now())
         while (float(weight_new) > 10): # Collecting weight to array 
             weight = (str(s.readline()))
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
