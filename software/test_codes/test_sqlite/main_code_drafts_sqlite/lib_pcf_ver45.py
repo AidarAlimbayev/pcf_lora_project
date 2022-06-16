@@ -11,7 +11,6 @@ import binascii
 import csv
 import re
 import logging
-import os
 import statistics
 import sqlite3 as sq3
 
@@ -97,22 +96,23 @@ def Collect_to_Main_Data_Table(animal_id, weight, equipment_name):
         data_status = 'NO'
         drink_duration= 'NULL'
         event_time = datetime.now()
-        data_transfer_time = 'NULL'
+        transfer_time = 'NULL'
 
         conn = sq3.connect('main_database.db')
         print_log("Opened database successfully")
-        conn.execute("INSERT INTO MAIN_DATA (ANIMAL_ID, EVENT_TIME, WEIGHT, EQUPMENT_NAME, DRINK_DURATION, DATA_STATUS, DATA_TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?, ?)",
-                                            (animal_id, event_time, weight, equipment_name, drink_duration, data_status, data_transfer_time))
+        conn.execute("INSERT INTO MAIN_DATA (ANIMAL_ID, EVENT_TIME, WEIGHT, EQUIPMENT_NAME, DRINK_DURATION, DATA_STATUS, TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?, ?)",
+                                            (animal_id, event_time, weight, equipment_name, drink_duration, data_status, transfer_time))
         print_log("ANIMAL_ID", animal_id)
         print_log("EVENT_TIME", event_time)
         print_log("WEIGHT", weight)
-        print_log("EQUPMENT_NAME", equipment_name)
+        print_log("EQUIPMENT_NAME", equipment_name)
         conn.commit()
         conn.close()
 
     except Exception as e:
-        print_log("Error to save data in ", e)
+        print_log("Error to save data in MAIN_DATA ", e)
     else:
+        print_log("Success: data in MAIN_DATA table saved")
         return 0
 
 #################################################################################################
@@ -137,7 +137,7 @@ def Collect_to_Raw_Data_Table(animal_id, weight, equipment_name):
         print_log("ANIMAL_ID", animal_id)
         print_log("EVENT_TIME", event_time)
         print_log("WEIGHT", weight)
-        print_log("EQUPMENT_NAME", equipment_name)
+        print_log("EQUIPMENT_NAME", equipment_name)
 
     except Exception as e:
         print("Error to save data in ", e)
@@ -240,7 +240,9 @@ def check_internet_connection():
 
 #########################################################################################################################
 # Send to raw data server directly from main function
-def Send_RawData_to_server(animal_id, weight_new, type_scales, start_datetime): # Sending data into Igor's server through JSON
+#def Send_RawData_to_server(animal_id, weight_new, type_scales, start_datetime): # Sending data into Igor's server through JSON
+def Send_RawData_to_server(animal_id, weight_new, type_scales): # Sending data into Igor's server through JSON
+
     try:
         print_log("START SEND RawDATA TO SERVER:")
         url = 'http://194.4.56.86:8501/api/RawWeights'
@@ -341,7 +343,7 @@ def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting c
             s.send(bytearray([0x53, 0x57, 0x00, 0x06, 0xff, 0x01, 0x00, 0x00, 0x00, 0x50])) #Chafon RU5300 Answer mode reading mode command
             data = s.recv(BUFFER_SIZE)
             animal_id= str(binascii.hexlify(data))
-            animal_id_new = animal_id[:-4] #Cutting the string from unnecessary information after 4 signs 
+            animal_id_new = animal_id[:-5] #Cutting the string from unnecessary information after 4 signs 
             animal_id_new = animal_id_new[-12:] #Cutting the string from unnecessary information before 24 signs
             print_log("Raw ID animal_id: ", animal_id)
             print_log("New ID animal_id_new: ", animal_id_new)

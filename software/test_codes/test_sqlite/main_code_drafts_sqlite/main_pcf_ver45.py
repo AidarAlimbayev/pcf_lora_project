@@ -1,13 +1,8 @@
 #!/usr/bin/sudo python
 import lib_pcf_ver45 as pcf
-import time
 
-time.sleep(10)
-from datetime import datetime, date, time
+pcf.time.sleep(10) # sleep time for connection to serial library
 
-import serial
-import csv
-import logging
 
 # config of equipment and contacts
 #old variable type_scales -> new variable equipment_name (must be unique)
@@ -26,7 +21,7 @@ weight_finall = 0
 
 # Connection to arduino
 try:
-    s = serial.Serial('/dev/ttyACM0',9600) # path inside rapberry pi to arduino into dev folder
+    s = pcf.serial.Serial('/dev/ttyACM0',9600) # path inside rapberry pi to arduino into dev folder
     pcf.print_log("Connect arduino", s.name)
     pcf.print_log("Configuration of serial: ", s)
 except Exception as e:
@@ -50,6 +45,8 @@ def main():
         pcf.print_log("Infinite cycle")
         animal_id = pcf.Connect_RFID_reader() # Connection to RFID reader 
         pcf.print_log("First step cow ID :", animal_id)
+
+        pcf.time.sleep(1) # sleep to decrease workload and deccrease tmperature of CPU
         
         if animal_id != '435400040001': # Comparision to null animal_id answer 
             # second ID is also null 
