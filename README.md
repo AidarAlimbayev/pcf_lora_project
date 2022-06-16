@@ -6,7 +6,12 @@ Project was founded by Minsitry of Argoculture of Kazakhstan
 head of project - Mirmanov Arman mirmanov.a@mail.ru    
 main scientific head - Nabiyev Nabi nabi.nabiyev@gmail.com    
 engineer - Alimbayev Aidar transcription@rambler.ru    
-engineer - Baiguanysh Sanat kvenecusghost@gmail.com     
+engineer - Baiguanysh Sanat kvenecusghost@gmail.com
+software developer - Maxat Suieubayev maxat.suieubayev@gmail.com
+electronics engineer - Damir Gainudinov damirgainudinov@gmail.com
+junior sofware developer - Yerkebulan Salmenov salmenov.18.04@gmail.com
+junior software developer - Meiirkhan Abdek meiirkhan.abdek@nu.edu.kz
+engineer - Vladimir Sarzhinec wowa3520@gmail.com     
 
 Настройка нового Распбери 
 ============================
