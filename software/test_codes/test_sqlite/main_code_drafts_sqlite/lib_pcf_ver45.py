@@ -56,6 +56,7 @@ def Insert_New_Unique_Equipment_Type_Model(type, model, equipment_name, location
     except Exception as e:
         print_log("Error in creating new unique equipment data in EQUIPMENT table ", e)
     else:
+        print_log("Success: New unique equipment added")
         return 0
 ###################################################################################################
 
@@ -80,6 +81,7 @@ def Insert_New_Unique_Animal_ID(animal_id):
     except Exception as e:
         print_log("Error in creating new animal_id in zero table ", e)
     else:
+        print_log("Success: New unique animal added")
         return 0
 ###################################################################################################
 
@@ -142,6 +144,7 @@ def Collect_to_Raw_Data_Table(animal_id, weight, equipment_name):
     except Exception as e:
         print("Error to save data in ", e)
     else:
+        print_log
         return 0
 
 #################################################################################################
