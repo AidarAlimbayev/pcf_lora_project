@@ -1,4 +1,7 @@
+#!/usr/bin/python
 from datetime import datetime, date, time
+
+#from sklearn import exceptions
 import serial
 import time
 import socket
@@ -12,60 +15,132 @@ import os
 import statistics
 import sqlite3 as sq3
 
-
-#logging.basicConfig(filename = '%s.log'%str(datetime.now()), level = logging.DEBUG, format='%(asctime)s %(message)s')
-#logging format with names of funstions
-logging.basicConfig(filename = '%s.log'%str(datetime.now().strftime("%Y-%m-%d_%H_%M_%S")), level = logging.DEBUG, format='[%(filename)s_%(lineno)s - %(funcName)20s() ] %(asctime)s %(message)s')
-
-
-def print_log(message = None, value = None): # Function to logging and printing messages into terminal for debug
-    #logging.info(message)
-    #if value != None:
-        #logging.info(value)
-    #print(message)
-    #if value != None:
-        #print(value)
-    return 0
+# name of log file as datetime of creation example: "2022-06-12_16_44_22.890654.log"
+logging.basicConfig(filename = '%s.log'%str(datetime.now().strftime("%Y-%m-%d_%H_%M_%S")), level = logging.DEBUG, format='[%(filename)s:%(lineno)s - %(funcName)20s() ] %(asctime)s %(message)s')
 
 
 ###################################################################################################
-# Collect to main table in database function 
-def collect_to_main_data_table_sqlite_database(animal_id, weight, scales_type):
-    try:
-        data_status = 'NO'
-        last_drink_duration= 'NULL'
-        event_time = datetime.now()
-        data_transfer_time = 'NULL'
+# Pring log function, Insert first variable message in the second value of error
+def print_log(message = None, value = None): # Function to logging and printing messages into terminal for debug
+    logging.info(message)
+    if value != None:
+        logging.info(value)
+    print(message)
+    if value != None:
+        print(value)
+    return 0
+###################################################################################################
 
+
+
+###################################################################################################
+# Insert to zero table new unique equipment data
+def Insert_New_Unique_Equipment_Type_Model(type, model, equipment_name, location, person, contact):
+    try:
         conn = sq3.connect('main_database.db')
-        #print_log("Opened database successfully")
-        conn.execute("INSERT INTO COWS (CASE_ID, ANIMAL_ID, EVENT_TIME, WEIGHT, SCALES_TYPE, SPRAY_STATUS, SPRAY_TIME, DATA_STATUS, DATA_COLLECTED_TIME, DATA_TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                                            (animal_id, event_time, weight, scales_type, last_drink_duration, data_status, data_collected_time, data_transfer_time))
+        print_log("Opened database successfully")
+        cursor = conn.execute("SELECT TYPE, MODEL, EQUIPMENT_NAME, LOCATION, PERSON, CONTACT from EQUIPMENT")           
+        print_log("Start to add new unique equipment data")
+        data_for_query = (type, model, equipment_name, location, person, contact)
+        conn.execute("INSERT INTO EQUIPMENT (TYPE, MODEL, EQUIPMENT_NAME, LOCATION, PERSON, CONTACT) VALUES (?, ?, ?, ?, ?, ?)",
+                    (type, model, equipment_name, location, person, contact))
+
+        print_log("TYPE", type)
+        print_log("MODEL", model)
+        print_log("EQUIPMENT_NAME", equipment_name)
+        print_log("LOCATION", location)
+        print_log("PERSON", person)
+        print_log("CONTACT", contact)
         conn.commit()
         conn.close()
 
     except Exception as e:
-        #print_log("Error to save data in ", e)
+        print_log("Error in creating new unique equipment data in EQUIPMENT table ", e)
+    else:
+        return 0
+###################################################################################################
+
+
+
+###################################################################################################
+# Insert to zero table new unique animal_id 
+def Insert_New_Unique_Animal_ID(animal_id):
+    try:
+        conn = sq3.connect('main_database.db')
+        print_log("Opened database successfully")
+        cursor = conn.execute("SELECT ANIMAL_ID from ZERO")           
+        print_log("animal_id", animal_id)
+        print_log("Start to add new unique animal id")
+        data_for_query = (animal_id)
+        conn.execute("INSERT INTO ZERO (ANIMAL_ID) VALUES (?)",
+                    (animal_id,))                    
+        print_log("animal_id", animal_id)
+        conn.commit()
+        conn.close()
+
+    except Exception as e:
+        print_log("Error in creating new animal_id in zero table ", e)
+    else:
+        return 0
+###################################################################################################
+
+
+
+###################################################################################################
+# Collect to database function 
+
+def Collect_to_Main_Data_Table(animal_id, weight, equipment_name):
+    try:
+        Insert_New_Unique_Animal_ID(animal_id)
+        #######
+        # insert new data in MAIN_DATA table
+        data_status = 'NO'
+        drink_duration= 'NULL'
+        event_time = datetime.now()
+        data_transfer_time = 'NULL'
+
+        conn = sq3.connect('main_database.db')
+        print_log("Opened database successfully")
+        conn.execute("INSERT INTO MAIN_DATA (ANIMAL_ID, EVENT_TIME, WEIGHT, EQUPMENT_NAME, DRINK_DURATION, DATA_STATUS, DATA_TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?, ?)",
+                                            (animal_id, event_time, weight, equipment_name, drink_duration, data_status, data_transfer_time))
+        print_log("ANIMAL_ID", animal_id)
+        print_log("EVENT_TIME", event_time)
+        print_log("WEIGHT", weight)
+        print_log("EQUPMENT_NAME", equipment_name)
+        conn.commit()
+        conn.close()
+
+    except Exception as e:
+        print_log("Error to save data in ", e)
     else:
         return 0
 
 #################################################################################################
+
+
+#################################################################################################
 # Collect Raw data into raw data table by sqlite
-def collect_to_raw_data_table_sqlite_database(animal_id, weight, scales_type):
+
+def Collect_to_Raw_Data_Table(animal_id, weight, equipment_name):
     try:
-        raw_data_status = 'NO'
+        data_status = 'NO'
         event_time = datetime.now()
-        data_transfer_time = 'NULL'
+        transfer_time = 'NULL'
 
         conn = sq3.connect('main_database.db')
-        #print_log("Opened database successfully")
-        conn.execute("INSERT INTO RAW_DATA_TABLE (ANIMAL_ID, EVENT_TIME, WEIGHT, SCALES_TYPE, RAW_DATA_STATUS, DATA_TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?)",
-                                            (animal_id, event_time, weight, scales_type, raw_data_status, data_transfer_time))
+        print_log("Opened database successfully")
+        conn.execute("INSERT INTO RAW_DATA (ANIMAL_ID, EVENT_TIME, WEIGHT, EQUIPMENT_NAME, DATA_STATUS, TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?)",
+                                            (animal_id, event_time, weight, equipment_name, data_status, transfer_time))
         conn.commit()
         conn.close()
 
+        print_log("ANIMAL_ID", animal_id)
+        print_log("EVENT_TIME", event_time)
+        print_log("WEIGHT", weight)
+        print_log("EQUPMENT_NAME", equipment_name)
+
     except Exception as e:
-        #print_log("Error to save data in ", e)
+        print("Error to save data in ", e)
     else:
         return 0
 
@@ -106,9 +181,9 @@ def send_data_to_server_from_main_table(): # Sending data into Igor's server thr
                         "Date" : event_time,
                         "Weight" : weight,
                         "ScalesModel" : scales_type}
-                answer = requests.post(url, data=json.dumps(data), headers=headers)
-                #print_log("Answer from server: ", answer) # Is it possible to stop on this line in the debug?
-                #print_log(answer.content)
+                answer = requests.post(url, data=json.dumps(data), headers=headers, timeout=15)
+                print_log("Answer from server: ", answer) # Is it possible to stop on this line in the debug?
+                print_log(answer.content)
                 #print_log(row[0])
 
                 # Change status of DATA_STATUS in cows table from main_database 
@@ -122,9 +197,9 @@ def send_data_to_server_from_main_table(): # Sending data into Igor's server thr
           
                     
     except Exception as e:
-        #print_log("Error send data to server", e)
+        print_log("Error send data to server", e)
     else:
-        #print_log("Operation update database and sending to server done succesfully")
+        print_log("Operation update database and sending to server done succesfully")
         conn.close()
         return 0
 ##########################################################################################
@@ -174,7 +249,7 @@ def Send_RawData_to_server(animal_id, weight_new, type_scales): # Sending data i
                 "Date" : str(datetime.now()),
                 "Weight" : weight_new,
                 "ScalesModel" : type_scales}
-        answer = requests.post(url, data=json.dumps(data), headers=headers)
+        answer = requests.post(url, data=json.dumps(data), headers=headers, timeout=15)
         print_log("Answer from RawData server: ", answer) # Is it possible to stop on this line in the debug?
         print_log("Content from RawData server: ", answer.content)
     except Exception as e:
@@ -209,6 +284,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             # Here the place to add RawWeights sending function
             #################################################################################
             Send_RawData_to_server(cow_id, weight_new, type_scales)
+            Collect_to_Raw_Data_Table(cow_id, weight_new, type_scales)
             # Change this functio to database select type 04/06/2022
             #################################################################################
             # End of Raw data function
@@ -222,25 +298,11 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             
             # new method of averaging
             weight_finall = statistics.median(weight_list)
-        
-            #weight_finall = sum(weight_list) / len(weight_list) # Averaging weight array by sum and lenght
-            #weight_finall = weight_finall/1000 # Dividing to 1000 for Igor's server  
             print_log("Weight_finall median :", "{0:.2f}".format(weight_finall))
-            
-            # Part of code to save all raw data into CSV file
-            sep_line = "__________"
-            # if cow_id != "b'0700010101001e4b'":            
-            #     with open('raw_data.csv', 'a+', newline='') as csvfile:
-            #         wtr = csv.writer(csvfile)
-            #         wtr.writerow([sep_line])
-            #         wtr.writerow([cow_id])
-            #         wtr.writerow([datetime.now()])
-            #         for x in weight_list : wtr.writerow ([x])
-            #         print_log("Weight_list: ",weight_list)
-            #     csvfile.close()
+
             ############################################################################
             # Check tomorrow how the collect data into sqlite  04/06/2022
-            collect_to_raw_data_table_sqlite_database(animal_id=cow_id, weight=weight_finall, scales_type=type_scales)    
+            
             ##############################################################################
             print_log("End of write raw data list :", weight_list)
             
@@ -304,7 +366,7 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data i
                 "Date" : str(datetime.now()),
                 "Weight" : weight_finall,
                 "ScalesModel" : type_scales}
-        answer = requests.post(url, data=json.dumps(data), headers=headers)
+        answer = requests.post(url, data=json.dumps(data), headers=headers, timeout=15)
         print_log("Answer from server: ", answer) # Is it possible to stop on this line in the debug?
         print_log("Content from main server: ", answer.content)
     except Exception as e:
