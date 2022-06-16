@@ -33,6 +33,82 @@ def print_log(message = None, value = None): # Function to logging and printing 
 
 
 ###################################################################################################
+# Staging all animals from zero table by animal ID into spray table with "WAIT" spray_status
+# weakness #1 of this code is if cow is in other database maybe it will be skipped
+# weakness #2 if cow not came in this scales maybe it will be skipped
+
+def Staging_Into_Spray_Table():
+    try:
+        # function variables 
+        spray_type = "DRUG"
+        spray_status = "WAIT"
+        order_time = datetime.now()
+
+        cur = sq3.connect('main_database.db')
+
+        ##################
+        # Get equipment name from equipment table
+        cursor_equipment = cur.execute("SELECT EQUIPMENT_NAME from EQUIPMENT")
+        for row in cursor_equipment:
+            equipment_name = row[0]
+            print_log("EQUIPMENT_NAME = ", equipment_name)
+        ###################
+
+        ###################
+        # get unique animal id from zero table and staging into spray status
+        cursor_zero = cur.execute("SELECT ID, ANIMAL_ID from ZERO")
+        for row in cursor_zero:
+            id = row[0]
+            print_log("ID = ", id)
+            animal_id = row[1]
+            print_log("ANIMAL_ID = ", animal_id)
+            cur.execute("INSERT INTO SPRAY (ANIMAL_ID, EQUIPMENT_NAME, TYPE, SPRAY_STATUS, COMMAND_TIME) VALUES (?, ?, ?, ?, ?)",
+                            (animal_id, equipment_name, spray_type, spray_status, order_time))
+        cur.commit()
+        cur.close()
+    except Exception as e:
+        print_log("Error in adding data into SPRAY table", e)
+    else:
+        print_log("Success: Data into SPRAY table added")
+        return 0
+###################################################################################################
+
+
+###################################################################################################
+# Function of spray command by check of animal_id and spray_status
+def Spray_Animal_by_Spray_Status(animal_id):
+    try:
+        print_log("Start spray function")
+        cur = sq3.connect('main_database.db')
+        cursor_spray_animal_id = cur.execute("SELECT CASE_ID, ANIMAL_ID, SPRAY_STATUS from SPRAY")
+        for row in cursor_spray_animal_id:
+            case_id = row[0]
+            print_log("CASE_ID = ", case_id)
+            spray_animal_id = row[1]
+            print_log("SPRAY_ANIMAL_ID = ", spray_animal_id)
+            spray_status = row[2]
+            print_log("SPRAY_STATUS = ", spray_status)
+
+            if spray_animal_id == animal_id:
+                if spray_status == "WAIT":
+                    ##########################################
+                    # RUN GPIO PWM function
+                    ##########################################
+                    data_for_query = ('DONE', datetime.now() , case_id)
+                    sqlite_querry = """UPDATE SPRAY SET SPRAY_STATUS = ?, DONE_TIME = ? WHERE CASE_ID = ?"""                 
+                    cur.execute(sqlite_querry, data_for_query) 
+
+        cur.commit()
+        cur.close()
+    except Exception as e:
+        print_log("Error in Spray function", e)
+    else:
+        print_log("Success: Animal sprayed")
+        return 0
+###################################################################################################
+
+
+###################################################################################################
 # Insert to zero table new unique equipment data
 def Insert_New_Unique_Equipment_Type_Model(type, model, equipment_name, location, person, contact):
     try:
@@ -61,7 +137,6 @@ def Insert_New_Unique_Equipment_Type_Model(type, model, equipment_name, location
 ###################################################################################################
 
 
-
 ###################################################################################################
 # Insert to zero table new unique animal_id 
 def Insert_New_Unique_Animal_ID(animal_id):
@@ -84,7 +159,6 @@ def Insert_New_Unique_Animal_ID(animal_id):
         print_log("Success: New unique animal added")
         return 0
 ###################################################################################################
-
 
 
 ###################################################################################################
@@ -205,15 +279,11 @@ def send_data_to_server_from_main_table(): # Sending data into Igor's server thr
         print_log("Operation update database and sending to server done succesfully")
         conn.close()
         return 0
-##########################################################################################
-
+###################################################################################################
 
 #def send_data_to_server_from_raw_table(): # Sending data into Igor's server through JSON
 
-
-
-#######################################################################################
-
+###################################################################################################
 # internet connection check function
 def check_internet_connection():
     """ Returns True if there's a connection """
@@ -320,8 +390,6 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         print_log("Error connection to Arduino", e)
         return(-22)
     else:
-        print_log("lid:Con_ARD: 1 step")
-        print_log("lid:Con_ARD: 1 step")
         print_log("lid:Con_ARD: weight_finall in else", weight_finall)
         return(weight_finall)
 
