@@ -228,13 +228,13 @@ def PWM_GPIO_RASP(power,duration): #function creates pwm signal on 13th pin of t
 
     pi_pwm = GPIO.PWM(GPIO_PWM_0, 100)
     pi_pwm.start(0)
-
+    
     for x in range (int(power/10)):
         pi_pwm.ChangeDutyCycle(power/10*x)
         sleep(0.2)
 
     sleep(duration)
-    
+
     for x in range (int(power/10)):    
         pi_pwm.ChangeDutyCycle(power/10*(10-x))
         sleep(0.2)
