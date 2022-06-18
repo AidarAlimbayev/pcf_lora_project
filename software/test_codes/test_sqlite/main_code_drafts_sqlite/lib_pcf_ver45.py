@@ -13,6 +13,13 @@ import re
 import logging
 import statistics
 import sqlite3 as sq3
+import RPi.GPIO as GPIO
+from time import sleep
+
+
+power = 100
+duration = 10
+
 
 # name of log file as datetime of creation example: "2022-06-12_16_44_22.890654.log"
 logging.basicConfig(filename = '%s.log'%str(datetime.now().strftime("%Y-%m-%d_%H_%M_%S")), level = logging.DEBUG, format='[%(filename)s:%(lineno)s - %(funcName)20s() ] %(asctime)s %(message)s')
@@ -30,6 +37,38 @@ def print_log(message = None, value = None): # Function to logging and printing 
     return 0
 ###################################################################################################
 
+###################################################################################################
+# function creates pwm signal on 13th pin of the raspberry with 100 Hz frequency. 
+# power in % (0-100), duration in secs
+def PWM_GPIO_RASP(power = 100, duration = 10): 
+    try:
+        print_log("Start PWM function to spray command from raspberry")
+        GPIO_PWM_0 = 13                
+
+        GPIO.setwarnings(True)
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(GPIO_PWM_0, GPIO.OUT)
+
+        pi_pwm = GPIO.PWM(GPIO_PWM_0, 100)
+        pi_pwm.start(0)
+        
+        for x in range (int(power/10)):
+            pi_pwm.ChangeDutyCycle(power/10*x)
+            sleep(0.2)
+
+        sleep(duration)
+
+        for x in range (int(power/10)):    
+            pi_pwm.ChangeDutyCycle(power/10*(10-x))
+            sleep(0.2)
+
+        pi_pwm.stop()
+    except Exception as e:
+        print_log("Error: PWM function isn't work ", e)
+    else:
+        print_log("Success: PWM works well")
+        return 0
+###################################################################################################
 
 
 ###################################################################################################
@@ -76,7 +115,7 @@ def Staging_Into_Spray_Table():
 
 ###################################################################################################
 # Function of spray command by check of animal_id and spray_status
-def Spray_Animal_by_Spray_Status(animal_id):
+def Spray_Animal_by_Spray_Status(animal_id, power, duration):
     try:
         print_log("Start spray function")
         cur = sq3.connect('main_database.db')
@@ -93,6 +132,7 @@ def Spray_Animal_by_Spray_Status(animal_id):
                 if spray_status == "WAIT":
                     ##########################################
                     # RUN GPIO PWM function
+                    PWM_GPIO_RASP(power, duration)
                     ##########################################
                     data_for_query = ('DONE', datetime.now() , case_id)
                     sqlite_querry = """UPDATE SPRAY SET SPRAY_STATUS = ?, DONE_TIME = ? WHERE CASE_ID = ?"""                 
@@ -361,6 +401,8 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             #################################################################################
             Send_RawData_to_server(cow_id, weight_new, type_scales)
             Collect_to_Raw_Data_Table(cow_id, weight_new, type_scales)
+            Spray_Animal_by_Spray_Status(cow_id, power, duration)
+                        
             # Change this functio to database select type 04/06/2022
             #################################################################################
             # End of Raw data function
@@ -464,16 +506,5 @@ def Collect_data_CSV(cow_id, weight_finall, type_scales): # Collocting datat int
         print_log("3 step collect data")   
 
 
-#def spray_func(spray_period) # Function to spray cow. Request to database and check from database 
-    #GPIO.setmode(GPIO.BOARD)
-    #GPIO.setup(22, GPIO.OUT)
-    #GPIO.setup(22, GPIO.OUT, GPIO.LOW)
-    # Conncection to database
-    # Checking Yes or No about previous spraying action 
-    #if spray_period/next_spray_time != 0
-    # Spray action (GPIO Signal output)
-    #GPIO.output(22, TRUE)
-    #delay()
-    #return()
 
 #def delay_wait() # Maybe required later

@@ -19,6 +19,9 @@ animal_id = "b'435400040001'" # value of null answer of RFID reader
 null_id = "b'435400040001'"
 weight_finall = 0
 
+power = 100
+duration = 10
+
 # Connection to arduino
 try:
     s = pcf.serial.Serial('/dev/ttyACM0',9600) # path inside rapberry pi to arduino into dev folder
@@ -55,13 +58,16 @@ def main():
                         
             weight_finall = pcf.Connect_ARD_get_weight(animal_id, s, type_scales) # Grab weight from arduino and collect to weight_finall
             pcf.print_log("main: weight_finall", weight_finall)
-                        
-            if str(weight_finall) > '0':
 
+            if str(weight_finall) > '0':
                 pcf.print_log("main: Collect data")
                 pcf.Collect_data_CSV(animal_id, weight_finall, type_scales) # Save weight data into CSV file
+
+                pcf.print_log("main: Collect data to main database")
                 pcf.Collect_to_Main_Data_Table(animal_id, weight_finall, type_scales)
-                pcf.Spray_Animal_by_Spray_Status(animal_id)
+                
+                #pcf.print_log("main: Spray ")
+                #pcf.Spray_Animal_by_Spray_Status(animal_id, power, duration)
 
                 pcf.print_log("main: Send data to server")
                 pcf.Send_data_to_server(animal_id, weight_finall, type_scales) # Send data to server by JSON post request
