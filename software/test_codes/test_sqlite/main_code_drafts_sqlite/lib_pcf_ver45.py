@@ -62,8 +62,8 @@ def Staging_Into_Spray_Table():
             print_log("ID = ", id)
             animal_id = row[1]
             print_log("ANIMAL_ID = ", animal_id)
-            cur.execute("INSERT INTO SPRAY (ANIMAL_ID, EQUIPMENT_NAME, TYPE, SPRAY_STATUS, COMMAND_TIME) VALUES (?, ?, ?, ?, ?)",
-                            (animal_id, equipment_name, spray_type, spray_status, order_time))
+            cur.execute("INSERT INTO SPRAY (ANIMAL_ID, EQUIPMENT_NAME, TYPE, ORDER_TIME, SPRAY_STATUS) VALUES (?, ?, ?, ?, ?)",
+                            (animal_id, equipment_name, spray_type, order_time, spray_status))
         cur.commit()
         cur.close()
     except Exception as e:

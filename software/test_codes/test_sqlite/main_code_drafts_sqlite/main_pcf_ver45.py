@@ -51,6 +51,7 @@ def main():
         if animal_id != '435400040001': # Comparision to null animal_id answer 
             # second ID is also null 
             pcf.print_log("After read cow ID :", animal_id)
+            pcf.Insert_New_Unique_Animal_ID(animal_id)
                         
             weight_finall = pcf.Connect_ARD_get_weight(animal_id, s, type_scales) # Grab weight from arduino and collect to weight_finall
             pcf.print_log("main: weight_finall", weight_finall)
@@ -60,6 +61,7 @@ def main():
                 pcf.print_log("main: Collect data")
                 pcf.Collect_data_CSV(animal_id, weight_finall, type_scales) # Save weight data into CSV file
                 pcf.Collect_to_Main_Data_Table(animal_id, weight_finall, type_scales)
+                pcf.Spray_Animal_by_Spray_Status(animal_id)
 
                 pcf.print_log("main: Send data to server")
                 pcf.Send_data_to_server(animal_id, weight_finall, type_scales) # Send data to server by JSON post request
