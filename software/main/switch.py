@@ -16,7 +16,7 @@ pi_pwm = GPIO.PWM(GPIO_PWM_0, 100)
 while True:
     if GPIO.input(23):
         pi_pwm.start(0)
-        pi_pwm.ChangeDutyCycle(50)
+        pi_pwm.ChangeDutyCycle(100)
     else:
         pi_pwm.ChangeDutyCycle(0)
         pi_pwm.stop()
