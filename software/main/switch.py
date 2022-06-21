@@ -19,5 +19,4 @@ while True:
         pi_pwm.ChangeDutyCycle(50)
     else:
         pi_pwm.ChangeDutyCycle(0)
-
         pi_pwm.stop()
