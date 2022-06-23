@@ -1,22 +1,16 @@
 import time
-import smtplib
 import RPi.GPIO as GPIO
-
-
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(23, GPIO.IN, GPIO.PUD_DOWN)
+GPIO.setwarnings(False)
 
-GPIO_PWM_0 = 13
-GPIO.setwarnings(True)
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(GPIO_PWM_0, GPIO.OUT)
+switch = 4
 
-pi_pwm = GPIO.PWM(GPIO_PWM_0, 100)
+GPIO.setup(switch, GPIO.IN, GPIO.PUD_UP)
 
 while True:
-    if GPIO.input(23):
-        pi_pwm.start(0)
-        pi_pwm.ChangeDutyCycle(100)
+    switch_state = GPIO.input(switch)
+    if switch_state == GPIO.HIGH:
+      print ("HIGH")
     else:
-        pi_pwm.ChangeDutyCycle(0)
-        pi_pwm.stop()
+      print ("LOW")
+    time.sleep(0.5)
