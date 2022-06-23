@@ -4,8 +4,8 @@ After=network.target
 StartLimitIntervalSec=0
 
 [Service]
-ExecStart=/usr/bin/bash /home/pi/log.sh
-WorkingDirectory=/home/pi/
+ExecStart=/usr/bin/bash /home/pi/Documents/log.sh
+WorkingDirectory=/home/pi/Documents
 StandardOutput=inherit
 StandardError=inherit
 Restart=always
