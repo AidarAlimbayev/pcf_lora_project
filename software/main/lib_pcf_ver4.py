@@ -252,7 +252,7 @@ def liquid_swtich():
     while True:
         switch_state = GPIO.input(switch)
         if switch_state == GPIO.HIGH:
-            print ("HIGH")
+            return True
         else:
-            print ("LOW")
+            return False 
         time.sleep(0.5)
