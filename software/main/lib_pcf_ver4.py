@@ -29,7 +29,7 @@ def print_log(message = None, value = None): # Function to logging and printing 
         print(value)
 
 
-def Send_RawData_to_server(animal_id, weight_new, type_scales): # Sending data into Igor's server through JSON
+def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): # Sending data into Igor's server through JSON
     try:
         print_log("START SEND RawDATA TO SERVER:")
         url = 'http://194.4.56.86:8501/api/RawWeights'
@@ -37,7 +37,8 @@ def Send_RawData_to_server(animal_id, weight_new, type_scales): # Sending data i
         data = {"AnimalNumber" : animal_id,
                 "Date" : str(datetime.now()),
                 "Weight" : weight_new,
-                "ScalesModel" : type_scales}
+                "ScalesModel" : type_scales,
+                "RawWeightId" : start_timedate}
         answer = requests.post(url, data=json.dumps(data), headers=headers)
         print_log("Answer from RawData server: ", answer) # Is it possible to stop on this line in the debug?
         print_log("Content from RawData server: ", answer.content)
@@ -62,7 +63,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
 
         print_log("Weight new after cleaning :", float(weight_new))
-                
+        start_timedate = str(datetime.now())
         weight_list = []
         #mid_weight = 0
         while (float(weight_new) > 10): # Collecting weight to array 
@@ -71,7 +72,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             print_log("Weight from Arduino :", weight_new)
             
             # Here the place to add RawWeights sending function
-            Send_RawData_to_server(cow_id, weight_new, type_scales)
+            Send_RawData_to_server(cow_id, weight_new, type_scales, start_timedate)
             # End of Raw data function
 
             weight_list.append(float(weight_new))
