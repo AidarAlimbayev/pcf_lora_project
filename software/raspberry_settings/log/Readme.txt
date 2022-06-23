@@ -16,7 +16,7 @@
 ___________________________Краткое рудоководство по установке.____________________________ 
 
 1. Вставляем файлы boot_id.txt и log.sh в /home/pi/Documents/
-    1.1 Проверить boot_id. Он должен быть равен boot_id = 1.
+    1.1 Проверить boot_id. При первом запуске он должен быть равен boot_id = 1.
     1.2 В строке "SerialNumber": "pcf_model_1", изменить имя весов.
 2. Вставляем файл log.service в /etc/systemd/system/ (for example from folder in which log.service exsist #~ sudo cp log.service /etc/systemd/system/ )
 3. В терминале запустить: 
