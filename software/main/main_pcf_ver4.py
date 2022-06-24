@@ -74,7 +74,8 @@ def main():
 
                 #if check_internet_connection() == True :
                     #pcf.Send_data_to_server_from_sqlite()
-                #cow_id = '070106156079'
-                #cow_id = "b'435400040001'"
+                
+                
+                animal_id = pcf.Cutter_old_id(animal_id)
 
 main()

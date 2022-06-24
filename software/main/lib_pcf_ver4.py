@@ -1,5 +1,6 @@
 #!/usr/bin/python
 from datetime import datetime, date, time
+from selectors import EpollSelector
 import serial
 import time
 import socket
@@ -34,6 +35,37 @@ def print_log(message = None, value = None): # Function to logging and printing 
         print(value)
     return 0
 ###################################################################################################
+
+def Cutter_old_id(animal_id):
+    try:
+        print_log("Start cutter old id function")
+        ###########################################
+        # TCP connection settings and socket
+        TCP_IP = '192.168.1.250' #chafon 5300 reader address
+        TCP_PORT = 60000 #chafon 5300 port
+        BUFFER_SIZE = 1024
+
+        null_id = "b'435400040001'" # Id null
+        print_log("Null id: ", null_id)
+
+
+        while animal_id != null_id:
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            s.connect((TCP_IP, TCP_PORT))
+            s.send(bytearray([0x53, 0x57, 0x00, 0x06, 0xff, 0x01, 0x00, 0x00, 0x00, 0x50])) #Chafon RU5300 Answer mode reading mode command
+            data = s.recv(BUFFER_SIZE)
+            animal_id= str(binascii.hexlify(data))
+            animal_id = animal_id[:-5] #Cutting the string from unnecessary information after 4 signs 
+            animal_id = animal_id[-12:] #Cutting the string from unnecessary information before 24 signs
+            print_log("--------------------------------------")
+            print_log("Animal id after read:", animal_id)
+    except Exception as e:
+        print_log("Error: in cutter old id function: first param must be animal_id", e)
+    else:
+        print_log("Success: animal id updated, animal id: ", animal_id)
+        return animal_id
+
+
 
 ###################################################################################################
 # function creates pwm signal on 13th pin of the raspberry with 100 Hz frequency. 
