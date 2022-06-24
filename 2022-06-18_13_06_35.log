@@ -1,0 +1,25 @@
+[lib_pcf_ver45.py:27 -            print_log() ] 2022-06-18 13:06:35,947 Start Staging all cows from zero table to spray table
+[lib_pcf_ver45.py:27 -            print_log() ] 2022-06-18 13:06:35,949 EQUIPMENT_NAME = 
+[lib_pcf_ver45.py:29 -            print_log() ] 2022-06-18 13:06:35,949 Test_sqlite_ver45
+[lib_pcf_ver45.py:27 -            print_log() ] 2022-06-18 13:06:35,949 ID = 
+[lib_pcf_ver45.py:29 -            print_log() ] 2022-06-18 13:06:35,950 1
+[lib_pcf_ver45.py:27 -            print_log() ] 2022-06-18 13:06:35,950 ANIMAL_ID = 
+[lib_pcf_ver45.py:29 -            print_log() ] 2022-06-18 13:06:35,950 00161710651f
+[lib_pcf_ver45.py:27 -            print_log() ] 2022-06-18 13:06:35,951 ID = 
+[lib_pcf_ver45.py:29 -            print_log() ] 2022-06-18 13:06:35,951 2
+[lib_pcf_ver45.py:27 -            print_log() ] 2022-06-18 13:06:35,951 ANIMAL_ID = 
+[lib_pcf_ver45.py:29 -            print_log() ] 2022-06-18 13:06:35,952 014216906af2
+[lib_pcf_ver45.py:27 -            print_log() ] 2022-06-18 13:06:35,952 ID = 
+[lib_pcf_ver45.py:29 -            print_log() ] 2022-06-18 13:06:35,952 5
+[lib_pcf_ver45.py:27 -            print_log() ] 2022-06-18 13:06:35,953 ANIMAL_ID = 
+[lib_pcf_ver45.py:29 -            print_log() ] 2022-06-18 13:06:35,953 022216606dc6
+[lib_pcf_ver45.py:27 -            print_log() ] 2022-06-18 13:06:35,953 ID = 
+[lib_pcf_ver45.py:29 -            print_log() ] 2022-06-18 13:06:35,953 4
+[lib_pcf_ver45.py:27 -            print_log() ] 2022-06-18 13:06:35,953 ANIMAL_ID = 
+[lib_pcf_ver45.py:29 -            print_log() ] 2022-06-18 13:06:35,953 02531040b152
+[lib_pcf_ver45.py:27 -            print_log() ] 2022-06-18 13:06:35,954 ID = 
+[lib_pcf_ver45.py:29 -            print_log() ] 2022-06-18 13:06:35,954 3
+[lib_pcf_ver45.py:27 -            print_log() ] 2022-06-18 13:06:35,954 ANIMAL_ID = 
+[lib_pcf_ver45.py:29 -            print_log() ] 2022-06-18 13:06:35,954 02821760656c
+[lib_pcf_ver45.py:27 -            print_log() ] 2022-06-18 13:06:36,016 Success: Data into SPRAY table added
+[lib_pcf_ver45.py:27 -            print_log() ] 2022-06-18 13:06:36,017 Success: Main functrion of staging worked well

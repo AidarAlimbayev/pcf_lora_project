@@ -45,9 +45,9 @@ def main():
     pcf.print_log("Start main script")
 
     while(True):
-        #pcf.print_log("Infinite cycle")
-        cow_id = pcf.Connect_RFID_reader() # Connection to RFID reader 
-        #pcf.print_log("First step cow ID :", cow_id)
+        pcf.print_log("Infinite cycle")
+        animal_id = pcf.Connect_RFID_reader() # Connection to RFID reader 
+        pcf.print_log("First step cow ID :", animal_id)
 
         pcf.time.sleep(1) # sleep to decrease workload and deccrease tmperature of CPU
         
@@ -75,6 +75,6 @@ def main():
                 #if check_internet_connection() == True :
                     #pcf.Send_data_to_server_from_sqlite()
                 #cow_id = '070106156079'
-                #cow_id = "b'435400040001'"
+                cow_id = "b'435400040001'"
 
 main()

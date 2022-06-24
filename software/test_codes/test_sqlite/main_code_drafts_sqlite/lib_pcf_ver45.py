@@ -1,5 +1,7 @@
 #!/usr/bin/python
 from datetime import datetime, date, time
+
+#from sklearn import exceptions
 import serial
 import time
 import socket
@@ -296,7 +298,6 @@ def send_data_to_server_from_main_table(): # Sending data into Igor's server thr
                         "Date" : event_time,
                         "Weight" : weight,
                         "ScalesModel" : scales_type}
-                        # Add start datetime of Maxat and Igor's feature
                 answer = requests.post(url, data=json.dumps(data), headers=headers, timeout=15)
                 print_log("Answer from server: ", answer) # Is it possible to stop on this line in the debug?
                 print_log(answer.content)
@@ -353,7 +354,7 @@ def check_internet_connection():
 #########################################################################################################################
 # Send to raw data server directly from main function
 #def Send_RawData_to_server(animal_id, weight_new, type_scales, start_datetime): # Sending data into Igor's server through JSON
-def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): # Sending data into Igor's server through JSON
+def Send_RawData_to_server(animal_id, weight_new, type_scales): # Sending data into Igor's server through JSON
 
     try:
         print_log("START SEND RawDATA TO SERVER:")
@@ -362,8 +363,7 @@ def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): 
         data = {"AnimalNumber" : animal_id,
                 "Date" : str(datetime.now()),
                 "Weight" : weight_new,
-                "ScalesModel" : type_scales,
-                "RawWeightId" : start_timedate}
+                "ScalesModel" : type_scales}
         answer = requests.post(url, data=json.dumps(data), headers=headers, timeout=15)
         print_log("Answer from RawData server: ", answer) # Is it possible to stop on this line in the debug?
         print_log("Content from RawData server: ", answer.content)
@@ -371,11 +371,8 @@ def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): 
         print_log("Error send data to RawData server", e)
     else:
         print_log("4 step send RawData")
-###################################################################################################
 
-###################################################################################################
-# Connection to aruino through USB by Serial Port   
-def Connect_ARD_get_weight(cow_id, s, type_scales): 
+def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino through USB by Serial Port   
     try:
         print_log("CONNECT ARDUINO")
         s.flushInput() # Cleaning buffer of Serial Port
@@ -391,10 +388,10 @@ def Connect_ARD_get_weight(cow_id, s, type_scales):
         weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
 
         print_log("Weight new after cleaning :", float(weight_new))
-        start_timedate = str(datetime.now())
+                
         weight_list = []
         #mid_weight = 0
-        start_datetime = str(datetime.now())
+        #start_datetime = str(datetime.now())
         while (float(weight_new) > 10): # Collecting weight to array 
             weight = (str(s.readline()))
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
@@ -402,7 +399,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales):
             
             # Here the place to add RawWeights sending function
             #################################################################################
-            Send_RawData_to_server(cow_id, weight_new, type_scales, start_datetime)
+            Send_RawData_to_server(cow_id, weight_new, type_scales)
             Collect_to_Raw_Data_Table(cow_id, weight_new, type_scales)
             Spray_Animal_by_Spray_Status(cow_id, power, duration)
                         
@@ -428,8 +425,6 @@ def Connect_ARD_get_weight(cow_id, s, type_scales):
             print_log("End of write raw data list :", weight_list)
             
             # End of collectin raw data into CSV file
-
-
             weight_list = []
             print_log("Weight_finall befor return :", weight_finall)
             return(float("{0:.2f}".format(weight_finall)))
@@ -438,29 +433,22 @@ def Connect_ARD_get_weight(cow_id, s, type_scales):
         return(-22)
     else:
         print_log("lid:Con_ARD: weight_finall in else", weight_finall)
-        return(weight_finall, start_datetime)
-###################################################################################################
+        return(weight_finall)
 
-###################################################################################################
-# Connection to RFID Reader through TCP and getting cow ID in str format
-def Connect_RFID_reader(): 
+def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting cow ID in str format
     try:    
-        #print_log("START RFID FUNCTION")
+        print_log("START RFID FUNCTION")
         ###########################################
         # TCP connection settings and socket
         TCP_IP = '192.168.1.250' #chafon 5300 reader address
         TCP_PORT = 60000 #chafon 5300 port
         BUFFER_SIZE = 1024
-        # animal_id = "b'435400040001'" # Id null starting variable
-        # animal_id_new = "b'435400040001'"
-        # null_id = "b'435400040001'"
-        animal_id = 435400040001 # Id null starting variable
-        animal_id_new = 435400040001
-        null_id = 435400040001 # Id null
-
-
-        # print_log("1: START Animal ID animal_id: ", animal_id)
-        # print_log("2: START Null id null_id : ", null_id)
+        animal_id = "b'435400040001'" # Id null starting variable
+        animal_id_new = "b'435400040001'"
+        #null_id = 435400040001 # Id null
+        null_id = "b'435400040001'"
+        print_log("START Animal ID animal_id: ", animal_id)
+        print_log("START Null id null_id : ", null_id)
     
         if animal_id == null_id: # Send command to reader waiting id of animal
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -470,31 +458,20 @@ def Connect_RFID_reader():
             animal_id= str(binascii.hexlify(data))
             animal_id_new = animal_id[:-5] #Cutting the string from unnecessary information after 4 signs 
             animal_id_new = animal_id_new[-12:] #Cutting the string from unnecessary information before 24 signs
-            print_log("--------------------------------------")
-            print_log("3: Raw ID animal_id: ", animal_id)
-            print_log("4: New ID animal_id_new: ", animal_id_new)
-            print_log("5: Null id null_id : ", null_id)
-            print_log("6: Null id string null id", str(null_id))
-            print_log("--------------------------------------")
+            print_log("Raw ID animal_id: ", animal_id)
+            print_log("New ID animal_id_new: ", animal_id_new)
+            print_log("Null id null_id : ", str(null_id))
             s.close()             
-        # if animal_id_new == null_id: # Id null return(0)
-        #     print_log("8: Success, Aidar stop logging!")
-            #return("animal id = null id")
-        # else: # Id checkt return(1)
-        #     animal_id = "b'435400040001'"
-        #     print_log("7: Success step 2 RFID. animal id new:", animal_id_new)
-        #     return(animal_id_new)
+        if animal_id_new == null_id: # Id null return(0)
+            Connect_RFID_reader()
+        else: # Id checkt return(1)
+            animal_id = "b'435400040001'"
+            print_log("Success step 2 RFID. animal id new:", animal_id_new)
+            return(animal_id_new)
     except Exception as e:
-        print_log("Error connect to RFID reader", e)
-        print("------------------")
-        print_log("null_id :", null_id)
-        print_log("type(null_id) :", type(null_id))
-        print_log("str(null_id) ;", str(null_id))
-        print("------------------")
-        return str(null_id) # returm null Id for stop sending data to server
+        print_log("Error connect to Arduino ", e)
     else: 
-        #print_log("2 step RFID")
-        return animal_id_new
+        print_log("2 step RFID")
     
 def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data into Igor's server through JSON
     try:
@@ -512,9 +489,6 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data i
         print_log("Error send data to server", e)
     else:
         print_log("4 step send data")
-###################################################################################################
-
-###################################################################################################
 
 def Collect_data_CSV(cow_id, weight_finall, type_scales): # Collocting datat into CSV, in the future must be in SQLite
     try:
