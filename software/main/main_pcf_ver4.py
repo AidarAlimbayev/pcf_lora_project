@@ -1,17 +1,17 @@
 #!/usr/bin/sudo python
-import lib_pcf_ver45 as pcf
+import lib_pcf_ver4 as pcf
 
 pcf.time.sleep(10) # sleep time for connection to serial library
 
 
 # config of equipment and contacts
 #old variable type_scales -> new variable equipment_name (must be unique)
-type_scales = "Test_sqlite_ver45" # equipment_name 
+type_scales = "pcf_model5" # equipment_name 
 type = "SCALES"
 model = "800"
-location = 'Agrarka_1212'
-person = 'Yerkebulan Salmenov'
-contact = '+77779980051'
+location = 'SHOS'
+person = 'Sergey'
+contact = '+77471794792'
 
 
 # null values for variables
