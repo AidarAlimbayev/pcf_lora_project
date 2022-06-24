@@ -56,7 +56,7 @@ def main():
             pcf.print_log("After read cow ID :", animal_id)
             pcf.Insert_New_Unique_Animal_ID(animal_id)
                         
-            weight_finall = pcf.Connect_ARD_get_weight(animal_id, s, type_scales) # Grab weight from arduino and collect to weight_finall
+            weight_finall, start_datetime = pcf.Connect_ARD_get_weight(animal_id, s, type_scales) # Grab weight from arduino and collect to weight_finall
             pcf.print_log("main: weight_finall", weight_finall)
 
             if str(weight_finall) > '0':
@@ -70,7 +70,7 @@ def main():
                 #pcf.Spray_Animal_by_Spray_Status(animal_id, power, duration)
 
                 pcf.print_log("main: Send data to server")
-                pcf.Send_data_to_server(animal_id, weight_finall, type_scales) # Send data to server by JSON post request
+                pcf.Send_data_to_server(animal_id, weight_finall, type_scales, start_datetime) # Send data to server by JSON post request
 
                 #if check_internet_connection() == True :
                     #pcf.Send_data_to_server_from_sqlite()

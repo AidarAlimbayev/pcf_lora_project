@@ -495,7 +495,9 @@ def Connect_RFID_reader():
     else: 
         #print_log("2 step RFID")
         return animal_id_new
-    
+
+###################################################################################################
+
 def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data into Igor's server through JSON
     try:
         print_log("START SEND DATA TO SERVER:")
