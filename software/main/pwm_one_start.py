@@ -1,4 +1,4 @@
-import lib_pcf_ver45 as pcf
+import lib_pcf_ver4 as pcf
 
 # variable by default power = 100
 # variable by default duration = 10

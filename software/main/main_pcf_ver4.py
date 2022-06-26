@@ -76,6 +76,6 @@ def main():
                     #pcf.Send_data_to_server_from_sqlite()
                 
                 
-                animal_id = pcf.Cutter_old_id(animal_id)
+        #animal_id = pcf.Cutter_old_id(animal_id)
 
 main()

@@ -74,26 +74,30 @@ def Cutter_old_id(animal_id):
 def PWM_GPIO_RASP(power = 100, duration = 10): 
     try:
         print_log("Start PWM function to spray command from raspberry")
-        GPIO_PWM_0 = 13                
+        #GPIO_PWM_0 = 32                
 
         GPIO.setwarnings(True)
         GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(GPIO_PWM_0, GPIO.OUT)
+        GPIO.setup(33, GPIO.OUT)
+        GPIO.output(33,GPIO.HIGH)
+        time.sleep(duration)
+        GPIO.output(33, GPIO.LOW)
+        GPIO.cleanup()
 
-        pi_pwm = GPIO.PWM(GPIO_PWM_0, 100)
-        pi_pwm.start(0)
+        #pi_pwm = GPIO.PWM(GPIO_PWM_0, 100)
+        #pi_pwm.start(0)
         
-        for x in range (int(power/10)):
-            pi_pwm.ChangeDutyCycle(power/10*x)
-            sleep(0.2)
+        #for x in range (int(power/10)):
+        #    pi_pwm.ChangeDutyCycle(power/10*x)
+        #    sleep(0.2)
 
-        sleep(duration)
+        #sleep(duration)
 
-        for x in range (int(power/10)):    
-            pi_pwm.ChangeDutyCycle(power/10*(10-x))
-            sleep(0.2)
+        # for x in range (int(power/10)):    
+        #     pi_pwm.ChangeDutyCycle(power/10*(10-x))
+        #     sleep(0.2)
 
-        pi_pwm.stop()
+        # pi_pwm.stop()
     except Exception as e:
         print_log("Error: PWM function isn't work ", e)
     else:
@@ -469,10 +473,10 @@ def Connect_ARD_get_weight(cow_id, s, type_scales):
 
             weight_list = []
             print_log("Weight_finall befor return :", weight_finall)
-            return(float("{0:.2f}".format(weight_finall)))
+            return(float("{0:.2f}".format(weight_finall)), start_datetime)
     except Exception as e:
         print_log("Error connection to Arduino", e)
-        return(-22)
+        return(-22, -22)
     else:
         print_log("lid:Con_ARD: weight_finall in else", weight_finall)
         return(weight_finall, start_datetime)
