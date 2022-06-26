@@ -18,6 +18,8 @@ from time import sleep
 
 power = 100
 duration = 10
+null_id = "b'435400040001'" # Id null
+
 
 
 # name of log file as datetime of creation example: "2022-06-12_16_44_22.890654.log"
@@ -45,7 +47,6 @@ def Cutter_old_id(animal_id):
         TCP_PORT = 60000 #chafon 5300 port
         BUFFER_SIZE = 1024
 
-        null_id = "b'435400040001'" # Id null
         print_log("Null id: ", null_id)
 
 
@@ -147,26 +148,27 @@ def Staging_Into_Spray_Table():
 # Function of spray command by check of animal_id and spray_status
 def Spray_Animal_by_Spray_Status(animal_id, power, duration):
     try:
-        print_log("Start spray function")
-        cur = sq3.connect('main_database.db')
-        cursor_spray_animal_id = cur.execute("SELECT CASE_ID, ANIMAL_ID, SPRAY_STATUS from SPRAY")
-        for row in cursor_spray_animal_id:
-            case_id = row[0]
-            print_log("CASE_ID = ", case_id)
-            spray_animal_id = row[1]
-            print_log("SPRAY_ANIMAL_ID = ", spray_animal_id)
-            spray_status = row[2]
-            print_log("SPRAY_STATUS = ", spray_status)
+        if animal_id != null_id:
+            print_log("Start spray function")
+            cur = sq3.connect('main_database.db')
+            cursor_spray_animal_id = cur.execute("SELECT CASE_ID, ANIMAL_ID, SPRAY_STATUS from SPRAY")
+            for row in cursor_spray_animal_id:
+                case_id = row[0]
+                print_log("CASE_ID = ", case_id)
+                spray_animal_id = row[1]
+                print_log("SPRAY_ANIMAL_ID = ", spray_animal_id)
+                spray_status = row[2]
+                print_log("SPRAY_STATUS = ", spray_status)
 
-            if spray_animal_id == animal_id:
-                if spray_status == "WAIT":
-                    ##########################################
-                    # RUN GPIO PWM function
-                    PWM_GPIO_RASP(power, duration)
-                    ##########################################
-                    data_for_query = ('DONE', datetime.now() , case_id)
-                    sqlite_querry = """UPDATE SPRAY SET SPRAY_STATUS = ?, DONE_TIME = ? WHERE CASE_ID = ?"""                 
-                    cur.execute(sqlite_querry, data_for_query) 
+                if spray_animal_id == animal_id:
+                    if spray_status == "WAIT":
+                        ##########################################
+                        # RUN GPIO PWM function
+                        PWM_GPIO_RASP(power, duration)
+                        ##########################################
+                        data_for_query = ('DONE', datetime.now() , case_id)
+                        sqlite_querry = """UPDATE SPRAY SET SPRAY_STATUS = ?, DONE_TIME = ? WHERE CASE_ID = ?"""                 
+                        cur.execute(sqlite_querry, data_for_query) 
 
         cur.commit()
         cur.close()
@@ -211,17 +213,18 @@ def Insert_New_Unique_Equipment_Type_Model(type, model, equipment_name, location
 # Insert to zero table new unique animal_id 
 def Insert_New_Unique_Animal_ID(animal_id):
     try:
-        conn = sq3.connect('main_database.db')
-        print_log("Opened database successfully")
-        cursor = conn.execute("SELECT ANIMAL_ID from ZERO")           
-        print_log("animal_id", animal_id)
-        print_log("Start to add new unique animal id")
-        data_for_query = (animal_id)
-        conn.execute("INSERT INTO ZERO (ANIMAL_ID) VALUES (?)",
-                    (animal_id,))                    
-        print_log("animal_id", animal_id)
-        conn.commit()
-        conn.close()
+        if animal_id != null_id:
+            conn = sq3.connect('main_database.db')
+            print_log("Opened database successfully")
+            cursor = conn.execute("SELECT ANIMAL_ID from ZERO")           
+            print_log("animal_id", animal_id)
+            print_log("Start to add new unique animal id")
+            data_for_query = (animal_id)
+            conn.execute("INSERT INTO ZERO (ANIMAL_ID) VALUES (?)",
+                        (animal_id,))                    
+            print_log("animal_id", animal_id)
+            conn.commit()
+            conn.close()
 
     except Exception as e:
         print_log("Error in creating new animal_id in zero table ", e)
@@ -238,22 +241,23 @@ def Collect_to_Main_Data_Table(animal_id, weight, equipment_name):
     try:
         Insert_New_Unique_Animal_ID(animal_id)
         #######
-        # insert new data in MAIN_DATA table
-        data_status = 'NO'
-        drink_duration= 'NULL'
-        event_time = datetime.now()
-        transfer_time = 'NULL'
+        if animal_id != null_id:
+            # insert new data in MAIN_DATA table
+            data_status = 'NO'
+            drink_duration= 'NULL'
+            event_time = datetime.now()
+            transfer_time = 'NULL'
 
-        conn = sq3.connect('main_database.db')
-        print_log("Opened database successfully")
-        conn.execute("INSERT INTO MAIN_DATA (ANIMAL_ID, EVENT_TIME, WEIGHT, EQUIPMENT_NAME, DRINK_DURATION, DATA_STATUS, TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?, ?)",
-                                            (animal_id, event_time, weight, equipment_name, drink_duration, data_status, transfer_time))
-        print_log("ANIMAL_ID", animal_id)
-        print_log("EVENT_TIME", event_time)
-        print_log("WEIGHT", weight)
-        print_log("EQUIPMENT_NAME", equipment_name)
-        conn.commit()
-        conn.close()
+            conn = sq3.connect('main_database.db')
+            print_log("Opened database successfully")
+            conn.execute("INSERT INTO MAIN_DATA (ANIMAL_ID, EVENT_TIME, WEIGHT, EQUIPMENT_NAME, DRINK_DURATION, DATA_STATUS, TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?, ?)",
+                                                (animal_id, event_time, weight, equipment_name, drink_duration, data_status, transfer_time))
+            print_log("ANIMAL_ID", animal_id)
+            print_log("EVENT_TIME", event_time)
+            print_log("WEIGHT", weight)
+            print_log("EQUIPMENT_NAME", equipment_name)
+            conn.commit()
+            conn.close()
 
     except Exception as e:
         print_log("Error to save data in MAIN_DATA ", e)
@@ -269,21 +273,22 @@ def Collect_to_Main_Data_Table(animal_id, weight, equipment_name):
 
 def Collect_to_Raw_Data_Table(animal_id, weight, equipment_name):
     try:
-        data_status = 'NO'
-        event_time = datetime.now()
-        transfer_time = 'NULL'
+        if animal_id != null_id:
+            data_status = 'NO'
+            event_time = datetime.now()
+            transfer_time = 'NULL'
 
-        conn = sq3.connect('main_database.db')
-        print_log("Opened database successfully")
-        conn.execute("INSERT INTO RAW_DATA (ANIMAL_ID, EVENT_TIME, WEIGHT, EQUIPMENT_NAME, DATA_STATUS, TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?)",
-                                            (animal_id, event_time, weight, equipment_name, data_status, transfer_time))
-        conn.commit()
-        conn.close()
+            conn = sq3.connect('main_database.db')
+            print_log("Opened database successfully")
+            conn.execute("INSERT INTO RAW_DATA (ANIMAL_ID, EVENT_TIME, WEIGHT, EQUIPMENT_NAME, DATA_STATUS, TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?)",
+                                                (animal_id, event_time, weight, equipment_name, data_status, transfer_time))
+            conn.commit()
+            conn.close()
 
-        print_log("ANIMAL_ID", animal_id)
-        print_log("EVENT_TIME", event_time)
-        print_log("WEIGHT", weight)
-        print_log("EQUIPMENT_NAME", equipment_name)
+            print_log("ANIMAL_ID", animal_id)
+            print_log("EVENT_TIME", event_time)
+            print_log("WEIGHT", weight)
+            print_log("EQUIPMENT_NAME", equipment_name)
 
     except Exception as e:
         print("Error to save data in ", e)
