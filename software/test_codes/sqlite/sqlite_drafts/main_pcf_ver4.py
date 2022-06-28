@@ -1,25 +1,24 @@
 #!/usr/bin/sudo python
-import lib_pcf_ver45 as pcf
+# pre version 4.5 Aidar edition
+import lib_pcf_ver4 as pcf
 
 pcf.time.sleep(10) # sleep time for connection to serial library
 
 
 # config of equipment and contacts
 #old variable type_scales -> new variable equipment_name (must be unique)
-type_scales = "Test_sqlite_ver45" # equipment_name 
+type_scales = "pcf_model7" # equipment_name 
 type = "SCALES"
 model = "800"
-location = 'Agrarka_1212'
-person = 'Yerkebulan Salmenov'
-contact = '+77779980051'
+location = 'SHOS'
+person = 'Sergey'
+contact = '+77053209585'
 
 
 # null values for variables
 animal_id = "b'435400040001'" # value of null answer of RFID reader
 null_id = "b'435400040001'"
 weight_finall = 0
-
-power = 100
 duration = 10
 
 # Connection to arduino
@@ -67,14 +66,14 @@ def main():
                 pcf.Collect_to_Main_Data_Table(animal_id, weight_finall, type_scales)
                 
                 #pcf.print_log("main: Spray ")
-                #pcf.Spray_Animal_by_Spray_Status(animal_id, power, duration)
+                #pcf.Spray_Animal_by_Spray_Status(animal_id, duration)
 
                 pcf.print_log("main: Send data to server")
                 pcf.Send_data_to_server(animal_id, weight_finall, type_scales) # Send data to server by JSON post request
 
                 #if check_internet_connection() == True :
                     #pcf.Send_data_to_server_from_sqlite()
-                #cow_id = '070106156079'
-                cow_id = "b'435400040001'"
+                # pcf.
+                # cutter 
 
 main()
