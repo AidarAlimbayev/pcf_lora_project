@@ -1,0 +1,10 @@
+from datetime import datetime, date, time
+import csv
+
+
+row = [i, animal_id, date_now, weight_finall, type_scales]
+        with open('cows.csv', 'a', newline='') as writeFile:
+                writer = csv.writer(writeFile)
+                writer.writerow(row)
+        writeFile.close()
+        weight_finall = 0;
