@@ -1,6 +1,6 @@
 #!/usr/bin/sudo python
 # pre version 4.5 Aidar edition
-import lib_pcf_ver4 as pcf
+import lib_pcf as pcf
 
 pcf.time.sleep(10) # sleep time for connection to serial library
 

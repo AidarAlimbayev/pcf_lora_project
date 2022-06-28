@@ -10,13 +10,16 @@ print("Start PWM function")
 #power = float(input("Enter power: "))
 duration = float(input("Enter duration: "))
 #pcf.PWM_GPIO_RASP(power, duration)
+pin = 40
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(True)
-GPIO.setup(33,GPIO.OUT)
-GPIO.output(33,GPIO.HIGH)
+GPIO.setup(pin,GPIO.OUT)
+GPIO.output(pin,GPIO.HIGH)
+
 time.sleep(duration)
-GPIO.output(33,GPIO.LOW)
+
+GPIO.output(pin,GPIO.LOW)
 
 GPIO.cleanup()
 

@@ -343,7 +343,7 @@ def check_internet_connection():
 #########################################################################################################################
 # Send to raw data server directly from main function
 #def Send_RawData_to_server(animal_id, weight_new, type_scales, start_datetime): # Sending data into Igor's server through JSON
-def Send_RawData_to_server(animal_id, weight_new, type_scales): # Sending data into Igor's server through JSON
+def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): # Sending data into Igor's server through JSON
 
     try:
         print_log("START SEND RawDATA TO SERVER:")
@@ -352,7 +352,8 @@ def Send_RawData_to_server(animal_id, weight_new, type_scales): # Sending data i
         data = {"AnimalNumber" : animal_id,
                 "Date" : str(datetime.now()),
                 "Weight" : weight_new,
-                "ScalesModel" : type_scales}
+                "ScalesModel" : type_scales,
+                "RawWeightId" : start_timedate}
         answer = requests.post(url, data=json.dumps(data), headers=headers, timeout=15)
         print_log("Answer from RawData server: ", answer) # Is it possible to stop on this line in the debug?
         print_log("Content from RawData server: ", answer.content)
@@ -379,8 +380,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         print_log("Weight new after cleaning :", float(weight_new))
                 
         weight_list = []
-        #mid_weight = 0
-        #start_datetime = str(datetime.now())
+        start_timedate = str(datetime.now())
         while (float(weight_new) > 10): # Collecting weight to array 
             weight = (str(s.readline()))
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
@@ -388,7 +388,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             
             # Here the place to add RawWeights sending function
             #################################################################################
-            Send_RawData_to_server(cow_id, weight_new, type_scales)
+            Send_RawData_to_server(cow_id, weight_new, type_scales, start_timedate)
             Collect_to_Raw_Data_Table(cow_id, weight_new, type_scales)
             Spray_Animal_by_Spray_Status(cow_id, duration)
                         
