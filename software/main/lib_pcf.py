@@ -374,7 +374,10 @@ def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): 
         print_log("Error send data to RawData server", e)
     else:
         print_log("4 step send RawData")
+#########################################################################################################################
 
+
+#########################################################################################################################
 def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino through USB by Serial Port   
     try:
         print_log("CONNECT ARDUINO")
@@ -411,7 +414,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
 
             weight_list.append(float(weight_new))
         if weight_list == 0 or weight_list == []:
-            return("Error, null weight list")
+            print_log("Error, null weight list")
         else:
             if weight_list != []: # Here must added check on weight array null value and one element array
                 del weight_list[-1]
@@ -434,7 +437,10 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
     else:
         print_log("lid:Con_ARD: weight_finall in else", weight_finall)
         return(float("{0:.2f}".format(weight_finall)))
+#########################################################################################################################
 
+
+#########################################################################################################################
 def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting cow ID in str format
     try:    
         print_log("START RFID FUNCTION")
@@ -472,7 +478,9 @@ def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting c
         print_log("Error connect to Arduino ", e)
     else: 
         print_log("2 step RFID")
-    
+#########################################################################################################################
+
+#########################################################################################################################
 def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data into Igor's server through JSON
     try:
         print_log("START SEND DATA TO SERVER:")
@@ -489,7 +497,9 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data i
         print_log("Error send data to server", e)
     else:
         print_log("4 step send data")
+#########################################################################################################################
 
+#########################################################################################################################
 def Collect_data_CSV(cow_id, weight_finall, type_scales): # Collocting datat into CSV, in the future must be in SQLite
     try:
         print_log("START COLLECT DATA TO CSV")
