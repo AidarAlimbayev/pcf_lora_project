@@ -397,6 +397,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
                 
         weight_list = []
         start_timedate = str(datetime.now())
+        drink_start_time = datetime.now()
         while (float(weight_new) > 10): # Collecting weight to array 
             weight = (str(s.readline()))
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
@@ -431,6 +432,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             
             # End of collectin raw data into CSV file
             weight_list = []
+            drink_end_time = datetime.now()
             print_log("Weight_finall befor return :", weight_finall)
     except Exception as e:
         print_log("Error connection to Arduino", e)
