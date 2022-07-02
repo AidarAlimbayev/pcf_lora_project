@@ -1,0 +1,125 @@
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:25:52,577 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:25:52,577 animal_id
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:25:52,578 123
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:27:14,724 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:27:14,725 animal_id
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:27:14,725 123
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:27:14,725 Start to add new unique animal id
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:27:14,725 animal_id
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:27:14,725 123
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:27:48,514 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:27:48,514 animal_id
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:27:48,515 123
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:27:48,515 Start to add new unique animal id
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:27:48,515 <sqlite3.Cursor object at 0x7fba7e6e7740>
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:27:48,515 animal_id
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:27:48,515 123
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:06,700 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:06,701 animal_id
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:29:06,701 123
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:06,701 Start to add new unique animal id
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:06,702 <sqlite3.Cursor object at 0x7fba7d9e8940>
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:06,702 animal_id
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:29:06,702 123
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:13,376 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:13,376 animal_id
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:29:13,376 123
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:13,376 Start to add new unique animal id
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:13,377 Error in creating new animal_id in zero table 
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:29:13,377 UNIQUE constraint failed: ZERO.ANIMAL_ID
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:21,880 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:21,881 animal_id
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:29:21,881 1
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:21,881 Start to add new unique animal id
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:21,881 <sqlite3.Cursor object at 0x7fba7e6e6e40>
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:21,881 animal_id
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:29:21,881 1
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:30,147 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:30,148 animal_id
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:29:30,148 12
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:30,148 Start to add new unique animal id
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:30,148 <sqlite3.Cursor object at 0x7fba7e6e7240>
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:29:30,148 animal_id
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:29:30,148 12
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:53:27,860 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:53:27,861 equipment_id
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:53:27,861 Test_sqlite_45
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:53:27,861 Start to add new unique EQUIPMENT_ID
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:53:27,861 Error in creating new EQUIPMENT_ID in EQUIPMENT table 
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:53:27,861 datatype mismatch
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:54:16,678 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:54:16,678 equipment_id
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:54:16,679 Test_sqlite_45
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:54:16,679 Start to add new unique EQUIPMENT_ID
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:54:16,679 Error in creating new EQUIPMENT_ID in EQUIPMENT table 
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:54:16,679 datatype mismatch
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:59:31,939 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:59:31,940 Error in creating new EQUIPMENT_TYPE in EQUIPMENT table 
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:59:31,940 print_log() takes from 0 to 2 positional arguments but 3 were given
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:59:44,971 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 15:59:44,972 Error in creating new EQUIPMENT_TYPE in EQUIPMENT table 
+[2680166281.py:6 -            print_log() ] 2022-06-16 15:59:44,972 print_log() takes from 0 to 2 positional arguments but 3 were given
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:00:16,099 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:00:16,100 Start to add new unique EQUIPMENT_TYPE and EQUIPMENT_MODEL
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:00:16,100 <sqlite3.Cursor object at 0x7fba7d9eab40>
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:00:16,100 EQUIPMENT_TYPE
+[2680166281.py:6 -            print_log() ] 2022-06-16 16:00:16,100 SCALES_SPRAY
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:00:16,100 EQUIPMENT_MODEL
+[2680166281.py:6 -            print_log() ] 2022-06-16 16:00:16,100 Test_sqlite_45
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:02:58,073 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:02:58,074 Start to add new unique EQUIPMENT_TYPE and EQUIPMENT_MODEL
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:02:58,075 <sqlite3.Cursor object at 0x7fba7d9eabc0>
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:02:58,075 EQUIPMENT_TYPE
+[2680166281.py:6 -            print_log() ] 2022-06-16 16:02:58,075 SCALES_SPRAY
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:02:58,075 EQUIPMENT_MODEL
+[2680166281.py:6 -            print_log() ] 2022-06-16 16:02:58,075 Test_sqlite_45
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:10:42,178 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:10:42,179 Start to add new unique EQUIPMENT_TYPE and EQUIPMENT_MODEL_NAME
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:10:42,179 <sqlite3.Cursor object at 0x7fba7d9eafc0>
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:10:42,179 EQUIPMENT_TYPE
+[2680166281.py:6 -            print_log() ] 2022-06-16 16:10:42,179 SCALES_SPRAY
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:10:42,180 EQUIPMENT_MODEL_NAME
+[2680166281.py:6 -            print_log() ] 2022-06-16 16:10:42,180 Test_sqlite_45
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:11:02,372 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:11:02,373 Start to add new unique EQUIPMENT_TYPE and EQUIPMENT_MODEL_NAME
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:11:02,373 Error in creating new EQUIPMENT_TYPE in EQUIPMENT table 
+[2680166281.py:6 -            print_log() ] 2022-06-16 16:11:02,373 UNIQUE constraint failed: EQUIPMENT.EQUIPMENT_MODEL_NAME
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:11:45,073 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:11:45,074 Start to add new unique EQUIPMENT_TYPE and EQUIPMENT_MODEL_NAME
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:11:45,074 <sqlite3.Cursor object at 0x7fba7d9eaf40>
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:11:45,075 EQUIPMENT_TYPE
+[2680166281.py:6 -            print_log() ] 2022-06-16 16:11:45,075 SCALES_SPRAY
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:11:45,075 EQUIPMENT_MODEL_NAME
+[2680166281.py:6 -            print_log() ] 2022-06-16 16:11:45,075 PCF_MODEL_10
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:46:29,643 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:46:29,644 Start to add new unique equipment data
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:46:29,644 <sqlite3.Cursor object at 0x7fba7d9e9ec0>
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:46:29,644 TYPE
+[2680166281.py:6 -            print_log() ] 2022-06-16 16:46:29,644 SCALES_SPRAY
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:46:29,645 MODEL
+[2680166281.py:6 -            print_log() ] 2022-06-16 16:46:29,645 800
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:46:29,645 NAME
+[2680166281.py:6 -            print_log() ] 2022-06-16 16:46:29,645 PCF_MODEL_10
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:46:29,645 LOCATION
+[2680166281.py:6 -            print_log() ] 2022-06-16 16:46:29,645 Agrarka_1212
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:46:29,645 PERSON
+[2680166281.py:6 -            print_log() ] 2022-06-16 16:46:29,645 Yerkebulan
+[2680166281.py:4 -            print_log() ] 2022-06-16 16:46:29,645 CONTACT
+[2680166281.py:6 -            print_log() ] 2022-06-16 16:46:29,645 +77779980051
+[2680166281.py:4 -            print_log() ] 2022-06-16 17:03:41,313 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 17:03:41,314 Error in creating new unique equipment data in EQUIPMENT table 
+[2680166281.py:6 -            print_log() ] 2022-06-16 17:03:41,314 no such table: EQUIPMENT
+[2680166281.py:4 -            print_log() ] 2022-06-16 17:04:08,545 Opened database successfully
+[2680166281.py:4 -            print_log() ] 2022-06-16 17:04:08,545 Start to add new unique equipment data
+[2680166281.py:4 -            print_log() ] 2022-06-16 17:04:08,546 TYPE
+[2680166281.py:6 -            print_log() ] 2022-06-16 17:04:08,546 SCALES_SPRAY
+[2680166281.py:4 -            print_log() ] 2022-06-16 17:04:08,546 MODEL
+[2680166281.py:6 -            print_log() ] 2022-06-16 17:04:08,546 800
+[2680166281.py:4 -            print_log() ] 2022-06-16 17:04:08,546 EQUIPMENT_NAME
+[2680166281.py:6 -            print_log() ] 2022-06-16 17:04:08,546 PCF_MODEL_10
+[2680166281.py:4 -            print_log() ] 2022-06-16 17:04:08,546 LOCATION
+[2680166281.py:6 -            print_log() ] 2022-06-16 17:04:08,546 Agrarka_1212
+[2680166281.py:4 -            print_log() ] 2022-06-16 17:04:08,546 PERSON
+[2680166281.py:6 -            print_log() ] 2022-06-16 17:04:08,546 Yerkebulan
+[2680166281.py:4 -            print_log() ] 2022-06-16 17:04:08,546 CONTACT
+[2680166281.py:6 -            print_log() ] 2022-06-16 17:04:08,546 +77779980051
