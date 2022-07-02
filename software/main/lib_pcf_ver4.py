@@ -140,6 +140,8 @@ def Staging_Into_Spray_Table():
                             (animal_id, equipment_name, spray_type, order_time, spray_status))
         cur.commit()
         cur.close()
+        cursor_equipment.close()
+        cursor_zero.close()
     except Exception as e:
         print_log("Error in adding data into SPRAY table", e)
     else:
@@ -188,12 +190,12 @@ def Spray_Animal_by_Spray_Status(animal_id, power, duration):
 # Insert to zero table new unique equipment data
 def Insert_New_Unique_Equipment_Type_Model(type, model, equipment_name, location, person, contact):
     try:
-        conn = sq3.connect('main_database.db')
+        cur = sq3.connect('main_database.db')
         print_log("Opened database successfully")
-        cursor = conn.execute("SELECT TYPE, MODEL, EQUIPMENT_NAME, LOCATION, PERSON, CONTACT from EQUIPMENT")           
-        print_log("Start to add new unique equipment data")
+        #cursor = cur.execute("SELECT TYPE, MODEL, EQUIPMENT_NAME, LOCATION, PERSON, CONTACT from EQUIPMENT")           
+        #print_log("Start to add new unique equipment data")
         data_for_query = (type, model, equipment_name, location, person, contact)
-        conn.execute("INSERT INTO EQUIPMENT (TYPE, MODEL, EQUIPMENT_NAME, LOCATION, PERSON, CONTACT) VALUES (?, ?, ?, ?, ?, ?)",
+        cur.execute("INSERT INTO EQUIPMENT (TYPE, MODEL, EQUIPMENT_NAME, LOCATION, PERSON, CONTACT) VALUES (?, ?, ?, ?, ?, ?)",
                     (type, model, equipment_name, location, person, contact))
 
         print_log("TYPE", type)
@@ -202,8 +204,8 @@ def Insert_New_Unique_Equipment_Type_Model(type, model, equipment_name, location
         print_log("LOCATION", location)
         print_log("PERSON", person)
         print_log("CONTACT", contact)
-        conn.commit()
-        conn.close()
+        cur.commit()
+        cur.close()
 
     except Exception as e:
         print_log("Error in creating new unique equipment data in EQUIPMENT table ", e)
@@ -472,14 +474,14 @@ def Connect_ARD_get_weight(cow_id, s, type_scales):
 
 
             weight_list = []
-            print_log("Weight_finall befor return :", weight_finall)
-            return(float("{0:.2f}".format(weight_finall)), start_datetime)
+            # print_log("Weight_finall befor return :", weight_finall)
+            # return(float("{0:.2f}".format(weight_finall)), start_datetime)
     except Exception as e:
         print_log("Error connection to Arduino", e)
-        return(-22, -22)
     else:
-        print_log("lid:Con_ARD: weight_finall in else", weight_finall)
-        return(weight_finall, start_datetime)
+        print_log("Weight_finall befor return :", weight_finall)
+        weight_finall =  (float("{0:.2f}".format(weight_finall)))
+        return weight_finall
 ###################################################################################################
 
 ###################################################################################################

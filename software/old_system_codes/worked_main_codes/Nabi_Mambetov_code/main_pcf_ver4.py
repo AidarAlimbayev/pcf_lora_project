@@ -2,7 +2,7 @@
 import lib_pcf_ver4 as pcf
 import time
 
-time.sleep(60)
+time.sleep(10)
 from datetime import datetime, date, time
 
 import serial
