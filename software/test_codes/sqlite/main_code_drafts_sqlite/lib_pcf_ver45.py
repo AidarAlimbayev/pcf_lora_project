@@ -1,11 +1,9 @@
 #!/usr/bin/python
-# pre version 4.5 Aidar edition
 from datetime import datetime, date, time
 
 #from sklearn import exceptions
 import serial
 import time
-import timeit
 import socket
 import json
 import requests
@@ -18,28 +16,13 @@ import sqlite3 as sq3
 import RPi.GPIO as GPIO
 from time import sleep
 
+
+power = 100
 duration = 10
+
 
 # name of log file as datetime of creation example: "2022-06-12_16_44_22.890654.log"
 logging.basicConfig(filename = '%s.log'%str(datetime.now().strftime("%Y-%m-%d_%H_%M_%S")), level = logging.DEBUG, format='[%(filename)s:%(lineno)s - %(funcName)20s() ] %(asctime)s %(message)s')
-
-###################################################################################################
-# cutter of old id response from schfon reader
-def old_id_cutter(animal_id):
-    try:
-        print_log("Start old id cutter function")
-
-        # check 466 line of this library
-    except Exception as e:
-        print_log("Error: old id cutter function has an error ", e)
-
-    else:
-        print_log("Success: old id cutted", animal_id)
-        return 0
-
-
-
-###################################################################################################
 
 
 ###################################################################################################
@@ -56,20 +39,30 @@ def print_log(message = None, value = None): # Function to logging and printing 
 
 ###################################################################################################
 # function creates pwm signal on 13th pin of the raspberry with 100 Hz frequency. 
-# duration in secs
-def PWM_GPIO_RASP(duration = 10): 
+# power in % (0-100), duration in secs
+def PWM_GPIO_RASP(power = 100, duration = 10): 
     try:
         print_log("Start PWM function to spray command from raspberry")
-        pin = 40            
-        GPIO.setmode(GPIO.BOARD)
+        GPIO_PWM_0 = 13                
+
         GPIO.setwarnings(True)
-        GPIO.setup(pin,GPIO.OUT)
-        GPIO.output(pin,GPIO.HIGH)
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(GPIO_PWM_0, GPIO.OUT)
 
-        time.sleep(duration) # time of spray
+        pi_pwm = GPIO.PWM(GPIO_PWM_0, 100)
+        pi_pwm.start(0)
+        
+        for x in range (int(power/10)):
+            pi_pwm.ChangeDutyCycle(power/10*x)
+            sleep(0.2)
 
-        GPIO.output(pin,GPIO.LOW)
-        GPIO.cleanup()
+        sleep(duration)
+
+        for x in range (int(power/10)):    
+            pi_pwm.ChangeDutyCycle(power/10*(10-x))
+            sleep(0.2)
+
+        pi_pwm.stop()
     except Exception as e:
         print_log("Error: PWM function isn't work ", e)
     else:
@@ -122,7 +115,7 @@ def Staging_Into_Spray_Table():
 
 ###################################################################################################
 # Function of spray command by check of animal_id and spray_status
-def Spray_Animal_by_Spray_Status(animal_id, duration):
+def Spray_Animal_by_Spray_Status(animal_id, power, duration):
     try:
         print_log("Start spray function")
         cur = sq3.connect('main_database.db')
@@ -139,7 +132,7 @@ def Spray_Animal_by_Spray_Status(animal_id, duration):
                 if spray_status == "WAIT":
                     ##########################################
                     # RUN GPIO PWM function
-                    PWM_GPIO_RASP(duration)
+                    PWM_GPIO_RASP(power, duration)
                     ##########################################
                     data_for_query = ('DONE', datetime.now() , case_id)
                     sqlite_querry = """UPDATE SPRAY SET SPRAY_STATUS = ?, DONE_TIME = ? WHERE CASE_ID = ?"""                 
@@ -159,9 +152,12 @@ def Spray_Animal_by_Spray_Status(animal_id, duration):
 # Insert to zero table new unique equipment data
 def Insert_New_Unique_Equipment_Type_Model(type, model, equipment_name, location, person, contact):
     try:
-        cur = sq3.connect('main_database.db')
+        conn = sq3.connect('main_database.db')
         print_log("Opened database successfully")
-        cur.execute("INSERT INTO EQUIPMENT (TYPE, MODEL, EQUIPMENT_NAME, LOCATION, PERSON, CONTACT) VALUES (?, ?, ?, ?, ?, ?)",
+        cursor = conn.execute("SELECT TYPE, MODEL, EQUIPMENT_NAME, LOCATION, PERSON, CONTACT from EQUIPMENT")           
+        print_log("Start to add new unique equipment data")
+        data_for_query = (type, model, equipment_name, location, person, contact)
+        conn.execute("INSERT INTO EQUIPMENT (TYPE, MODEL, EQUIPMENT_NAME, LOCATION, PERSON, CONTACT) VALUES (?, ?, ?, ?, ?, ?)",
                     (type, model, equipment_name, location, person, contact))
 
         print_log("TYPE", type)
@@ -170,8 +166,8 @@ def Insert_New_Unique_Equipment_Type_Model(type, model, equipment_name, location
         print_log("LOCATION", location)
         print_log("PERSON", person)
         print_log("CONTACT", contact)
-        cur.commit()
-        cur.close()
+        conn.commit()
+        conn.close()
 
     except Exception as e:
         print_log("Error in creating new unique equipment data in EQUIPMENT table ", e)
@@ -185,17 +181,17 @@ def Insert_New_Unique_Equipment_Type_Model(type, model, equipment_name, location
 # Insert to zero table new unique animal_id 
 def Insert_New_Unique_Animal_ID(animal_id):
     try:
-        cur = sq3.connect('main_database.db')
+        conn = sq3.connect('main_database.db')
         print_log("Opened database successfully")
-        cursor = cur.execute("SELECT ANIMAL_ID from ZERO")           
+        cursor = conn.execute("SELECT ANIMAL_ID from ZERO")           
         print_log("animal_id", animal_id)
         print_log("Start to add new unique animal id")
         data_for_query = (animal_id)
-        cur.execute("INSERT INTO ZERO (ANIMAL_ID) VALUES (?)",
+        conn.execute("INSERT INTO ZERO (ANIMAL_ID) VALUES (?)",
                     (animal_id,))                    
         print_log("animal_id", animal_id)
-        cur.commit()
-        cur.close()
+        conn.commit()
+        conn.close()
 
     except Exception as e:
         print_log("Error in creating new animal_id in zero table ", e)
@@ -208,26 +204,26 @@ def Insert_New_Unique_Animal_ID(animal_id):
 ###################################################################################################
 # Collect to database function 
 
-def Collect_to_Main_Data_Table(animal_id, weight, equipment_name, drink_duration):
+def Collect_to_Main_Data_Table(animal_id, weight, equipment_name):
     try:
         Insert_New_Unique_Animal_ID(animal_id)
         #######
         # insert new data in MAIN_DATA table
         data_status = 'NO'
-        #drink_duration= 'NULL'
+        drink_duration= 'NULL'
         event_time = datetime.now()
         transfer_time = 'NULL'
 
-        cur = sq3.connect('main_database.db')
+        conn = sq3.connect('main_database.db')
         print_log("Opened database successfully")
-        cur.execute("INSERT INTO MAIN_DATA (ANIMAL_ID, EVENT_TIME, WEIGHT, EQUIPMENT_NAME, DRINK_DURATION, DATA_STATUS, TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?, ?)",
+        conn.execute("INSERT INTO MAIN_DATA (ANIMAL_ID, EVENT_TIME, WEIGHT, EQUIPMENT_NAME, DRINK_DURATION, DATA_STATUS, TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?, ?)",
                                             (animal_id, event_time, weight, equipment_name, drink_duration, data_status, transfer_time))
         print_log("ANIMAL_ID", animal_id)
         print_log("EVENT_TIME", event_time)
         print_log("WEIGHT", weight)
         print_log("EQUIPMENT_NAME", equipment_name)
-        cur.commit()
-        cur.close()
+        conn.commit()
+        conn.close()
 
     except Exception as e:
         print_log("Error to save data in MAIN_DATA ", e)
@@ -247,12 +243,12 @@ def Collect_to_Raw_Data_Table(animal_id, weight, equipment_name):
         event_time = datetime.now()
         transfer_time = 'NULL'
 
-        cur = sq3.connect('main_database.db')
+        conn = sq3.connect('main_database.db')
         print_log("Opened database successfully")
-        cur.execute("INSERT INTO RAW_DATA (ANIMAL_ID, EVENT_TIME, WEIGHT, EQUIPMENT_NAME, DATA_STATUS, TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?)",
+        conn.execute("INSERT INTO RAW_DATA (ANIMAL_ID, EVENT_TIME, WEIGHT, EQUIPMENT_NAME, DATA_STATUS, TRANSFER_TIME ) VALUES(?, ?, ?, ?, ?, ?)",
                                             (animal_id, event_time, weight, equipment_name, data_status, transfer_time))
-        cur.commit()
-        cur.close()
+        conn.commit()
+        conn.close()
 
         print_log("ANIMAL_ID", animal_id)
         print_log("EVENT_TIME", event_time)
@@ -273,10 +269,10 @@ def send_data_to_server_from_main_table(): # Sending data into Igor's server thr
 
         # Extract info from cows table of main_database
         #    
-        cur = sq3.connect('main_database.db')
+        conn = sq3.connect('main_database.db')
         #print_log("Opened database successfully")
 
-        cursor = cur.execute("SELECT CASE_ID, ANIMAL_ID, EVENT_TIME, WEIGHT, SCALES_TYPE, LAST_DRINK_DURATION, MAIN_DATA_STATUS, DATA_TRANSFER_TIME from MAIN_DATA_TABLE")
+        cursor = conn.execute("SELECT CASE_ID, ANIMAL_ID, EVENT_TIME, WEIGHT, SCALES_TYPE, LAST_DRINK_DURATION, MAIN_DATA_STATUS, DATA_TRANSFER_TIME from MAIN_DATA_TABLE")
 
         for row in cursor:
             if row[6] == 'NO': # check status in table
@@ -313,14 +309,15 @@ def send_data_to_server_from_main_table(): # Sending data into Igor's server thr
                     # change status
                     data_for_query = ('YES', datetime.now() , row[0])
                     sqlite_querry = """UPDATE MAIN_DATA_TABLE SET MAIN_DATA_STATUS = ?, DATA_TRANSFER_TIME = ? WHERE CASE_ID = ?"""                 
-                    cur.execute(sqlite_querry, data_for_query)
-                    cur.commit()
-                    cur.close()
+                    conn.execute(sqlite_querry, data_for_query)
+                    conn.commit()
+          
                     
     except Exception as e:
         print_log("Error send data to server", e)
     else:
         print_log("Operation update database and sending to server done succesfully")
+        conn.close()
         return 0
 ###################################################################################################
 
@@ -357,7 +354,7 @@ def check_internet_connection():
 #########################################################################################################################
 # Send to raw data server directly from main function
 #def Send_RawData_to_server(animal_id, weight_new, type_scales, start_datetime): # Sending data into Igor's server through JSON
-def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): # Sending data into Igor's server through JSON
+def Send_RawData_to_server(animal_id, weight_new, type_scales): # Sending data into Igor's server through JSON
 
     try:
         print_log("START SEND RawDATA TO SERVER:")
@@ -366,8 +363,7 @@ def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): 
         data = {"AnimalNumber" : animal_id,
                 "Date" : str(datetime.now()),
                 "Weight" : weight_new,
-                "ScalesModel" : type_scales,
-                "RawWeightId" : start_timedate}
+                "ScalesModel" : type_scales}
         answer = requests.post(url, data=json.dumps(data), headers=headers, timeout=15)
         print_log("Answer from RawData server: ", answer) # Is it possible to stop on this line in the debug?
         print_log("Content from RawData server: ", answer.content)
@@ -375,10 +371,7 @@ def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): 
         print_log("Error send data to RawData server", e)
     else:
         print_log("4 step send RawData")
-#########################################################################################################################
 
-
-#########################################################################################################################
 def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino through USB by Serial Port   
     try:
         print_log("CONNECT ARDUINO")
@@ -397,8 +390,8 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         print_log("Weight new after cleaning :", float(weight_new))
                 
         weight_list = []
-        start_timedate = str(datetime.now())
-        drink_start_time = timeit.default_timer()
+        #mid_weight = 0
+        #start_datetime = str(datetime.now())
         while (float(weight_new) > 10): # Collecting weight to array 
             weight = (str(s.readline()))
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
@@ -406,14 +399,17 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             
             # Here the place to add RawWeights sending function
             #################################################################################
-            Send_RawData_to_server(cow_id, weight_new, type_scales, start_timedate)
+            Send_RawData_to_server(cow_id, weight_new, type_scales)
             Collect_to_Raw_Data_Table(cow_id, weight_new, type_scales)
-            Spray_Animal_by_Spray_Status(cow_id, duration)
+            Spray_Animal_by_Spray_Status(cow_id, power, duration)
+                        
+            # Change this functio to database select type 04/06/2022
             #################################################################################
             # End of Raw data function
+
             weight_list.append(float(weight_new))
         if weight_list == 0 or weight_list == []:
-            print_log("Error, null weight list")
+            return(-11)
         else:
             if weight_list != []: # Here must added check on weight array null value and one element array
                 del weight_list[-1]
@@ -430,20 +426,15 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             
             # End of collectin raw data into CSV file
             weight_list = []
-            drink_end_time = datetime.now()
-
-            # drink duration calculations
-            drink_duration = drink_end_time - drink_start_time
             print_log("Weight_finall befor return :", weight_finall)
+            return(float("{0:.2f}".format(weight_finall)))
     except Exception as e:
         print_log("Error connection to Arduino", e)
+        return(-22)
     else:
         print_log("lid:Con_ARD: weight_finall in else", weight_finall)
-        return (float("{0:.2f}".format(weight_finall))), drink_duration
-#########################################################################################################################
+        return(weight_finall)
 
-
-#########################################################################################################################
 def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting cow ID in str format
     try:    
         print_log("START RFID FUNCTION")
@@ -481,9 +472,7 @@ def Connect_RFID_reader(): # Connection to RFID Reader through TCP and getting c
         print_log("Error connect to Arduino ", e)
     else: 
         print_log("2 step RFID")
-#########################################################################################################################
-
-#########################################################################################################################
+    
 def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data into Igor's server through JSON
     try:
         print_log("START SEND DATA TO SERVER:")
@@ -500,9 +489,7 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data i
         print_log("Error send data to server", e)
     else:
         print_log("4 step send data")
-#########################################################################################################################
 
-#########################################################################################################################
 def Collect_data_CSV(cow_id, weight_finall, type_scales): # Collocting datat into CSV, in the future must be in SQLite
     try:
         print_log("START COLLECT DATA TO CSV")

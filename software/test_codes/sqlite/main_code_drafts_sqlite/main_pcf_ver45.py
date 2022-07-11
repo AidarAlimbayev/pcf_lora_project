@@ -1,24 +1,25 @@
 #!/usr/bin/sudo python
-# pre version 4.5 Aidar edition
-import lib_pcf as pcf
+import lib_pcf_ver45 as pcf
 
 pcf.time.sleep(10) # sleep time for connection to serial library
 
 
 # config of equipment and contacts
 #old variable type_scales -> new variable equipment_name (must be unique)
-type_scales = "pcf_model7" # equipment_name 
+type_scales = "Test_sqlite_ver45" # equipment_name 
 type = "SCALES"
 model = "800"
-location = 'SHOS'
-person = 'Sergey'
-contact = '+77053209585'
+location = 'Agrarka_1212'
+person = 'Yerkebulan Salmenov'
+contact = '+77779980051'
 
 
 # null values for variables
 animal_id = "b'435400040001'" # value of null answer of RFID reader
 null_id = "b'435400040001'"
 weight_finall = 0
+
+power = 100
 duration = 10
 
 # Connection to arduino
@@ -55,7 +56,7 @@ def main():
             pcf.print_log("After read cow ID :", animal_id)
             pcf.Insert_New_Unique_Animal_ID(animal_id)
                         
-            weight_finall, drink_duration = pcf.Connect_ARD_get_weight(animal_id, s, type_scales) # Grab weight from arduino and collect to weight_finall
+            weight_finall = pcf.Connect_ARD_get_weight(animal_id, s, type_scales) # Grab weight from arduino and collect to weight_finall
             pcf.print_log("main: weight_finall", weight_finall)
 
             if str(weight_finall) > '0':
@@ -63,17 +64,17 @@ def main():
                 pcf.Collect_data_CSV(animal_id, weight_finall, type_scales) # Save weight data into CSV file
 
                 pcf.print_log("main: Collect data to main database")
-                pcf.Collect_to_Main_Data_Table(animal_id, weight_finall, type_scales, drink_duration)
+                pcf.Collect_to_Main_Data_Table(animal_id, weight_finall, type_scales)
                 
                 #pcf.print_log("main: Spray ")
-                #pcf.Spray_Animal_by_Spray_Status(animal_id, duration)
+                #pcf.Spray_Animal_by_Spray_Status(animal_id, power, duration)
 
                 pcf.print_log("main: Send data to server")
                 pcf.Send_data_to_server(animal_id, weight_finall, type_scales) # Send data to server by JSON post request
 
                 #if check_internet_connection() == True :
                     #pcf.Send_data_to_server_from_sqlite()
-                # pcf.
-                # cutter 
+                #cow_id = '070106156079'
+                cow_id = "b'435400040001'"
 
 main()
