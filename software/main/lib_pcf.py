@@ -381,6 +381,7 @@ def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): 
 #########################################################################################################################
 def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino through USB by Serial Port   
     try:
+        weight_finall = 0
         print_log("CONNECT ARDUINO")
         s.flushInput() # Cleaning buffer of Serial Port
         s.flushOutput() # Cleaning output buffer of Serial Port
@@ -434,12 +435,13 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
 
             # drink duration calculations
             drink_duration = drink_end_time - drink_start_time
-            print_log("Weight_finall befor return :", weight_finall)
+            #print_log("Weight_finall befor return :", weight_finall)
     except Exception as e:
         print_log("Error connection to Arduino", e)
     else:
         print_log("lid:Con_ARD: weight_finall in else", weight_finall)
-        return (float("{0:.2f}".format(weight_finall))), drink_duration
+        weight_to_return = (float("{0:.2f}".format(weight_finall)))
+        return weight_to_return, drink_duration
 #########################################################################################################################
 
 
