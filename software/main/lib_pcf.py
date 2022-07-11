@@ -397,7 +397,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
                 
         weight_list = []
         start_timedate = str(datetime.now())
-        drink_start_time = datetime.now()
+        drink_start_time = timeit.default_timer()
         while (float(weight_new) > 10): # Collecting weight to array 
             weight = (str(s.readline()))
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
@@ -408,10 +408,12 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             Send_RawData_to_server(cow_id, weight_new, type_scales, start_timedate)
             Collect_to_Raw_Data_Table(cow_id, weight_new, type_scales)
             Spray_Animal_by_Spray_Status(cow_id, duration)
-                        
-            # Change this functio to database select type 04/06/2022
             #################################################################################
             # End of Raw data function
+
+            # drink duration calculations
+            drink_duration = drink_end_time - drink_start_time
+            
 
             weight_list.append(float(weight_new))
         if weight_list == 0 or weight_list == []:
