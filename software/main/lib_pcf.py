@@ -17,6 +17,8 @@ import statistics
 import sqlite3 as sq3
 import RPi.GPIO as GPIO
 from time import sleep
+import timeit
+
 
 duration = 10
 
@@ -382,6 +384,7 @@ def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): 
 def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino through USB by Serial Port   
     try:
         weight_finall = 0
+        drink_duration = 0
         print_log("CONNECT ARDUINO")
         s.flushInput() # Cleaning buffer of Serial Port
         s.flushOutput() # Cleaning output buffer of Serial Port
@@ -431,7 +434,8 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             
             # End of collectin raw data into CSV file
             weight_list = []
-            drink_end_time = datetime.now()
+            drink_end_time = timeit.default_timer()
+
 
             # drink duration calculations
             drink_duration = drink_end_time - drink_start_time
@@ -441,7 +445,8 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
     else:
         print_log("lid:Con_ARD: weight_finall in else", weight_finall)
         weight_to_return = (float("{0:.2f}".format(weight_finall)))
-        return weight_to_return, drink_duration
+        if weight_to_return != 0:
+            return [weight_to_return, drink_duration]
 #########################################################################################################################
 
 
