@@ -404,7 +404,7 @@ def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): 
 def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino through USB by Serial Port   
     try:
         weight_finall = 0
-        drink_duration = 0
+        drink_duration = 10
         print_log("CONNECT ARDUINO")
         s.flushInput() # Cleaning buffer of Serial Port
         s.flushOutput() # Cleaning output buffer of Serial Port
