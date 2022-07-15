@@ -81,7 +81,8 @@ def old_id_cutter(animal_id):
 def PWM_GPIO_RASP(duration = 10): 
     try:
         print_log("Start PWM function to spray command from raspberry")
-        pin = 40            
+        pin = 40     
+        time.sleep(3)       
         GPIO.setmode(GPIO.BOARD)
         GPIO.setwarnings(True)
         GPIO.setup(pin,GPIO.OUT)
@@ -139,6 +140,11 @@ def Staging_Into_Spray_Table():
         print_log("Success: Data into SPRAY table added")
         return 0
 ###################################################################################################
+
+
+###################################################################################################
+# Spray everybody every time
+def spray_everybody_every_time():
 
 
 ###################################################################################################
@@ -404,7 +410,7 @@ def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): 
 def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino through USB by Serial Port   
     try:
         weight_finall = 0
-        drink_duration = 10
+        drink_duration = 5
         print_log("CONNECT ARDUINO")
         s.flushInput() # Cleaning buffer of Serial Port
         s.flushOutput() # Cleaning output buffer of Serial Port
@@ -432,7 +438,8 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             #################################################################################
             Send_RawData_to_server(cow_id, weight_new, type_scales, start_timedate)
             Collect_to_Raw_Data_Table(cow_id, weight_new, type_scales)
-            Spray_Animal_by_Spray_Status(cow_id, duration)
+            #Spray_Animal_by_Spray_Status(cow_id, duration)
+            PWM_GPIO_RASP(duration)
             #################################################################################
             # End of Raw data function
             weight_list.append(float(weight_new))
