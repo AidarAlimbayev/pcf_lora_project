@@ -403,6 +403,8 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         weight_list = []
         start_timedate = str(datetime.now())
         drink_start_time = timeit.default_timer()
+    
+
         while (float(weight_new) > 10): # Collecting weight to array 
             weight = (str(s.readline()))
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
