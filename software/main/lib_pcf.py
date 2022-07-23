@@ -411,6 +411,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
     try:
         weight_finall = 0
         drink_duration = 5
+        flag_spray = 0
         print_log("CONNECT ARDUINO")
         s.flushInput() # Cleaning buffer of Serial Port
         s.flushOutput() # Cleaning output buffer of Serial Port
@@ -430,6 +431,8 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         start_timedate = str(datetime.now())
         drink_start_time = timeit.default_timer()
         while (float(weight_new) > 10): # Collecting weight to array 
+            if flag_spray == 0:
+                PWM_GPIO_RASP(duration)
             weight = (str(s.readline()))
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
             print_log("Weight from Arduino :", weight_new)
@@ -439,7 +442,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             Send_RawData_to_server(cow_id, weight_new, type_scales, start_timedate)
             Collect_to_Raw_Data_Table(cow_id, weight_new, type_scales)
             #Spray_Animal_by_Spray_Status(cow_id, duration)
-            PWM_GPIO_RASP(duration)
+            
             #################################################################################
             # End of Raw data function
             weight_list.append(float(weight_new))
@@ -448,6 +451,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         else:
             if weight_list != []: # Here must added check on weight array null value and one element array
                 del weight_list[-1]
+                
             
             # new method of averaging
             weight_finall = statistics.median(weight_list)
@@ -462,6 +466,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             # End of collectin raw data into CSV file
             weight_list = []
             drink_end_time = timeit.default_timer()
+            flag_spray = 1
 
 
             # drink duration calculations

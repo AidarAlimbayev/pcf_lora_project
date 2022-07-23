@@ -1,0 +1,1207 @@
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:48:18,866 Connect arduino
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:48:18,866 /dev/ttyACM0
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:48:18,867 Configuration of serial: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:48:18,867 Serial<id=0xb664ff58, open=True>(port='/dev/ttyACM0', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:48:18,867 Success: Arduino connected
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:48:18,868 Start to add unique equipment in database
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:48:18,869 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:48:18,872 Error in creating new unique equipment data in EQUIPMENT table 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:48:18,872 UNIQUE constraint failed: EQUIPMENT.EQUIPMENT_NAME
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:48:18,873 Success: Unique equipment added to database
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:48:18,873 Start main script
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:48:18,873 Infinite cycle
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:48:18,874 START RFID FUNCTION
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:48:18,874 START Animal ID animal_id: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:48:18,874 b'435400040001'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:48:18,875 START Null id null_id : 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:48:18,875 b'435400040001'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:36,931 Raw ID animal_id: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:36,931 b'4354001c004501c38d140a0c05f0010f0101e2806894000040103003dc20bdec'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:36,932 New ID animal_id_new: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:36,932 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:36,932 Null id null_id : 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:36,932 b'435400040001'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:36,933 Success step 2 RFID. animal id new:
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:36,933 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:36,933 First step cow ID :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:36,934 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:37,935 After read cow ID :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:37,936 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:37,936 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:37,938 animal_id
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:37,939 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:37,939 Start to add new unique animal id
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:37,939 Error in creating new animal_id in zero table 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:37,939 name 'NULL' is not defined
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:37,940 CONNECT ARDUINO
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:37,940 Connect arduino after flush
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:37,941 Serial<id=0xb664ff58, open=True>(port='/dev/ttyACM0', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:37,941 Connect arduino s.name fuction answer :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:37,941 /dev/ttyACM0
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:37,942 Start collect weight
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:38,384 First weight from Arduino
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:38,385 b'324\r\n'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:38,385 After s.readline function
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:38,386 Weight new after cleaning :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:38,386 324.0
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:40,223 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:40,224 326
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:40,224 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:51:40,260 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:51:40,406 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:40,409 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:40,409 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:40,409 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:40,410 b'399550'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:40,410 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:40,411 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:40,428 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:40,429 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:40,429 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:40,430 2022-07-23 09:51:40.410679
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:40,430 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:40,430 326
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:40,431 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:40,431 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:40,431 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:53,445 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:53,446 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:53,446 326
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:53,446 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:51:53,452 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:51:53,564 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:53,566 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:53,566 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:53,567 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:53,567 b'399552'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:53,567 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:53,568 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:53,584 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:53,584 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:53,584 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:53,584 2022-07-23 09:51:53.567973
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:53,585 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:53,585 326
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:53,585 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:51:53,585 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:51:53,586 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:06,599 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:06,600 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:06,601 325
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:06,601 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:52:06,606 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:52:06,738 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:06,740 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:06,740 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:06,741 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:06,741 b'399554'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:06,741 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:06,742 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:06,754 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:06,755 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:06,755 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:06,755 2022-07-23 09:52:06.742011
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:06,756 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:06,756 325
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:06,756 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:06,756 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:06,757 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:19,770 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:19,771 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:19,772 327
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:19,772 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:52:19,777 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:52:19,897 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:19,899 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:19,900 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:19,900 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:19,900 b'399556'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:19,900 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:19,901 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:19,916 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:19,917 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:19,917 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:19,917 2022-07-23 09:52:19.901186
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:19,918 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:19,918 327
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:19,918 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:19,918 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:19,919 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:32,930 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:32,931 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:32,931 326
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:32,931 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:52:32,936 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:52:33,102 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:33,104 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:33,105 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:33,105 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:33,105 b'399558'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:33,105 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:33,106 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:33,119 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:33,119 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:33,119 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:33,120 2022-07-23 09:52:33.106101
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:33,120 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:33,120 326
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:33,120 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:33,121 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:33,121 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:46,128 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:46,129 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:46,129 326
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:46,130 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:52:46,135 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:52:46,295 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:46,298 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:46,298 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:46,298 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:46,299 b'399560'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:46,299 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:46,300 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:46,313 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:46,313 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:46,313 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:46,314 2022-07-23 09:52:46.299552
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:46,314 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:46,314 326
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:46,314 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:46,315 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:46,315 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:59,328 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:59,329 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:59,330 328
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:59,330 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:52:59,335 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:52:59,455 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:59,458 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:59,458 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:59,459 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:59,459 b'399562'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:59,459 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:59,460 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:59,479 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:59,479 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:59,479 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:59,480 2022-07-23 09:52:59.459984
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:59,480 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:59,480 328
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:59,481 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:52:59,481 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:52:59,481 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:12,495 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:12,496 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:12,496 328
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:12,496 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:53:12,502 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:53:12,608 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:12,610 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:12,610 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:12,610 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:12,611 b'399564'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:12,611 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:12,612 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:12,626 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:12,627 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:12,627 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:12,627 2022-07-23 09:53:12.611751
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:12,627 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:12,628 328
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:12,628 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:12,628 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:12,629 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:25,641 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:25,642 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:25,642 327
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:25,643 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:53:25,648 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:53:25,779 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:25,781 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:25,781 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:25,781 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:25,782 b'399566'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:25,782 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:25,783 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:25,797 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:25,797 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:25,797 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:25,798 2022-07-23 09:53:25.782620
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:25,798 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:25,798 327
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:25,798 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:25,799 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:25,799 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:38,812 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:38,813 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:38,814 328
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:38,814 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:53:38,819 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:53:38,901 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:38,903 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:38,904 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:38,904 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:38,904 b'399568'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:38,905 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:38,905 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:38,927 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:38,928 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:38,928 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:38,928 2022-07-23 09:53:38.905344
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:38,929 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:38,929 328
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:38,929 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:38,929 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:38,930 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:51,943 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:51,944 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:51,944 327
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:51,945 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:53:51,950 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:53:53,743 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:53,746 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:53,746 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:53,746 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:53,747 b'399570'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:53,747 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:53,748 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:53,764 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:53,765 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:53,765 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:53,765 2022-07-23 09:53:53.747753
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:53,766 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:53,766 327
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:53,766 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:53:53,767 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:53:53,767 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:06,780 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:06,781 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:06,782 325
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:06,782 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:54:06,787 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:54:06,911 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:06,913 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:06,913 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:06,914 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:06,914 b'399572'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:06,914 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:06,915 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:06,929 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:06,929 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:06,929 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:06,930 2022-07-23 09:54:06.915032
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:06,930 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:06,930 325
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:06,930 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:06,931 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:06,931 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:19,938 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:19,939 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:19,939 327
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:19,940 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:54:19,945 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:54:20,117 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:20,119 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:20,120 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:20,120 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:20,120 b'399574'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:20,120 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:20,121 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:20,134 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:20,135 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:20,135 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:20,135 2022-07-23 09:54:20.121166
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:20,136 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:20,136 327
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:20,136 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:20,136 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:20,137 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:33,148 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:33,149 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:33,149 326
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:33,150 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:54:33,155 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:54:33,253 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:33,255 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:33,255 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:33,256 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:33,256 b'399576'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:33,256 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:33,257 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:33,275 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:33,276 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:33,276 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:33,276 2022-07-23 09:54:33.256832
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:33,277 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:33,277 326
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:33,277 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:33,277 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:33,278 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:46,291 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:46,292 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:46,292 327
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:46,293 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:54:46,298 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:54:46,389 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:46,391 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:46,391 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:46,392 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:46,392 b'399578'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:46,392 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:46,393 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:46,406 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:46,407 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:46,407 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:46,407 2022-07-23 09:54:46.392996
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:46,408 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:46,408 327
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:46,408 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:46,408 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:46,409 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:59,420 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:59,421 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:59,422 326
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:59,422 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:54:59,427 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:54:59,614 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:59,616 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:59,617 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:59,617 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:59,617 b'399580'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:59,618 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:59,619 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:59,633 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:59,634 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:59,634 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:59,634 2022-07-23 09:54:59.618514
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:59,635 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:59,635 326
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:59,635 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:54:59,636 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:54:59,636 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:12,649 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:12,650 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:12,651 325
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:12,651 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:55:12,656 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:55:12,908 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:12,910 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:12,911 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:12,911 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:12,911 b'399582'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:12,912 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:12,912 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:12,931 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:12,932 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:12,932 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:12,933 2022-07-23 09:55:12.912330
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:12,933 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:12,933 325
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:12,933 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:12,934 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:12,934 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:25,941 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:25,942 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:25,942 330
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:25,943 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:55:25,948 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:55:26,104 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:26,107 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:26,107 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:26,107 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:26,108 b'399584'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:26,108 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:26,109 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:26,123 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:26,124 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:26,124 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:26,124 2022-07-23 09:55:26.108929
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:26,125 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:26,125 330
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:26,125 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:26,126 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:26,126 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:39,139 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:39,140 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:39,141 331
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:39,141 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:55:39,146 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:55:39,249 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:39,251 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:39,251 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:39,252 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:39,252 b'399586'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:39,252 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:39,253 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:39,267 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:39,268 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:39,278 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:39,278 2022-07-23 09:55:39.252812
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:39,279 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:39,279 331
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:39,279 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:39,280 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:39,280 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:52,294 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:52,295 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:52,295 331
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:52,295 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:55:52,301 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:55:52,449 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:52,451 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:52,452 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:52,452 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:52,452 b'399588'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:52,453 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:52,454 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:52,472 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:52,472 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:52,473 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:52,473 2022-07-23 09:55:52.453547
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:52,473 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:52,473 331
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:52,474 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:55:52,474 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:55:52,474 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:05,488 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:05,491 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:05,491 332
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:05,492 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:56:05,497 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:56:05,655 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:05,657 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:05,657 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:05,658 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:05,658 b'399590'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:05,658 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:05,659 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:05,678 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:05,679 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:05,679 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:05,679 2022-07-23 09:56:05.659029
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:05,680 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:05,680 332
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:05,680 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:05,681 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:05,681 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:18,685 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:18,686 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:18,686 331
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:18,687 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:56:18,692 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:56:18,847 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:18,849 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:18,850 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:18,850 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:18,850 b'399592'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:18,851 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:18,852 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:18,866 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:18,867 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:18,867 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:18,867 2022-07-23 09:56:18.851600
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:18,868 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:18,868 331
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:18,868 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:18,869 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:18,869 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:31,882 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:31,883 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:31,884 332
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:31,884 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:56:31,889 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:56:32,165 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:32,167 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:32,168 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:32,168 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:32,168 b'399594'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:32,169 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:32,169 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:32,183 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:32,184 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:32,184 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:32,184 2022-07-23 09:56:32.169354
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:32,185 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:32,185 332
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:32,185 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:32,186 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:32,186 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:45,191 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:45,192 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:45,193 333
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:45,193 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:56:45,198 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:56:45,347 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:45,349 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:45,350 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:45,350 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:45,350 b'399596'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:45,351 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:45,351 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:45,366 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:45,366 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:45,367 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:45,367 2022-07-23 09:56:45.351437
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:45,367 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:45,368 333
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:45,368 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:45,368 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:45,369 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:58,376 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:58,377 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:58,377 335
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:58,378 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:56:58,383 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:56:58,536 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:58,539 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:58,539 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:58,539 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:58,540 b'399598'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:58,540 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:58,541 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:58,555 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:58,555 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:58,555 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:58,556 2022-07-23 09:56:58.540673
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:58,556 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:58,556 335
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:58,556 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:56:58,557 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:56:58,557 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:11,568 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:11,569 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:11,569 342
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:11,570 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:57:11,575 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:57:11,755 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:11,758 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:11,758 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:11,758 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:11,759 b'399600'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:11,759 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:11,760 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:11,774 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:11,775 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:11,775 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:11,775 2022-07-23 09:57:11.759884
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:11,776 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:11,776 342
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:11,776 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:11,776 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:11,777 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:24,786 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:24,788 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:24,788 345
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:24,788 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:57:24,793 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:57:25,016 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:25,019 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:25,019 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:25,020 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:25,020 b'399602'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:25,020 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:25,021 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:25,036 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:25,036 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:25,037 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:25,037 2022-07-23 09:57:25.021134
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:25,037 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:25,038 345
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:25,038 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:25,038 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:25,038 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:38,052 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:38,053 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:38,053 342
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:38,054 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:57:38,059 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:57:38,300 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:38,302 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:38,302 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:38,303 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:38,303 b'399604'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:38,303 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:38,304 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:38,321 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:38,321 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:38,321 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:38,322 2022-07-23 09:57:38.304154
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:38,322 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:38,322 342
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:38,322 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:38,323 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:38,323 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:51,336 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:51,337 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:51,337 346
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:51,338 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:57:51,343 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:57:51,539 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:51,541 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:51,542 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:51,542 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:51,542 b'399606'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:51,543 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:51,544 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:51,563 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:51,563 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:51,564 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:51,564 2022-07-23 09:57:51.543528
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:51,564 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:51,565 346
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:51,565 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:57:51,565 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:57:51,565 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:04,579 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:04,580 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:04,580 328
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:04,581 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:58:04,586 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:58:04,688 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:04,690 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:04,691 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:04,691 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:04,691 b'399608'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:04,691 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:04,692 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:04,710 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:04,711 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:04,711 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:04,711 2022-07-23 09:58:04.692234
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:04,712 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:04,712 328
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:04,712 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:04,712 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:04,713 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:17,726 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:17,727 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:17,727 334
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:17,728 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:58:17,733 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:58:17,887 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:17,889 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:17,890 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:17,890 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:17,890 b'399610'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:17,890 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:17,891 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:17,905 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:17,905 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:17,906 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:17,906 2022-07-23 09:58:17.891149
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:17,906 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:17,906 334
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:17,907 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:17,907 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:17,907 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:30,921 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:30,922 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:30,922 323
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:30,922 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:58:30,927 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:58:34,116 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:34,118 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:34,119 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:34,119 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:34,119 b'399612'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:34,120 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:34,121 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:34,139 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:34,140 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:34,140 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:34,140 2022-07-23 09:58:34.120564
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:34,140 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:34,141 323
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:34,141 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:34,141 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:34,142 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:47,155 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:47,156 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:47,156 326
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:47,157 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:58:47,162 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:58:47,342 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:47,345 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:47,345 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:47,345 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:47,346 b'399615'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:47,346 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:47,347 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:47,365 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:47,366 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:47,366 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:47,366 2022-07-23 09:58:47.346941
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:47,367 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:47,367 326
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:47,367 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:58:47,368 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:58:47,368 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:00,382 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:00,382 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:00,383 328
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:00,383 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:59:00,388 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:59:00,720 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:00,722 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:00,723 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:00,723 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:00,723 b'399617'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:00,724 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:00,725 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:00,738 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:00,739 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:00,739 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:00,740 2022-07-23 09:59:00.724491
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:00,740 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:00,740 328
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:00,741 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:00,741 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:00,741 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:13,755 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:13,756 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:13,756 328
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:13,756 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:59:13,761 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:59:13,957 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:13,960 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:13,960 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:13,960 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:13,961 b'399619'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:13,961 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:13,962 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:13,981 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:13,981 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:13,982 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:13,982 2022-07-23 09:59:13.961791
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:13,982 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:13,983 328
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:13,983 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:13,983 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:13,983 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:26,997 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:26,998 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:26,998 333
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:26,999 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:59:27,004 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:59:27,205 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:27,207 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:27,207 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:27,207 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:27,208 b'399621'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:27,208 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:27,209 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:27,223 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:27,223 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:27,223 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:27,224 2022-07-23 09:59:27.208885
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:27,224 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:27,224 333
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:27,224 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:27,225 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:27,225 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:40,238 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:40,239 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:40,240 335
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:40,240 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:59:40,245 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:59:40,460 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:40,463 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:40,463 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:40,464 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:40,464 b'399623'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:40,464 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:40,465 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:40,479 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:40,480 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:40,480 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:40,480 2022-07-23 09:59:40.465057
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:40,481 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:40,481 335
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:40,481 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:40,482 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:40,482 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:53,495 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:53,496 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:53,497 334
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:53,497 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 09:59:53,502 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 09:59:53,593 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:53,595 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:53,595 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:53,596 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:53,596 b'399625'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:53,596 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:53,597 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:53,611 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:53,611 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:53,612 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:53,612 2022-07-23 09:59:53.597027
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:53,612 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:53,612 334
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:53,613 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 09:59:53,613 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 09:59:53,613 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:06,627 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:06,628 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:06,628 331
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:06,628 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 10:00:06,634 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 10:00:06,823 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:06,825 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:06,825 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:06,826 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:06,826 b'399626'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:06,826 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:06,827 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:06,841 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:06,842 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:06,842 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:06,842 2022-07-23 10:00:06.827188
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:06,843 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:06,843 331
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:06,843 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:06,844 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:06,844 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:19,855 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:19,856 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:19,857 332
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:19,857 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 10:00:19,863 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 10:00:20,101 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:20,104 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:20,104 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:20,104 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:20,105 b'399628'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:20,105 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:20,106 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:20,121 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:20,121 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:20,122 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:20,122 2022-07-23 10:00:20.105706
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:20,122 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:20,123 332
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:20,123 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:20,123 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:20,124 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:33,137 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:33,137 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:33,137 330
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:33,137 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 10:00:33,140 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 10:00:33,256 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:33,257 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:33,258 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:33,258 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:33,258 b'399630'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:33,258 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:33,258 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:33,278 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:33,279 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:33,279 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:33,279 2022-07-23 10:00:33.258601
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:33,280 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:33,280 330
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:33,280 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:33,280 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:33,281 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:46,294 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:46,295 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:46,296 328
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:46,296 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 10:00:46,302 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 10:00:46,562 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:46,563 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:46,564 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:46,564 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:46,564 b'399631'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:46,564 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:46,564 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:46,578 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:46,578 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:46,578 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:46,579 2022-07-23 10:00:46.564633
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:46,579 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:46,579 328
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:46,579 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:46,579 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:46,579 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:59,592 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:59,593 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:59,594 331
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:59,594 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 10:00:59,599 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 10:00:59,765 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:59,767 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:59,768 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:59,768 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:59,768 b'399632'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:59,769 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:59,769 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:59,787 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:59,787 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:59,788 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:59,788 2022-07-23 10:00:59.769384
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:59,788 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:59,789 331
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:59,789 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:00:59,789 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:00:59,790 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:12,803 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:12,804 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:12,804 339
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:12,805 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 10:01:12,810 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 10:01:13,151 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:13,153 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:13,154 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:13,154 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:13,154 b'399633'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:13,155 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:13,156 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:13,176 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:13,177 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:13,177 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:13,178 2022-07-23 10:01:13.155620
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:13,178 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:13,178 339
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:13,179 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:13,179 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:13,179 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:26,188 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:26,189 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:26,195 340
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:26,195 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 10:01:26,201 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 10:01:26,365 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:26,368 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:26,368 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:26,369 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:26,369 b'399634'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:26,369 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:26,370 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:26,384 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:26,384 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:26,385 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:26,385 2022-07-23 10:01:26.369969
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:26,385 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:26,386 340
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:26,386 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:26,386 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:26,386 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:39,400 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:39,401 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:39,401 339
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:39,401 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 10:01:39,407 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 10:01:39,622 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:39,625 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:39,625 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:39,626 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:39,626 b'399635'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:39,626 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:39,627 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:39,641 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:39,642 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:39,642 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:39,642 2022-07-23 10:01:39.626913
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:39,643 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:39,643 339
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:39,643 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:39,643 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:39,644 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:52,657 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:52,658 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:52,658 340
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:52,659 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 10:01:52,664 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 10:01:52,782 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:52,785 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:52,785 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:52,785 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:52,786 b'399636'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:52,786 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:52,787 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:52,807 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:52,808 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:52,808 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:52,809 2022-07-23 10:01:52.786676
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:52,809 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:52,809 340
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:52,810 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:01:52,810 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:01:52,810 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:05,823 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:05,824 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:05,825 341
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:05,825 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 10:02:05,830 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 10:02:05,965 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:05,967 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:05,968 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:05,968 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:05,968 b'399637'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:05,968 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:05,969 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:05,987 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:05,988 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:05,988 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:05,988 2022-07-23 10:02:05.969166
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:05,989 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:05,989 341
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:05,989 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:05,989 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:05,990 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:19,003 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:19,004 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:19,004 341
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:19,005 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 10:02:19,010 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 10:02:19,208 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:19,210 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:19,211 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:19,211 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:19,211 b'399638'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:19,212 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:19,212 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:19,231 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:19,232 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:19,232 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:19,232 2022-07-23 10:02:19.212404
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:19,233 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:19,233 341
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:19,233 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:19,234 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:19,234 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:32,244 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:32,247 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:32,248 340
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:32,248 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 10:02:32,253 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 10:02:34,250 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:34,253 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:34,253 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:34,254 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:34,254 b'399639'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:34,254 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:34,255 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:34,274 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:34,274 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:34,274 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:34,275 2022-07-23 10:02:34.255063
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:34,275 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:34,275 340
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:34,276 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:34,276 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:34,276 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:47,290 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:47,291 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:47,291 342
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:47,291 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 10:02:47,296 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 10:02:47,457 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:47,459 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:47,460 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:47,460 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:47,460 b'399640'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:47,460 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:47,461 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:47,475 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:47,475 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:47,476 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:47,476 2022-07-23 10:02:47.461180
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:47,476 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:47,477 342
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:47,477 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:02:47,477 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:02:47,477 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:00,488 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:00,489 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:00,489 328
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:00,490 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 10:03:00,495 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 10:03:00,608 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:00,610 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:00,610 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:00,611 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:00,611 b'399641'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:00,611 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:00,612 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:00,635 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:00,636 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:00,636 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:00,636 2022-07-23 10:03:00.612194
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:00,637 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:00,637 328
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:00,637 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:00,638 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:00,638 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:13,651 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:13,652 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:13,653 308
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:13,653 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 10:03:13,658 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 10:03:13,881 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:13,883 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:13,883 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:13,884 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:13,884 b'399642'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:13,884 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:13,885 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:13,899 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:13,900 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:13,900 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:13,900 2022-07-23 10:03:13.885194
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:13,901 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:13,901 308
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:13,901 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:13,902 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:13,902 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:26,915 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:26,916 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:26,917 257
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:26,917 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 10:03:26,922 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 10:03:27,105 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 200 6
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:27,110 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:27,110 <Response [200]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:27,110 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:27,111 b'399643'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:27,111 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:27,112 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:27,126 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:27,126 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:27,127 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:27,127 2022-07-23 10:03:27.111742
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:27,127 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:27,127 257
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:27,128 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:27,128 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:27,128 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:40,142 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:40,143 Weight from Arduino :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:40,143 0
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:40,143 START SEND RawDATA TO SERVER:
+[connectionpool.py:227 -            _new_conn() ] 2022-07-23 10:03:40,149 Starting new HTTP connection (1): 194.4.56.86:8501
+[connectionpool.py:452 -        _make_request() ] 2022-07-23 10:03:40,300 http://194.4.56.86:8501 "POST /api/RawWeights HTTP/1.1" 400 37
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:40,302 Answer from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:40,303 <Response [400]>
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:40,303 Content from RawData server: 
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:40,303 b'{"Message":"Invalid live weight (0)"}'
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:40,304 4 step send RawData
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:40,304 Opened database successfully
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:40,318 ANIMAL_ID
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:40,319 40103003dc20
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:40,319 EVENT_TIME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:40,319 2022-07-23 10:03:40.304362
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:40,319 WEIGHT
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:40,320 0
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:40,320 EQUIPMENT_NAME
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:40,320 pcf_model_7
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:40,320 Start PWM function to spray command from raspberry
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:53,334 Success: PWM works well
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:53,334 Weight_finall median :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:53,335 330.00
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:53,335 End of write raw data list :
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:53,335 [326.0, 326.0, 325.0, 327.0, 326.0, 326.0, 328.0, 328.0, 327.0, 328.0, 327.0, 325.0, 327.0, 326.0, 327.0, 326.0, 325.0, 330.0, 331.0, 331.0, 332.0, 331.0, 332.0, 333.0, 335.0, 342.0, 345.0, 342.0, 346.0, 328.0, 334.0, 323.0, 326.0, 328.0, 328.0, 333.0, 335.0, 334.0, 331.0, 332.0, 330.0, 328.0, 331.0, 339.0, 340.0, 339.0, 340.0, 341.0, 341.0, 340.0, 342.0, 328.0, 308.0, 257.0]
+[lib_pcf.py:34 -            print_log() ] 2022-07-23 10:03:53,336 Error connection to Arduino
+[lib_pcf.py:36 -            print_log() ] 2022-07-23 10:03:53,336 unsupported operand type(s) for -: 'datetime.datetime' and 'float'
