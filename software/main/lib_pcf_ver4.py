@@ -1,4 +1,5 @@
 from datetime import datetime, date, time
+from dbm.ndbm import library
 #from httplib2 import RETRIES
 import serial
 import time
@@ -12,6 +13,7 @@ import logging
 import os
 import statistics
 import RPi.GPIO as GPIO
+import smtplib
 from time import sleep
 
 
@@ -242,10 +244,10 @@ def PWM_GPIO_RASP(power,duration): #function creates pwm signal on 13th pin of t
     pi_pwm.stop()
 
 def liquid_swtich():
-    GPIO.setmode(GPIO.BCM)
+    GPIO.setmode(GPIO.BOARD)
     GPIO.setwarnings(False)
 
-    switch = 4
+    switch = 7
 
     GPIO.setup(switch, GPIO.IN, GPIO.PUD_UP)
 
@@ -255,4 +257,31 @@ def liquid_swtich():
             return True
         else:
             return False 
-        time.sleep(0.5)
+        time.sleep(1)
+
+
+def send_mail(text="void_message"): 
+    TO='ameyrkhan@gmail.com'
+    
+    GMAIL_USER="ameyrkhan@gmail.com"
+    PASS= 'baor nlvb dtbn falz'
+
+    #GMAIL_USER="pcf.kazatu@gmail.com"
+    #PASS= 'californicatioN'
+
+    SUBJECT = 'Alarm'
+    #TEXT = 'Hello'
+    print ("Sending text")
+    server = smtplib.SMTP('smtp.gmail.com:587')
+    server.starttls()
+    server.login(GMAIL_USER,PASS)
+    header = 'To: ' + TO + '\n' + 'From: ' + GMAIL_USER
+    header = header + '\n' + 'Subject: ' + SUBJECT + '\n'
+    print (header)
+    msg = header + '\n' + text + '\n\n'
+    server.sendmail(GMAIL_USER,TO,msg)
+    server.quit()
+    time.sleep(1)
+    print ("Text sent")
+
+
