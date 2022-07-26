@@ -25,6 +25,39 @@ duration = 10
 # name of log file as datetime of creation example: "2022-06-12_16_44_22.890654.log"
 logging.basicConfig(filename = '%s.log'%str(datetime.now().strftime("%Y-%m-%d_%H_%M_%S")), level = logging.DEBUG, format='[%(filename)s:%(lineno)s - %(funcName)20s() ] %(asctime)s %(message)s')
 
+##############################################################################
+
+
+###################################################################################################
+# Pring log function, Insert first variable message in the second value of error
+def print_log(message = None, value = None): # Function to logging and printing messages into terminal for debug
+    logging.info(message)
+    if value != None:
+        logging.info(value)
+    print(message)
+    if value != None:
+        print(value)
+    return 0
+###################################################################################################
+
+
+###################################################################################################
+def delete_null_from_zero_table():
+    try:
+        print_log("Delete NULL from ZERO table")
+        cur = sq3.connect('main_database.db')
+        cur.execute("DELETE FROM ZER0 WHERE ANIMAL_ID IS NULL OR trim(ANIMAL_ID) = '';") 
+        cur.commit()
+        cur.close()
+    except Exception as e:
+        print_log("Error in Delete NULL from ZERO table function", e)
+    else:
+        print_log("Success: Delete NULL from ZERO table")
+        return 0
+
+###################################################################################################
+
+
 ###################################################################################################
 # cutter of old id response from schfon reader
 def old_id_cutter(animal_id):
@@ -40,21 +73,7 @@ def old_id_cutter(animal_id):
         return 0
 
 
-
-###################################################################################################
-
-
-###################################################################################################
-# Pring log function, Insert first variable message in the second value of error
-def print_log(message = None, value = None): # Function to logging and printing messages into terminal for debug
-    logging.info(message)
-    if value != None:
-        logging.info(value)
-    print(message)
-    if value != None:
-        print(value)
-    return 0
-###################################################################################################
+#####################
 
 ###################################################################################################
 # function creates pwm signal on 13th pin of the raspberry with 100 Hz frequency. 
@@ -62,7 +81,8 @@ def print_log(message = None, value = None): # Function to logging and printing 
 def PWM_GPIO_RASP(duration = 10): 
     try:
         print_log("Start PWM function to spray command from raspberry")
-        pin = 40            
+        pin = 40     
+        time.sleep(3)       
         GPIO.setmode(GPIO.BOARD)
         GPIO.setwarnings(True)
         GPIO.setup(pin,GPIO.OUT)
@@ -120,6 +140,11 @@ def Staging_Into_Spray_Table():
         print_log("Success: Data into SPRAY table added")
         return 0
 ###################################################################################################
+
+
+###################################################################################################
+# Spray everybody every time
+#def spray_everybody_every_time():
 
 
 ###################################################################################################
@@ -193,7 +218,8 @@ def Insert_New_Unique_Animal_ID(animal_id):
         print_log("animal_id", animal_id)
         print_log("Start to add new unique animal id")
         data_for_query = (animal_id)
-        cur.execute("INSERT INTO ZERO (ANIMAL_ID) VALUES (?)",
+        if animal_id != NULL:
+            cur.execute("INSERT INTO ZERO (ANIMAL_ID) VALUES (?)",
                     (animal_id,))                    
         print_log("animal_id", animal_id)
         cur.commit()
@@ -384,7 +410,8 @@ def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): 
 def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino through USB by Serial Port   
     try:
         weight_finall = 0
-        drink_duration = 0
+        drink_duration = 5
+        flag_spray = 0
         print_log("CONNECT ARDUINO")
         s.flushInput() # Cleaning buffer of Serial Port
         s.flushOutput() # Cleaning output buffer of Serial Port
@@ -406,6 +433,8 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
     
 
         while (float(weight_new) > 10): # Collecting weight to array 
+            if flag_spray == 0:
+                PWM_GPIO_RASP(duration)
             weight = (str(s.readline()))
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
             print_log("Weight from Arduino :", weight_new)
@@ -414,7 +443,8 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             #################################################################################
             Send_RawData_to_server(cow_id, weight_new, type_scales, start_timedate)
             Collect_to_Raw_Data_Table(cow_id, weight_new, type_scales)
-            Spray_Animal_by_Spray_Status(cow_id, duration)
+            #Spray_Animal_by_Spray_Status(cow_id, duration)
+            
             #################################################################################
             # End of Raw data function
             weight_list.append(float(weight_new))
@@ -423,6 +453,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         else:
             if weight_list != []: # Here must added check on weight array null value and one element array
                 del weight_list[-1]
+                
             
             # new method of averaging
             weight_finall = statistics.median(weight_list)
@@ -437,6 +468,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             # End of collectin raw data into CSV file
             weight_list = []
             drink_end_time = timeit.default_timer()
+            flag_spray = 1
 
 
             # drink duration calculations

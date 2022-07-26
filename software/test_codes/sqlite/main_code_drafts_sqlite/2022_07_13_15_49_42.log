@@ -1,0 +1,5 @@
+[2680166281.py:4 -            print_log() ] 2022-07-13 15:49:48,440 Delete NULL from ZERO table
+[2680166281.py:4 -            print_log() ] 2022-07-13 15:49:48,443 Error in Delete NULL from ZERO table function
+[2680166281.py:6 -            print_log() ] 2022-07-13 15:49:48,443 no such table: ZER0
+[2680166281.py:4 -            print_log() ] 2022-07-13 15:50:01,957 Delete NULL from ZERO table
+[2680166281.py:4 -            print_log() ] 2022-07-13 15:50:01,967 Success: Delete NULL from ZERO table
