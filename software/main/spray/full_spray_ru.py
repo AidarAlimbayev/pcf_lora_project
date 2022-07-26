@@ -207,10 +207,10 @@ def new_start_timer(start_time, position):
 """def Connect_ARD_get_weight(cow_id, type_scales): # Connection to aruino through USB by Serial Port
     try:
         #!scales_list = {'01000001': [11, 10],
-                       'scales_model_5': [21, 22],gpio_state = spray_main_function(drink_start_time, type_scales, scales_list, spray_get_url, cow_id, gpio_state)
-                       'scales_model_6': [33, 32],
-                       'scales_model_7': [44, 43],
-                       'scales_model_10': [55, 54], 
+                       'scales_model_5': [33, 22],
+                       'scales_model_6': [40, 32],
+                       'scales_model_7': [40,0 43],
+                       'scales_model_10': [40, 54], 
                        'pcf_1_model_1_80': [13, 50]}
         #!spray_get_url = 'https://smart-farm.kz:8502/api/v2/Sprayings?scalesSerialNumber='+type_scales+'&animalRfidNumber='+cow_id
         #!gpio_state = False
@@ -220,12 +220,12 @@ def new_start_timer(start_time, position):
 
 
         while (float(weight_new) > 10): # Collecting weight to array  
-            #!gpio_state = spray_main_function(spray_start_time, type_scales, scales_list, spray_get_url, cow_id, gpio_state)
-            #!spray_start_time = new_start_timer(spray_start_time, gpio_state)
+            #!gpio_state = spr.spray_main_function(spray_start_time, type_scales, scales_list, spray_get_url, cow_id, gpio_state)
+            #!spray_start_time = spr.new_start_timer(spray_start_time, gpio_state)
         
         
         #After while    
-        #!gpio_state = gpio_state_check(scales_list, spray_start_time, spray_get_url, type_scales, cow_id, gpio_state) 
+        #!gpio_state = spr.gpio_state_check(scales_list, spray_start_time, spray_get_url, type_scales, cow_id, gpio_state) 
 
     except Exception as e:
         print_log("Error connection to Arduino", e)
