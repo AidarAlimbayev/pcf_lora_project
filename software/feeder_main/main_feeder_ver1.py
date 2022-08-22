@@ -2,7 +2,7 @@
 Contact number +7 775 818 48 43. Email maxat.suieubayev@gmail.com"""
 #!/usr/bin/sudo python
 from turtle import fd
-import feeder_test.feeder_test as fdr
+import feeder_test as fdr
 import lib_pcf_spray as pcf
 import timeit
 import requests
