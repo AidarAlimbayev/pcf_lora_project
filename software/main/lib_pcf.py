@@ -1,6 +1,12 @@
 #!/usr/bin/python
+<<<<<<< HEAD
 # pre version 4.5 Aidar edition
 from datetime import datetime, date, time
+=======
+# pre version 4.8 Maxat edition
+from datetime import datetime, date, time
+import full_spray as spr
+>>>>>>> 5b14a03 (new spray)
 
 #from sklearn import exceptions
 import serial
@@ -236,13 +242,21 @@ def Insert_New_Unique_Animal_ID(animal_id):
 ###################################################################################################
 # Collect to database function 
 
+<<<<<<< HEAD
 def Collect_to_Main_Data_Table(animal_id, weight, equipment_name):
+=======
+def Collect_to_Main_Data_Table(animal_id, weight, equipment_name, drink_duration):
+>>>>>>> 5b14a03 (new spray)
     try:
         Insert_New_Unique_Animal_ID(animal_id)
         #######
         # insert new data in MAIN_DATA table
         data_status = 'NO'
+<<<<<<< HEAD
         drink_duration= 'NULL'
+=======
+        #drink_duration= 'NULL'
+>>>>>>> 5b14a03 (new spray)
         event_time = datetime.now()
         transfer_time = 'NULL'
 
@@ -409,6 +423,13 @@ def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): 
 #########################################################################################################################
 def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino through USB by Serial Port   
     try:
+<<<<<<< HEAD
+=======
+        scales_list = {'scales_model_7': [40, 38]}
+        spray_get_url = 'https://smart-farm.kz:8502/api/v2/Sprayings?scalesSerialNumber='+type_scales+'&animalRfidNumber='+cow_id
+        gpio_state = False
+
+>>>>>>> 5b14a03 (new spray)
         weight_finall = 0
         drink_duration = 5
         flag_spray = 0
@@ -430,11 +451,18 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         weight_list = []
         start_timedate = str(datetime.now())
         drink_start_time = timeit.default_timer()
+<<<<<<< HEAD
     
 
         while (float(weight_new) > 10): # Collecting weight to array 
             if flag_spray == 0:
                 PWM_GPIO_RASP(duration)
+=======
+        spray_start_time = timeit.default_timer()
+        while (float(weight_new) > 10): # Collecting weight to array 
+            #if flag_spray == 0:
+                #PWM_GPIO_RASP(duration)
+>>>>>>> 5b14a03 (new spray)
             weight = (str(s.readline()))
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
             print_log("Weight from Arduino :", weight_new)
@@ -448,6 +476,14 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             #################################################################################
             # End of Raw data function
             weight_list.append(float(weight_new))
+<<<<<<< HEAD
+=======
+            gpio_state = spr.spray_main_function(spray_start_time, type_scales, scales_list, spray_get_url, cow_id, gpio_state)
+            spray_start_time = spr.new_start_timer(spray_start_time, gpio_state)
+        # after while cycle check up from Maxat
+        gpio_state = spr.gpio_state_check(scales_list, spray_start_time, spray_get_url, type_scales, cow_id, gpio_state)  
+
+>>>>>>> 5b14a03 (new spray)
         if weight_list == 0 or weight_list == []:
             print_log("Error, null weight list")
         else:
@@ -480,7 +516,11 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         print_log("lid:Con_ARD: weight_finall in else", weight_finall)
         weight_to_return = (float("{0:.2f}".format(weight_finall)))
         if weight_to_return != 0:
+<<<<<<< HEAD
             return weight_to_return
+=======
+            return [weight_to_return, drink_duration]
+>>>>>>> 5b14a03 (new spray)
 #########################################################################################################################
 
 
