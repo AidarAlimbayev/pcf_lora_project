@@ -4,7 +4,7 @@ __Previews/
 
 $ 3D.ZIP
 $ Hardware.zip
-
+**/databases_logs
 
 # exclude everything except directory foo/bar
 !/software
