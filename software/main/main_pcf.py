@@ -1,5 +1,5 @@
 #!/usr/bin/sudo python
-# pre version 4.5 Aidar edition
+# pre version 4.8 
 import lib_pcf as pcf
 
 pcf.time.sleep(10) # sleep time for connection to serial library
@@ -8,10 +8,14 @@ pcf.time.sleep(10) # sleep time for connection to serial library
 # config of equipment and contacts
 #old variable type_scales -> new variable equipment_name (must be unique)
 <<<<<<< HEAD
+<<<<<<< HEAD
 type_scales = "pcf_model_5" # equipment_name 
 =======
 type_scales = "pcf_model_6" # equipment_name 
 >>>>>>> 5b14a03 (new spray)
+=======
+type_scales = "pcf_model_5" # equipment_name 
+>>>>>>> fc469af (Last edition by Aidar 4.8)
 type = "SCALES"
 model = "800"
 location = 'SHOS'
@@ -24,6 +28,26 @@ animal_id = "b'435400040001'" # value of null answer of RFID reader
 null_id = "b'435400040001'"
 weight_finall = 0
 duration = 10
+
+
+
+
+###########################################################################
+#BIG KOSTYLJ from Aidar
+pin = 40
+def main_gpio_off(pin):
+    try:
+        pcf.print_log(f"Main spray_gpio_off")
+        pcf.GPIO.setmode(pcf.GPIO.BOARD)                        
+        pcf.GPIO.setwarnings(True)
+        pcf.GPIO.setup(pin, pcf.GPIO.OUT)                   
+        pcf.GPIO.output(pin, pcf.GPIO.LOW)                      
+        pcf.GPIO.cleanup()                                  
+        pcf.print_log(f'GPIO is off. Pin number is {pin}')    
+        return 0
+    except Exception as e:
+        pcf.print_log(f"Error: Main_Spray_GPIO_off function isn't work {e}")
+###########################################################################
 
 # Connection to arduino
 try:
@@ -60,11 +84,16 @@ def main():
             pcf.Insert_New_Unique_Animal_ID(animal_id)
                         
 <<<<<<< HEAD
+<<<<<<< HEAD
             weight_finall = pcf.Connect_ARD_get_weight(animal_id, s, type_scales) # Grab weight from arduino and collect to weight_finall
 =======
             weight_finall, drink_duration = pcf.Connect_ARD_get_weight(animal_id, s, type_scales) # Grab weight from arduino and collect to weight_finall
 >>>>>>> 5b14a03 (new spray)
+=======
+            weight_finall = pcf.Connect_ARD_get_weight(animal_id, s, type_scales) # Grab weight from arduino and collect to weight_finall
+>>>>>>> fc469af (Last edition by Aidar 4.8)
             pcf.print_log("main: weight_finall", weight_finall)
+            main_gpio_off(pin)
 
             if str(weight_finall) > '0':
                 pcf.print_log("main: Collect data")
@@ -72,17 +101,21 @@ def main():
 
                 pcf.print_log("main: Collect data to main database")
 <<<<<<< HEAD
+<<<<<<< HEAD
                 pcf.Collect_to_Main_Data_Table(animal_id, weight_finall, type_scales)
 =======
                 pcf.Collect_to_Main_Data_Table(animal_id, weight_finall, type_scales, drink_duration)
 >>>>>>> 5b14a03 (new spray)
+=======
+                pcf.Collect_to_Main_Data_Table(animal_id, weight_finall, type_scales)
+>>>>>>> fc469af (Last edition by Aidar 4.8)
                 
                 #pcf.print_log("main: Spray ")
                 #pcf.Spray_Animal_by_Spray_Status(animal_id, duration)
 
                 pcf.print_log("main: Send data to server")
                 pcf.Send_data_to_server(animal_id, weight_finall, type_scales) # Send data to server by JSON post request
-
+                
                 #if check_internet_connection() == True :
                     #pcf.Send_data_to_server_from_sqlite()
                 # pcf.
