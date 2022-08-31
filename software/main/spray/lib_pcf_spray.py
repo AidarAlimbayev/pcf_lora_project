@@ -27,6 +27,19 @@ duration = 10
 # name of log file as datetime of creation example: "2022-06-12_16_44_22.890654.log"
 logging.basicConfig(filename = '%s.log'%str(datetime.now().strftime("%Y-%m-%d_%H_%M_%S")), level = logging.DEBUG, format='[%(filename)s:%(lineno)s - %(funcName)20s() ] %(asctime)s %(message)s')
 
+
+###################################################################################################
+# Pring log function, Insert first variable message in the second value of error
+def print_log(message = None, value = None): # Function to logging and printing messages into terminal for debug
+    logging.info(message)
+    if value != None:
+        logging.info(value)
+    print_log(message)
+    if value != None:
+        print_log(value)
+    return 0
+###################################################################################################
+
 ###################################################################################################
 # cutter of old id response from schfon reader
 def old_id_cutter(animal_id):
@@ -40,22 +53,6 @@ def old_id_cutter(animal_id):
     else:
         print_log("Success: old id cutted", animal_id)
         return 0
-
-
-
-###################################################################################################
-
-
-###################################################################################################
-# Pring log function, Insert first variable message in the second value of error
-def print_log(message = None, value = None): # Function to logging and printing messages into terminal for debug
-    logging.info(message)
-    if value != None:
-        logging.info(value)
-    print_log(message)
-    if value != None:
-        print_log(value)
-    return 0
 ###################################################################################################
 
 ###################################################################################################
@@ -585,12 +582,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
 
         # print_log("Weight new after cleaning :", float(weight_new))
-        scales_list = {'01000001': [11, 10],
-                       'scales_model_5': [21, 22],
-                       'scales_model_6': [33, 32],
-                       'scales_model_7': [44, 43],
-                       'scales_model_10': [55, 54], 
-                       'pcf_1_model_1_80': [40, 50]}
+        scales_list = {'pcf_model_10': [40, 38]}
         spray_get_url = 'https://smart-farm.kz:8502/api/v2/Sprayings?scalesSerialNumber='+type_scales+'&animalRfidNumber='+cow_id
         gpio_state = False
         weight_list = []

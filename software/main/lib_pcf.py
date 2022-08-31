@@ -5,6 +5,7 @@ import full_spray as spr
 
 #from sklearn import exceptions
 import serial
+from serial import Serial
 import time
 import timeit
 import socket
@@ -237,13 +238,13 @@ def Insert_New_Unique_Animal_ID(animal_id):
 ###################################################################################################
 # Collect to database function 
 
-def Collect_to_Main_Data_Table(animal_id, weight, equipment_name, drink_duration):
+def Collect_to_Main_Data_Table(animal_id, weight, equipment_name):
     try:
         Insert_New_Unique_Animal_ID(animal_id)
         #######
         # insert new data in MAIN_DATA table
         data_status = 'NO'
-        #drink_duration= 'NULL'
+        drink_duration= 'NULL'
         event_time = datetime.now()
         transfer_time = 'NULL'
 
@@ -386,7 +387,7 @@ def check_internet_connection():
 #########################################################################################################################
 # Send to raw data server directly from main function
 #def Send_RawData_to_server(animal_id, weight_new, type_scales, start_datetime): # Sending data into Igor's server through JSON
-def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): # Sending data into Igor's server through JSON
+def Send_RawDCollectata_to_server(animal_id, weight_new, type_scales, start_timedate): # Sending data into Igor's server through JSON
 
     try:
         print_log("START SEND RawDATA TO SERVER:")
@@ -397,7 +398,7 @@ def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): 
                 "Weight" : weight_new,
                 "ScalesModel" : type_scales,
                 "RawWeightId" : start_timedate}
-        answer = requests.post(url, data=json.dumps(data), headers=headers, timeout=15)
+        answer = requests.post(url, data=json.dumps(data), headers=headers, timeout=1)
         print_log("Answer from RawData server: ", answer) # Is it possible to stop on this line in the debug?
         print_log("Content from RawData server: ", answer.content)
     except Exception as e:
@@ -410,8 +411,10 @@ def Send_RawData_to_server(animal_id, weight_new, type_scales, start_timedate): 
 #########################################################################################################################
 def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino through USB by Serial Port   
     try:
-        scales_list = {'scales_model_7': [40, 38]}
+        scales_list = {'pcf_model_5': [40, 38]}
+        print_log("Type Scales: ", type_scales)
         spray_get_url = 'https://smart-farm.kz:8502/api/v2/Sprayings?scalesSerialNumber='+type_scales+'&animalRfidNumber='+cow_id
+        print_log("Spray get URL :", spray_get_url)
         gpio_state = False
 
         weight_finall = 0
@@ -452,17 +455,22 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             #################################################################################
             # End of Raw data function
             weight_list.append(float(weight_new))
+            print_log("Before spray main function | rfid :", cow_id)
+            print_log("Before spray main function | type_scales:", scales_list)
+
             gpio_state = spr.spray_main_function(spray_start_time, type_scales, scales_list, spray_get_url, cow_id, gpio_state)
+            print_log("After spray main function |  gpio_state:", gpio_state)
             spray_start_time = spr.new_start_timer(spray_start_time, gpio_state)
         # after while cycle check up from Maxat
         gpio_state = spr.gpio_state_check(scales_list, spray_start_time, spray_get_url, type_scales, cow_id, gpio_state)  
+        # pin_list, start_time, spray_get, scales_type, animal_id, position
 
         if weight_list == 0 or weight_list == []:
             print_log("Error, null weight list")
         else:
-            if weight_list != []: # Here must added check on weight array null value and one element array
-                del weight_list[-1]
-                
+            #if weight_list != []: # Here must added check on weight array null value and one element array
+                #del weight_list[-1]
+            print_log("weight_delete excluded")    
             
             # new method of averaging
             weight_finall = statistics.median(weight_list)
@@ -486,10 +494,18 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
     except Exception as e:
         print_log("Error connection to Arduino", e)
     else:
-        print_log("lid:Con_ARD: weight_finall in else", weight_finall)
-        weight_to_return = (float("{0:.2f}".format(weight_finall)))
-        if weight_to_return != 0:
-            return [weight_to_return, drink_duration]
+        weight_to_return = 0
+        print_log("lib:Con_ARD: weight_finall in else", weight_finall)
+        if weight_finall != 0 and weight_finall != None:
+            weight_to_return = (float("{0:.2f}".format(weight_finall)))
+        if weight_to_return != 0 and weight_to_return != None:
+            print_log("Weight to return: ", weight_to_return)
+            print_log("Drink Duration :", drink_duration)
+            return weight_to_return
+        if weight_to_return == 0:
+            weight_to_return = 0 
+            drink_duration = 0
+            return weight_to_return
 #########################################################################################################################
 
 
@@ -543,7 +559,7 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data i
                 "Date" : str(datetime.now()),
                 "Weight" : weight_finall,
                 "ScalesModel" : type_scales}
-        answer = requests.post(url, data=json.dumps(data), headers=headers, timeout=15)
+        answer = requests.post(url, data=json.dumps(data), headers=headers, timeout=3)
         print_log("Answer from server: ", answer) # Is it possible to stop on this line in the debug?
         print_log("Content from main server: ", answer.content)
     except Exception as e:
