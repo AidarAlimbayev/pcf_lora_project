@@ -236,13 +236,13 @@ def Insert_New_Unique_Animal_ID(animal_id):
 ###################################################################################################
 # Collect to database function 
 
-def Collect_to_Main_Data_Table(animal_id, weight, equipment_name, drink_duration):
+def Collect_to_Main_Data_Table(animal_id, weight, equipment_name):
     try:
         Insert_New_Unique_Animal_ID(animal_id)
         #######
         # insert new data in MAIN_DATA table
         data_status = 'NO'
-        #drink_duration= 'NULL'
+        drink_duration= 'NULL'
         event_time = datetime.now()
         transfer_time = 'NULL'
 
@@ -480,7 +480,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         print_log("lid:Con_ARD: weight_finall in else", weight_finall)
         weight_to_return = (float("{0:.2f}".format(weight_finall)))
         if weight_to_return != 0:
-            return [weight_to_return, drink_duration]
+            return weight_to_return
 #########################################################################################################################
 
 

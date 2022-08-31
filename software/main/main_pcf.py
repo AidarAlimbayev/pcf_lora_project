@@ -55,7 +55,7 @@ def main():
             pcf.print_log("After read cow ID :", animal_id)
             pcf.Insert_New_Unique_Animal_ID(animal_id)
                         
-            weight_finall, drink_duration = pcf.Connect_ARD_get_weight(animal_id, s, type_scales) # Grab weight from arduino and collect to weight_finall
+            weight_finall = pcf.Connect_ARD_get_weight(animal_id, s, type_scales) # Grab weight from arduino and collect to weight_finall
             pcf.print_log("main: weight_finall", weight_finall)
 
             if str(weight_finall) > '0':
@@ -63,7 +63,7 @@ def main():
                 pcf.Collect_data_CSV(animal_id, weight_finall, type_scales) # Save weight data into CSV file
 
                 pcf.print_log("main: Collect data to main database")
-                pcf.Collect_to_Main_Data_Table(animal_id, weight_finall, type_scales, drink_duration)
+                pcf.Collect_to_Main_Data_Table(animal_id, weight_finall, type_scales)
                 
                 #pcf.print_log("main: Spray ")
                 #pcf.Spray_Animal_by_Spray_Status(animal_id, duration)
