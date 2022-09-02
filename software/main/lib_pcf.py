@@ -442,8 +442,15 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         while (float(weight_new) > 10): # Collecting weight to array 
             #if flag_spray == 0:
                 #PWM_GPIO_RASP(duration)
+
+            ################################################################################
+            s.flushInput() # Cleaning buffer of Serial Port
+            s.flushOutput() # Cleaning output buffer of Serial Port
+            ################################################################################
+            
             weight = (str(s.readline()))
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
+           
             print_log("Weight from Arduino :", weight_new)
             
             # Here the place to add RawWeights sending function
