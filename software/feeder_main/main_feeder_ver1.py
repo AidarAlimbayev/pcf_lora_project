@@ -1,53 +1,61 @@
 """Feeder version 1. Edition by Suieubayev Maxat.
 Contact number +7 775 818 48 43. Email maxat.suieubayev@gmail.com"""
 #!/usr/bin/sudo python
-from turtle import fd
+import re
+import headers as hdr
+
+requirement_list = ['loguru', 'requests', 'numpy', 'RPi.GPIO', 'pyserial']
+hdr.install_packages(requirement_list)
+
 import feeder_test as fdr
-import lib_pcf_spray as pcf
+from loguru import logger
 import timeit
 import requests
+import serial
 import json
-import datetime
+from time import sleep
 from requests.exceptions import HTTPError
 
 
-pcf.time.sleep(10)
+logger.add('feeder.log', format="{time} {level} {message}", 
+level="DEBUG", rotation="1 day", compression="zip")  
+
+sleep(1)
 
 feeder_type = "feeder_model_1"
-type = "FEEDER"
+type = "Feeder"
 serial_number = "65545180001"
-
-animal_id = "b'435400040001'"
-null_id = "b'435400040001'"
-weight_finall = 0
+animal_id = "b'435400040001'"       #???????????????????
+null_id = "b'435400040001'"         #???????????????????
+weight_finall = 0                   #???????????????????
 url = "https://smart-farm.kz:8502/api/v2/RawFeedings"
 headers = {'Content-type': 'application/json'}
 
 
 try:
-    s = pcf.serial.Serial('/dev/ttyACM0',9600) 
-    pcf.print_log(f'Connect arduino {s.name}')
-    pcf.print_log(f'Configuration of serial: {s}')
+    s = serial.Serial('/dev/ttyACM0',9600) 
+    logger.info(f'Connect arduino {s.name}')
+    logger.info(f'Configuration of serial: {s}')
 except Exception as e:
-    pcf.print_log(f'Error to connection to arduino, there is no file: /dev/ttyACM0 {e}')
+    logger.error(f'Error to connection to arduino, there is no file: /dev/ttyACM0 {e}')
 else:
-    pcf.print_log(f'Success: Arduino connected')
+    logger.error(f'Success: Arduino connected')
 
 def main():
     while True:
         dist = fdr.distance()
         distance = fdr.measuring_start(dist)
-        if distance is True:
+        if distance:
             start_weight = fdr.instant_weight(s)
             start_time = timeit.default_timer
             animal_id = fdr.rfid_label()
-            pcf.print_log(f'First step cow ID :{animal_id}')
+            logger.info(f'First step cow ID :{animal_id}')
 
-            pcf.time.sleep(1)
+            sleep(1)
             
-            if animal_id != '435400040001': 
-                pcf.print_log(f'After read cow ID :{animal_id}')
-                while distance is True:
+            if animal_id != '435400040001':  #?????????????????????
+                logger.info(f'After read cow ID :{animal_id}')
+                while distance:
                     end_time = timeit.default_timer
                     end_weight = fdr.instant_weight(s)
                 feed_time = int(start_time) - int(end_time)
@@ -57,6 +65,6 @@ def main():
                     post = requests.post(url, data = json.dumps(post_data), headers = headers, timeout=0.5)
                     post.raise_for_status()
                 except HTTPError as http_err:
-                    pcf.print_log(f'HTTP error occurred: {http_err}')
+                    logger.error(f'HTTP error occurred: {http_err}')
                 except Exception as err:
-                    pcf.print_log(f'Other error occurred: {err}')
+                    logger.error(f'Other error occurred: {err}')
