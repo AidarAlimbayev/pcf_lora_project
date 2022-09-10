@@ -1,4 +1,3 @@
-import re
 import sys
 import subprocess
 import pkg_resources
@@ -28,6 +27,4 @@ def install_packages(requirement_list) -> list:
     except Exception as e:
         print(e)
 
-requirement_list = ['loguru', 'requests', 'RPi.GPIO', 'pyserial']
-install_packages(requirement_list)
 

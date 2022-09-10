@@ -1,7 +1,6 @@
 """Feeder version 1. Edition by Suieubayev Maxat.
 Contact number +7 775 818 48 43. Email maxat.suieubayev@gmail.com"""
 #!/usr/bin/sudo python
-import re
 import headers as hdr
 
 requirement_list = ['loguru', 'requests', 'numpy', 'RPi.GPIO', 'pyserial']
