@@ -1,6 +1,6 @@
 from datetime import datetime
 from loguru import logger
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 import re
 import binascii
