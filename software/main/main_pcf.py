@@ -7,7 +7,7 @@ pcf.time.sleep(10) # sleep time for connection to serial library
 
 # config of equipment and contacts
 #old variable type_scales -> new variable equipment_name (must be unique)
-type_scales = "pcf_model7" # equipment_name 
+type_scales = "pcf_model_5" # equipment_name 
 type = "SCALES"
 model = "800"
 location = 'SHOS'
