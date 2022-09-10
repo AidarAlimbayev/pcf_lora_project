@@ -14,7 +14,7 @@ import serial
 import json
 from time import sleep
 from requests.exceptions import HTTPError
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 from hx711 import HX711
 import sys, select
 
