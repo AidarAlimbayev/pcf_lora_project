@@ -29,6 +29,6 @@ def install_packages(requirement_list):
     except Exception as e:
         print(e)
 
-requirement_list = ['loguru', 'requests', 'numpy', 'RPi.GPIO', 'serial']
+requirement_list = ['loguru', 'requests', 'RPi.GPIO', 'pyserial',]
 install_packages(requirement_list)
 
