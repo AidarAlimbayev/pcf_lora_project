@@ -3,7 +3,7 @@ Contact number +7 775 818 48 43. Email maxat.suieubayev@gmail.com"""
 #!/usr/bin/sudo python
 import headers as hdr
 
-requirement_list = ['loguru', 'requests', 'numpy', 'RPi.GPIO', 'pyserial']
+requirement_list = ['loguru', 'requests', 'numpy', 'RPi.GPIO', 'pyserial', 'hx711']
 hdr.install_packages(requirement_list)
 
 import feeder_test as fdr
@@ -14,7 +14,16 @@ import serial
 import json
 from time import sleep
 from requests.exceptions import HTTPError
+#import RPi.GPIO as GPIO
+from hx711 import HX711
+import sys, select
 
+GPIO.setmode(GPIO.BCM)                 # set GPIO pin mode to BCM numbering
+hx = HX711(dout_pin=21, pd_sck_pin=20)
+
+i, o, e = select.select( [sys.stdin], [], [], 10 )
+if (i): ratio = fdr.hx711_calibrate(hx)
+else:   ratio = 0
 
 logger.add('feeder.log', format="{time} {level} {message}", 
 level="DEBUG", rotation="1 day", compression="zip")  
@@ -40,12 +49,13 @@ except Exception as e:
 else:
     logger.error(f'Success: Arduino connected')
 
+calibrated_ratio = 0
 def main():
     while True:
         dist = fdr.distance()
         distance = fdr.measuring_start(dist)
         if distance:
-            start_weight = fdr.instant_weight(s)
+            start_weight = fdr.raspberry_weight(ratio)
             start_time = timeit.default_timer
             animal_id = fdr.rfid_label()
             logger.info(f'First step cow ID :{animal_id}')
@@ -56,7 +66,7 @@ def main():
                 logger.info(f'After read cow ID :{animal_id}')
                 while distance:
                     end_time = timeit.default_timer
-                    end_weight = fdr.instant_weight(s)
+                    end_weight = fdr.raspberry_weight(ratio)
                 feed_time = int(start_time) - int(end_time)
                 final_weight = int(start_weight) - int(end_weight)
                 post_data = fdr.post_request(feeder_type, serial_number, feed_time, animal_id, final_weight, end_weight)
