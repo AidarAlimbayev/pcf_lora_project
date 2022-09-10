@@ -113,7 +113,6 @@ def post_data(type_scales, animal_id, weight_list, weighing_start_time, weighing
 def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino through USB by Serial Port
     try:
         s.flushInput() 
-        s.flushOutput() 
         weight = (str(s.readline())) # Start of collecting weight data from Arduino
         weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
         scales_list = { 'pcf_model_5': [40, 22],
@@ -125,6 +124,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         weight_list = []
         start_timedate = str(datetime.now())
         drink_start_time = timeit.default_timer()
+        spray_duration = 0
 
         while (float(weight_new) > 10): # Collecting weight to array
             s.flushInput() 
@@ -132,7 +132,7 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
             #################################################################################
             #Send_RawData_to_server(cow_id, weight_new, type_scales, start_timedate)            
-            gpio_state = fs.spray_main_function(drink_start_time, type_scales, scales_list, spray_get_url, cow_id, gpio_state)
+            spray_duration, gpio_state = fs.spray_main_function(drink_start_time, type_scales, scales_list, spray_get_url, cow_id, spray_duration, gpio_state)
             drink_start_time = fs.new_start_timer(drink_start_time, gpio_state)
             #################################################################################
             weight_list.append(float(weight_new))
