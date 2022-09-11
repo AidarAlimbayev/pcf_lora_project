@@ -6,7 +6,7 @@ import headers as hdr
 requirement_list = ['loguru', 'requests', 'numpy', 'RPi.GPIO', 'pyserial', 'hx711']
 hdr.install_packages(requirement_list)
 
-import feeder_test as fdr
+import lib_feeder as fdr
 from loguru import logger
 import timeit
 import requests
