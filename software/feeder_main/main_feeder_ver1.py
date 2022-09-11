@@ -23,7 +23,6 @@ hx = HX711(dout_pin=21, pd_sck_pin=20)
 
 i, o, e = select.select( [sys.stdin], [], [], 10 )
 if (i): ratio = fdr.hx711_calibrate(hx)
-else:   ratio = 0
 
 logger.add('feeder.log', format="{time} {level} {message}", 
 level="DEBUG", rotation="1 day", compression="zip")  
@@ -77,3 +76,5 @@ def main():
                     logger.error(f'HTTP error occurred: {http_err}')
                 except Exception as err:
                     logger.error(f'Other error occurred: {err}')
+
+main()

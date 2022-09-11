@@ -13,6 +13,7 @@ from loguru import logger
 logger.add('scales.log', format="{time} {level} {message}", 
 level="DEBUG", rotation="1 day", compression="zip") #serialize="True")
 
+pin = 0
 spray_duration = 0
 server_time = ''
 task_id = 0
@@ -34,7 +35,7 @@ def __spray_gpio_off(pin, scales_type, animal_id, start_time):
         end_time = timeit.default_timer()           
         new_volume = (end_time - start_time) * 8.3  
         post_data = __spray_json_payload(server_time, task_id, new_volume, spraying_type, scales_type, animal_id)
-        post_res = requests.post(spray_post, data=json.dumps(post_data), headers=headers, timeout=0.25)                                  
+        post_res = requests.post(spray_post, data=json.dumps(post_data), headers=headers, timeout=0.5)                                  
         # logger.error(f 'GPIO is off. Pin number is {pin}')
         return position
     except Exception as e:
