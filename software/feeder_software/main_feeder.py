@@ -37,7 +37,7 @@ null_id = "b'435400040001'"         #???????????????????
 weight_finall = 0                   #???????????????????
 url = "https://smart-farm.kz:8502/api/v2/RawFeedings"
 headers = {'Content-type': 'application/json'}
-
+#calibrated_ratio = 256757
 
 #try:
 #    s = serial.Serial('/dev/ttyACM0',9600) 
@@ -70,13 +70,20 @@ def main():
                 logger.info(f'After read cow ID :{animal_id}')
                 while distance:
                     end_time = timeit.default_timer
-                    end_weight = fdr.raspberry_weight(ratio)
+                    end_weight = fdr.raspberry_weight()
+                    print("end weight")
+                    print(end_weight)
                 feed_time = int(start_time) - int(end_time)
+                print("feed_time")
+                print(feed_time)
                 final_weight = int(start_weight) - int(end_weight)
+                print("final_weight")
+                print(final_weight)
                 post_data = fdr.post_request(feeder_type, serial_number, feed_time, animal_id, final_weight, end_weight)
                 try:
                     post = requests.post(url, data = json.dumps(post_data), headers = headers, timeout=0.5)
-                    post.raise_for_status()
+                    print(post)
+                    #post.raise_for_status()
                 except HTTPError as http_err:
                     logger.error(f'HTTP error occurred: {http_err}')
                 except Exception as err:
