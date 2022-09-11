@@ -39,14 +39,14 @@ url = "https://smart-farm.kz:8502/api/v2/RawFeedings"
 headers = {'Content-type': 'application/json'}
 
 
-try:
-    s = serial.Serial('/dev/ttyACM0',9600) 
-    logger.info(f'Connect arduino {s.name}')
-    logger.info(f'Configuration of serial: {s}')
-except Exception as e:
-    logger.error(f'Error to connection to arduino, there is no file: /dev/ttyACM0 {e}')
-else:
-    logger.error(f'Success: Arduino connected')
+# try:
+#     s = serial.Serial('/dev/ttyACM0',9600) 
+#     logger.info(f'Connect arduino {s.name}')
+#     logger.info(f'Configuration of serial: {s}')
+# except Exception as e:
+#     logger.error(f'Error to connection to arduino, there is no file: /dev/ttyACM0 {e}')
+# else:
+#     logger.error(f'Success: Arduino connected')
 
 calibrated_ratio = 0
 def main():
