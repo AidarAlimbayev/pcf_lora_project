@@ -6,7 +6,7 @@ import re
 import binascii
 import socket
 from hx711 import HX711
-import main_feeder_ver1 as mf
+#import main_feeder_ver1 as mf
 
 calibrated_ratio = 0
 
@@ -14,7 +14,7 @@ calibrated_ratio = 0
 def hx711_calibrate(hx):
     try:            
         GPIO.setmode(GPIO.BCM)  
-        hx = mf.hx
+        hx = HX711(dout_pin=21, pd_sck_pin=20)
         err = hx.zero()
         # check if successful
         if err:
@@ -60,7 +60,7 @@ def hx711_calibrate(hx):
 def raspberry_weight(calibrated_ratio):
     try:
         GPIO.setmode(GPIO.BCM)  
-        hx = mf.hx
+        hx = HX711(dout_pin=21, pd_sck_pin=20)
         hx.set_scale_ratio(calibrated_ratio)
         weight_kg = hx.get_weight_mean(10)/1000
     except BaseException as b:
