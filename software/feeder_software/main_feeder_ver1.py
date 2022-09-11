@@ -6,7 +6,7 @@ import headers as hdr
 requirement_list = ['loguru', 'requests', 'numpy', 'RPi.GPIO', 'pyserial', 'hx711']
 hdr.install_packages(requirement_list)
 
-import lib_feeder as fdr
+import feeder_test as fdr
 from loguru import logger
 import timeit
 import requests
@@ -21,7 +21,7 @@ import sys, select
 GPIO.setmode(GPIO.BCM)                 # set GPIO pin mode to BCM numbering
 hx = HX711(dout_pin=21, pd_sck_pin=20)
 
-i, o, e = select.select( [sys.stdin], [], [], 2 )
+i, o, e = select.select( [sys.stdin], [], [], 10 )
 if (i): ratio = fdr.hx711_calibrate(hx)
 
 logger.add('feeder.log', format="{time} {level} {message}", 
@@ -52,16 +52,10 @@ def main():
     while True:
         dist = fdr.distance()
         distance = fdr.measuring_start(dist)
-        logger.info("measuring dist", distance)
-        print(distance)
         if distance:
             start_weight = fdr.raspberry_weight()
-            print("Start weight")
             start_time = timeit.default_timer
-            print("Start time")
             animal_id = fdr.rfid_label()
-            print("RFID label")
-            print(animal_id)
             logger.info(f'First step cow ID :{animal_id}')
 
             sleep(1)
