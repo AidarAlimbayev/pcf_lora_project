@@ -62,11 +62,16 @@ def raspberry_weight():
         hx = HX711(dout_pin=21, pd_sck_pin=20)
         hx.set_scale_ratio(calibrated_ratio)
         weight_kg = hx.get_weight_mean(10)/1000
+        if weight_kg < 1:
+            weight_kg = 0
+        print("weight_kg")
+        print(weight_kg)
     except BaseException as b:
         logger.error(f'raspberry weight func error: {b}')
     finally:
         GPIO.cleanup()
-        return weight_kg
+        if weight_kg > 1:
+            return weight_kg
 
 def distance():
     try:
