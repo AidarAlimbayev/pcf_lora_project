@@ -56,6 +56,7 @@ def hx711_calibrate(hx):
     finally:
         GPIO.cleanup()
         return ratio
+
         
 def raspberry_weight(calibrated_ratio):
     try:
@@ -68,6 +69,7 @@ def raspberry_weight(calibrated_ratio):
     finally:
         GPIO.cleanup()
         return weight_kg
+        
 
 def distance():
     try:
@@ -92,6 +94,7 @@ def distance():
         return distance
     except:
         logger.error(f'Distance func error')
+
  
 def measuring_start(distance):
     try:
@@ -101,6 +104,7 @@ def measuring_start(distance):
             return False
     except ValueError as v:
         logger.error(f'Measurement stopped {v}')
+
 
 def post_request(feeder_type, serial_number, feed_time, animal_id, end_weight, feed_weight):
     try:
@@ -116,6 +120,7 @@ def post_request(feeder_type, serial_number, feed_time, animal_id, end_weight, f
         return payload
     except ValueError as v:
         logger.error(f'Post_request function error: {v}')
+
 
 def Connect_RFID_reader():                                      # Connection to RFID Reader through TCP and getting cow ID in str format
     try:    
@@ -152,6 +157,7 @@ def Connect_RFID_reader():                                      # Connection to 
     else: 
         logger.debug(f'2 step RFID')
 
+
 def rfid_label():
     try:
         labels = []
@@ -162,6 +168,7 @@ def rfid_label():
         return animal_id
     except ValueError as v:
         logger.error(f'Post_request function error: {v}')
+        
 
 def instant_weight(s):
     try:
