@@ -10,19 +10,6 @@ from loguru import logger
 
 
 ########################################################
-logger.add('scales.log', format="{time} {level} {message}", 
-level="DEBUG", rotation="1 day", compression="zip") #serialize="True")
-
-pin = 0
-spray_duration = 0
-server_time = ''
-task_id = 0
-volume = 0
-spraying_type = 0
-spray_post = 'https://smart-farm.kz:8502/api/v2/SprayingTaskResults'
-headers = {'Content-type': 'application/json'}
-
-
 def __spray_gpio_off(pin, scales_type, animal_id, start_time):
     try:
         # logger.error(f"Start spray_gpio_off")
@@ -84,7 +71,7 @@ def __spray_json_payload(new_volume, scales_type, animal_id, pin, start_time):
 ########################################################
 def __request_get(url):
     try:
-        request_get = requests.get(url, timeout=0.5).json
+        request_get = requests.get(url, timeout=0.5).json()
         return request_get
     except Exception as e:
         logger.error(f'request get func error {e}')
@@ -171,7 +158,7 @@ def spray_main_function(start_time, scales_type, pin_list, spray_get, animal_id,
         logger.info(f"Start spray_main_function")   
         if position is False:
             request_get_json = __request_get(spray_get)
-            if request_get_json is []:
+            if request_get_json is [] or request_get_json is None:
                 logger.info(f'No tasks there')
                 return position
             else: 

@@ -15,10 +15,10 @@ def check():
         return spray_duration
 
 def __check2(a):
-    
+    pass
 
 def main():
-    
+    pass
 
 
 

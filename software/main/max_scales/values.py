@@ -2,6 +2,8 @@ from asyncio import new_event_loop
 from datetime import datetime
 import timeit
 import time 
+import requests
+import json
 
 sclales_list = { 'pcf_model_5': [40, 22],
                  'pcf_model_6': [40, 32],
@@ -25,5 +27,13 @@ values = {  'gpio_state': False,
             'spraiyng_type': 0,
             'position': False,
             'volume': 0}
+
+
+
+
+url = 'https://smart-farm.kz:8502/api/v2/Sprayings?scalesSerialNumber=pcf_1_model_1_80&animalRfidNumber=010117406415'
+request_get = requests.get(url, timeout=0.5).json()
+print(request_get)
+
 
 
