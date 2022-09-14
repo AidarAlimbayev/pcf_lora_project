@@ -1,11 +1,9 @@
 #!/usr/bin/python3
-from datetime import datetime
+import datetime
 import json
 import requests
 import socket
 import binascii
-import timeit
-import full_spray as fs
 import statistics
 import re
 from loguru import logger 
@@ -56,7 +54,7 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data i
         url = 'http://194.4.56.86:8501/api/weights'
         headers = {'Content-type': 'application/json'}
         data = {"AnimalNumber" : animal_id,
-                "Date" : str(datetime.now()),
+                "Date" : str(datetime.datetime.now()),
                 "Weight" : weight_finall,
                 "ScalesModel" : type_scales}
         answer = requests.post(url, data=json.dumps(data), headers=headers, timeout=3)
@@ -73,7 +71,7 @@ def post_data(type_scales, animal_id, weight_list, weighing_start_time, weighing
     try:
         logger.debug(f'Post data function start')
         url = 'https://smart-farm.kz:8502/v2/OneTimeWeighings'
-        headers =  {'Contet-type': 'application/json'}
+        headers =  {'Content-Type': 'application/json; charset=utf-8'}
         data = {
                 "ScalesSerialNumber": type_scales,
                 "WeighingStart": weighing_start_time,
@@ -89,30 +87,20 @@ def post_data(type_scales, animal_id, weight_list, weighing_start_time, weighing
 #########################################################################################################################
 
 #########################################################################################################################
-def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino through USB by Serial Port
+def Connect_ARD_get_weight(s): # Connection to aruino through USB by Serial Port
     try:
-        s.flushInput()
-        s.flusOutput() 
+        s.flushInput() 
+        s.flushOutput()
         weight = (str(s.readline())) # Start of collecting weight data from Arduino
         weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
-        scales_list = {'pcf_model_5': [40, 22], 'pcf_model_6': [40, 32], 'pcf_model_7': [40, 43], 'pcf_model_10': [40, 54]}
-        spray_get_url = 'https://smart-farm.kz:8502/api/v2/Sprayings?scalesSerialNumber='+type_scales+'&animalRfidNumber='+cow_id
-        gpio_state = False
         weight_list = []
-        start_timedate = str(datetime.now())
-        drink_start_time = timeit.default_timer()
-        spray_duration = 0
+        start_timedate = str(datetime.datetime.now())        
 
-        while (float(weight_new) > 10): # Collecting weight to array
-            s.flushInput() 
+        while (float(weight_new) > 10): # Collecting weight to array 
             weight = (str(s.readline()))
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
-            #################################################################################
-            #Send_RawData_to_server(cow_id, weight_new, type_scales, start_timedate)            
-            spray_duration, gpio_state = fs.spray_main_function(drink_start_time, type_scales, scales_list, spray_get_url, cow_id, spray_duration, gpio_state)
-            drink_start_time = fs.new_start_timer(drink_start_time, gpio_state)
-            #################################################################################
             weight_list.append(float(weight_new))
+            logger.debug(f'{weight_list}')
 
         if weight_list == 0 or weight_list == []:
             logger.error("Error, null weight list")
@@ -120,12 +108,15 @@ def Connect_ARD_get_weight(cow_id, s, type_scales): # Connection to aruino throu
         else:
             if weight_list != []: # Here must added check on weight array null value and one element array
                 del weight_list[-1]
+            logger.debug(f'{type(start_timedate)}')
             weight_finall = statistics.median(weight_list)
             weight_array = weight_list
-            weight_list = []
-            gpio_state = fs.gpio_state_check(scales_list, drink_start_time, spray_get_url, type_scales, cow_id, gpio_state)     
+            logger.debug(f'{type(weight_finall)}, {type(weight_array)}, {type(start_timedate)}')
+               
     except Exception as e:
-        logger.error("Error connection to Arduino", e)
+        logger.error(f"Error connection to Arduino {e}")
+    except TypeError as t:
+        logger.error(f'Cannot unpack non-iterable NoneType object {t}')
     else:
         if weight_array != 0:
             return weight_finall, weight_array, start_timedate
