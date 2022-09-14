@@ -62,16 +62,11 @@ def raspberry_weight():
         hx = HX711(dout_pin=21, pd_sck_pin=20)
         hx.set_scale_ratio(calibrated_ratio)
         weight_kg = hx.get_weight_mean(10)/1000
-        if weight_kg < 1:
-            weight_kg = 0
-        print("weight_kg")
-        print(weight_kg)
     except BaseException as b:
         logger.error(f'raspberry weight func error: {b}')
     finally:
         GPIO.cleanup()
-        if weight_kg > 1:
-            return weight_kg
+        return weight_kg
 
 def distance():
     try:
@@ -99,7 +94,7 @@ def distance():
  
 def measuring_start(distance):
     try:
-        if distance <= 10:
+        if distance <= 50:
             return True
         else:
             return False
@@ -134,7 +129,6 @@ def Connect_RFID_reader():                                      # Connection to 
         logger.debug(f'START Null id null_id : {null_id}')
     
         if animal_id == null_id: # Send command to reader waiting id of animal
-            print("animal_id == null_id")
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s.connect((TCP_IP, TCP_PORT))
             s.send(bytearray([0x53, 0x57, 0x00, 0x06, 0xff, 0x01, 0x00, 0x00, 0x00, 0x50])) #Chafon RU5300 Answer mode reading mode command
@@ -159,14 +153,9 @@ def Connect_RFID_reader():                                      # Connection to 
 
 def rfid_label():
     try:
-        print("start rfid_label function")
         labels = []
-        
         while len(labels) <= 11:
-            print("while rfid label")
             cow_id = Connect_RFID_reader()
-            print("cow id")
-            print(cow_id)
             labels.append(cow_id)
         animal_id = max([j for i,j in enumerate(labels) if j in labels[i+1:]]) if labels != list(set(labels)) else -1
         return animal_id
