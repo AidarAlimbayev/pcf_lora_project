@@ -24,6 +24,9 @@ hx = HX711(dout_pin=21, pd_sck_pin=20)
 i, o, e = select.select( [sys.stdin], [], [], 2 )
 if (i): ratio = fdr.hx711_calibrate(hx)
 
+
+
+
 logger.add('feeder.log', format="{time} {level} {message}", 
 level="DEBUG", rotation="1 day", compression="zip")  
 
@@ -49,6 +52,11 @@ headers = {'Content-type': 'application/json'}
 #    logger.error(f'Success: Arduino connected')
 
 def main():
+#Tara
+    err = hx.zero()
+    # check if successful
+    if err:
+        raise ValueError('Tare is unsuccessful.')
     while True:
         dist = fdr.distance()
         print("dist")
