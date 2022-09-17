@@ -56,13 +56,13 @@ def hx711_calibrate(hx):
         GPIO.cleanup()
         return ratio
         
-def raspberry_weight():
+def raspberry_weight(calibrated_ratio):
     try:
         GPIO.setmode(GPIO.BCM)  
         hx = HX711(dout_pin=21, pd_sck_pin=20)
         hx.set_scale_ratio(calibrated_ratio)
         weight_kg = hx.get_weight_mean(10)/1000
-    except BaseException as b:
+    except:
         logger.error(f'raspberry weight func error: {b}')
     finally:
         GPIO.cleanup()
