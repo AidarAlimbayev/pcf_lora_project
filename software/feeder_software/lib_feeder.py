@@ -10,6 +10,8 @@ from hx711 import HX711
 
 calibrated_ratio = 3.1026918536009447
 
+
+
 def hx711_calibrate(hx):
     try:            
         GPIO.setmode(GPIO.BCM)
