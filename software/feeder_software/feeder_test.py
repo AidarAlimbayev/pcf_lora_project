@@ -9,6 +9,68 @@ import sys
 from hx7 import HX711
 import numpy
 
+<<<<<<< HEAD
+=======
+calibrated_ratio = 256757
+
+def hx711_calibrate(hx):
+    try:            
+        GPIO.setmode(GPIO.BCM)
+        hx = HX711(dout_pin=21, pd_sck_pin=20)
+        err = hx.zero()
+        # check if successful
+        if err:
+            raise ValueError(logger.error(f'Tare is unsuccessful.'))
+
+        reading = hx.get_raw_data_mean()
+        if reading:  # always check if you get correct value or only False
+            # now the value is close to 0
+            logger.info(f'Data subtracted by offset but still not converted to units: {reading}')
+        else:
+            logger.info(f'invalid data {reading}')
+
+        input(f'Put known weight on the scale and then press Enter')
+        reading = hx.get_data_mean()
+        if reading:
+            logger.info(f'Mean value from HX711 subtracted by offset: {reading}')
+            known_weight_grams = input(
+                f'Write how many grams it was and press Enter: ')
+            try:
+                value = float(known_weight_grams)
+                logger.info(value, 'grams')
+            except ValueError:
+                logger.info('Expected integer or float and I have got:',
+                    known_weight_grams)
+
+            # set scale ratio for particular channel and gain which is
+            # used to calculate the conversion to units. Required argument is only
+            # scale ratio. Without arguments 'channel' and 'gain_A' it sets
+            # the ratio for current channel and gain.
+            ratio = reading / value  # calculate the ratio for channel A and gain 128
+            hx.set_scale_ratio(ratio)  # set ratio for current channel
+            logger.info(f'Ratio is: {ratio}')
+        else:
+            raise ValueError(logger.error(f'Cannot calculate mean value. Try debug mode. Variable reading: {reading}'))
+          
+    except (KeyboardInterrupt, SystemExit):
+        logger.error('Bye :)')
+
+    finally:
+        GPIO.cleanup()
+        return ratio
+        
+def raspberry_weight(calibrated_ratio):
+    try:
+        GPIO.setmode(GPIO.BCM)  
+        hx = HX711(dout_pin=21, pd_sck_pin=20)
+        hx.set_scale_ratio(calibrated_ratio)
+        weight_kg = hx.get_weight_mean(10)/1000
+    except:
+        logger.error(f'raspberry weight func error: {b}')
+    finally:
+        GPIO.cleanup()
+        return weight_kg
+>>>>>>> 8da6cf3 (weight test)
 
 def distance():
     try:

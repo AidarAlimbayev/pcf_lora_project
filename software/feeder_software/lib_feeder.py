@@ -8,7 +8,7 @@ import socket
 from hx711 import HX711
 #import main_feeder_ver1 as mf
 
-calibrated_ratio = 256757
+calibrated_ratio = 3.1026918536009447
 
 def hx711_calibrate(hx):
     try:            
@@ -45,7 +45,7 @@ def hx711_calibrate(hx):
             # the ratio for current channel and gain.
             ratio = reading / value  # calculate the ratio for channel A and gain 128
             hx.set_scale_ratio(ratio)  # set ratio for current channel
-            logger.info(f'Ratio is: {ratio}')
+            print(f'Ratio is: {ratio}')
         else:
             raise ValueError(logger.error(f'Cannot calculate mean value. Try debug mode. Variable reading: {reading}'))
           
@@ -56,12 +56,15 @@ def hx711_calibrate(hx):
         GPIO.cleanup()
         return ratio
         
-def raspberry_weight():
+def raspberry_weight(calibrated_ratio):
     try:
         GPIO.setmode(GPIO.BCM)  
         hx = HX711(dout_pin=21, pd_sck_pin=20)
+        
         hx.set_scale_ratio(calibrated_ratio)
-        weight_kg = hx.get_weight_mean(10)/1000
+        weight_kg = hx.get_weight_mean(10)
+        print("clear weight_kg")
+        print(weight_kg)
         if weight_kg < 1:
             weight_kg = 0
         print("weight_kg")
@@ -69,9 +72,9 @@ def raspberry_weight():
     except BaseException as b:
         logger.error(f'raspberry weight func error: {b}')
     finally:
-        GPIO.cleanup()
-        if weight_kg > 1:
-            return weight_kg
+        #GPIO.cleanup()
+        #if weight_kg > 1:
+        return weight_kg
 
 def distance():
     try:

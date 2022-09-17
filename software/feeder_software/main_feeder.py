@@ -37,7 +37,7 @@ null_id = "b'435400040001'"         #???????????????????
 weight_finall = 0                   #???????????????????
 url = "https://smart-farm.kz:8502/api/v2/RawFeedings"
 headers = {'Content-type': 'application/json'}
-#calibrated_ratio = 256757
+
 
 #try:
 #    s = serial.Serial('/dev/ttyACM0',9600) 
@@ -51,28 +51,37 @@ headers = {'Content-type': 'application/json'}
 def main():
     while True:
         dist = fdr.distance()
-        distance = fdr.measuring_start(dist)
-        logger.info("measuring dist", distance)
-        print(distance)
-        if distance:
+        print("dist")
+        print(dist)
+        #distance = fdr.measuring_start(dist)
+        #logger.info("measuring dist", distance)
+        #print(distance)
+        if dist<=10:
             start_weight = fdr.raspberry_weight()
             print("Start weight")
+            print(start_weight)
             start_time = timeit.default_timer
             print("Start time")
+            print(start_time)
             animal_id = fdr.rfid_label()
             print("RFID label")
             print(animal_id)
             logger.info(f'First step cow ID :{animal_id}')
 
-            sleep(1)
+            #sleep(1)
             
             if animal_id != '435400040001':  #?????????????????????
                 logger.info(f'After read cow ID :{animal_id}')
-                while distance:
-                    end_time = timeit.default_timer
-                    end_weight = fdr.raspberry_weight()
-                    print("end weight")
-                    print(end_weight)
+                while dist <= 10:
+                    print("While True")
+                    sleep(1)
+                    dist = fdr.distance()
+                    print("dist")
+                    print(dist)
+                end_time = timeit.default_timer
+                end_weight = fdr.raspberry_weight()
+                print("end weight")
+                print(end_weight)
                 feed_time = int(start_time) - int(end_time)
                 print("feed_time")
                 print(feed_time)
