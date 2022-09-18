@@ -1,0 +1,2 @@
+Rpi.GPIO
+numpy

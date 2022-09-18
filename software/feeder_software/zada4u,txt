@@ -1,0 +1,21 @@
+1. Нужно избавиться от переменной choice (выбор между калибровка и начала работа мэйн)
+2. В момент отправки данных на сервер, терминал выводит ошибку 400 (400 - ответ от сервера). Нужно решить с данной ошибкой 
+{
+    "Eventdatetime": str(datetime.now()),
+    "EquipmentType": feeder_type,
+    "SerialNumber": serial_number,
+    "FeedingTime": feed_time,
+    "RFIDNumber": animal_id,
+    "WeightLambda": end_weight,
+    "FeedWeight": feed_weight
+}
+3. Заменить ультрасоник на датчик прерывания 
+
+4. Calibration_value.txt: - offset = 8.564651654651651
+                          - scale = 6516216516.54165465
+                          Записать две переменные после калибровки в файл Calibration_value.txt 
+
+weight_value = [123, 123214, 21435,512 , 5,1 2,4,21, 4,124 ,1,24,12, 4,1,2 412 4,1,2 4,12 4]
+for i in weight_value:
+    post(i) to main_feeder.py
+    sleep(1)

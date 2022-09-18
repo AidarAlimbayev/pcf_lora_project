@@ -1,0 +1,7 @@
+hx711.py
+setup.py
+hx711.egg-info/PKG-INFO
+hx711.egg-info/SOURCES.txt
+hx711.egg-info/dependency_links.txt
+hx711.egg-info/requires.txt
+hx711.egg-info/top_level.txt
