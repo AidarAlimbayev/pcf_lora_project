@@ -24,6 +24,9 @@ hx = HX711(dout_pin=21, pd_sck_pin=20)
 i, o, e = select.select( [sys.stdin], [], [], 2 )
 if (i): ratio = fdr.hx711_calibrate(hx)
 
+
+
+
 logger.add('feeder.log', format="{time} {level} {message}", 
 level="DEBUG", rotation="1 day", compression="zip")  
 
@@ -37,7 +40,7 @@ null_id = "b'435400040001'"         #???????????????????
 weight_finall = 0                   #???????????????????
 url = "https://smart-farm.kz:8502/api/v2/RawFeedings"
 headers = {'Content-type': 'application/json'}
-#calibrated_ratio = 256757
+
 
 #try:
 #    s = serial.Serial('/dev/ttyACM0',9600) 
@@ -49,30 +52,44 @@ headers = {'Content-type': 'application/json'}
 #    logger.error(f'Success: Arduino connected')
 
 def main():
+#Tara
+    err = hx.zero()
+    # check if successful
+    if err:
+        raise ValueError('Tare is unsuccessful.')
     while True:
         dist = fdr.distance()
-        distance = fdr.measuring_start(dist)
-        logger.info("measuring dist", distance)
-        print(distance)
-        if distance:
+        print("dist")
+        print(dist)
+        #distance = fdr.measuring_start(dist)
+        #logger.info("measuring dist", distance)
+        #print(distance)
+        if dist<=10:
             start_weight = fdr.raspberry_weight()
             print("Start weight")
+            print(start_weight)
             start_time = timeit.default_timer
             print("Start time")
+            print(start_time)
             animal_id = fdr.rfid_label()
             print("RFID label")
             print(animal_id)
             logger.info(f'First step cow ID :{animal_id}')
 
-            sleep(1)
+            #sleep(1)
             
             if animal_id != '435400040001':  #?????????????????????
                 logger.info(f'After read cow ID :{animal_id}')
-                while distance:
-                    end_time = timeit.default_timer
-                    end_weight = fdr.raspberry_weight()
-                    print("end weight")
-                    print(end_weight)
+                while dist <= 10:
+                    print("While True")
+                    sleep(1)
+                    dist = fdr.distance()
+                    print("dist")
+                    print(dist)
+                end_time = timeit.default_timer
+                end_weight = fdr.raspberry_weight()
+                print("end weight")
+                print(end_weight)
                 feed_time = int(start_time) - int(end_time)
                 print("feed_time")
                 print(feed_time)
