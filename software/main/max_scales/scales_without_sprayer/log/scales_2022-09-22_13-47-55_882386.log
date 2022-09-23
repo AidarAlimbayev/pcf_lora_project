@@ -1,0 +1,59 @@
+2022-09-22T13:47:55.924715+0600 INFO main: Start script
+2022-09-22T13:47:55.928324+0600 DEBUG Connect arduino /dev/ttyACM0
+2022-09-22T13:47:55.929096+0600 DEBUG Configuration of serial: Serial<id=0xb57dad00, open=True>(port='/dev/ttyACM0', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+2022-09-22T13:47:55.930101+0600 INFO Else step Arduino
+2022-09-22T13:47:55.930824+0600 DEBUG Start main script
+2022-09-22T13:47:55.931353+0600 DEBUG START RFID FUNCTION
+2022-09-22T13:47:55.931827+0600 DEBUG START Animal ID animal_id: b'435400040001'
+2022-09-22T13:47:55.932361+0600 DEBUG START Null id null_id : b'435400040001'
+2022-09-22T14:29:43.036344+0600 DEBUG Raw ID animal_id: b'4354001c004501c38d140a0c0605010f0101e2806894000040103003bd4ed0b4'
+2022-09-22T14:29:43.037828+0600 DEBUG New ID animal_id_new: 40103003bd4e
+2022-09-22T14:29:43.038790+0600 DEBUG Null id null_id : b'435400040001'
+2022-09-22T14:29:43.039849+0600 DEBUG Success step 2 RFID. animal id new: 40103003bd4e
+2022-09-22T14:29:43.040738+0600 INFO After read cow ID :
+2022-09-22T14:29:46.020819+0600 DEBUG [72.6]
+2022-09-22T14:29:48.019989+0600 DEBUG [72.6, 72.5]
+2022-09-22T14:29:50.022865+0600 DEBUG [72.6, 72.5, 72.5]
+2022-09-22T14:29:52.025742+0600 DEBUG [72.6, 72.5, 72.5, 72.5]
+2022-09-22T14:29:54.028780+0600 DEBUG [72.6, 72.5, 72.5, 72.5, 72.5]
+2022-09-22T14:29:56.027763+0600 DEBUG [72.6, 72.5, 72.5, 72.5, 72.5, 45.2]
+2022-09-22T14:29:58.030729+0600 DEBUG [72.6, 72.5, 72.5, 72.5, 72.5, 45.2, -0.0]
+2022-09-22T14:29:58.031778+0600 DEBUG <class 'str'>
+2022-09-22T14:29:58.032665+0600 DEBUG <class 'float'>, <class 'list'>, <class 'str'>
+2022-09-22T14:29:58.033467+0600 INFO main: weight_finall
+2022-09-22T14:29:58.034324+0600 INFO main: Send data to server
+2022-09-22T14:29:58.035160+0600 DEBUG Post data function start
+2022-09-22T14:29:58.378052+0600 DEBUG Answer from server: <Response [200]>
+2022-09-22T14:29:58.379493+0600 DEBUG Content from main server: b'198'
+2022-09-22T14:29:58.380053+0600 DEBUG START SEND DATA TO SERVER:
+2022-09-22T14:29:58.501583+0600 DEBUG Answer from server: <Response [200]>
+2022-09-22T14:29:58.502257+0600 DEBUG Content from main server: b'114245'
+2022-09-22T14:29:58.502929+0600 ERROR 4 step send data
+2022-09-22T14:29:58.503596+0600 DEBUG START RFID FUNCTION
+2022-09-22T14:29:58.504149+0600 DEBUG START Animal ID animal_id: b'435400040001'
+2022-09-22T14:29:58.505625+0600 DEBUG START Null id null_id : b'435400040001'
+2022-09-22T14:29:58.561902+0600 DEBUG Raw ID animal_id: b'4354001c004501c38d140a0c0605010f0101e2806894000040103003bd4eccb8'
+2022-09-22T14:29:58.562595+0600 DEBUG New ID animal_id_new: 40103003bd4e
+2022-09-22T14:29:58.563149+0600 DEBUG Null id null_id : b'435400040001'
+2022-09-22T14:29:58.564217+0600 DEBUG Success step 2 RFID. animal id new: 40103003bd4e
+2022-09-22T14:29:58.565019+0600 INFO After read cow ID :
+2022-09-22T14:30:00.033615+0600 ERROR Error, null weight list
+2022-09-22T14:30:00.034557+0600 ERROR An error has been caught in function '<module>', process 'MainProcess' (19945), thread 'MainThread' (3069231168):
+Traceback (most recent call last):
+
+> File "/home/pi/Desktop/main_pcf.py", line 56, in <module>
+    main()
+    └ <function main at 0xb57e7220>
+
+  File "/home/pi/Desktop/main_pcf.py", line 47, in main
+    weight_finall, weight_array, weighing_start_time = pcf.Connect_ARD_get_weight(s) # Grab weight from arduino and collect to weight_finall
+    │              │                                   │   │                      └ Serial<id=0xb57dad00, open=True>(port='/dev/ttyACM0', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=None, xonxof...
+    │              │                                   │   └ <function Connect_ARD_get_weight at 0xb57d04f0>
+    │              │                                   └ <module 'lib_pcf' from '/home/pi/Desktop/lib_pcf.py'>
+    │              └ [72.6, 72.5, 72.5, 72.5, 72.5, 45.2]
+    └ 72.5
+
+  File "/home/pi/Desktop/lib_pcf.py", line 121, in Connect_ARD_get_weight
+    if weight_array != 0:
+
+UnboundLocalError: local variable 'weight_array' referenced before assignment

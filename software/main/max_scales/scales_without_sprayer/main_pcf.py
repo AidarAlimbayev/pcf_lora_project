@@ -19,7 +19,7 @@ import serial
 logger.add('log/scales_{time}.log', format="{time} {level} {message}", 
 level="DEBUG", rotation="1 day", compression="zip")             #serialize="True")
 
-type_scales = "pcf_model_6" 
+type_scales = "pcf_model_2" 
 cow_id = "b'435400040001'"                                      # value of null answer of RFID reader
 null_id = "b'435400040001'"
 another_null_id = "b'435400040001'"

@@ -1,26 +1,27 @@
+
 from loguru import logger
 import requests
 import json
-import values as vl
+#import values as vl
 
-def check():
-    pin = vl.values['pin']
-    gpio_state = vl.values['gpio_state']
-    spray_duration = vl.values['spray_duration']
-    pin = 10
-    spray_duration = 20
-    if gpio_state is False:
-        return pin
-    else:
-        return spray_duration
-
-def __check2(a):
-    pass
-
-def main():
-    pass
+# def check():
+#     pin = vl.values['pin']
+#     gpio_state = vl.values['gpio_state']
+#     spray_duration = vl.values['spray_duration']
+#     pin = 10
+#     spray_duration = 20
+#     if gpio_state is False:
+#         return pin
+#     else:
+#         return spray_duration
 
 
+take = None
+
+if not take:
+    print('Hi')
+else:
+    print('Bye')
 
 # wf = [90.4, 150.3, 185.2, 182.9, 184.26, 183.9, 210.3, 187.4, 182.5, 173.5, 67.2, 10.2]
 # try:
