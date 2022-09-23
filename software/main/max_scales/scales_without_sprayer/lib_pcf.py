@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import datetime
 import json
+from types import NoneType
 import requests
 import socket
 import binascii
@@ -92,31 +93,31 @@ def Connect_ARD_get_weight(s): # Connection to aruino through USB by Serial Port
         s.flushInput() 
         s.flushOutput()
         weight = (str(s.readline())) # Start of collecting weight data from Arduino
+        logger.info(f'weight type: {type(weight)}!!!!!!!!!!!!!! weight value{weight}')
         weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
         weight_list = []
         start_timedate = str(datetime.datetime.now())        
 
         while (float(weight_new) > 10): # Collecting weight to array 
             weight = (str(s.readline()))
+            logger.info(f'weight type: {type(weight)}!!!!!!!!!!!!!! weight value{weight}')
             weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
             weight_list.append(float(weight_new))
             logger.debug(f'{weight_list}')
 
-        if weight_list == 0 or weight_list == []:
+        if not weight_list:
             logger.error("Error, null weight list")
 
         else:
-            if weight_list != []: # Here must added check on weight array null value and one element array
+            if len(weight_list) > 1: # Here must added check on weight array null value and one element array
                 del weight_list[-1]
-            logger.debug(f'{type(start_timedate)}')
             weight_finall = statistics.median(weight_list)
-            weight_array = weight_list
-            logger.debug(f'{type(weight_finall)}, {type(weight_array)}, {type(start_timedate)}')
-               
+            logger.debug(f'{type(weight_finall)}, {type(weight_list)}, {type(start_timedate)}')
+            return weight_finall, weight_list, start_timedate
+
     except Exception as e:
         logger.error(f"Error connection to Arduino {e}")
     except TypeError as t:
         logger.error(f'Cannot unpack non-iterable NoneType object {t}')
-    else:
-        if weight_array != 0:
-            return weight_finall, weight_array, start_timedate
+
+        
