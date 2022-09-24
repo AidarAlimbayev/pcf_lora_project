@@ -18,12 +18,6 @@ import RPi.GPIO as GPIO
 from hx711 import HX711
 import sys, select
 
-# GPIO.setmode(GPIO.BCM)                 # set GPIO pin mode to BCM numbering
-# hx = HX711(dout_pin=21, pd_sck_pin=20)
-
-# i, o, e = select.select( [sys.stdin], [], [], 2 )
-# if (i): ratio = fdr.hx711_calibrate(hx)
-
 calibrated_ratio = 3.1026918536009447
 
 GPIO.setmode(GPIO.BCM)  
@@ -33,6 +27,11 @@ err = hx.zero()
     # check if successful
 if err:
     raise ValueError('Tare is unsuccessful.')
+
+print("Press nay button to start calibration")
+i, o, e = select.select( [sys.stdin], [], [], 10 )
+if (i): 
+    calibrated_ratio = fdr.hx711_calibrate(hx)
 
 
 
@@ -52,12 +51,9 @@ headers = {'Content-type': 'application/json'}
 
 
 def main():
-#Tara
-    err = hx.zero()
     # check if successful
     hx.set_scale_ratio(calibrated_ratio)
-    if err:
-        raise ValueError('Tare is unsuccessful.')
+    
     while True:
         dist = fdr.distance()
         print("dist")
