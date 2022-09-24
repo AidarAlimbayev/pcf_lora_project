@@ -13,13 +13,6 @@ from hx711 import HX711
 
 def hx711_calibrate(hx):
     try:            
-        GPIO.setmode(GPIO.BCM)
-        hx = HX711(dout_pin=21, pd_sck_pin=20)
-        err = hx.zero()
-        # check if successful
-        if err:
-            raise ValueError(logger.error(f'Tare is unsuccessful.'))
-
         reading = hx.get_raw_data_mean()
         if reading:  # always check if you get correct value or only False
             # now the value is close to 0
@@ -54,7 +47,7 @@ def hx711_calibrate(hx):
         logger.error('Bye :)')
 
     finally:
-        GPIO.cleanup()
+        #GPIO.cleanup()
         return ratio
         
 def raspberry_weight(hx):
