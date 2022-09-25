@@ -28,12 +28,13 @@ values = {  'gpio_state': False,
             'position': False,
             'volume': 0}
 
+print(type(values))
 
 
 
-url = 'https://smart-farm.kz:8502/api/v2/Sprayings?scalesSerialNumber=pcf_1_model_1_80&animalRfidNumber=010117406415'
-request_get = requests.get(url, timeout=0.5).json()
-print(request_get)
+# url = 'https://smart-farm.kz:8502/api/v2/Sprayings?scalesSerialNumber=pcf_1_model_1_80&animalRfidNumber=010117406415'
+# request_get = requests.get(url, timeout=0.5).json()
+# print(request_get)
 
 
 
