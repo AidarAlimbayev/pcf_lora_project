@@ -29,6 +29,8 @@ if (i):
     logger.info(f'Start calibration')
     offset, scale = fdr.calibrate() #Запись в файл
 
+
+
 logger.add('feeder.log', format="{time} {level} {message}", 
 level="DEBUG", rotation="1 day", compression="zip")  
 
