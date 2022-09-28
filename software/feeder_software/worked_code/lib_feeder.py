@@ -8,30 +8,41 @@ import socket
 from hx711 import HX711
 #import main_feeder_ver1 as mf
 
-#calibrated_ratio = 3060.740740
 
+def function_timer(timeout_time):
+    start = time.time()
+    stop_seconds = timeout_time
+    while time.time() - start < stop_seconds:
+        print('function timer processing')
+        time.sleep(1)
+    return False
 
-def hx711_calibrate(hx):
+def hx711_calibrate(hx, ratio):
     try:            
+        
         reading = hx.get_raw_data_mean()
+        print("First raw data mean reading", reading)
         if reading:  # always check if you get correct value or only False
             # now the value is close to 0
-            logger.info(f'Data subtracted by offset but still not converted to units: {reading}')
+            print('Data subtracted by offset but still not converted to units:', reading)
         else:
-            logger.info(f'invalid data {reading}')
+            print('invalid data', reading)
 
-        input(f'Put known weight on the scale and then press Enter')
+        number = input('Put known weight on the scale and then press Enter 1  \n')
         reading = hx.get_data_mean()
-        if reading:
-            logger.info(f'Mean value from HX711 subtracted by offset: {reading}')
-            known_weight_grams = input(
-                f'Write how many grams it was and press Enter: ')
+        print("Second time det data mean reading", reading)
+        print("Input number is :", number)
+        print("------------------------")
+        if number:
+            print('Mean value from HX711 subtracted by offset:', reading)
+            known_weight_grams = input('Write how many grams it was and press Enter: ')
             try:
+                print("Known weight grams", known_weight_grams)
                 value = float(known_weight_grams)
-                logger.info(value, 'grams')
+
+                print('grams', value)
             except ValueError:
-                logger.info('Expected integer or float and I have got:',
-                    known_weight_grams)
+                print('Expected integer or float and I have got:', known_weight_grams)
 
             # set scale ratio for particular channel and gain which is
             # used to calculate the conversion to units. Required argument is only
@@ -39,15 +50,16 @@ def hx711_calibrate(hx):
             # the ratio for current channel and gain.
             ratio = reading / value  # calculate the ratio for channel A and gain 128
             hx.set_scale_ratio(ratio)  # set ratio for current channel
-            print(f'Ratio is: {ratio}')
+            print('Ratio is set.', ratio)
         else:
             raise ValueError(logger.error(f'Cannot calculate mean value. Try debug mode. Variable reading: {reading}'))
           
     except (KeyboardInterrupt, SystemExit):
-        logger.error('Bye :)')
+        print('Bye :)')
 
     finally:
         #GPIO.cleanup()
+        print("Now print exit ratio", ratio)
         return ratio
         
 def raspberry_weight(hx):
@@ -150,21 +162,24 @@ def Connect_RFID_reader():                                      # Connection to 
     else: 
         logger.debug(f'2 step RFID')
 
-# def rfid_label():
-#     try:
-#         print("start rfid_label function")
-#         labels = []
+def rfid_label():
+    try:
+        print("start rfid_label function")
+        labels = []
         
-#         while len(labels) <= 11:
-#             print("while rfid label")
-#             cow_id = Connect_RFID_reader()
-#             print("cow id")
-#             print(cow_id)
-#             labels.append(cow_id)
-#         animal_id = max([j for i,j in enumerate(labels) if j in labels[i+1:]]) if labels != list(set(labels)) else -1
-#         return animal_id
-#     except ValueError as v:
-#         logger.error(f'Post_request function error: {v}')
+        while len(labels) <= 11 and function_timer(2):
+            print("while rfid label")
+            print("label lenght")
+            time.sleep(2)
+            print(len(labels))
+            cow_id = Connect_RFID_reader()
+            print("cow id")
+            print(cow_id)
+            labels.append(cow_id)
+        animal_id = max([j for i,j in enumerate(labels) if j in labels[i+1:]]) if labels != list(set(labels)) else -1
+        return animal_id
+    except ValueError as v:
+        logger.error(f'Post_request function error: {v}')
 
 def instant_weight(s):
     try:

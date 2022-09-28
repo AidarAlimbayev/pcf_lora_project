@@ -19,6 +19,7 @@ from hx711 import HX711
 import sys, select
 
 calibrated_ratio = 3.1026918536009447
+ratio = 3.102
 
 GPIO.setmode(GPIO.BCM)  
 hx = HX711(dout_pin=21, pd_sck_pin=20)
@@ -28,17 +29,18 @@ err = hx.zero()
 if err:
     raise ValueError('Tare is unsuccessful.')
 
-print("Press nay button to start calibration")
+print("Press any button to start calibration")
 i, o, e = select.select( [sys.stdin], [], [], 10 )
 if (i): 
-    calibrated_ratio = fdr.hx711_calibrate(hx)
+    calibrated_ratio = fdr.hx711_calibrate(hx, ratio)
 
 
 
 logger.add('feeder.log', format="{time} {level} {message}", 
 level="DEBUG", rotation="1 day", compression="zip")  
-
-sleep(1)
+print("Calibrated ratio", calibrated_ratio)
+print("wait for interrupt")
+sleep(100)
 
 feeder_type = "feeder_model_1"
 type = "Feeder"
@@ -58,7 +60,7 @@ def main():
         dist = fdr.distance()
         print("dist")
         print(dist)
-        sleep(1)
+        #sleep(1)
         #distance = fdr.measuring_start(dist)
         #logger.info("measuring dist", distance)
         #print(distance)
@@ -68,19 +70,19 @@ def main():
             print(start_weight)
             start_time = timeit.default_timer()
             print("Start time", start_time)
-            #animal_id = fdr.rfid_label()
-            animal_id = fdr.Connect_RFID_reader()
+            animal_id = fdr.rfid_label()
+            #animal_id = fdr.Connect_RFID_reader()
             print("RFID label")
             print(animal_id)
             logger.info(f'First step cow ID :{animal_id}')
 
-            sleep(1)
+            #sleep(1)
             
             if animal_id != '435400040001':  #?????????????????????
                 logger.info(f'After read cow ID :{animal_id}')
                 while dist <= 10:
                     print("While True")
-                    sleep(2)
+                    #sleep(1)
                     dist = fdr.distance()
                     print("dist")
                     print(dist)

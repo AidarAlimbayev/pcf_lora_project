@@ -10,7 +10,12 @@ from hx711 import HX711
 
 #calibrated_ratio = 3060.740740
 
-
+def function_timer(timeout_time):
+    start = time.time()
+    stop_seconds = timeout_time
+    while time.time() - start < stop_seconds:
+        print('processing')
+    return False
 
 def hx711_calibrate(hx):
     try:            
@@ -163,7 +168,7 @@ def rfid_label():
         print("start rfid_label function")
         labels = []
         
-        while len(labels) <= 11:
+        while len(labels) <= 11 and function_timer(2):
             print("while rfid label")
             cow_id = Connect_RFID_reader()
             print("cow id")
