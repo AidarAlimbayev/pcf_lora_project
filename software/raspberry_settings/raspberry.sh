@@ -23,7 +23,6 @@ add-apt-repository ppa:deadsnakes/ppa
 # locale-gen #Чтобы проверить ввести `locale -a`. На выходе должно быть POSIX en_US.utf8 ru_RU 
 
 #Установка Python
-echo `python3 -V`
 #apt install python2
 apt install python3.10
 apt update
@@ -33,7 +32,6 @@ cd Python-3.10.*/
 ./configure --enable-optimizations
 make -j $(nproc)
 make altinstall
-
 apt install -y python3-pip
 echo `python3 -V`
 echo 'The Python has loaded'
@@ -85,15 +83,15 @@ cd ..
 # pip install httplib2 --upgrade
 #pip install logging         #import logging
 #pip install statistics      #import statistics
-echo 'All libraries has loaded'
-echo '####################'
-for ((i = 1; i <= 3; i++))
-do
-echo "...$i"
-sleep 1
-done 
+# echo 'All libraries has loaded'
+# echo '####################'
+# for ((i = 1; i <= 3; i++))
+# do
+# echo "...$i"
+# sleep 1
+# done 
 
-#Установка Arduino IDE. *Примечание, перед установкой соединить с raspberry
+#Установка Arduino IDE. *Примечание, перед установкой arduino соединить с raspberry
 mkdir /home/pi/arduino
 cd /home/pi/arduino/
 wget https://downloads.arduino.cc/arduino-1.8.19-linuxarm.tar.xz

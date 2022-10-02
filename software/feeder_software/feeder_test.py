@@ -57,7 +57,7 @@ def post_request(feeder_type, serial_number, feed_time, animal_id, end_weight, f
         logger.error(f'Post_request function error: {v}')
 
 
-def Connect_RFID_reader():                                      # Connection to RFID Reader through TCP and getting cow ID in str format
+def __connect_rfid_reader():                                      # Connection to RFID Reader through TCP and getting cow ID in str format
     try:    
         #logger.debug(f'START RFID FUNCTION')
         TCP_IP = '192.168.1.250'                                #chafon 5300 reader address
@@ -82,7 +82,7 @@ def Connect_RFID_reader():                                      # Connection to 
             #logger.debug(f'Null id null_id : {str(null_id)}')
             s.close()             
         if animal_id_new == null_id: # Id null return(0)
-            Connect_RFID_reader()
+            __connect_rfid_reader()
         else: # Id checkt return(1)
             animal_id = "b'435400040001'"
             #logger.debug(f'Success step 2 RFID. animal id new: {animal_id_new}')
@@ -97,7 +97,7 @@ def rfid_label():
     try:
         labels = []
         while len(labels) <= 11:
-            cow_id = Connect_RFID_reader()
+            cow_id = __connect_rfid_reader()
             labels.append(cow_id)
         animal_id = max([j for i,j in enumerate(labels) if j in labels[i+1:]]) if labels != list(set(labels)) else -1
         return animal_id

@@ -106,7 +106,7 @@ def test_2():
         else:
             logger.info(f'Start main')
             logger.info(f'Start measure')
-            while (True):
+            while True:
                 try:        
                     ulrasonic_distance = fdr.distance() #56.31, 33.44, 42.32, 9.11
                     logger.info(f'Distance: {ulrasonic_distance}') #print("Distance:", ultrasonic)
