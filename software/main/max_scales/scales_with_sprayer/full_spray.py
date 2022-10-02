@@ -150,7 +150,7 @@ def __spraying_type(values) -> int:  # To find GPIO pin by liquid
         logger.error(f'__spraying type func error: {e}')
 
 
-def spray_main_function(position, values) -> bool:  # That's a main function
+def __spray_main_function(position, values) -> bool:  # That's a main function
     try:
         logger.info(f"Start spray_main_function")
         if position is False:  # If pump is off
@@ -178,7 +178,7 @@ def spray_main_function(position, values) -> bool:  # That's a main function
         return position
 
 
-def gpio_state_check(position, values) -> bool:  # Check the pump when out of loop
+def __gpio_state_check(position, values) -> bool:  # Check the pump when out of loop
     try:
         logger.info(f"Start gpio_state_check")
         if position is True:  # If pump is on
@@ -196,7 +196,7 @@ def gpio_state_check(position, values) -> bool:  # Check the pump when out of lo
         return position
 
 
-def new_start_timer(position, values):  # Update start time value
+def __new_start_timer(position, values):  # Update start time value
     try:
         logger.info(f'New start timer function')
         if position is True:  # If pump is on

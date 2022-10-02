@@ -1,3 +1,5 @@
+#!/usr/bin/sudo python3
+
 from datetime import datetime
 from loguru import logger
 import RPi.GPIO as GPIO

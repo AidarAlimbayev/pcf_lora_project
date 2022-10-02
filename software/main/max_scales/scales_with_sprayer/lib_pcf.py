@@ -93,7 +93,7 @@ def post_data(type_scales, animal_id, weight_list, weighing_start_time, weighing
         logger.error(f'Error post data: {e}')
 
 
-def get_weight(s) -> float:  # Get edited weight value from arduino 
+def __get_weight(s) -> float:  # Get edited weight value from arduino 
     try:
         logger.info(f'Get weight from arduino.')
         weight = (str(s.readline()))  # Start of collecting weight data from Arduino
@@ -109,20 +109,17 @@ def connect_ard_get_weight(cow_id, s, type_scales):  # Connection to arduino thr
         s.flusOutput()
         # weight = (str(s.readline()))
         # weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
-        weight_new = get_weight(s)
-        drink_start_time = timeit.default_timer()
+        weight_new = __get_weight(s)
+        drink_start_time, gpio_state, weight_list, start_timedate = timeit.default_timer(), False, [], str(datetime.now())
         values = value_data.Values(drink_start_time, 0, type_scales, cow_id, 0, '0', 0, 0, 0, 0)
-        gpio_state = False
-        weight_list = []
-        start_timedate = str(datetime.now())
 
         while float(weight_new) > 10:  # Collecting weight to array
-            weight_new = get_weight(s)
+            weight_new = __get_weight(s)
             # weight = (str(s.readline()))
             # weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
             # Send_RawData_to_server(cow_id, weight_new, type_scales, start_timedate)
-            gpio_state = fs.spray_main_function(gpio_state, values)
-            values = fs.new_start_timer(gpio_state, values)
+            gpio_state = fs.__spray_main_function(gpio_state, values)
+            values = fs.__new_start_timer(gpio_state, values)
             weight_list.append(float(weight_new))
             logger.info(f'Weight list {weight_list}')
 
@@ -134,7 +131,7 @@ def connect_ard_get_weight(cow_id, s, type_scales):  # Connection to arduino thr
             if len(weight_list) > 1:
                 del weight_list[-1]
             weight_final = statistics.median(weight_list)
-            gpio_state = fs.gpio_state_check(gpio_state, values)
+            gpio_state = fs.__gpio_state_check(gpio_state, values)
             return weight_final, weight_list, start_timedate
     except TypeError as t:
         logger.error(f'Cannot unpack non-iterable NoneType object: {t}')
