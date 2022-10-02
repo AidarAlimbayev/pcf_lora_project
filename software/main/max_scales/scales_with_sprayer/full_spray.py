@@ -1,228 +1,208 @@
-from cmath import pi
-from urllib import request
-import requests                                         
-from requests.exceptions import HTTPError               
-import RPi.GPIO as GPIO                                 
-import timeit                                           
-import json      
-from loguru import logger                                       
-########################################################
+#!/usr/bin/python3
+
+"""File containing all working functions and algorithm for spraying an animal.
+Author: Suieubayev Maxat
+Contact: maxat.suieubayev@gmail.com
+Number: +7 775 818 48 43"""
+
+import requests
+from requests.exceptions import HTTPError
+import RPi.GPIO as GPIO
+import timeit
+import json
+from loguru import logger
+from Values_class import Pin
+from dataclasses import asdict
 
 
-########################################################
-def __spray_gpio_off(pin, scales_type, animal_id, start_time):
+def __spray_gpio_off(values) -> bool:  # Pump turn off function
     try:
-        # logger.error(f"Start spray_gpio_off")
-        GPIO.setmode(GPIO.BOARD)                        
+        logger.info(f"Start spray_gpio_off")
+        GPIO.setmode(GPIO.BOARD)
         GPIO.setwarnings(True)
-        GPIO.setup(pin, GPIO.OUT)                   
-        GPIO.output(pin, GPIO.LOW)                      
+        GPIO.setup(values.pin, GPIO.OUT)
+        GPIO.output(values.pin, GPIO.LOW)
         GPIO.cleanup()
-        position = False                            
-        end_time = timeit.default_timer()           
-        new_volume = (end_time - start_time) * 8.3  
-        post_data = __spray_json_payload(server_time, task_id, new_volume, spraying_type, scales_type, animal_id)
-        post_res = requests.post(spray_post, data=json.dumps(post_data), headers=headers, timeout=0.5)                                  
-        # logger.error(f 'GPIO is off. Pin number is {pin}')
+        spray_post = 'https://smart-farm.kz:8502/api/v2/SprayingTaskResults'  # url for post final data
+        headers = {'Content-type': 'application/json'}  # headers for post data
+        position = False
+        end_time = timeit.default_timer()
+        values.new_volume = (end_time - values.drink_start_time) * 8.3  # calculation of poured liquid
+        post_data = __spray_json_payload(values)  # Dict for post to server
+        post_res = requests.post(spray_post, data=json.dumps(post_data), headers=headers, timeout=0.5)
+        logger.info(f'Post status code {post_res.status_code}')
+        logger.info(f'GPIO is off. Pin number is {values.pin}')
         return position
     except Exception as e:
-        logger.error(f"Error: Spray_GPIO_off function isn't work {e}")     
-########################################################
+        logger.error(f"Error: Spray_GPIO_off function isn't work {e}")
 
 
-########################################################
-def __spray_gpio_on(pin, scales_type, animal_id, start_time):
+def __spray_gpio_on(values) -> bool:    # Pump turn on function
     try:
-        GPIO.setmode(GPIO.BOARD)                        
+        logger.info(f'Start spray gpio on')
+        GPIO.setmode(GPIO.BOARD)
         GPIO.setwarnings(True)
-        GPIO.setup(pin, GPIO.OUT)                       
-        GPIO.output(pin, GPIO.HIGH)                     
-        # logger.error(f"Start spray_gpio_on")                  
-        # logger.error(f'GPIO is on. Pin number is {pin}')     
-        return 0
+        GPIO.setup(values.pin, GPIO.OUT)
+        GPIO.output(values.pin, GPIO.HIGH)
+        logger.info(f'Pump turn on is successful. Pin number is {values.pin}')
+        return True
     except Exception as e:
-        logger.error(f"Error: GPIO_on function isn't work {e}")   
-        position = __spray_gpio_off(pin, scales_type, animal_id, start_time)  
-        return position     
-########################################################
+        logger.error(f"Error: GPIO_on function isn't work {e}")
+        position = __spray_gpio_off(values)
+        return position
 
 
-########################################################
-def __spray_json_payload(new_volume, scales_type, animal_id, pin, start_time):
+def __spray_json_payload(values) -> dict:  # Data collection in json
     try:
-        # logger.error(f"Start spray_json_payload")               
+        logger.error(f"Start spray_json_payload function")
         data = {
-            "EventDate": server_time,                   
-            "TaskId": task_id,                          
-            "ScalesSerialNumber": scales_type,          
-            "SpayerSerialNumber": "s01000001",          
-            "RFIDNumber": animal_id,                    
-            "SprayingType": spraying_type,              
-            "Volume": new_volume                        
-            }
+            "EventDate": values.server_time,
+            "TaskId": values.task_id,
+            "ScalesSerialNumber": values.type_scales,
+            "SpayerSerialNumber": "s01000001",
+            "RFIDNumber": values.cow_id,
+            "SprayingType": values.spraying_type,
+            "Volume": values.new_volume
+        }
         return data
     except Exception as e:
-        logger.error(f"Something wrong {e}")
-        position = __spray_gpio_off(pin, scales_type, animal_id, start_time)  
-        return position
-########################################################
+        logger.error(f"Error in __spray_json_payload func: {e}")
 
 
-########################################################
-def __request_get(url):
+def __request_get(values):  # Get data from the server
     try:
+        cow_id = values.cow_id
+        type_scales = values.type_scales
+        url = 'https://smart-farm.kz:8502/api/v2/Sprayings?scalesSerialNumber=' + type_scales + \
+              '&animalRfidNumber=' + cow_id
         request_get = requests.get(url, timeout=0.5).json()
         return request_get
     except Exception as e:
         logger.error(f'request get func error {e}')
-########################################################
 
 
-########################################################
-def __spray_json_get(request_get_json, get_object=0):
+def __spray_json_get(request_get_json, values, get_object=0):  # Convert data from the server to class
     try:
-        logger.info(f"Start spray_json_get")                        
-        task_id_get = request_get_json[get_object]['TaskId']
-        spraying_type_get = request_get_json[get_object]['SprayingType']
-        volume_get = request_get_json[get_object]['Volume']
-        server_time_get = request_get_json[get_object]['ServerTime']
-        return task_id_get, spraying_type_get, volume_get, server_time_get
+        logger.info(f"Start spray_json_get")
+        values.task_id = request_get_json[get_object]['TaskId']
+        values.spraying_type = request_get_json[get_object]['SprayingType']
+        values.volume = request_get_json[get_object]['Volume']
+        values.server_time = request_get_json[get_object]['ServerTime']
+        return values
     except BaseException as b:
         logger.error(f"__spray_json_get error: {b}")
-########################################################
 
 
-########################################################
-def __spray(start_time, position, pin, vol, scales_type, animal_id):
+def __spray(position, values) -> bool:  # Start spray function
     try:
-        logger.info(f"Start spray")                           
-        spray_time = vol / 8.3
-        spray_duration = start_time + spray_time        
-        if spray_duration >= timeit.default_timer():    
+        logger.info(f"Start spray")
+        spray_time = values.volume / 8.3
+        values.spray_duration = values.drink_start_time + spray_time  # Convert volume to time
+        if values.spray_duration >= timeit.default_timer():
             # logger.error(f'Time is {spray_duration} {timeit.default_timer()}')   
-            logger.info(f'Position is {position}')          
-            if position is False:                       
-                __spray_gpio_on(pin)                      
-                position = True                         
-                return spray_duration, position
+            logger.info(f'Position is {position}')
+            if position is False:
+                position = __spray_gpio_on(values)  # Turn on pump
+                return position
             else:
-                return spray_duration, position
-        else:                                           
-            logger.info(f'TimeOff')                         
-            position = __spray_gpio_off(pin, scales_type, animal_id, start_time)                                 
-            return position                             
+                return position
+        else:
+            logger.info(f'TimeOff')
+            position = __spray_gpio_off(values)  # Turn off pump
+            return position
     except ValueError as err:
         logger.error(f'Other error occurred: {err}')
-        position = __spray_gpio_off(pin, scales_type, animal_id, start_time)  
+        position = __spray_gpio_off(values)
         return position
-########################################################
 
 
-########################################################
-def __spray_timer(spray_duration, position, pin, scales_type, animal_id, start_time):
+def __spray_timer(position, values) -> bool:  # That's need to check timer on the next iteration
     try:
-        if spray_duration >= timeit.default_timer():    
-            # logger.info(f'Time is {spray_duration} {timeit.default_timer()}')   
+        logger.info(f'Start Spray timer check function')
+        if values.spray_duration >= timeit.default_timer():
+            logger.info(f'Time is {values.spray_duration} {timeit.default_timer()}')
             # logger.info(f'Position is {position}')          
-            if position is False:                       
-                __spray_gpio_on(pin)                      
-                position = True                         
-                return position                         
+            if position is False:
+                __spray_gpio_on(values)
+                position = True
+                return position
             else:
-                return position                         
-        else:                                           
-            logger.info(f'TimeOff')                         
-            position = __spray_gpio_off(pin, scales_type, animal_id, start_time)                                 
-            return position                             
+                return position
+        else:
+            logger.info(f'TimeOff')
+            position = __spray_gpio_off(values)
+            return position
     except ValueError as err:
         logger.error(f'Other error occurred: {err}')
-        position = __spray_gpio_off(pin, scales_type, animal_id, start_time)  
+        position = __spray_gpio_off(values)
         return position
-########################################################
 
 
-########################################################
-def __spraying_type(spraying_type, pin_list, scales_type):
+def __spraying_type(values) -> int:  # To find GPIO pin by liquid
     try:
-        if spraying_type == [0]: return pin_list.get(scales_type)[0]         
-        else: return pin_list.get(scales_type)[1]
-         
+        logger.info(f'Spraying type funct start')
+        pin_list = asdict(Pin())
+        if values.spraiyng_type == 0:
+            return pin_list.get(values.type_scales)[0]
+        else:
+            return pin_list.get(values.type_scales)[1]
     except Exception as e:
         logger.error(f'__spraying type func error: {e}')
-########################################################
 
 
-########################################################
-def spray_main_function(start_time, scales_type, pin_list, spray_get, animal_id, spray_duration, position):
+def spray_main_function(position, values) -> bool:  # That's a main function
     try:
-        logger.info(f"Start spray_main_function")   
-        if position is False:
-            request_get_json = __request_get(spray_get)
-            if request_get_json is [] or request_get_json is None:
+        logger.info(f"Start spray_main_function")
+        if position is False:  # If pump is off
+            request_get_json = __request_get(values)  # Get data from server
+            if not request_get_json:  # If Data is null
                 logger.info(f'No tasks there')
-                return position
-            else: 
-                task_id, spraying_type, volume, server_time = __spray_json_get(request_get_json)
-                pin = __spraying_type(spraying_type, pin_list, scales_type)
-                spray_duration, position = __spray(start_time, position, pin, volume, server_time, scales_type, animal_id)
-                return spray_duration, position   
+                return position  # Exit from main function
+            else:  # If Data is not null
+                values = __spray_json_get(request_get_json, values)  # Take a values from server
+                values.pin = __spraying_type(values)  # Take a GPIO pin number
+                position = __spray(position, values)  # Start spray
+                return position  # Exit from main function
+        else:  # If pump is on
+            position = __spray_timer(position, values)  # Check a timer and make a choice
+            return position  # Exit from main function
+
+    except HTTPError as http_err:
+        logger.error(f'HTTP error occurred: {http_err}')
+        position = __spray_gpio_off(values)
+        return position
+
+    except Exception as err:
+        logger.error(f'Other error occurred: {err}')
+        position = __spray_gpio_off(values)
+        return position
+
+
+def gpio_state_check(position, values) -> bool:  # Check the pump when out of loop
+    try:
+        logger.info(f"Start gpio_state_check")
+        if position is True:  # If pump is on
+            position = __spray_gpio_off(values)  # Turn off pump
+            return position  # Exit from function
         else:
-            position = __spray_timer(spray_duration, position, pin, scales_type, animal_id, start_time)
-            return position
-
+            return position  # Exit from function
     except HTTPError as http_err:
         logger.error(f'HTTP error occurred: {http_err}')
-        position = __spray_gpio_off(pin, scales_type, animal_id, start_time)  
-        return position
-        
-    except Exception as err:
-        logger.error(f'Other error occurred: {err}')
-        position = __spray_gpio_off(pin, scales_type, animal_id, start_time)  
-        return position
-########################################################
-
-
-########################################################
-def gpio_state_check(pin_list, start_time, spray_get, scales_type, animal_id, position):
-    try:
-        # logger.error(f"Start gpio_state_check")            
-        
-        if position is True:                          
-            task_id, spraying_type, volume, server_time = __spray_json_get(spray_get, 0)
-            if spraying_type == 0:                    
-                pin = pin_list.get(scales_type)[0]    
-            else:                                     
-                pin = pin_list.get(scales_type)[1]    
-            __spray_gpio_off(pin, scales_type, animal_id, start_time)                        
-            end_time = timeit.default_timer()          
-            new_volume = (end_time - start_time) * 8.3  
-            post_data = __spray_json_payload(server_time, task_id, int(new_volume), spraying_type, scales_type, animal_id)
-            post_res = requests.post(spray_post, data=json.dumps(post_data), headers=headers)
-            # logger.error(post_res.raise_for_status())      
-            position = False                        
-            return position                          
-        else:                                       
-            return position                          
-
-    except HTTPError as http_err:
-        logger.error(f'HTTP error occurred: {http_err}')
-        position = __spray_gpio_off(pin, scales_type, animal_id, start_time)  
+        position = __spray_gpio_off(values)
         return position
     except Exception as err:
         logger.error(f'Other error occurred: {err}')
-        position = __spray_gpio_off(pin, scales_type, animal_id, start_time)  
+        position = __spray_gpio_off(values)
         return position
-########################################################
 
 
-########################################################
-def new_start_timer(start_time, position):
+def new_start_timer(position, values):  # Update start time value
     try:
-        if position is True:                        
-            return start_time                       
-        else:                                       
-            start_time = timeit.default_timer()     
-            return start_time                       
+        logger.info(f'New start timer function')
+        if position is True:  # If pump is on
+            return values  # Exit from function
+        else:  # if pump is off
+            values.drink_start_time = timeit.default_timer()  # Update start time value
+            return values  # Exit from function
     except ValueError as e:
         logger.error(f'New_start_timer function Error: {e}')
-########################################################
