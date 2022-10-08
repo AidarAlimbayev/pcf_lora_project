@@ -11,13 +11,17 @@ cp ${SCRIPT_PATH}/raspberry_settings/wpa_supplicant.conf /media/maxat/boot2
 chmod +x /media/maxat/boot2/wpa_supplicant.conf
 echo "2#############"
 
-cp ${SCRIPT_PATH}/main/main_pcf_ver4.py /media/maxat/rootfs/home/pi
-chmod 777 /media/maxat/rootfs/home/pi/main_pcf_ver4.py
-echo `ls -l` /media/maxat/rootfs/home/pi/main_pcf_ver4.py
+cp ${SCRIPT_PATH}/main/max_scales/scales_without_sprayer/headers.py /media/maxat/rootfs/home/pi
+chmod 777 /media/maxat/rootfs/home/pi/headers.py
+echo `ls -l` /media/maxat/rootfs/home/pi/headers.py
 echo "3#############"
 
-cp ${SCRIPT_PATH}/main/lib_pcf_ver4.py /media/maxat/rootfs/home/pi
-chmod 777 /media/maxat/rootfs/home/pi/lib_pcf_ver4.py
+cp ${SCRIPT_PATH}/main/max_scales/scales_without_sprayer/main_pcf.py /media/maxat/rootfs/home/pi
+chmod 777 /media/maxat/rootfs/home/pi/main_pcf.py
+echo "4#############"
+
+cp ${SCRIPT_PATH}/main/max_scales/scales_without_sprayer/lib_pcf.py /media/maxat/rootfs/home/pi
+chmod 777 /media/maxat/rootfs/home/pi/lib_pcf.py
 echo "4#############"
 
 cp ${SCRIPT_PATH}/main/pcf.service /media/maxat/rootfs/etc/systemd/system
