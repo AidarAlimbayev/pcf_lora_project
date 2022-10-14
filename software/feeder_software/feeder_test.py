@@ -10,6 +10,13 @@ from hx7 import HX711
 import numpy
 
 
+def function_timer(timeout_time):
+    start = time.time()
+    stop_seconds = timeout_time
+    while time.time() - start < stop_seconds:
+        print('processing')
+    return False
+
 def distance():
     try:
         dist_list = []
@@ -96,7 +103,7 @@ def Connect_RFID_reader():                                      # Connection to 
 def rfid_label():
     try:
         labels = []
-        while len(labels) <= 11:
+        while len(labels) <= 11 and function_timer(2):
             cow_id = Connect_RFID_reader()
             labels.append(cow_id)
         animal_id = max([j for i,j in enumerate(labels) if j in labels[i+1:]]) if labels != list(set(labels)) else -1
