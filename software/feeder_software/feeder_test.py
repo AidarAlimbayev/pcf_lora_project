@@ -10,6 +10,59 @@ import socket
 import sys
 from hx7 import HX711
 import numpy
+import configparser
+import os
+import threading
+import queue
+import time
+
+
+path = "config.ini"
+section = "Calibration"
+
+"""Create config.ini"""
+def create_config(path):
+    try:
+        config = configparser.ConfigParser()
+        config.add_section("Calibration")
+        config.set("Calibration", "Offset", "0")
+        config.set("Calibration", "Scale", "0" )
+        
+        with open(path, "w") as config_file:
+            config.write(config_file)
+    except:
+        logger.error(f'Error, file is not created')
+ 
+    """Returns the config object"""
+def __get_config(path):
+    try:
+        if not os.path.exists(path):
+            create_config(path)
+    
+        config = configparser.ConfigParser()
+        config.read(path)
+        return config
+    except:
+        logger.error(f'Error, path is vailed')
+ 
+    """Get value from setting"""
+def get_setting(path, section, setting):
+    try:
+        config = __get_config(path)
+        value = config.get(section, setting)
+        return value
+    except:
+        logger.error(f'Error, Cannot take value of {section} {setting} from config.ini')
+ 
+ 
+def update_setting(path, section, setting, value):
+    """
+    Update a setting
+    """
+    config = __get_config(path)
+    config.set(section, setting, str(value))
+    with open(path, "w") as config_file:
+        config.write(config_file)
 
 
 def distance():
@@ -98,13 +151,33 @@ def __connect_rfid_reader():                                      # Connection t
 def rfid_label():
     try:
         labels = []
-        while len(labels) <= 11:
+        while len(labels) <= 11 and __function_timer(2):
             cow_id = __connect_rfid_reader()
             labels.append(cow_id)
         animal_id = max([j for i,j in enumerate(labels) if j in labels[i+1:]]) if labels != list(set(labels)) else -1
         return animal_id
     except ValueError as v:
         logger.error(f'Post_request function error: {v}')
+
+
+def get_input(message, channel):
+    response = input(message)
+    channel.put(response)
+
+
+def input_with_timeout(message, timeout):
+    channel = queue.Queue()
+    message = message + " [{} sec timeout] ".format(timeout)
+    thread = threading.Thread(target=get_input, args=(message, channel))
+    thread.daemon = True
+    thread.start()
+
+    try:
+        response = channel.get(True, timeout)
+        return response
+    except queue.Empty:
+        pass
+    return None
 
 
 # def instant_weight(s):
@@ -135,6 +208,8 @@ def calibrate():
         logger.info("Scale adjusted for grams: {}".format(scale))
         logger.info(f'Offset: {offset}, set_scale(scale): {scale}')
         GPIO.cleanup()
+        update_setting(path, section, "Offset", offset)
+        update_setting(path, section, "Scale", scale)
         return offset, scale
     except:
         logger.error(f'calibrate Fail')
@@ -145,6 +220,7 @@ def cleanAndExit():
     GPIO.cleanup()
     logger.info("Bye!")
     sys.exit()
+
 
 def measure(offset, scale):
     try:
@@ -160,3 +236,14 @@ def measure(offset, scale):
         return round(val,2)
     except (KeyboardInterrupt, SystemExit):
         cleanAndExit()
+
+
+def __function_timer(timeout_time):
+    try:
+        start = time.time()
+        stop_seconds = timeout_time
+        while time.time() - start < stop_seconds:
+            print('processing')
+        return False
+    except:
+        logger.error(f'function_timer error.')
