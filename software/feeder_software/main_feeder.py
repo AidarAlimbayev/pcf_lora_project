@@ -44,7 +44,7 @@ scale = float(fdr.get_setting(path, section, "Scale"))
 
 
 @logger.catch
-def test_2():
+def main():
     flag = False
     while not flag:
         GPIO.setmode(GPIO.BCM)  
@@ -101,22 +101,8 @@ def test_2():
                     flag = True
                     fdr.cleanAndExit()
 
-            
-@logger.catch
-def test_loop():
-    offset, scale = fdr.calibrate()
-    i = 0
-    while i < 1:
-        try:
-            hx = HX711(21, 20, gain=128)
-            hx.set_scale(scale)
-            hx.set_offset(offset)
-            val = hx.get_grams()
-            print(val)
-            time.sleep(0.5)
-        except:
-            fdr.cleanAndExit()
-test_2()
-#test_loop()
+
+main()
+
 
 
