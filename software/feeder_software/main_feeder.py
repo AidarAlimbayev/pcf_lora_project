@@ -49,17 +49,21 @@ def main():
     while not flag:
         GPIO.setmode(GPIO.BCM)  
         logger.info(f'("[1] to calibrate\n" "[2] to start measure\n>")')
+        choice = '2'
         choice = fdr.input_with_timeout("Choice:", 5)
-        time.sleep(3)
+        time.sleep(5)
         if choice == '1':
-            fdr.calibrate()
-            offset = float(fdr.get_setting(path, section, "Offset"))
-            scale = float(fdr.get_setting(path, section, "Scale"))
+            offset, scale = fdr.calibrate()
+            fdr.update_setting(path, section, "Offset", offset)
+            fdr.update_setting(path, section, "Scale", scale)
         else:
             logger.info(f'Start main')
             logger.info(f'Start measure')
             while True:
                 try:        
+
+                    offset = float(fdr.get_setting(path, section, "Offset"))
+                    scale = float(fdr.get_setting(path, section, "Scale"))
                     ulrasonic_distance = fdr.distance() #56.31, 33.44, 42.32, 9.11
                     logger.info(f'Distance: {ulrasonic_distance}') #print("Distance:", ultrasonic)
                     if ulrasonic_distance < 60 or ulrasonic_distance > 120:
@@ -68,18 +72,25 @@ def main():
                         logger.info(f'Start weight: {start_weight}')    
                         start_time = timeit.default_timer()             # 15:30:40
                         logger.info(f'Start time: {start_time}')
-                        animal_id = fdr.rfid_label()                    # rfid !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        animal_id = fdr.__connect_rfid_reader()                    # rfid !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         logger.info(f'Animal_id: {animal_id}')
+                        end_time = timeit.default_timer()       # 15:45:30
+                        end_weight = fdr.measure(offset, scale)
                         
                         if animal_id != '435400040001':
                             logger.info(f'Here is start while cycle')
-                            while ulrasonic_distance < 60 and ulrasonic_distance > 120:
+                            while_flag = False
+                            while (while_flag == False):
+                                animal_id = fdr.__connect_rfid_reader()     
+                                logger.info(f'Animal ID: {animal_id}')
                                 end_time = timeit.default_timer()       # 15:45:30
                                 end_weight = fdr.measure(offset, scale) # 140 kg
                                 logger.info(f'Your weight: {end_weight}')
                                 logger.info(f'While is True')
                                 ulrasonic_distance = fdr.distance()
                                 time.sleep(1)
+                                while_flag = ulrasonic_distance < 60 and ulrasonic_distance > 120
+                                
                             logger.info(f'While False.')
                             feed_time = end_time - start_time            #14:50
                             feed_time_rounded = round(feed_time, 2)
@@ -90,7 +101,7 @@ def main():
                             logger.info(f'feed_time: {feed_time_rounded}')
                             post_data = fdr.post_request(feeder_type, serial_number, feed_time_rounded, animal_id, final_weight_rounded, end_weight)    #400
                             try:
-                                post = requests.post(url, data = json.dumps(post_data), headers = headers, timeout=0.5)
+                                post = requests.post(url, data = json.dumps(post_data), headers = headers, timeout=5)
                                 post.raise_for_status()
                             except HTTPError as http_err:
                                 logger.error(f'HTTP error occurred: {http_err}')

@@ -25,14 +25,15 @@ def create_config(path):
     try:
         config = configparser.ConfigParser()
         config.add_section("Calibration")
-        config.set("Calibration", "Offset", "0")
-        config.set("Calibration", "Scale", "0" )
+        config.set("Calibration", "Offset", "8456818.125")
+        config.set("Calibration", "Scale", "5784.8" )
         
         with open(path, "w") as config_file:
             config.write(config_file)
     except:
         logger.error(f'Error, file is not created')
  
+
     """Returns the config object"""
 def __get_config(path):
     try:
@@ -45,6 +46,7 @@ def __get_config(path):
     except:
         logger.error(f'Error, path is vailed')
  
+
     """Get value from setting"""
 def get_setting(path, section, setting):
     try:
@@ -151,11 +153,21 @@ def __connect_rfid_reader():                                      # Connection t
 def rfid_label():
     try:
         labels = []
-        while len(labels) <= 11 and __function_timer(2):
+        sec = 4
+        start_time = time.time()
+        stop_time = start_time + sec
+        
+        while len(labels) < sec:
             cow_id = __connect_rfid_reader()
             labels.append(cow_id)
-        animal_id = max([j for i,j in enumerate(labels) if j in labels[i+1:]]) if labels != list(set(labels)) else -1
-        return animal_id
+            if time.time() >= stop_time:
+                break
+
+    #    if len(labels) < sec:
+    #        animal_id = labels[-1]
+    #    else:
+    #        animal_id = max([j for i,j in enumerate(labels) if j in labels[i+1:]]) if labels != list(set(labels)) else -1
+        return labels[-1]
     except ValueError as v:
         logger.error(f'Post_request function error: {v}')
 
@@ -202,7 +214,7 @@ def calibrate():
         logger.info("Please place an item of known weight on the scale.")
         readyCheck = input("Press any key to continue when ready.")
         measured_weight = (hx.read_average()-hx.get_offset())
-        item_weight = input("Please enter the item's weight in grams.\n>")
+        item_weight = input("Please enter the item's weight in kg.\n>")
         scale = int(measured_weight)/int(item_weight)
         hx.set_scale(scale)
         logger.info("Scale adjusted for grams: {}".format(scale))
@@ -240,10 +252,11 @@ def measure(offset, scale):
 
 def __function_timer(timeout_time):
     try:
+        logger.info(f'Function timer')
         start = time.time()
         stop_seconds = timeout_time
         while time.time() - start < stop_seconds:
-            print('processing')
+            None
         return False
     except:
         logger.error(f'function_timer error.')
