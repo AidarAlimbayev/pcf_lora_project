@@ -1,11 +1,13 @@
-import test as t
+#!/usr/bin/sudo python3
+import feeder_module as fdr
+import config as cfg
 import sqlite3
 import os
 from loguru import logger
 import requests
 import json
 
-def __tableCheck():                               # Функция для создания таблицы если при первом включении
+def __tableCheck():                               # Функция для создания таблицы если ее не существует
     try:
         db = sqlite3.connect('server.db')                # Создание объекта (соединение с базой данных)
         sql = db.cursor()  
@@ -26,16 +28,16 @@ def __tableCheck():                               # Функция для соз
         sql.close()
 
 
-def __countId():                                  # Введение счета id 
+def __countId():                                   # Введение счета id 
     try:
-        db = sqlite3.connect('server.db')                # Создание объекта (соединение с базой данных)
+        db = sqlite3.connect('server.db')          # Создание объекта (соединение с базой данных)
         sql = db.cursor()  
         path = 'config.ini'
         if not os.path.exists(path):
-            t.create_config(path)
-        dbid = int(t.config.get("DbId", "id"))  # Забираем id
-        dbid += 1           # Увеличиваем на 1
-        t.update_setting(path, "DbId", "id", str(dbid))     # Записываем в конфиг новый id
+            cfg.create_config()
+        dbid = int(cfg.get_setting("DbId", "id"))  # Забираем id
+        dbid += 1                                  # Увеличиваем на 1
+        cfg.update_setting("DbId", "id", str(dbid))     # Записываем в конфиг новый id
         return dbid
     except ValueError as e:
         logger.error(f'sql.py, count Id function: {e}')
@@ -62,7 +64,7 @@ def __tableValuesConvert(payload):            # Функция конверта�
 
 
 def __tableInsertData(payload):           # Функция для добавления значении в базу данных
-                                        # payload передается из main (json строка)
+                                          # payload передается из main (json строка)
     try:
         db = sqlite3.connect('server.db')                # Создание объекта (соединение с базой данных)
         sql = db.cursor()  
@@ -79,17 +81,13 @@ def __tableInsertData(payload):           # Функция для добавле
 
 def noInternet(payload):                # Функция которая пойдёт в main();
     try:
-        db = sqlite3.connect('server.db')                # Создание объекта (соединение с базой данных)
-        sql = db.cursor()
         if payload:
             __tableInsertData(payload)
         else:
-            return 0
-
+            logger.error(f'sql.py, no internet function payload: {payload}')
     except ValueError as e:
         logger.error(f'sql.py, no internet function: {e}')
-    finally:
-        sql.close()
+
 
 
 def __takeFirstData():                  # Забираем из базы данных первую строку
@@ -118,7 +116,7 @@ def __convertDataFromTable():           # Готовим переменные д
         animal_id = savedData[5]
         end_weight = savedData[6]
         feed_weight = savedData[7]
-        payload = t.post_request(event_time, feeder_type, serial_number, feed_time, animal_id, end_weight, feed_weight)
+        payload = fdr.post_request(event_time, feeder_type, serial_number, feed_time, animal_id, end_weight, feed_weight)
         return id, payload                  # Возвращаем json строку
     except ValueError as e:
         logger.error(f'sql.py, __convertDataFromTable function: {e}')

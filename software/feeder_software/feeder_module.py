@@ -1,70 +1,23 @@
 #!/usr/bin/sudo python3
 
+from requests.exceptions import HTTPError
 from datetime import datetime
 from loguru import logger
 import RPi.GPIO as GPIO
+from hx7 import HX711
+import config as cfg
 import time
-import re
+import requests
 import binascii
 import socket
 import sys
-from hx7 import HX711
 import numpy
-import configparser
-import os
+import json
 import threading
 import queue
 import time
 
 
-path = "config.ini"
-section = "Calibration"
-
-"""Create config.ini"""
-def create_config(path):
-    try:
-        config = configparser.ConfigParser()
-        config.add_section("Calibration")
-        config.set("Calibration", "Offset", "8456818.125")
-        config.set("Calibration", "Scale", "5784.8" )
-        
-        with open(path, "w") as config_file:
-            config.write(config_file)
-    except:
-        logger.error(f'Error, file is not created')
- 
-
-    """Returns the config object"""
-def __get_config(path):
-    try:
-        if not os.path.exists(path):
-            create_config(path)
-    
-        config = configparser.ConfigParser()
-        config.read(path)
-        return config
-    except:
-        logger.error(f'Error, path is vailed')
- 
-
-    """Get value from setting"""
-def get_setting(path, section, setting):
-    try:
-        config = __get_config(path)
-        value = config.get(section, setting)
-        return value
-    except:
-        logger.error(f'Error, Cannot take value of {section} {setting} from config.ini')
- 
- 
-def update_setting(path, section, setting, value):
-    """
-    Update a setting
-    """
-    config = __get_config(path)
-    config.set(section, setting, str(value))
-    with open(path, "w") as config_file:
-        config.write(config_file)
 
 
 def distance():
@@ -114,17 +67,32 @@ def post_request(event_time, feeder_type, serial_number, feed_time, animal_id, e
         logger.error(f'Post_request function error: {v}')
 
 
+def send_post(postData):
+    post = 0
+    url = "https://smart-farm.kz:8502/api/v2/RawFeedings"
+    headers = {'Content-type': 'application/json'}
+    try:
+        post = requests.post(url, data = json.dumps(postData), headers = headers, timeout=5)
+    except HTTPError as http_err:
+        logger.error(f'HTTP error occurred: {http_err}')
+    except Exception as err:
+        logger.error(f'Other error occurred: {err}')
+    finally:
+        if type(post) == requests.models.Response:
+            print("hi")
+        else:
+            print("No")
+
+
 def __connect_rfid_reader():                                      # Connection to RFID Reader through TCP and getting cow ID in str format
     try:    
-
         TCP_IP = '192.168.1.250'                                #chafon 5300 reader address
         TCP_PORT = 60000                                        #chafon 5300 port
         BUFFER_SIZE = 1024
         animal_id = "b'435400040001'"                           # Id null starting variable
         animal_id_new = "b'435400040001'"
         null_id = "b'435400040001'"
-        end_time = time.time() + 10
-        
+        #end_time = time.time() + 10
 
         if animal_id == null_id: # Send command to reader waiting id of animal
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -136,15 +104,14 @@ def __connect_rfid_reader():                                      # Connection t
             animal_id_new = animal_id_new[-12:] #Cutting the string from unnecessary information before 24 signs
             s.close()             
         if animal_id_new == null_id: # Id null return(0)
-            if time.time() <= end_time:
-                __connect_rfid_reader()
+            #if time.time() <= end_time:
+            __connect_rfid_reader()
         else: # Id checkt return(1)
             animal_id = "b'435400040001'"
 
             return animal_id_new
     except Exception as e:
         logger.error(f'Error connect RFID reader {e}')
-
 
 
 def rfid_label():
@@ -169,15 +136,18 @@ def rfid_label():
         logger.error(f'Post_request function error: {v}')
 
 
-def get_input(message, channel):
+def __get_input(message, channel): # Функция для получения введенного значения
+                                 # Не знаю как она работает поэтому не менять ее!
     response = input(message)
     channel.put(response)
 
 
-def input_with_timeout(message, timeout):
+def input_with_timeout(message, timeout):   # Функция создания второго потока.
+                                            # Временная задержка во время которой можно ввести значение
+                                            # Не знаю как она работает поэтому не менять ее!
     channel = queue.Queue()
     message = message + " [{} sec timeout] ".format(timeout)
-    thread = threading.Thread(target=get_input, args=(message, channel))
+    thread = threading.Thread(target=__get_input, args=(message, channel))
     thread.daemon = True
     thread.start()
 
@@ -217,8 +187,8 @@ def calibrate():
         logger.info("Scale adjusted for grams: {}".format(scale))
         logger.info(f'Offset: {offset}, set_scale(scale): {scale}')
         GPIO.cleanup()
-        update_setting(path, section, "Offset", offset)
-        update_setting(path, section, "Scale", scale)
+        cfg.update_setting("Calibration", "Offset", offset)
+        cfg.update_setting("Calibration", "Scale", scale)
         return offset, scale
     except:
         logger.error(f'calibrate Fail')
