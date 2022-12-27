@@ -18,6 +18,7 @@
  Contact number +7 775 818 48 43. Email maxat.suieubayev@gmail.com"""
 
 #!/usr/bin/sudo python3
+
 import configparser
 import os
 from loguru import logger
@@ -33,6 +34,7 @@ def create_config():        # Функция создания конфиг фа�
         config.set("Parameters", "feeder_type", "feeder_model_1")    
         config.set("Parameters", "type", "Feeder") 
         config.set("Parameters", "serial_number", "65545180001") 
+        config.set("Parameters", "url", "https://smart-farm.kz:8502/api/v2/RawFeedings") 
         config.set("Calibration", "Offset", "8456818.125")    
         config.set("Calibration", "Scale", "5784.8" )
         config.set("DbId", "id", "0" )        

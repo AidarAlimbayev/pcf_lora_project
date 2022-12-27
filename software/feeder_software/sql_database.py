@@ -1,4 +1,10 @@
+"""sql_databases.py - это модуль для хранения данных, которые не были отправлены на сервер в базе данных.
+
+ Edition by Suieubayev Maxat.
+ Contact number +7 775 818 48 43. Email maxat.suieubayev@gmail.com"""
+
 #!/usr/bin/sudo python3
+
 import feeder_module as fdr
 import config as cfg
 import sqlite3
@@ -22,10 +28,12 @@ def __tableCheck():                               # Функция для соз
             FeedWeight REAL) """)
 
         db.commit()                                 # Обязательно делать коммит при внесении изменений в таблице
+        sql.close()
     except ValueError as v:
         logger.error(f'sql.py __tableCheck function: {v}')
     finally:
-        sql.close()
+        if db:
+            db.close()
 
 
 def __countId():                                   # Введение счета id 
@@ -38,17 +46,17 @@ def __countId():                                   # Введение счета
         dbid = int(cfg.get_setting("DbId", "id"))  # Забираем id
         dbid += 1                                  # Увеличиваем на 1
         cfg.update_setting("DbId", "id", str(dbid))     # Записываем в конфиг новый id
+        sql.close()
         return dbid
     except ValueError as e:
         logger.error(f'sql.py, count Id function: {e}')
     finally:
-        sql.close()
+        if db:
+            db.close()
 
 
 def __tableValuesConvert(payload):            # Функция конвертации из json в отдельные переменные
     try:
-        db = sqlite3.connect('server.db')                # Создание объекта (соединение с базой данных)
-        sql = db.cursor()  
         eventdatetime = payload['Eventdatetime']
         equipmentType = payload["EquipmentType"]
         serialNumber = payload["SerialNumber"]
@@ -59,8 +67,6 @@ def __tableValuesConvert(payload):            # Функция конверта�
         return eventdatetime, equipmentType, serialNumber, feedingTime, rfidNumber, weightLambda, feedWeight
     except ValueError as e:
         logger.error(f'sql.py, table values convert function: {e}')
-    finally:
-        sql.close()
 
 
 def __tableInsertData(payload):           # Функция для добавления значении в базу данных
@@ -73,10 +79,12 @@ def __tableInsertData(payload):           # Функция для добавле
         sql.execute("INSERT INTO json_data VALUES(?,?,?,?,?,?,?,?));", 
         __countId(), eventdatetime, equipmentType, serialNumber, feedingTime, rfidNumber, weightLambda, feedWeight)
         db.commit()
+        sql.close()
     except ValueError as e:
         logger.error(f'sql.py, table insert data function: {e}')
     finally:
-        sql.close()
+        if db:
+            db.close()
 
 
 def noInternet(payload):                # Функция которая пойдёт в main();
@@ -96,32 +104,28 @@ def __takeFirstData():                  # Забираем из базы дан�
         sql = db.cursor()
         sql.execute("SELECT * FROM json_data")
         row = sql.fetchone()
+        sql.close()
         return row
     except ValueError as e:
         logger.error(f'sql.py, __takefirstdata function: {e}')
     finally:
-        sql.close()
+        if db:
+            db.close()
 
 
 def __convertDataFromTable():           # Готовим переменные для отправки на сервер
     try:
-        db = sqlite3.connect('server.db')                # Создание объекта (соединение с базой данных)
-        sql = db.cursor()
         savedData = __takeFirstData()
         id = savedData[0]
         event_time = savedData[1]
-        feeder_type = savedData[2]
-        serial_number = savedData[3]
         feed_time = savedData[4]
         animal_id = savedData[5]
         end_weight = savedData[6]
         feed_weight = savedData[7]
-        payload = fdr.post_request(event_time, feeder_type, serial_number, feed_time, animal_id, end_weight, feed_weight)
+        payload = fdr.post_request(event_time, feed_time, animal_id, end_weight, feed_weight)
         return id, payload                  # Возвращаем json строку
     except ValueError as e:
         logger.error(f'sql.py, __convertDataFromTable function: {e}')
-    finally:
-        sql.close()
 
 
 def __deleteSavedData(id):              # Удаление отправленной инфы
@@ -130,16 +134,16 @@ def __deleteSavedData(id):              # Удаление отправленн�
         sql = db.cursor()
         sql.execute(f"""DELETE from json_data WHERE id = {id}""")
         db.commit()
+        sql.close()
     except ValueError as e:
         logger.error(f'sql.py, deleteSavedData function: {e}')
     finally:
-        sql.close()
-
+        if db:
+            db.close()
+            
 
 def __sendSavedData():                # Функция отправки инфы на сервер
     try:
-        db = sqlite3.connect('server.db')                # Создание объекта (соединение с базой данных)
-        sql = db.cursor()
         url = "https://smart-farm.kz:8502/api/v2/RawFeedings"
         headers = {'Content-type': 'application/json'}
         id, post_data = __convertDataFromTable()
@@ -149,8 +153,6 @@ def __sendSavedData():                # Функция отправки инфы
         logger.error(f'sql.py, __sendSavedData function: {e}')
     else:
         __deleteSavedData(id)
-    finally:
-        sql.close()
 
 
 def internetOn():
@@ -161,10 +163,12 @@ def internetOn():
         tableLen = count[0][0]
         if tableLen>0:
             __sendSavedData()
+        sql.close()
 
     except ValueError as e:
         logger.error(f'Error, check data table function: {e}')
     finally:
-        sql.close()
+        if db:
+            db.close()
 
 

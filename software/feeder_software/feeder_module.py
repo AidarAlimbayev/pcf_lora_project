@@ -1,11 +1,17 @@
+"""Feeder version 3. Edition by Suieubayev Maxat.
+feeder_module.py - это модуль функции кормушки. 
+Contact number +7 775 818 48 43. Email maxat.suieubayev@gmail.com"""
+
 #!/usr/bin/sudo python3
 
 from requests.exceptions import HTTPError
 from datetime import datetime
 from loguru import logger
-import RPi.GPIO as GPIO
 from hx7 import HX711
+import sql_database as sql
 import config as cfg
+import RPi.GPIO as GPIO
+import subprocess
 import time
 import requests
 import binascii
@@ -16,8 +22,6 @@ import json
 import threading
 import queue
 import time
-
-
 
 
 def distance():
@@ -51,8 +55,10 @@ def distance():
         logger.error(f'Distance func error {t}')
 
 
-def post_request(event_time, feeder_type, serial_number, feed_time, animal_id, end_weight, feed_weight):
+def post_request(event_time, feed_time, animal_id, end_weight, feed_weight):
     try:
+        feeder_type = cfg.get_setting("Parameters", "feeder_type")
+        serial_number = cfg.get_setting("Parameters", "serial_number")
         payload = {
             "Eventdatetime": event_time,
             "EquipmentType": feeder_type,
@@ -67,9 +73,19 @@ def post_request(event_time, feeder_type, serial_number, feed_time, animal_id, e
         logger.error(f'Post_request function error: {v}')
 
 
+def check_internet():
+    try:
+        mstr = "http://google.com"
+        res = requests.get(mstr)
+        if res.status_code == 200:
+            sql.internetOn()
+    except:
+        logger.error(f'No internet')
+
+
 def send_post(postData):
     post = 0
-    url = "https://smart-farm.kz:8502/api/v2/RawFeedings"
+    url = cfg.get_setting("Parameters", "url")
     headers = {'Content-type': 'application/json'}
     try:
         post = requests.post(url, data = json.dumps(postData), headers = headers, timeout=5)
@@ -78,10 +94,8 @@ def send_post(postData):
     except Exception as err:
         logger.error(f'Other error occurred: {err}')
     finally:
-        if type(post) == requests.models.Response:
-            print("hi")
-        else:
-            print("No")
+        if type(post) != requests.models.Response:
+            sql.noInternet(postData)
 
 
 def __connect_rfid_reader():                                      # Connection to RFID Reader through TCP and getting cow ID in str format
@@ -92,7 +106,6 @@ def __connect_rfid_reader():                                      # Connection t
         animal_id = "b'435400040001'"                           # Id null starting variable
         animal_id_new = "b'435400040001'"
         null_id = "b'435400040001'"
-        #end_time = time.time() + 10
 
         if animal_id == null_id: # Send command to reader waiting id of animal
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -104,7 +117,6 @@ def __connect_rfid_reader():                                      # Connection t
             animal_id_new = animal_id_new[-12:] #Cutting the string from unnecessary information before 24 signs
             s.close()             
         if animal_id_new == null_id: # Id null return(0)
-            #if time.time() <= end_time:
             __connect_rfid_reader()
         else: # Id checkt return(1)
             animal_id = "b'435400040001'"
@@ -117,34 +129,33 @@ def __connect_rfid_reader():                                      # Connection t
 def rfid_label():
     try:
         labels = []
-        sec = 4
+        sec = 5
         start_time = time.time()
         stop_time = start_time + sec
-        
         while len(labels) < sec:
             cow_id = __connect_rfid_reader()
             labels.append(cow_id)
             if time.time() >= stop_time:
                 break
 
-    #    if len(labels) < sec:
-    #        animal_id = labels[-1]
-    #    else:
-    #        animal_id = max([j for i,j in enumerate(labels) if j in labels[i+1:]]) if labels != list(set(labels)) else -1
-        return labels[-1]
+        if len(labels) < sec:
+            animal_id = labels[-1]
+        else:
+            animal_id = max([j for i,j in enumerate(labels) if j in labels[i+1:]]) if labels != list(set(labels)) else -1
+        return animal_id
     except ValueError as v:
         logger.error(f'Post_request function error: {v}')
 
 
 def __get_input(message, channel): # Функция для получения введенного значения
-                                 # Не знаю как она работает поэтому не менять ее!
+                                   # Ничего не менять ее!
     response = input(message)
     channel.put(response)
 
 
 def input_with_timeout(message, timeout):   # Функция создания второго потока.
                                             # Временная задержка во время которой можно ввести значение
-                                            # Не знаю как она работает поэтому не менять ее!
+                                            # Ничего не менять!
     channel = queue.Queue()
     message = message + " [{} sec timeout] ".format(timeout)
     thread = threading.Thread(target=__get_input, args=(message, channel))
@@ -201,10 +212,12 @@ def cleanAndExit():
     sys.exit()
 
 
-def measure(offset, scale):
+def measure():
     try:
         GPIO.setmode(GPIO.BCM)  
         hx = HX711(21, 20, gain=128)
+        offset = float(cfg.get_setting("Calibration" "Offset"))
+        scale = float(cfg.get_setting("Calibration", "Scale"))
         hx.set_scale(scale)
         hx.set_offset(offset)
         val = hx.get_grams()

@@ -20,7 +20,7 @@ payload = {
             "FeedWeight": 100
         }
         
-def main():
+def test():
     answer = 0
     try:
         answer = requests.post(url, data = json.dumps(payload), headers = headers, timeout=5)
@@ -36,6 +36,14 @@ def main():
         else:
             print("No")
 
+def main():
+    mstr = "http://google.com"
+    try:
+        res = requests.get(mstr)
+        if res.status_code == 200:
+            print("Okk")
+    except:
+        print(f'figovo')
 
     #print(post.status_code)
 
