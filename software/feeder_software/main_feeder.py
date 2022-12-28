@@ -55,9 +55,7 @@ def main():
         logger.info(f'Start measure')
         while True:
             try:        
-                time.sleep(1)
-                i+=1
-                if i%3600 == 0:
+                if time.time()%3600 == 0:
                     fdr.check_internet()
                 ulrasonic_distance = fdr.distance() 
                 logger.info(f'Distance: {ulrasonic_distance}') 
