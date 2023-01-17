@@ -41,7 +41,7 @@ def main():
     logger.debug(f'Start main script')
 
     while(True):
-        cow_id = pcf.connect_rfid_reader()         
+        cow_id = pcf.connect_rfid_reader()        
         if cow_id != '435400040001':                            # Comparision to null cow_id answer 
             logger.info("After read cow ID :", cow_id)
             weight_finall, weight_array, weighing_start_time = pcf.connect_ard_get_weight(s) # Grab weight from arduino and collect to weight_finall

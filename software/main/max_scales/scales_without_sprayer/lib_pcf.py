@@ -93,13 +93,13 @@ def connect_ard_get_weight(s): # Connection to aruino through USB by Serial Port
         s.flushInput() 
         s.flushOutput()
         weight = (str(s.readline())) # Start of collecting weight data from Arduino
-        weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
+        weight_new = re.sub("b|'|\r|\n", "", weight[:-5]) # 35.55 
         weight_list = []
         start_timedate = str(datetime.datetime.now())        
 
         while (float(weight_new) > 10): # Collecting weight to array 
-            weight = (str(s.readline()))
-            weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
+            weight = (str(s.readline())) # wait something from arduino 
+            weight_new = re.sub("b|'|\r|\n", "", weight[:-5]) # convert data from ard
             weight_list.append(float(weight_new))
             logger.debug(f'{weight_list}')
 

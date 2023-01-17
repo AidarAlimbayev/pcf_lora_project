@@ -75,6 +75,7 @@ def main():
                         logger.info(f'Here is start while cycle')
                         while_flag = False
                         while (while_flag == False):
+                            
                             end_time = timeit.default_timer()       
                             end_weight = fdr.measure() 
                             logger.info(f'Feed weight: {end_weight}')
