@@ -211,7 +211,7 @@ def calibrate():
         GPIO.cleanup()
         cfg.update_setting("Calibration", "Offset", offset)
         cfg.update_setting("Calibration", "Scale", scale)
-        return offset, scale
+        return [offset, scale]
     except:
         logger.error(f'calibrate Fail')
 
