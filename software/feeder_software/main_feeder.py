@@ -64,7 +64,7 @@ def main():
                     logger.info(f'Let start begin')  
                     start_weight = fdr.measure()       # Nachalnii ves 150 kg
                     logger.info(f'Start weight: {start_weight}')    
-                    start_time = timeit.default_timer()             # 15:30:40
+                    start_time = timeit.default_timer()             # 15:30:40 datetime.datetime.now()
                     logger.info(f'Start time: {start_time}')
                     animal_id = fdr.__connect_rfid_reader()                    # rfid 
                     logger.info(f'Animal_id: {animal_id}')
@@ -73,8 +73,8 @@ def main():
                     
                     if animal_id != '435400040001':
                         logger.info(f'Here is start while cycle')
-                        while_flag = False
-                        while (while_flag == False):
+                        while_flag = True
+                        while (while_flag == True):
                             
                             end_time = timeit.default_timer()       
                             end_weight = fdr.measure() 
@@ -82,10 +82,10 @@ def main():
                             logger.info(f'While is True')
                             time.sleep(1)
                             ulrasonic_distance = fdr.distance()
-                            if ulrasonic_distance < 60 or ulrasonic_distance > 120:     # Переделать
-                                while_flag = False
-                            else:
-                                while_flag = True
+                            while_flag = ulrasonic_distance < 60 or ulrasonic_distance > 120     # Переделать
+                            #     while_flag = False
+                            # else:
+                            #     while_flag = True
                             
                         logger.info(f'While ended.')
                         feed_time = end_time - start_time           
