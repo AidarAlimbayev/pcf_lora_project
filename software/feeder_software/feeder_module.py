@@ -195,7 +195,7 @@ def calibrate():
         item_weight = input("Please enter the item's weight in kg.\n>")
         scale = int(measured_weight)/int(item_weight)
         hx.set_scale(scale)
-        logger.info("Scale adjusted for grams: {}".format(scale))
+        logger.info("Scale adjusted for kilograms: {}".format(scale))
         logger.info(f'Offset: {offset}, set_scale(scale): {scale}')
         GPIO.cleanup()
         cfg.update_setting("Calibration", "Offset", offset)

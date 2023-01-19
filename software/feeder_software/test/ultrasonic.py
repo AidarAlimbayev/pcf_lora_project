@@ -1,3 +1,9 @@
+#!/usr/bin/sudo python3
+import software.feeder_software.test._headers as hdr
+
+requirement_list = ['loguru', 'requests', 'numpy', 'RPi.GPIO']
+hdr.install_packages(requirement_list)
+
 import RPi.GPIO as GPIO
 import time
 import numpy
