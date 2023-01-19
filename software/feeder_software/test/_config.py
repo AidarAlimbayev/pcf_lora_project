@@ -28,7 +28,7 @@ path = "config.ini"         # Название конфиг файла config.in
 def create_config():        # Функция создания конфиг файла
     try:
         config = configparser.ConfigParser()
-        config.add_section["Parameters"]
+        config.add_section("Parameters")
         config.add_section("Calibration")         
         config.add_section("DbId")          
         config.set("Parameters", "feeder_type", "feeder_model_1")    

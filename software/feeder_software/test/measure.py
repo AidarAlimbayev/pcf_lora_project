@@ -1,19 +1,20 @@
 #!/usr/bin/sudo python3
-import software.feeder_software.test._headers as hdr
+import _headers as hdr
 
 requirement_list = ['loguru', 'requests', 'numpy', 'RPi.GPIO']
 hdr.install_packages(requirement_list)
 
 import RPi.GPIO as GPIO
 from loguru import logger
-from software.feeder_software.test._hx7 import HX711
+from _hx7 import HX711
 import time
 import sys
-import software.feeder_software.test._config as cfg
+import _config as cfg
 
 
 def calibrate():
     try:
+        print('start calibrate function')
         GPIO.setmode(GPIO.BCM)  
         logger.info('Start calibrate function')
         hx = HX711(21, 20, gain=128)
@@ -34,6 +35,7 @@ def calibrate():
         cfg.update_setting("Calibration", "Scale", scale)
         return offset, scale
     except:
+        print('calibrate fail')
         logger.error(f'calibrate Fail')
 
 
@@ -41,7 +43,7 @@ def measure():
     try:
         GPIO.setmode(GPIO.BCM)  
         hx = HX711(21, 20, gain=128)
-        offset = float(cfg.get_setting("Calibration" "Offset"))
+        offset = float(cfg.get_setting("Calibration", "Offset"))
         scale = float(cfg.get_setting("Calibration", "Scale"))
         hx.set_scale(scale)
         hx.set_offset(offset)
@@ -70,7 +72,13 @@ def main():
             print("If you use this sketch first time please make calibration\n to save needed values.\n")
             #print("Please don't forget change offset and scale value in measure function!!!")
             choice = input()
-            if choice == 1:
+            print(type(choice))
+            print(type(int(choice)))
+            int_choice=int(choice)
+            print('int_choice:')
+            print(int_choice)
+            if int_choice == 1:
+                print('start calibrate')
                 calibrate()
             while True:
                 print(measure())
