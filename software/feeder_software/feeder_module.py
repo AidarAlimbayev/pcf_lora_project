@@ -57,6 +57,8 @@ import re
 
 
 def connect_arduino_to_get_dist(s):
+    s.flushInput() # Cleaning buffer of Serial Port
+    s.flushOutput() # Cleaning output buffer of Serial Port
     distance = (str(s.readline()))
     distance = re.sub("b|'|\r|\n", "", distance[:-5])
     while (float(distance)) < 200:
