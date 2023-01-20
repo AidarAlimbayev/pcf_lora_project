@@ -76,7 +76,7 @@ def main():
                 print("ultrasonic distance", ulrasonic_distance)
                 logger.info(f'Distance: {ulrasonic_distance}') 
 
-                if ulrasonic_distance < 60 or ulrasonic_distance > 120:  # переделать
+                if ulrasonic_distance > 20 or ulrasonic_distance < 160:  # переделать
                     logger.info(f'Let start begin')  
                     start_weight = fdr.measure()       # Nachalnii ves 150 kg
                     logger.info(f'Start weight: {start_weight}')    
