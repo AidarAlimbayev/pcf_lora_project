@@ -42,12 +42,12 @@ null_id = "b'435400040001'"
 # Connection to arduino
 try:
     s = serial.Serial('/dev/ttyACM0',9600) # path inside rapberry pi to arduino into dev folder
-    pcf.print_log("Connect arduino", s.name)
-    pcf.print_log("Configuration of serial: ", s)
+    logger.info(f'Connect arduino {s.name}')
+    logger.info(f'Configuration of serial, {s}')
 except Exception as e:
-    pcf.print_log("Error to connection to arduino, there is no file: /dev/ttyACM0", e)
+    logger.info(f'Error to connection to arduino, there is no file: /dev/ttyACM0 {e}')
 else:
-    pcf.print_log("Success: Arduino connected")
+    logger.info(f'Success: Arduino connected')
     
 @logger.catch
 def main():
