@@ -44,7 +44,7 @@ def create_config():        # Функция создания конфиг фа�
         logger.error(f'Config.py, create_config func error {e}')
 
  
-def get_config():           # Получить доступ к конфиг файлу 
+def get_config(path):           # Получить доступ к конфиг файлу 
     try:
         if not os.path.exists(path):
             create_config(path)
