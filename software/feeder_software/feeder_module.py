@@ -227,7 +227,7 @@ def measure():
     try:
         GPIO.setmode(GPIO.BCM)  
         hx = HX711(21, 20, gain=128)
-        offset = float(cfg.get_setting("Calibration" "Offset"))
+        offset = float(cfg.get_setting("Calibration", "Offset"))
         scale = float(cfg.get_setting("Calibration", "Scale"))
         hx.set_scale(scale)
         hx.set_offset(offset)
