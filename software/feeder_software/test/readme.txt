@@ -13,4 +13,5 @@ GPIO.setmode(GPIO.BCM)
 GPIO_TRIGGER = 18
 GPIO_ECHO = 24
 
-Do not forget about BCM board. 
+Do not forget about BCM board. https://toptechboy.com/understanding-raspberry-pi-4-gpio-pinouts/
+
