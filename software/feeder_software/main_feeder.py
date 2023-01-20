@@ -16,6 +16,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 from hx7 import HX711
 import config as cfg
+import lib_pcf as pcf
 import os
 import timeit
 import requests
