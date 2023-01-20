@@ -110,7 +110,7 @@ def main():
                             logger.info(f'Feed weight: {end_weight}')
                             logger.info(f'While is True')
                             time.sleep(1)
-                            ulrasonic_distance = fdr.connect_arduino_to_get_dist()
+                            ulrasonic_distance = fdr.connect_arduino_to_get_dist(s)
                             while_flag = ulrasonic_distance < 60 or ulrasonic_distance > 120     # Переделать
                             #     while_flag = False
                             # else:
