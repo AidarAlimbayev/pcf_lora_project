@@ -23,6 +23,7 @@ import requests
 import time
 import json
 import sys, select
+import serial 
 
 """Инициализация logger для хранения записи о всех действиях программы"""
 logger.add('feeder.log', format="{time} {level} {message}", 
@@ -40,7 +41,7 @@ null_id = "b'435400040001'"
 
 # Connection to arduino
 try:
-    s = pcf.serial.Serial('/dev/ttyACM0',9600) # path inside rapberry pi to arduino into dev folder
+    s = serial.Serial('/dev/ttyACM0',9600) # path inside rapberry pi to arduino into dev folder
     pcf.print_log("Connect arduino", s.name)
     pcf.print_log("Configuration of serial: ", s)
 except Exception as e:
