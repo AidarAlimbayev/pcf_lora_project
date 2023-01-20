@@ -206,10 +206,12 @@ def calibrate():
         hx.set_scale(scale)
         logger.info("Scale adjusted for kilograms: {}".format(scale))
         logger.info(f'Offset: {offset}, set_scale(scale): {scale}')
+        print("calibrate: offset", offset)
+        print("calibrate: scale", scale)
         GPIO.cleanup()
         cfg.update_setting("Calibration", "Offset", offset)
         cfg.update_setting("Calibration", "Scale", scale)
-        return [offset, scale]
+        return offset, scale
     except:
         logger.error(f'calibrate Fail')
 
