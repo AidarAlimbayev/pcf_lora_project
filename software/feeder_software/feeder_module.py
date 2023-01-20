@@ -59,7 +59,7 @@ import re
 def connect_arduino_to_get_dist(s):
     distance = (str(s.readline()))
     distance = re.sub("b|'|\r|\n", "", distance[:-5])
-    while (float(distance)) < 150:
+    while (float(distance)) < 200:
         distance = (str(s.readline()))
         distance = re.sub("b|'|\r|\n", "", distance[:-5])
         distance = float(distance)
