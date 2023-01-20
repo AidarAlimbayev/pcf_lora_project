@@ -39,18 +39,20 @@ animal_id = "b'435400040001'"
 null_id = "b'435400040001'"        
 #weight_finall = 0                  
 
-# Connection to arduino
-try:
-    s = serial.Serial('/dev/ttyACM0',9600) # path inside rapberry pi to arduino into dev folder
-    logger.info(f'Connect arduino {s.name}')
-    logger.info(f'Configuration of serial, {s}')
-except Exception as e:
-    logger.info(f'Error to connection to arduino, there is no file: /dev/ttyACM0 {e}')
-else:
-    logger.info(f'Success: Arduino connected')
-    
+
 @logger.catch
 def main():
+        # Connection to arduino
+    try:
+        s = serial.Serial('/dev/ttyACM0',9600) # path inside rapberry pi to arduino into dev folder
+        logger.info(f'Connect arduino {s.name}')
+        logger.info(f'Configuration of serial, {s}')
+    except Exception as e:
+        logger.info(f'Error to connection to arduino, there is no file: /dev/ttyACM0 {e}')
+    else:
+        logger.info(f'Success: Arduino connected')
+    
+
     print("------------Start main function------------------")
     GPIO.setmode(GPIO.BCM)  
     logger.info(f'("[1] to calibrate\n" "[2] to start measure\n>")')
