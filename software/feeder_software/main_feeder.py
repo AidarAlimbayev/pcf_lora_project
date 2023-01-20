@@ -51,6 +51,7 @@ else:
     
 @logger.catch
 def main():
+    print("------------Start main function------------------")
     GPIO.setmode(GPIO.BCM)  
     logger.info(f'("[1] to calibrate\n" "[2] to start measure\n>")')
     choice = '2'
@@ -62,14 +63,17 @@ def main():
         cfg.update_setting("Calibration", "Offset", offset)
         cfg.update_setting("Calibration", "Scale", scale)
     else:
+        print("---------------Start main after calibration---------------")
         logger.info(f'Start main')
         logger.info(f'Start measure')
         while True:
+            print("------------------Start while True function---------------------")
             try:        
                 if time.time()%3600 == 0:
                     fdr.check_internet()
                 ulrasonic_distance = fdr.connect_arduino_to_get_dist(s) 
                 ulrasonic_distance = float(ulrasonic_distance)
+                print("ultrasonic distance", ulrasonic_distance)
                 logger.info(f'Distance: {ulrasonic_distance}') 
 
                 if ulrasonic_distance < 60 or ulrasonic_distance > 120:  # переделать
@@ -82,7 +86,16 @@ def main():
                     logger.info(f'Animal_id: {animal_id}')
                     end_time = start_time      # 15:45:30
                     end_weight = start_weight
-                    
+
+
+                    print("start time", start_time)
+                    print("end_time", end_time)
+                    print("end_weight", end_weight)
+                    logger.info(f'start time: {start_time}')
+                    logger.info(f'end_time : {end_time}')
+                    logger.info(f'end_weight: {end_weight}')
+
+
                     if animal_id != '435400040001':
                         logger.info(f'Here is start while cycle')
                         while_flag = True
