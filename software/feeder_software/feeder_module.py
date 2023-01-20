@@ -62,9 +62,6 @@ def connect_arduino_to_get_dist(s):
         return distance
     return distance
 
-while True:
-    status = connect_arduino_to_get_dist(s)
-    print(status)
 
 def post_request(event_time, feed_time, animal_id, end_weight, feed_weight):
     try:
