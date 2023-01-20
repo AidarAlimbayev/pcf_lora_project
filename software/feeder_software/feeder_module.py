@@ -51,17 +51,18 @@ def distance():
             GPIO.cleanup()
         total = numpy.mean(dist_list)
         #total = max([j for i,j in enumerate(dist_list) if j in dist_list[i+1:]]) if dist_list != list(set(dist_list)) else -1
-        return round(total, 2)
-    except TypeError as t:
-        logger.error(f'Distance func error {t}')
-#def connect_arduino_to_get_dist(s):
-    #distance = (str(s.readline()))
-    #distance = re.sub("b|'|\r|\n", "", distance[:-5])
-   # while (float(distance)) < 150:
-        #distance = (str(s.readline()))
-        #distance = re.sub("b|'|\r|\n", "", distance[:-5])
-       # return distance
-    #return distance
+        #return round(total, 2)
+    #except TypeError as t:
+        #logger.error(f'Distance func error {t}')
+def connect_arduino_to_get_dist(s):
+    distance = (str(s.readline()))
+    distance = re.sub("b|'|\r|\n", "", distance[:-5])
+    while (float(distance)) < 150:
+        distance = (str(s.readline()))
+        distance = re.sub("b|'|\r|\n", "", distance[:-5])
+        distance = float(distance)
+        return distance
+    return distance
 
 
 def post_request(event_time, feed_time, animal_id, end_weight, feed_weight):
