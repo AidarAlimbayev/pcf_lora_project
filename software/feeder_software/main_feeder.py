@@ -114,9 +114,12 @@ def main():
                             logger.info(f' Ultrasonic distance: {ulrasonic_distance}')
                             ulrasonic_distance = float(ulrasonic_distance)
                             while_flag = ulrasonic_distance < 10 or ulrasonic_distance > 50     # Переделать
-                            #     while_flag = False
-                            # else:
-                            #     while_flag = True
+                            if while_flag == False:
+                                break
+                            #if ulrasonic_distance < 10 or ulrasonic_distance > 50:
+                            #    while_flag = True
+                            #else:
+                            #    while_flag = False
                             
                         logger.info(f'While ended.')
                         feed_time = end_time - start_time           

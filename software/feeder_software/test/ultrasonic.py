@@ -8,6 +8,7 @@ import RPi.GPIO as GPIO
 import time
 import numpy
 from loguru import logger
+import re
 
 #def distance():
  #   try:
