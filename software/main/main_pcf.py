@@ -7,15 +7,7 @@ pcf.time.sleep(10) # sleep time for connection to serial library
 
 # config of equipment and contacts
 #old variable type_scales -> new variable equipment_name (must be unique)
-<<<<<<< HEAD
-<<<<<<< HEAD
 type_scales = "pcf_model_5" # equipment_name 
-=======
-type_scales = "pcf_model_6" # equipment_name 
->>>>>>> 5b14a03 (new spray)
-=======
-type_scales = "pcf_model_5" # equipment_name 
->>>>>>> fc469af (Last edition by Aidar 4.8)
 type = "SCALES"
 model = "800"
 location = 'SHOS'
@@ -83,15 +75,7 @@ def main():
             pcf.print_log("After read cow ID :", animal_id)
             pcf.Insert_New_Unique_Animal_ID(animal_id)
                         
-<<<<<<< HEAD
-<<<<<<< HEAD
             weight_finall = pcf.Connect_ARD_get_weight(animal_id, s, type_scales) # Grab weight from arduino and collect to weight_finall
-=======
-            weight_finall, drink_duration = pcf.Connect_ARD_get_weight(animal_id, s, type_scales) # Grab weight from arduino and collect to weight_finall
->>>>>>> 5b14a03 (new spray)
-=======
-            weight_finall = pcf.Connect_ARD_get_weight(animal_id, s, type_scales) # Grab weight from arduino and collect to weight_finall
->>>>>>> fc469af (Last edition by Aidar 4.8)
             pcf.print_log("main: weight_finall", weight_finall)
             main_gpio_off(pin)
 
@@ -100,15 +84,7 @@ def main():
                 pcf.Collect_data_CSV(animal_id, weight_finall, type_scales) # Save weight data into CSV file
 
                 pcf.print_log("main: Collect data to main database")
-<<<<<<< HEAD
-<<<<<<< HEAD
                 pcf.Collect_to_Main_Data_Table(animal_id, weight_finall, type_scales)
-=======
-                pcf.Collect_to_Main_Data_Table(animal_id, weight_finall, type_scales, drink_duration)
->>>>>>> 5b14a03 (new spray)
-=======
-                pcf.Collect_to_Main_Data_Table(animal_id, weight_finall, type_scales)
->>>>>>> fc469af (Last edition by Aidar 4.8)
                 
                 #pcf.print_log("main: Spray ")
                 #pcf.Spray_Animal_by_Spray_Status(animal_id, duration)
@@ -121,8 +97,4 @@ def main():
                 # pcf.
                 # cutter 
 
-<<<<<<< HEAD
 main()
-=======
-main()
->>>>>>> 5b14a03 (new spray)

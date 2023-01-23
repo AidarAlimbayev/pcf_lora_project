@@ -1,5 +1,7 @@
 <!-- #      -->
                                                   ===            
+<!-- #      -->
+                                                  ===            
 This project started on S.Seifullin University.
 Project was founded by Minsitry of Argoculture of Kazakhstan
 
@@ -15,9 +17,6 @@ junior software developer - Meiirkhan Abdek meiirkhan.abdek@nu.edu.kz
 engineer - Vladimir Sarzhinec wowa3520@gmail.com     
 =======
 engineer - Baiguanysh Sanat kvenecusghost@gmail.com     
-engineer - Suieubayev Maxat Maxat.suieubayev@gmail.com
-engineer - Vladimir Sarzhinec wowa3520@gmail.com
->>>>>>> 0d35c81 (new engineers)
 
 Настройка нового Распбери 
 ============================

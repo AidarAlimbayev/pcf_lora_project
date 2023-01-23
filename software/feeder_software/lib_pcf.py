@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # pre version 4.8 Maxat edition
 from datetime import datetime, date, time
-import full_spray as spr
+#import full_spray as spr
 
 #from sklearn import exceptions
 import serial
