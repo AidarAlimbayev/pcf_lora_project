@@ -76,8 +76,9 @@ def main():
                 if time.time()%3600 == 0:
                     fdr.check_internet()
                 ulrasonic_distance = fdr.connect_arduino_to_get_dist(s) 
+                logger.info(f'ultrasonic distance: {ulrasonic_distance}')
                 ulrasonic_distance = float(ulrasonic_distance)
-                print("ultrasonic distance", ulrasonic_distance)
+                logger.info(f'ultrasonic distance: {ulrasonic_distance}')
                 logger.info(f'Distance: {ulrasonic_distance}') 
 
                 if ulrasonic_distance > 20 or ulrasonic_distance < 80:  # переделать
