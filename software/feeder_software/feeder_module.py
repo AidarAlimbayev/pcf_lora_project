@@ -22,37 +22,51 @@ import json
 import threading
 import queue
 import time
+import re
 
 
-def distance():
-    try:
-        dist_list = []
-        while len(dist_list) < 10:
-            GPIO.setmode(GPIO.BCM)
-            GPIO_TRIGGER = 18
-            GPIO_ECHO = 24
-            GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
-            GPIO.setup(GPIO_ECHO, GPIO.IN)
-            GPIO.output(GPIO_TRIGGER, True)                 # set Trigger to HIGH
-            time.sleep(0.00001)                             # set Trigger after 0.01ms to LOW
-            GPIO.output(GPIO_TRIGGER, False)
-            StartTime = time.time()
-            StopTime = time.time()
-            while GPIO.input(GPIO_ECHO) == 0:               # save StartTime
-                StartTime = time.time()
-            while GPIO.input(GPIO_ECHO) == 1:
-                StopTime = time.time()                      # save time of arrival
-            TimeElapsed = StopTime - StartTime              # time difference between start and arrival
-            """multiply with the sonic speed (34300 cm/s)
-            and divide by 2, because there and back"""
-            distance = (TimeElapsed * 34300) / 2
-            dist_list.append(distance)
-            GPIO.cleanup()
-        total = numpy.mean(dist_list)
+# def distance():
+#     try:
+#         dist_list = []
+#         while len(dist_list) < 10:
+#             GPIO.setmode(GPIO.BCM)
+#             GPIO_TRIGGER = 18
+#             GPIO_ECHO = 24
+#             GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
+#             GPIO.setup(GPIO_ECHO, GPIO.IN)
+#             GPIO.output(GPIO_TRIGGER, True)                 # set Trigger to HIGH
+#             time.sleep(0.00001)                             # set Trigger after 0.01ms to LOW
+#             GPIO.output(GPIO_TRIGGER, False)
+#             StartTime = time.time()
+#             StopTime = time.time()
+#             while GPIO.input(GPIO_ECHO) == 0:               # save StartTime
+#                 StartTime = time.time()
+#             while GPIO.input(GPIO_ECHO) == 1:
+#                 StopTime = time.time()                      # save time of arrival
+#             TimeElapsed = StopTime - StartTime              # time difference between start and arrival
+#             #"""multiply with the sonic speed (34300 cm/s)
+#             #and divide by 2, because there and back"""
+#             distance = (TimeElapsed * 34300) / 2
+#             dist_list.append(distance)
+#             GPIO.cleanup()
+#         total = numpy.mean(dist_list)
         #total = max([j for i,j in enumerate(dist_list) if j in dist_list[i+1:]]) if dist_list != list(set(dist_list)) else -1
-        return round(total, 2)
-    except TypeError as t:
-        logger.error(f'Distance func error {t}')
+        #return round(total, 2)
+    #except TypeError as t:
+        #logger.error(f'Distance func error {t}')
+
+
+def connect_arduino_to_get_dist(s):
+    s.flushInput() # Cleaning buffer of Serial Port
+    s.flushOutput() # Cleaning output buffer of Serial Port
+    distance = (str(s.readline()))
+    distance = re.sub("b|'|\r|\n", "", distance[:-5])
+    while (float(distance)) < 50:
+        distance = (str(s.readline()))
+        distance = re.sub("b|'|\r|\n", "", distance[:-5])
+        distance = float(distance)
+        return distance
+    return distance
 
 
 def post_request(event_time, feed_time, animal_id, end_weight, feed_weight):
@@ -100,6 +114,7 @@ def send_post(postData):
 
 def __connect_rfid_reader():                                      # Connection to RFID Reader through TCP and getting cow ID in str format
     try:    
+        logger.info(f'Start connect RFID function')
         TCP_IP = '192.168.1.250'                                #chafon 5300 reader address
         TCP_PORT = 60000                                        #chafon 5300 port
         BUFFER_SIZE = 1024
@@ -108,6 +123,7 @@ def __connect_rfid_reader():                                      # Connection t
         null_id = "b'435400040001'"
 
         if animal_id == null_id: # Send command to reader waiting id of animal
+            logger.info(f' In the begin: Animal ID: {animal_id}')
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s.connect((TCP_IP, TCP_PORT))
             s.send(bytearray([0x53, 0x57, 0x00, 0x06, 0xff, 0x01, 0x00, 0x00, 0x00, 0x50])) #Chafon RU5300 Answer mode reading mode command
@@ -115,6 +131,7 @@ def __connect_rfid_reader():                                      # Connection t
             animal_id= str(binascii.hexlify(data))
             animal_id_new = animal_id[:-5] #Cutting the string from unnecessary information after 4 signs 
             animal_id_new = animal_id_new[-12:] #Cutting the string from unnecessary information before 24 signs
+            logger.info(f'After end: Animal ID: {animal_id}')
             s.close()             
         if animal_id_new == null_id: # Id null return(0)
             __connect_rfid_reader()
@@ -197,6 +214,8 @@ def calibrate():
         hx.set_scale(scale)
         logger.info("Scale adjusted for kilograms: {}".format(scale))
         logger.info(f'Offset: {offset}, set_scale(scale): {scale}')
+        print("calibrate: offset", offset)
+        print("calibrate: scale", scale)
         GPIO.cleanup()
         cfg.update_setting("Calibration", "Offset", offset)
         cfg.update_setting("Calibration", "Scale", scale)
@@ -216,7 +235,7 @@ def measure():
     try:
         GPIO.setmode(GPIO.BCM)  
         hx = HX711(21, 20, gain=128)
-        offset = float(cfg.get_setting("Calibration" "Offset"))
+        offset = float(cfg.get_setting("Calibration", "Offset"))
         scale = float(cfg.get_setting("Calibration", "Scale"))
         hx.set_scale(scale)
         hx.set_offset(offset)
