@@ -114,7 +114,7 @@ def main():
                             ulrasonic_distance = fdr.connect_arduino_to_get_dist(s)
                             logger.info(f' Ultrasonic distance: {ulrasonic_distance}')
                             ulrasonic_distance = float(ulrasonic_distance)
-                            while_flag = ulrasonic_distance < 10.0 or ulrasonic_distance > 50.0    # Переделать
+                            while_flag = ulrasonic_distance < 10 or ulrasonic_distance > 50    # Переделать
                             logger.info(f'white flag: {while_flag}')
                             #if while_flag == False:
                             #    break
