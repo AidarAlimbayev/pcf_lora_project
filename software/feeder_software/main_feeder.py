@@ -133,11 +133,18 @@ def main():
                         eventTime = str(str(datetime.now()))
                         post_data = fdr.post_request(eventTime, feed_time_rounded, animal_id, final_weight_rounded, end_weight)    #400
                         fdr.send_post(post_data)
+                        
+                        # Clean up on variables 
+                        eventTime = 0
+                        feed_time_rounded = 0     
+                        animal_id = '435400040001'
+                        final_weight_rounded = 0
+                        end_weight = 0
+
+                        
+
             except (KeyboardInterrupt, SystemExit):
                 fdr.cleanAndExit()
 
 
 main()
-
-
-
