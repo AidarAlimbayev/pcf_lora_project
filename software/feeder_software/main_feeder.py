@@ -115,6 +115,7 @@ def main():
                             logger.info(f' Ultrasonic distance: {ulrasonic_distance}')
                             ulrasonic_distance = float(ulrasonic_distance)
                             while_flag = ulrasonic_distance > 10 or ulrasonic_distance < 50     # Переделать
+                            logger.info(f'white flag: {while_flag}')
                             #if while_flag == False:
                             #    break
                             #if ulrasonic_distance < 10 or ulrasonic_distance > 50:
