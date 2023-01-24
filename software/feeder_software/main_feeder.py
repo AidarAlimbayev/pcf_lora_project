@@ -113,6 +113,7 @@ def main():
                             logger.info(f'Feed weight: {end_weight}')
                             time.sleep(1)
                             sensor_distance = fdr.connect_arduino_to_get_dist(s)
+                            print(f'{sensor_distance}')
                             logger.info(f' Ultrasonic distance: {sensor_distance}')
                             sensor_distance = float(sensor_distance)
                             while_flag = sensor_distance < 50    # Переделать
