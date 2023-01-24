@@ -75,13 +75,14 @@ def main():
             try:        
                 if time.time()%3600 == 0:
                     fdr.check_internet()
-                ulrasonic_distance = fdr.connect_arduino_to_get_dist(s) 
-                logger.info(f'ultrasonic distance: {ulrasonic_distance}')
-                ulrasonic_distance = float(ulrasonic_distance)
-                logger.info(f'ultrasonic distance: {ulrasonic_distance}')
-                logger.info(f'Distance: {ulrasonic_distance}') 
+                sensor_distance = fdr.connect_arduino_to_get_dist(s) 
+                logger.info(f'ultrasonic distance: {sensor_distance}')
+                sensor_distance = float(sensor_distance)
+                logger.info(f'ultrasonic distance: {sensor_distance}')
+                logger.info(f'Distance: {sensor_distance}') 
 
-                if ulrasonic_distance > 10 or ulrasonic_distance < 40:  # переделать
+                #if sensor_distance > 10 or sensor_distance < 40:  # переделать
+                if sensor_distance < 40: 
                     logger.info(f'Let start begin')  
                     start_weight = fdr.measure()       # Nachalnii ves 150 kg
                     logger.info(f'Start weight: {start_weight}')    
@@ -110,14 +111,14 @@ def main():
                             end_weight = fdr.measure() 
                             logger.info(f'Feed weight: {end_weight}')
                             time.sleep(1)
-                            ulrasonic_distance = fdr.connect_arduino_to_get_dist(s)
-                            logger.info(f' Ultrasonic distance: {ulrasonic_distance}')
-                            ulrasonic_distance = float(ulrasonic_distance)
-                            while_flag = ulrasonic_distance < 10 and ulrasonic_distance > 50    # Переделать
+                            sensor_distance = fdr.connect_arduino_to_get_dist(s)
+                            logger.info(f' Ultrasonic distance: {sensor_distance}')
+                            sensor_distance = float(sensor_distance)
+                            while_flag = sensor_distance < 50    # Переделать
                             logger.info(f'white flag: {while_flag}')
                             #if while_flag == False:
                             #    break
-                            #if ulrasonic_distance < 10 or ulrasonic_distance > 50:
+                            #if sensor_distance < 10 or sensor_distance > 50:
                             #    while_flag = True
                             #else:
                             #    while_flag = False
