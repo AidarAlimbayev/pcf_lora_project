@@ -89,7 +89,7 @@ def main():
                     start_time = timeit.default_timer()             # 15:30:40 datetime.datetime.now()
                     logger.info(f'Start time: {start_time}')
                     animal_id = "b'435400040001'"
-                    #animal_id = fdr.__connect_rfid_reader()                    # rfid 
+                    animal_id = fdr.__connect_rfid_reader()                    # rfid 
                     logger.info(f'Animal_id: {animal_id}')
                     end_time = start_time      # 15:45:30
                     end_weight = start_weight
