@@ -133,10 +133,10 @@ def __connect_rfid_reader():                                      # Connection t
             animal_id_new = animal_id_new[-12:] #Cutting the string from unnecessary information before 24 signs
             logger.info(f'After end: Animal ID: {animal_id}')
             s.close()             
-        if animal_id_new == null_id: # Id null return(0)
-            __connect_rfid_reader()
-        else: # Id checkt return(1)
-            animal_id = "b'435400040001'"
+        # if animal_id_new == null_id: # Id null return(0)
+        #     __connect_rfid_reader()
+        # else: # Id checkt return(1)
+        #     animal_id = "b'435400040001'"
 
             return animal_id_new
     except Exception as e:

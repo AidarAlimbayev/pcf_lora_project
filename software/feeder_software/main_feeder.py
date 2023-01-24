@@ -109,7 +109,6 @@ def main():
                             end_time = timeit.default_timer()       
                             end_weight = fdr.measure() 
                             logger.info(f'Feed weight: {end_weight}')
-                            logger.info(f'While is True')
                             time.sleep(1)
                             ulrasonic_distance = fdr.connect_arduino_to_get_dist(s)
                             logger.info(f' Ultrasonic distance: {ulrasonic_distance}')
