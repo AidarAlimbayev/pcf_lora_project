@@ -140,7 +140,8 @@ def main():
                         # Clean up on variables 
                         eventTime = 0
                         logger.info(f'{eventTime}')
-                        feed_time_rounded = 0     
+                        feed_time_rounded = 0  
+                        logger.info(f'{feed_time_rounded}')   
                         animal_id = '435400040001'
                         final_weight_rounded = 0
                         end_weight = 0
