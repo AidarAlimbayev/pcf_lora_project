@@ -143,6 +143,7 @@ def main():
                         feed_time_rounded = 0  
                         logger.info(f'{feed_time_rounded}')   
                         animal_id = '435400040001'
+                        logger.info(f'{animal_id}')
                         final_weight_rounded = 0
                         end_weight = 0
 
