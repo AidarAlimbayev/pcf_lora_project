@@ -133,9 +133,13 @@ def __connect_rfid_reader():                                      # Connection t
             s.send(bytearray([0x53, 0x57, 0x00, 0x06, 0xff, 0x01, 0x00, 0x00, 0x00, 0x50])) #Chafon RU5300 Answer mode reading mode command
             data = s.recv(BUFFER_SIZE)
             animal_id= str(binascii.hexlify(data))
+            logger.info(f'Animal_id: {animal_id}')
             animal_id_new = animal_id[:-5] #Cutting the string from unnecessary information after 4 signs 
+            logger.info(f'Animal_id: {animal_id}')
+            logger.info(f'Animal_id_new: {animal_id_new}')
             animal_id_new = animal_id_new[-12:] #Cutting the string from unnecessary information before 24 signs
             logger.info(f'After end: Animal ID: {animal_id}')
+            logger.info(f'Animal_id_new: {animal_id_new}')
             s.close()             
         # if animal_id_new == null_id: # Id null return(0)
         #     __connect_rfid_reader()
