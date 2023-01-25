@@ -116,7 +116,7 @@ def main():
                             print(f'{sensor_distance}')
                             logger.info(f' Ultrasonic distance: {sensor_distance}')
                             sensor_distance = float(sensor_distance)
-                            while_flag = sensor_distance < 10    # Переделать
+                            while_flag = sensor_distance < 50    # Переделать
                             logger.info(f'white flag: {while_flag}')
                             #if while_flag == False:
                             #    break
