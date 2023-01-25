@@ -118,9 +118,13 @@ def __connect_rfid_reader():                                      # Connection t
         TCP_IP = '192.168.1.250'                                #chafon 5300 reader address
         TCP_PORT = 60000                                        #chafon 5300 port
         BUFFER_SIZE = 1024
-        animal_id = "b'435400040001'"                           # Id null starting variable
+        animal_id = "b'435400040001'"
+        logger.info(f'Animal_id: {animal_id}')                           # Id null starting variable
         animal_id_new = "b'435400040001'"
+        logger.info(f'Animal_id: {animal_id}')
+        logger.info(f'Animal_id_new: {animal_id_new}')
         null_id = "b'435400040001'"
+        logger.info(f'Animal_id: {animal_id}')
 
         if animal_id == null_id: # Send command to reader waiting id of animal
             logger.info(f' In the begin: Animal ID: {animal_id}')
