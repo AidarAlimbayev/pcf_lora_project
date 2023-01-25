@@ -108,6 +108,7 @@ def main():
                     #if animal_id_new != "b'435400040001'":
                     if animal_id != "b'435400040001'":
                         logger.info(f'Here is start while cycle')
+                        logger.info(f'Check animal id: {animal_id}')
                         while_flag = True
                         while (while_flag == True):
                             
