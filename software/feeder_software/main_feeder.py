@@ -103,7 +103,7 @@ def main():
                     logger.info(f'end_weight: {end_weight}')
 
 
-                    if animal_id != '435400040001':
+                    if animal_id != "b'435400040001'":
                         logger.info(f'Here is start while cycle')
                         while_flag = True
                         while (while_flag == True):
