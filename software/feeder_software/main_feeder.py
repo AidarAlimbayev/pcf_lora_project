@@ -91,8 +91,8 @@ def main():
                     #animal_id = "b'435400040001'"
                     #animal_id = fdr.__connect_rfid_reader()
                     animal_id_new = fdr.__connect_rfid_reader()                    # rfid 
-                    #logger.info(f'Animal_id: {animal_id}')
-                    logger.info(f'Animal_id: {animal_id_new}')
+                    logger.info(f'Animal_id: {animal_id}')
+                    #logger.info(f'Animal_id: {animal_id_new}')
                     end_time = start_time      # 15:45:30
                     end_weight = start_weight
 
@@ -105,8 +105,8 @@ def main():
                     logger.info(f'end_weight: {end_weight}')
 
                     
-                    if animal_id_new != "b'435400040001'":
-                    #if animal_id != "b'435400040001'":
+                    #if animal_id_new != "b'435400040001'":
+                    if animal_id != "b'435400040001'":
                         logger.info(f'Here is start while cycle')
                         while_flag = True
                         while (while_flag == True):
@@ -139,7 +139,7 @@ def main():
                         eventTime = str(str(datetime.now()))
                         post_data = fdr.post_request(eventTime, feed_time_rounded, animal_id, final_weight_rounded, end_weight)    #400
                         logger.info(f'{animal_id}')
-                        logger.info(f'{animal_id_new}')
+                        #logger.info(f'{animal_id_new}')
                         fdr.send_post(post_data)
                         
                         # Clean up on variables 
