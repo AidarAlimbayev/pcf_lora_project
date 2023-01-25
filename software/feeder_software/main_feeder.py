@@ -135,6 +135,7 @@ def main():
                         logger.info(f'feed_time: {feed_time_rounded}')
                         eventTime = str(str(datetime.now()))
                         post_data = fdr.post_request(eventTime, feed_time_rounded, animal_id, final_weight_rounded, end_weight)    #400
+                        logger.info(f'{animal_id}')
                         fdr.send_post(post_data)
                         
                         # Clean up on variables 
