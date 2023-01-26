@@ -149,7 +149,6 @@ def __connect_rfid_reader():                                      # Connection t
         #     animal_id = "b'435400040001'"
 
         return animal_id_new
-        logger.info(f'animal_id_new:{animal_id_new}')
     except Exception as e:
         logger.error(f'Error connect RFID reader {e}')
 

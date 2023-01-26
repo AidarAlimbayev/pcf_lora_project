@@ -80,7 +80,8 @@ def main():
                 sensor_distance = float(sensor_distance)
                 logger.info(f'ultrasonic distance: {sensor_distance}')
                 logger.info(f'Distance: {sensor_distance}') 
-
+                logger.info(f'animal_id: {animal_id}')
+                
                 #if sensor_distance > 10 or sensor_distance < 40:  # переделать
                 if sensor_distance < 40: 
                     logger.info(f'Let start begin')  
