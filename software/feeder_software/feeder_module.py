@@ -129,6 +129,7 @@ def __connect_rfid_reader():                                      # Connection t
         if animal_id == null_id: # Send command to reader waiting id of animal
             logger.info(f' In the begin: Animal ID: {animal_id}')
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            logger.info(f's:' {s})
             s.connect((TCP_IP, TCP_PORT))
             s.send(bytearray([0x53, 0x57, 0x00, 0x06, 0xff, 0x01, 0x00, 0x00, 0x00, 0x50])) #Chafon RU5300 Answer mode reading mode command
             data = s.recv(BUFFER_SIZE)
