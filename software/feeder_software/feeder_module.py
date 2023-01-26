@@ -137,7 +137,6 @@ def __connect_rfid_reader():                                      # Connection t
             animal_id= str(binascii.hexlify(data))
             logger.info(f'Animal_id: {animal_id}')
             animal_id_new = animal_id[:-5] #Cutting the string from unnecessary information after 4 signs 
-            logger.info(f'Animal_id: {animal_id}')
             logger.info(f'Animal_id_new: {animal_id_new}')
             animal_id_new = animal_id_new[-12:] #Cutting the string from unnecessary information before 24 signs
             logger.info(f'After end: Animal ID: {animal_id}')
