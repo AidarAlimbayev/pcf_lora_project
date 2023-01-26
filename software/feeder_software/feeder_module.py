@@ -126,8 +126,7 @@ def __connect_rfid_reader():                                      # Connection t
         null_id = "b'435400040001'"
         logger.info(f'Animal_id: {animal_id}')
 
-        if animal_id != null_id:
-        #if animal_id == null_id: # Send command to reader waiting id of animal
+        if animal_id == null_id: # Send command to reader waiting id of animal
             logger.info(f' In the begin: Animal ID: {animal_id}')
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             logger.info(f's: {s}')
