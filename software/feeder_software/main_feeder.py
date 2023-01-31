@@ -80,9 +80,11 @@ def main():
                 sensor_distance = float(sensor_distance)
                 logger.info(f'ultrasonic distance: {sensor_distance}')
                 logger.info(f'Distance: {sensor_distance}') 
+                animal_id == "b'435400040001'"
 
+                if animal_id == "b'435400040001'":
                 #if sensor_distance > 10 or sensor_distance < 40:  # переделать
-                if sensor_distance < 40: 
+                #if sensor_distance < 40: 
                     logger.info(f'Let start begin')  
                     start_weight = fdr.measure()       # Nachalnii ves 150 kg
                     logger.info(f'Start weight: {start_weight}')    
@@ -104,9 +106,9 @@ def main():
                     logger.info(f'end_time : {end_time}')
                     logger.info(f'end_weight: {end_weight}')
 
-                    
+                    if sensor_distance < 40:
                     #if animal_id_new != "b'435400040001'":
-                    if animal_id != "b'435400040001'":
+                    #if animal_id != "b'435400040001'":
                         logger.info(f'Here is start while cycle')
                         logger.info(f'Check animal id: {animal_id}')
                         while_flag = True
