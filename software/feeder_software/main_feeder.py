@@ -80,7 +80,7 @@ def main():
                 sensor_distance = float(sensor_distance)
                 logger.info(f'ultrasonic distance: {sensor_distance}')
                 logger.info(f'Distance: {sensor_distance}') 
-                animal_id == "b'435400040001'"
+                animal_id = "b'435400040001'"
 
                 if animal_id == "b'435400040001'":
                 #if sensor_distance > 10 or sensor_distance < 40:  # переделать
