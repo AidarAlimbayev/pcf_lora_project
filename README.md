@@ -8,9 +8,13 @@ main scientific head - Nabiyev Nabi nabi.nabiyev@gmail.com
 engineer - Alimbayev Aidar transcription@rambler.ru    
 engineer - Baiguanysh Sanat kvenecusghost@gmail.com
 software developer - Maxat Suieubayev maxat.suieubayev@gmail.com
+
 electronics engineer - Damir Gainudinov damirgainudinov@gmail.com
+
 junior sofware developer - Yerkebulan Salmenov salmenov.18.04@gmail.com
+
 junior software developer - Meiirkhan Abdek meiirkhan.abdek@nu.edu.kz
+
 engineer - Vladimir Sarzhinec wowa3520@gmail.com     
 
 Настройка нового Распбери 
@@ -34,7 +38,7 @@ engineer - Vladimir Sarzhinec wowa3520@gmail.com
 * Проверить отключением питания на RFID считвателе
 * Проверить появление файла *raw_data.csv*
 * Проверить появление лог файла *время_и_дата.log*
-* Открыть права на *ttyACM0 chown*
+* Открыть права на *sudo chown 777 /dev/ttyACM0*
 * Проверить программу на работу через 1,3,6,9,25 часов
 
 
@@ -55,6 +59,7 @@ User=root
 [Install]
 dBy=multi-user.target        
 
+путь до папки для демона
 /etc/systemd/system/    
 winSCP    
 sudo systemctl start test.service       
