@@ -7,6 +7,7 @@ head of project - Mirmanov Arman mirmanov.a@mail.ru
 main scientific head - Nabiyev Nabi nabi.nabiyev@gmail.com    
 engineer - Alimbayev Aidar transcription@rambler.ru    
 engineer - Baiguanysh Sanat kvenecusghost@gmail.com
+
 software developer - Maxat Suieubayev maxat.suieubayev@gmail.com
 
 electronics engineer - Damir Gainudinov damirgainudinov@gmail.com
