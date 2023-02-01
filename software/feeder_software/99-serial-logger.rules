@@ -1,0 +1,1 @@
+SUBSYSTEM=="tty",KERNEL=="ttyUSB0",TAG+="systemd",ENV{SYSTEMD_WANTS}+="feeder.service"
