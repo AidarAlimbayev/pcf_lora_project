@@ -86,7 +86,7 @@ def post_data(type_scales, animal_id, weight_list, weighing_start_time, weighing
             "RFIDNumber": animal_id,
             "Data": weight_list
         }
-        post = requests.post(url, data=json.dumps(data), headers=headers, timeout=0.5)
+        post = requests.post(url, data=json.dumps(data), headers=headers, timeout=3)
         logger.debug(f'Answer from server: {post}')  # Is it possible to stop on this line in the debug?
         logger.debug(f'Content from main server: {post.content}')
     except Exception as e:

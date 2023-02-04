@@ -1,0 +1,24 @@
+2023-02-04T14:51:25.085030+0600 DEBUG Post data function start
+2023-02-04T14:51:28.298998+0600 ERROR Error post data: HTTPSConnectionPool(host='smart-farm.kz', port=8502): Read timed out. (read timeout=3)
+2023-02-04T14:51:28.299628+0600 DEBUG START SEND DATA TO SERVER:
+2023-02-04T14:51:31.338701+0600 ERROR Error send data to server HTTPConnectionPool(host='194.4.56.86', port=8501): Read timed out. (read timeout=3)
+2023-02-04T14:53:43.008289+0600 DEBUG Post data function start
+2023-02-04T14:53:43.947391+0600 DEBUG Answer from server: <Response [200]>
+2023-02-04T14:53:43.947752+0600 DEBUG Content from main server: b'871'
+2023-02-04T14:53:43.947872+0600 DEBUG START SEND DATA TO SERVER:
+2023-02-04T14:53:44.092995+0600 DEBUG Answer from server: <Response [200]>
+2023-02-04T14:53:44.093174+0600 DEBUG Content from main server: b'146345'
+2023-02-04T14:53:44.093258+0600 ERROR 4 step send data
+2023-02-04T14:54:25.851309+0600 DEBUG Post data function start
+2023-02-04T14:54:26.103450+0600 DEBUG Answer from server: <Response [200]>
+2023-02-04T14:54:26.104018+0600 DEBUG Content from main server: b'872'
+2023-02-04T14:54:26.104245+0600 DEBUG START SEND DATA TO SERVER:
+2023-02-04T14:54:26.219393+0600 DEBUG Answer from server: <Response [200]>
+2023-02-04T14:54:26.219587+0600 DEBUG Content from main server: b'146346'
+2023-02-04T14:54:26.219747+0600 ERROR 4 step send data
+2023-02-04T14:55:14.861795+0600 DEBUG Post data function start
+2023-02-04T14:55:15.103635+0600 DEBUG Answer from server: <Response [200]>
+2023-02-04T14:55:15.104839+0600 DEBUG Content from main server: b'873'
+2023-02-04T14:55:15.105517+0600 DEBUG START SEND DATA TO SERVER:
+2023-02-04T14:55:15.233279+0600 DEBUG Answer from server: <Response [200]>
+2023-02-04T14:55:15.233537+0600 DEBUG Content from main server: b'146347'
