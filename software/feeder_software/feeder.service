@@ -1,18 +1,4 @@
 [Unit]
-Description=feeeder.service Service
-
-After=network.target
-
-[Service]
-ExecStart=/usr/bin/python /home/pi/main_feeder.py
-WorkingDirectory=/home/pi/
-StandardOutput=inherit
-StandardError=inherit
-Restart=always
-RestartSec=10
-User=root
-
-[Unit]
 Description=feeder.service Service
 
 After=network.target
