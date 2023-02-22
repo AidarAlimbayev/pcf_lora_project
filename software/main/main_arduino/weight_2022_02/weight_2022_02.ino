@@ -33,7 +33,7 @@ void setup() {
 
   //Serial.println("Before setting up the scale:");
   //Serial.print("read: \t\t");
-  scale.read();			// print a raw reading from the ADC
+  scale.read();			// print a raw reading from the AD
 
   //Serial.print("read average: \t\t");
   scale.read_average(20);  	// print the average of 20 readings from the ADC
@@ -46,7 +46,7 @@ void setup() {
 						// by the SCALE parameter (not set yet)
 
   //scale.set_scale(2990.f);                      // this value is obtained by calibrating the scale with known weights; see the README for details
-  scale.set_scale(3126.f);
+  scale.set_scale(2649.f);
   scale.tare();				        // reset the scale to 0
 
   //Serial.println("After setting up the scale:");
@@ -73,7 +73,11 @@ void loop() {
   //Serial.print("one reading:\t");
   //Serial.print(scale.get_units(), 1);
   //Serial.print("\t| average:\t");
-  Serial.println(scale.get_units(10), 1);
+  //if (scale.get_units(10) < 60){
+  //  Serial.println(0.0, 1);
+  //} else { 
+    Serial.println(scale.get_units(10), 1);
+  //}
 
   //scale.power_down();			        // put the ADC in sleep mode
   delay(1000);
