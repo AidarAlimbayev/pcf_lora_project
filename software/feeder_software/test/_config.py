@@ -25,7 +25,7 @@ from loguru import logger
 
 path = "config.ini"         # Название конфиг файла config.ini
 
-def create_config():        # Функция создания конфиг файла
+def create_config(path):        # Функция создания конфиг файла
     try:
         config = configparser.ConfigParser()
         config.add_section("Parameters")
@@ -47,7 +47,7 @@ def create_config():        # Функция создания конфиг фа�
 def get_config(path):           # Получить доступ к конфиг файлу 
     try:
         if not os.path.exists(path):
-            create_config()
+            create_config(path)
         
         config = configparser.ConfigParser()
         config.read(path)
