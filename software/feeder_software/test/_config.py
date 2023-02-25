@@ -47,7 +47,7 @@ def create_config():        # Функция создания конфиг фа�
 def get_config(path):           # Получить доступ к конфиг файлу 
     try:
         if not os.path.exists(path):
-            create_config(path)
+            create_config()
         
         config = configparser.ConfigParser()
         config.read(path)
