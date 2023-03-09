@@ -72,11 +72,7 @@ def main():
             print("If you use this sketch first time please make calibration\n to save needed values.\n")
             #print("Please don't forget change offset and scale value in measure function!!!")
             choice = input()
-            print(type(choice))
-            print(type(int(choice)))
             int_choice=int(choice)
-            print('int_choice:')
-            print(int_choice)
             if int_choice == 1:
                 print('start calibrate')
                 calibrate()

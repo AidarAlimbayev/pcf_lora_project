@@ -59,8 +59,6 @@ def main():
     choice = '2'
     choice = fdr.input_with_timeout("Choice:", 5)
     time.sleep(5)
-    i = 0
-
 
     if choice == '1':
         offset, scale = fdr.calibrate()

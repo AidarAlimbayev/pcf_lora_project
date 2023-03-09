@@ -95,6 +95,20 @@ class HX711:
         Returns value of offset
         """
         return self.OFFSET
+    
+
+    def _ready(self):
+        """
+        Data is ready for reading when DOUT is low
+        :return True if there is some date
+        :rtype bool
+        """
+
+        _is_ready = GPIO.input(self.DOUT) == 0
+        print("check data ready for reading: {result}".format(
+            result="YES" if _is_ready is True else "NO"
+        ))
+        return _is_ready
 
     def read(self):
         """
@@ -102,12 +116,13 @@ class HX711:
         :param void
         :return reading from the HX711
         """
+        ready_counter = 0
+        max_tries = 40
 
         # Control if the chip is ready
-        while not (GPIO.input(self.DOUT) == 0):
-            # Uncommenting the print below results in noisy output
-            # print("No input from HX711.")
+        while GPIO.input(self.DOUT) == 0:
             pass
+            
 
         # Original C source code ported to Python as described in datasheet
         # https://cdn.sparkfun.com/datasheets/Sensors/ForceFlex/hx711_english.pdf
