@@ -6,12 +6,12 @@ SCRIPT_PATH=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )/../" &> /dev/null && p
 
 #mkdir /media/maxat/rootfs/home/pi/scales_without_sprayer
 
-cp ${SCRIPT_PATH}/raspberry_settings/ssh /media/maxat/boot2
-chmod +x /media/maxat/boot2/ssh
+cp ${SCRIPT_PATH}/raspberry_settings/ssh /media/maxat/bootfs
+chmod +x /media/maxat/bootfs/ssh
 echo "1#############"
 
-cp ${SCRIPT_PATH}/raspberry_settings/wpa_supplicant.conf /media/maxat/boot2
-chmod +x /media/maxat/boot2/wpa_supplicant.conf
+cp ${SCRIPT_PATH}/raspberry_settings/wpa_supplicant.conf /media/maxat/bootfs
+chmod +x /media/maxat/bootfs/wpa_supplicant.conf
 echo "2#############"
 
 cp ${SCRIPT_PATH}/main/max_scales/scales_without_sprayer/headers.py /media/maxat/rootfs/home/pi/
