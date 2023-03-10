@@ -155,7 +155,7 @@ def calibrate():
         logger.info('Start calibrate function')
 
         GPIO.setmode(GPIO.BCM)  
-        hx = HX.HX711(21,20)
+        hx = HX.HX711(26,19)
         input("Remove any items from scale. Press any key when ready.")
         offset = hx.calib_read()
         logger.info("Value at zero (offset): {}".format(offset))

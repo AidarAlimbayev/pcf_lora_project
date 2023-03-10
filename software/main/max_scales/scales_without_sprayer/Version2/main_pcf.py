@@ -36,7 +36,7 @@ def main():
             cow_id = pcf.connect_rfid_reader()        
             if cow_id != '435400040001':                            # Comparision to null cow_id answer 
                 GPIO.setmode(GPIO.BCM) 
-                hx = HX.HX711(21,20)
+                hx = HX.HX711(19, 26) # dt, sck
                 GPIO.setwarnings(False)
                 logger.info("After read cow ID :", cow_id)
                 weight_finall, weight_array, weighing_start_time = pcf.measure_weight(hx) # Grab weight from arduino and collect to weight_finall
