@@ -13,6 +13,7 @@ class HX711:
         self.SCALE = 1
         self.OFFSET = 0
         self.NOIZE = 0
+        self.ready_counter = 0
 
         GPIO.setmode(GPIO.BCM)
 
@@ -82,11 +83,11 @@ class HX711:
         :param void
         :return reading from the HX711
         """
-        ready_counter = 0
+        self.ready_counter = 0
         
         # Control if the chip is ready
         while self._ready() is False:
-            ready_counter +=1 
+            self.ready_counter +=1 
             #pass
         
         #print(f'Exit from if {ready_counter}\n')
@@ -113,9 +114,9 @@ class HX711:
         return count
 
 
-    def pre_filter(self, count, ready_counter):
+    def pre_filter(self, count):
 
-        if ready_counter == 0:
+        if self.ready_counter == 0:
             self.NOIZE +=1
             #print(f'{self.NOIZE} if is: {ready_counter}\n\n')
             if len(self.adc_arr) > 40:
@@ -123,7 +124,7 @@ class HX711:
                     #self.reset()
                     return 9999999      
 
-        if ready_counter > 100000:
+        if self.ready_counter > 100000:
             self.NOIZE +=1
             #print(f'{self.NOIZE} if is: {ready_counter}\n\n')
             if self.NOIZE < 40:
@@ -135,7 +136,7 @@ class HX711:
 
     def get_measure(self):
         adc_val = self.read()
-        adc_val = self.pre_filter()
+        adc_val = self.pre_filter(adc_val)
         
         if adc_val == 9999999:
             if len(self.adc_arr) > 1:

@@ -95,8 +95,6 @@ class HX711:
             count = count << 1
             GPIO.output(self.PD_SCK, False)
 
-            
-
             if(GPIO.input(self.DOUT)):
                 count += 1
         
