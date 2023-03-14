@@ -33,8 +33,7 @@ try:
     logger.debug(f'Configuration of serial: {s}')
 except Exception as e:
     logger.error(f'Error to connection to arduino, there is no file: /dev/ttyACM0 {e}')
-else:
-    logger.info(f'Else step Arduino')
+
 
 @logger.catch
 def main():
