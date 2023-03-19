@@ -23,7 +23,7 @@ level="DEBUG", rotation="1 day", compression="zip")             # Настрой
 @logger.catch()         # Показывает ошибки, не работает если их обрабатывать
 def main():
     try:
-        type_scales = cfg.get_setting("Parameters", "feeder_type") # Забираем серийный номер из config.ini
+        type_scales = cfg.get_setting("Parameters", "serial_number") # Забираем серийный номер из config.ini
         port = cfg.get_setting("Parameters", "arduino_port")    # Забираем порт
         pcf.calibrate_or_start()    # Выбор между калибровкой и измерением. 
         while True:

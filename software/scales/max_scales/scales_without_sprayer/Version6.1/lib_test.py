@@ -39,7 +39,7 @@ def measure_weight(obj):
             if time_to_wait < 0:
                 weight_arr.append(obj.calc_mean())
                 next_time = time.time()+1
-                logger.debug(f'Common filter weights: {weight_arr}')
+                logger.debug(f'Array weights: {weight_arr}')
 
         if not weight_arr:
             logger.error("Error, null weight list")

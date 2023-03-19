@@ -15,6 +15,7 @@
 
  [DbId]
  id = 0
+ version = 6.1
 
  Важно помнить, вся информация в конфиг файле хранится в str
  Edition by Suieubayev Maxat.
@@ -34,7 +35,7 @@ def create_config():        # Функция создания конфиг фа�
         config.add_section("Parameters")
         config.add_section("Calibration")         
         config.add_section("DbId")          
-        config.set("Parameters", "feeder_type", "feeder_model_1")    
+        config.set("Parameters", "model", "feeder_model_1")    
         config.set("Parameters", "type", "Feeder") 
         config.set("Parameters", "serial_number", "65545180001") 
         config.set("Parameters", "url", "https://smart-farm.kz:8502/api/v2/RawFeedings") 
@@ -43,7 +44,8 @@ def create_config():        # Функция создания конфиг фа�
         config.set("Parameters", "arduino_port", "dev/ttyUSB0") 
         config.set("Calibration", "Offset", "8456818.125")    
         config.set("Calibration", "Scale", "5784.8" )
-        config.set("DbId", "id", "0" )        
+        config.set("DbId", "id", "0" ) 
+        config.set("DbId", "version", "6.1" )        
         with open(path, "w") as config_file:
             config.write(config_file)
     except ValueError as e:
