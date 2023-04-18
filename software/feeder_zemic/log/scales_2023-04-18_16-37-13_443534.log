@@ -1,0 +1,42 @@
+2023-04-18T16:37:13.495443+0600 INFO Connect arduino /dev/ttyACM0
+2023-04-18T16:37:13.497518+0600 INFO Configuration of serial, Serial<id=0x75d62838, open=True>(port='/dev/ttyACM0', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+2023-04-18T16:37:13.498568+0600 INFO Success: Arduino connected
+2023-04-18T16:37:13.504307+0600 INFO ("[1] to calibrate
+" "[2] to start measure
+>")
+2023-04-18T16:37:21.086625+0600 DEBUG START RFID FUNCTION
+2023-04-18T16:37:21.088357+0600 DEBUG START Animal ID animal_id: b'435400040001'
+2023-04-18T16:37:21.089627+0600 DEBUG START Null id null_id : b'435400040001'
+2023-04-18T16:37:27.538443+0600 DEBUG Raw ID animal_id: b'43540028004501c38d13091e0102011b0101e2806894000040103003d496e2806894200040103003d496bedc'
+2023-04-18T16:37:27.540442+0600 DEBUG New ID animal_id_new: 40103003d496
+2023-04-18T16:37:27.542009+0600 DEBUG Null id null_id : b'435400040001'
+2023-04-18T16:37:27.543836+0600 DEBUG Success step 2 RFID. animal id new: 40103003d496
+2023-04-18T16:37:28.305817+0600 ERROR An error has been caught in function '<module>', process 'MainProcess' (2890), thread 'MainThread' (1996458368):
+Traceback (most recent call last):
+
+  File "/home/pi/Downloads/max/main_pcf.py", line 45, in main
+    sensor_distance=pcf.connect_arduino_to_get_dist(s)
+                    │   │                           └ Serial<id=0x75d62838, open=True>(port='/dev/ttyACM0', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=None, xonxof...
+                    │   └ <function connect_arduino_to_get_dist at 0x75b95bf8>
+                    └ <module 'lib_test' from '/home/pi/Downloads/max/lib_test.py'>
+
+  File "/home/pi/Downloads/max/lib_test.py", line 208, in connect_arduino_to_get_dist
+    distance = re.sub("b|'|\r|\n", "", distance[:-5])
+                                       └ "b'168\\r\\n'"
+
+NameError: name 're' is not defined
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+> File "/home/pi/Downloads/max/main_pcf.py", line 67, in <module>
+    main()
+    └ <function main at 0x75b95d18>
+
+  File "/home/pi/Downloads/max/main_pcf.py", line 63, in main
+    arduino.disconnect()
+
+UnboundLocalError: local variable 'arduino' referenced before assignment

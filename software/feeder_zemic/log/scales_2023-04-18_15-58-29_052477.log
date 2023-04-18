@@ -1,0 +1,34 @@
+2023-04-18T15:58:29.110005+0600 INFO ("[1] to calibrate
+" "[2] to start measure
+>")
+2023-04-18T15:58:36.373039+0600 DEBUG START RFID FUNCTION
+2023-04-18T15:58:36.375295+0600 DEBUG START Animal ID animal_id: b'435400040001'
+2023-04-18T15:58:36.376906+0600 DEBUG START Null id null_id : b'435400040001'
+2023-04-18T15:58:59.821936+0600 DEBUG Raw ID animal_id: b'43540028004501c38d13091e0102011b0101e20000174007010117406415e2003412013dfc000ad7a65ec532'
+2023-04-18T15:58:59.823937+0600 DEBUG New ID animal_id_new: fc000ad7a65e
+2023-04-18T15:58:59.825492+0600 DEBUG Null id null_id : b'435400040001'
+2023-04-18T15:58:59.827645+0600 DEBUG Success step 2 RFID. animal id new: fc000ad7a65e
+2023-04-18T15:58:59.829520+0600 ERROR An error has been caught in function '<module>', process 'MainProcess' (2325), thread 'MainThread' (1995528576):
+Traceback (most recent call last):
+
+  File "/home/pi/Downloads/max/main_pcf.py", line 36, in main
+    sensor_distance=pcf.connect_arduino_to_get_dist(s)
+                    │   └ <function connect_arduino_to_get_dist at 0x75ab1bb0>
+                    └ <module 'lib_test' from '/home/pi/Downloads/max/lib_test.py'>
+
+NameError: name 's' is not defined
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+> File "/home/pi/Downloads/max/main_pcf.py", line 58, in <module>
+    main()
+    └ <function main at 0x75ab1cd0>
+
+  File "/home/pi/Downloads/max/main_pcf.py", line 54, in main
+    arduino.disconnect()
+
+UnboundLocalError: local variable 'arduino' referenced before assignment
