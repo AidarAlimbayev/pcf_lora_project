@@ -86,6 +86,7 @@ def main():
                             sensor_distance=pcf.connect_arduino_to_get_dist(s)
                         while_flag = int(sensor_distance) < 50
                         logger.info(f'White_flag: {while_flag}')
+                    logger.info(f'While_ended')
                     feed_time = end_time - start_time
                     logger.info(f'Feed_time: {feed_time}')
                     feed_time_rounded = round(feed_time, 2)
