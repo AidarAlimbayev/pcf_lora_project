@@ -55,6 +55,7 @@ def main():
                 #sensor_distance = float(sensor_distance)
                 #if sensor_distance < 40: 
                 cow_id = pcf.connect_rfid_reader()
+                logger.info(f'Animal_ID: {cow_id}')
                 arduino = pcf.start_obj(port)   # Создаем объект
                 time.sleep(1)   # задержка для установления связи между rasp и arduino
                 weight_finall, weight_array, weighing_start_time = pcf.measure_weight(arduino) 
