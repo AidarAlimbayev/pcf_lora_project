@@ -1,0 +1,13 @@
+2023-04-21T14:37:00.183319+0600 INFO Connect arduino /dev/ttyACM1
+2023-04-21T14:37:00.185488+0600 INFO Configuration of serial, Serial<id=0x75afddc0, open=True>(port='/dev/ttyACM1', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+2023-04-21T14:37:00.186571+0600 INFO Success: Arduino connected
+2023-04-21T14:37:00.191180+0600 INFO ("[1] to calibrate
+" "[2] to start measure
+>")
+2023-04-21T14:37:08.083445+0600 DEBUG START RFID FUNCTION
+2023-04-21T14:37:08.085167+0600 DEBUG START Animal ID animal_id: b'435400040001'
+2023-04-21T14:37:08.086292+0600 DEBUG START Null id null_id : b'435400040001'
+2023-04-21T14:37:08.363769+0600 DEBUG Raw ID animal_id: b'43540028004501c38d13091e0102011b0101e20000174007010117406415e2003412013dfc000ad7a65ecb2c'
+2023-04-21T14:37:08.365355+0600 DEBUG New ID animal_id_new: fc000ad7a65e
+2023-04-21T14:37:08.366438+0600 DEBUG Null id null_id : b'435400040001'
+2023-04-21T14:37:08.367673+0600 DEBUG Success step 2 RFID. animal id new: fc000ad7a65e

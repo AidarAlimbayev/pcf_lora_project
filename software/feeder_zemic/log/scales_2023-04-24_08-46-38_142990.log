@@ -1,0 +1,36 @@
+2023-04-24T08:46:38.195525+0600 INFO Connect arduino /dev/ttyACM1
+2023-04-24T08:46:38.197711+0600 INFO Configuration of serial, Serial<id=0x75ad0d90, open=True>(port='/dev/ttyACM1', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+2023-04-24T08:46:38.198777+0600 INFO Success: Arduino connected
+2023-04-24T08:46:38.204472+0600 INFO ("[1] to calibrate
+" "[2] to start measure
+>")
+2023-04-24T08:46:44.254248+0600 DEBUG START RFID FUNCTION
+2023-04-24T08:46:44.256266+0600 DEBUG START Animal ID animal_id: b'435400040001'
+2023-04-24T08:46:44.258036+0600 DEBUG START Null id null_id : b'435400040001'
+2023-04-24T08:46:49.988548+0600 DEBUG Raw ID animal_id: b'43540028004501c38d13091e0102011b0101e20000174007010117406415e2003412013dfc000ad7a65ec82f'
+2023-04-24T08:46:49.990706+0600 DEBUG New ID animal_id_new: fc000ad7a65e
+2023-04-24T08:46:49.992288+0600 DEBUG Null id null_id : b'435400040001'
+2023-04-24T08:46:49.993917+0600 DEBUG Success step 2 RFID. animal id new: fc000ad7a65e
+2023-04-24T08:46:49.998462+0600 ERROR An error has been caught in function '<module>', process 'MainProcess' (12529), thread 'MainThread' (1995749760):
+Traceback (most recent call last):
+
+  File "/home/pi/Downloads/max/main_pcf.py", line 46, in main
+    sensor_distance = float(sensor_distance)
+                            └ ''
+
+ValueError: could not convert string to float: ''
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+> File "/home/pi/Downloads/max/main_pcf.py", line 74, in <module>
+    main()
+    └ <function main at 0x75a6f190>
+
+  File "/home/pi/Downloads/max/main_pcf.py", line 70, in main
+    arduino.disconnect()
+
+UnboundLocalError: local variable 'arduino' referenced before assignment

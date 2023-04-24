@@ -1,0 +1,28 @@
+2023-04-24T11:24:29.797489+0600 INFO Connect arduino /dev/ttyACM1
+2023-04-24T11:24:29.800260+0600 INFO Configuration of serial, Serial<id=0x75afb598, open=True>(port='/dev/ttyACM1', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+2023-04-24T11:24:29.801772+0600 INFO Success: Arduino connected
+2023-04-24T11:24:29.809395+0600 INFO ("[1] to calibrate
+" "[2] to start measure
+>")
+2023-04-24T11:24:36.906945+0600 ERROR An error has been caught in function '<module>', process 'MainProcess' (13847), thread 'MainThread' (1995848064):
+Traceback (most recent call last):
+
+  File "/home/pi/Downloads/max/main_pcf_copy.py", line 44, in main
+    cow_id == '435400040001'
+
+UnboundLocalError: local variable 'cow_id' referenced before assignment
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+> File "/home/pi/Downloads/max/main_pcf_copy.py", line 95, in <module>
+    main()
+    └ <function main at 0x75a87100>
+
+  File "/home/pi/Downloads/max/main_pcf_copy.py", line 91, in main
+    arduino.disconnect()
+
+UnboundLocalError: local variable 'arduino' referenced before assignment

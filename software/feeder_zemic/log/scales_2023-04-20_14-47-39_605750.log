@@ -1,0 +1,47 @@
+2023-04-20T14:47:39.657913+0600 INFO Connect arduino /dev/ttyACM1
+2023-04-20T14:47:39.659998+0600 INFO Configuration of serial, Serial<id=0x75d43250, open=True>(port='/dev/ttyACM1', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+2023-04-20T14:47:39.661168+0600 INFO Success: Arduino connected
+2023-04-20T14:47:39.665885+0600 INFO ("[1] to calibrate
+" "[2] to start measure
+>")
+2023-04-20T14:47:49.071054+0600 DEBUG START RFID FUNCTION
+2023-04-20T14:47:49.072706+0600 DEBUG START Animal ID animal_id: b'435400040001'
+2023-04-20T14:47:49.074021+0600 DEBUG START Null id null_id : b'435400040001'
+2023-04-20T14:47:52.014484+0600 DEBUG Raw ID animal_id: b'43540028004501c38d13091e0102011b0101e2806894000040103003d496e2806894200040103003d496c7d3'
+2023-04-20T14:47:52.016539+0600 DEBUG New ID animal_id_new: 40103003d496
+2023-04-20T14:47:52.018106+0600 DEBUG Null id null_id : b'435400040001'
+2023-04-20T14:47:52.019772+0600 DEBUG Success step 2 RFID. animal id new: 40103003d496
+2023-04-20T14:48:13.717164+0600 ERROR An error has been caught in function '<module>', process 'MainProcess' (1831), thread 'MainThread' (1996106112):
+Traceback (most recent call last):
+
+  File "/home/pi/Downloads/max/main_pcf.py", line 44, in main
+    sensor_distance=pcf.connect_arduino_to_get_dist(s)
+                    │   │                           └ Serial<id=0x75d43250, open=True>(port='/dev/ttyACM1', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=None, xonxof...
+                    │   └ <function connect_arduino_to_get_dist at 0x75b3fc40>
+                    └ <module 'lib_test' from '/home/pi/Downloads/max/lib_test.py'>
+
+  File "/home/pi/Downloads/max/lib_test.py", line 208, in connect_arduino_to_get_dist
+    distance = (str(s.readline()))
+                    │ └ <method 'readline' of '_io._IOBase' objects>
+                    └ Serial<id=0x75d43250, open=True>(port='/dev/ttyACM1', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=None, xonxof...
+
+  File "/usr/lib/python3/dist-packages/serial/serialposix.py", line 577, in read
+    raise SerialException(
+          └ <class 'serial.serialutil.SerialException'>
+
+serial.serialutil.SerialException: device reports readiness to read but returned no data (device disconnected or multiple access on port?)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+> File "/home/pi/Downloads/max/main_pcf.py", line 70, in <module>
+    main()
+    └ <function main at 0x75b3fd60>
+
+  File "/home/pi/Downloads/max/main_pcf.py", line 66, in main
+    arduino.disconnect()
+
+UnboundLocalError: local variable 'arduino' referenced before assignment

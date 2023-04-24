@@ -1,0 +1,21 @@
+2023-04-20T10:17:20.026275+0600 INFO Connect arduino /dev/ttyACM0
+2023-04-20T10:17:20.028474+0600 INFO Configuration of serial, Serial<id=0x75cfa250, open=True>(port='/dev/ttyACM0', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+2023-04-20T10:17:20.029624+0600 INFO Success: Arduino connected
+2023-04-20T10:17:20.034280+0600 INFO ("[1] to calibrate
+" "[2] to start measure
+>")
+2023-04-20T10:17:26.217275+0600 INFO Start calibrate function
+2023-04-20T10:17:26.222655+0600 INFO Remove any items from scale. Press any key when ready.
+2023-04-20T10:17:33.264238+0600 INFO Value at zero (offset): 59036
+2023-04-20T10:17:33.266202+0600 INFO Please place an item of known weight on the scale.
+2023-04-20T10:17:43.742249+0600 INFO Please enter the item's weight in kg.
+>
+2023-04-20T10:17:45.697706+0600 INFO Scale adjusted for kilograms: -396.0
+2023-04-20T10:17:45.699815+0600 INFO Offset: 59036, set_scale(scale): -396.0
+2023-04-20T10:17:45.726238+0600 DEBUG START RFID FUNCTION
+2023-04-20T10:17:45.728370+0600 DEBUG START Animal ID animal_id: b'435400040001'
+2023-04-20T10:17:45.730317+0600 DEBUG START Null id null_id : b'435400040001'
+2023-04-20T10:17:46.215146+0600 DEBUG Raw ID animal_id: b'43540028004501c38d13091e0102011b0101e20000174007010117406415e2003412013dfc000ad7a65ec631'
+2023-04-20T10:17:46.216699+0600 DEBUG New ID animal_id_new: fc000ad7a65e
+2023-04-20T10:17:46.218478+0600 DEBUG Null id null_id : b'435400040001'
+2023-04-20T10:17:46.219960+0600 DEBUG Success step 2 RFID. animal id new: fc000ad7a65e
