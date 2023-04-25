@@ -39,7 +39,7 @@ def create_config():        # Функция создания конфиг фа�
         config.set("Parameters", "type", "Feeder") 
         config.set("Parameters", "serial_number", "65545180001") 
         config.set("Parameters", "url", "https://smart-farm.kz:8502/api/v2/RawFeedings") 
-        config.set("Parameters", "median_url", "http://194.4.56.86:8501/api/weights") 
+        config.set("Parameters", "median_url", "http://194.4.56.86:8501/api/feeder") 
         config.set("Parameters", "array_url", "https://smart-farm.kz:8502/v2/OneTimeWeighings") 
         config.set("Parameters", "arduino_port", "dev/ttyUSB1") 
         config.set("Calibration", "Offset", "8456818.125")    

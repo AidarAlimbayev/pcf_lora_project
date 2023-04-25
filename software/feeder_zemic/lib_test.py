@@ -164,15 +164,22 @@ def connect_rfid_reader():                                      # Connection to 
         logger.debug(f'2 step RFID')
 
 
-def post_median_data(animal_id, weight_finall, type_scales): # Sending data into Igor's server through JSON
+def post_median_data(event_time, animal_id, type_scales, feed_time, final_weight, end_weight): # Sending data into Igor's server through JSON
     try:
         logger.debug(f'START SEND DATA TO SERVER:')
         url = cfg.get_setting("Parameters", "median_url")
+        serial_number = cfg.get_config("Parameters", "serial_number")
         headers = {'Content-type': 'application/json'}
-        data = {"AnimalNumber" : animal_id,
+        data = {"Eventdatetime" : event_time,
+                "AnimalNumber" : animal_id,
                 "Date" : str(datetime.datetime.now()),
-                "Weight" : weight_finall,
-                "ScalesModel" : type_scales}
+                #"Weight" : weight_finall,
+                "ScalesModel" : type_scales,
+                "FeedingTime": feed_time,
+                "WeightLambda": end_weight,
+                "FeedWeight": final_weight,
+                "SerialNumber": serial_number
+                }
         answer = requests.post(url, data=json.dumps(data), headers=headers, timeout=3)
         logger.debug(f'Answer from server: {answer}') # Is it possible to stop on this line in the debug?
         logger.debug(f'Content from main server: {answer.content}')
