@@ -96,7 +96,7 @@ def main():
                     final_weight_rounded = round(final_weight, 2)
                     logger.info(f'Final_weight: {final_weight_rounded}')
                     #logger.info(f'Feed_time: {feed_time_rounded}')
-                    if str(weight_finall) > '0':
+                    if str(final_weight_rounded) > '0':
                         logger.info("main: Send data to server")
                         pcf.post_array_data(type_scales, cow_id, weight_array, weighing_start_time, weighing_end_time)
                         pcf.post_median_data(cow_id, weight_finall, type_scales) # Send data to server by JSON post request
