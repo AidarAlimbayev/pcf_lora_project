@@ -20,6 +20,7 @@ import sys, select
 import serial
 import os
 import timeit
+import json
 
 
 logger.add('log/scales_{time}.log', format="{time} {level} {message}", 
@@ -60,6 +61,7 @@ def main():
                 time.sleep(1)   # задержка для установления связи между rasp и arduino
                 weight_finall, weight_array, weighing_start_time = pcf.measure_weight(arduino) 
                     # Основное измерение
+                logger.info(f'Start_time: {weighing_start_time}')
                 start_weight = weight_finall
                 logger.info(f'Start weight: {start_weight}')
                 start_time=timeit.default_timer()
@@ -96,11 +98,20 @@ def main():
                     final_weight_rounded = round(final_weight, 2)
                     logger.info(f'Final_weight: {final_weight_rounded}')
                     #logger.info(f'Feed_time: {feed_time_rounded}')
+                    eventTime = str(str(datetime.now()))
                     if str(final_weight_rounded) > '0':
                         logger.info("main: Send data to server")
-                        pcf.post_array_data(type_scales, cow_id, weight_array, weighing_start_time, weighing_end_time)
-                        pcf.post_median_data(cow_id, weight_finall, type_scales) # Send data to server by JSON post request
+                        pcf.post_array_data(type_scales, feed_time_rounded, cow_id, weight_array, final_weight_rounded, weighing_start_time, weighing_end_time)
+                        pcf.post_median_data(eventTime, feed_time_rounded, cow_id, final_weight_rounded, type_scales, end_weight) # Send data to server by JSON post request
                     arduino.disconnect() # Закрываем связь
+                    eventTime = 0
+                    logger.info(f'{eventTime}')
+                    feed_time_rounded = 0  
+                    logger.info(f'{feed_time_rounded}')   
+                    cow_id = '435400040001'
+                    logger.info(f'{cow_id}')
+                    final_weight_rounded = 0
+                    end_weight = 0
     except Exception as k:
         arduino.disconnect()
         logger.error(f'Main error: {k}')

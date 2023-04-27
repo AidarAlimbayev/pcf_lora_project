@@ -164,13 +164,13 @@ def connect_rfid_reader():                                      # Connection to 
         logger.debug(f'2 step RFID')
 
 
-def post_median_data(event_time, animal_id, type_scales, feed_time, final_weight, end_weight): # Sending data into Igor's server through JSON
+def post_median_data(eventTime, feed_time, animal_id, final_weight, type_scales, end_weight): # Sending data into Igor's server through JSON
     try:
         logger.debug(f'START SEND DATA TO SERVER:')
         url = cfg.get_setting("Parameters", "median_url")
         serial_number = cfg.get_config("Parameters", "serial_number")
         headers = {'Content-type': 'application/json'}
-        data = {"Eventdatetime" : event_time,
+        data = {"Eventdatetime" : eventTime,
                 "AnimalNumber" : animal_id,
                 "Date" : str(datetime.datetime.now()),
                 #"Weight" : weight_finall,
@@ -189,17 +189,19 @@ def post_median_data(event_time, animal_id, type_scales, feed_time, final_weight
         logger.error(f'4 step send data')
 
 
-def post_array_data(type_scales, animal_id, weight_list, weighing_start_time, weighing_end_time):
+def post_array_data(type_scales, feed_time, animal_id, weight_list, final_weight, start_time, end_time):
     try:
         logger.debug(f'Post data function start')
         url = cfg.get_setting("Parameters", "array_url")
         headers =  {'Content-Type': 'application/json; charset=utf-8'}
         data = {
                 "ScalesSerialNumber": type_scales,
-                "WeighingStart": weighing_start_time,
-                "WeighingEnd": weighing_end_time,
+                "WeighingStart": start_time,
+                "WeighingEnd": end_time,
+                "FeedingTime": feed_time,
                 "RFIDNumber": animal_id,
-                "Data": weight_list
+                "Data": weight_list,
+                "FinalWeight": final_weight
                 }  
         post = requests.post(url, data=json.dumps(data), headers=headers, timeout=3)
         logger.debug(f'Answer from server: {post}') # Is it possible to stop on this line in the debug?
