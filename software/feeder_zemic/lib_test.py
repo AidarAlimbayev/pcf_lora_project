@@ -164,7 +164,7 @@ def connect_rfid_reader():                                      # Connection to 
         logger.debug(f'2 step RFID')
 
 
-def post_median_data(eventTime, feed_time, animal_id, final_weight, type_scales, end_weight): # Sending data into Igor's server through JSON
+def post_median_data(eventTime, feed_time_rounded, animal_id, final_weight_rounded, end_weight): # Sending data into Igor's server through JSON
     try:
         logger.debug(f'START SEND DATA TO SERVER:')
         url = cfg.get_setting("Parameters", "median_url")
@@ -174,10 +174,10 @@ def post_median_data(eventTime, feed_time, animal_id, final_weight, type_scales,
                 "AnimalNumber" : animal_id,
                 "Date" : str(datetime.datetime.now()),
                 #"Weight" : weight_finall,
-                "ScalesModel" : type_scales,
-                "FeedingTime": feed_time,
+                #"ScalesModel" : type_scales,
+                "FeedingTime": feed_time_rounded,
                 "WeightLambda": end_weight,
-                "FeedWeight": final_weight,
+                "FeedWeight": final_weight_rounded,
                 "SerialNumber": serial_number
                 }
         answer = requests.post(url, data=json.dumps(data), headers=headers, timeout=3)
@@ -189,7 +189,7 @@ def post_median_data(eventTime, feed_time, animal_id, final_weight, type_scales,
         logger.error(f'4 step send data')
 
 
-def post_array_data(type_scales, feed_time, animal_id, weight_list, final_weight, start_time, end_time):
+def post_array_data(type_scales, feed_time_rounded, animal_id, final_weight_rounded, start_time, end_time):
     try:
         logger.debug(f'Post data function start')
         url = cfg.get_setting("Parameters", "array_url")
@@ -198,10 +198,10 @@ def post_array_data(type_scales, feed_time, animal_id, weight_list, final_weight
                 "ScalesSerialNumber": type_scales,
                 "WeighingStart": start_time,
                 "WeighingEnd": end_time,
-                "FeedingTime": feed_time,
+                "FeedingTime": feed_time_rounded,
                 "RFIDNumber": animal_id,
-                "Data": weight_list,
-                "FinalWeight": final_weight
+                #"Data": weight_list,
+                "FinalWeight": final_weight_rounded
                 }  
         post = requests.post(url, data=json.dumps(data), headers=headers, timeout=3)
         logger.debug(f'Answer from server: {post}') # Is it possible to stop on this line in the debug?

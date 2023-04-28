@@ -55,17 +55,17 @@ def main():
                 #sensor_distance=pcf.connect_arduino_to_get_dist(s)
                 #sensor_distance = float(sensor_distance)
                 #if sensor_distance < 40: 
-                cow_id = pcf.connect_rfid_reader()
-                logger.info(f'Animal_ID: {cow_id}')
                 arduino = pcf.start_obj(port)   # Создаем объект
                 time.sleep(1)   # задержка для установления связи между rasp и arduino
                 weight_finall, weight_array, weighing_start_time = pcf.measure_weight(arduino) 
                     # Основное измерение
+                start_time=timeit.default_timer()
+                logger.info(f'Start time: {start_time}')
                 logger.info(f'Start_time: {weighing_start_time}')
                 start_weight = weight_finall
                 logger.info(f'Start weight: {start_weight}')
-                start_time=timeit.default_timer()
-                logger.info(f'Start time: {start_time}')
+                cow_id = pcf.connect_rfid_reader()
+                logger.info(f'Animal_ID: {cow_id}')
                 #logger.info("main: weight_finall", weight_finall)
                 #cow_id = pcf.connect_rfid_reader()
                 weighing_end_time = str(datetime.now()) # Время окончания измерения
@@ -99,10 +99,10 @@ def main():
                     logger.info(f'Final_weight: {final_weight_rounded}')
                     #logger.info(f'Feed_time: {feed_time_rounded}')
                     eventTime = str(str(datetime.now()))
-                    if str(final_weight_rounded) > '0':
+                    if str(final_weight) > '0':
                         logger.info("main: Send data to server")
-                        pcf.post_array_data(type_scales, feed_time_rounded, cow_id, weight_array, final_weight_rounded, weighing_start_time, weighing_end_time)
-                        pcf.post_median_data(eventTime, feed_time_rounded, cow_id, final_weight_rounded, type_scales, end_weight) # Send data to server by JSON post request
+                        pcf.post_array_data(type_scales, feed_time_rounded, cow_id, weight_array, final_weight_rounded)
+                        pcf.post_median_data(eventTime, feed_time_rounded, cow_id, final_weight_rounded, start_time, end_time, end_weight) # Send data to server by JSON post request
                     arduino.disconnect() # Закрываем связь
                     eventTime = 0
                     logger.info(f'{eventTime}')
