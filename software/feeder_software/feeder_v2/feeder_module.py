@@ -9,7 +9,6 @@ from datetime import datetime
 from loguru import logger
 import sql_database as sql
 import config as cfg
-import RPi.GPIO as GPIO
 import statistics
 import adc_data as ADC
 import time
@@ -23,36 +22,6 @@ import queue
 import time
 import re
 
-
-# def distance():
-#     try:
-#         dist_list = []
-#         while len(dist_list) < 10:
-#             GPIO.setmode(GPIO.BCM)
-#             GPIO_TRIGGER = 18
-#             GPIO_ECHO = 24
-#             GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
-#             GPIO.setup(GPIO_ECHO, GPIO.IN)
-#             GPIO.output(GPIO_TRIGGER, True)                 # set Trigger to HIGH
-#             time.sleep(0.00001)                             # set Trigger after 0.01ms to LOW
-#             GPIO.output(GPIO_TRIGGER, False)
-#             StartTime = time.time()
-#             StopTime = time.time()
-#             while GPIO.input(GPIO_ECHO) == 0:               # save StartTime
-#                 StartTime = time.time()
-#             while GPIO.input(GPIO_ECHO) == 1:
-#                 StopTime = time.time()                      # save time of arrival
-#             TimeElapsed = StopTime - StartTime              # time difference between start and arrival
-#             #"""multiply with the sonic speed (34300 cm/s)
-#             #and divide by 2, because there and back"""
-#             distance = (TimeElapsed * 34300) / 2
-#             dist_list.append(distance)
-#             GPIO.cleanup()
-#         total = numpy.mean(dist_list)
-        #total = max([j for i,j in enumerate(dist_list) if j in dist_list[i+1:]]) if dist_list != list(set(dist_list)) else -1
-        #return round(total, 2)
-    #except TypeError as t:
-        #logger.error(f'Distance func error {t}')
 
 def start_obj(port):
     try:
@@ -107,18 +76,17 @@ def check_internet():
 
 
 def send_post(postData):
-    post = 0
     url = cfg.get_setting("Parameters", "url")
     headers = {'Content-type': 'application/json'}
     try:
-        post = requests.post(url, data = json.dumps(postData), headers = headers, timeout=5)
+        requests.post(url, data = json.dumps(postData), headers = headers, timeout=5)
     except HTTPError as http_err:
         logger.error(f'HTTP error occurred: {http_err}')
     except Exception as err:
         logger.error(f'Other error occurred: {err}')
-    finally:
-        if type(post) != requests.models.Response:
-            sql.noInternet(postData)
+    # finally:
+    #     if type(post) != requests.models.Response:
+    #         sql.noInternet(postData)
 
 
 def __connect_rfid_reader():                                      # Connection to RFID Reader through TCP and getting cow ID in str format
@@ -253,12 +221,6 @@ def calibrate():
         logger.error(f'calibrate Fail')
         arduino.disconnect()
 
-
-def cleanAndExit():
-    logger.info("Cleaning up...")
-    GPIO.cleanup()
-    logger.info("Bye!")
-    sys.exit()
 
 def measure_weight(obj):
     try:

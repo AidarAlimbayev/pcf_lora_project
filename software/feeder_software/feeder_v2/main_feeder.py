@@ -40,10 +40,9 @@ def main():
             try:
                 s = serial.Serial('/dev/ttyUSB_Dist',9600)
             except Exception as e:
-                logger.error(f'Error {e}')
+                logger.error(f'Error: {e}')
             port = cfg.get_setting("Parameters", "arduino_port")     
-            ulrasonic_distance = fdr.connect_arduino_to_get_dist(s) 
-            ulrasonic_distance = float(ulrasonic_distance)
+            ulrasonic_distance = float(fdr.connect_arduino_to_get_dist(s)) 
             logger.info(f'ultrasonic distance: {ulrasonic_distance}')
 
             if ulrasonic_distance < 40:  # переделать
