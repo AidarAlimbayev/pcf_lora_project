@@ -7,17 +7,16 @@ Contact number +7 775 818 48 43. Email maxat.suieubayev@gmail.com"""
 from requests.exceptions import HTTPError
 from datetime import datetime
 from loguru import logger
-from hx7 import HX711
 import sql_database as sql
 import config as cfg
 import RPi.GPIO as GPIO
-import subprocess
+import statistics
+import adc_data as ADC
 import time
 import requests
 import binascii
 import socket
 import sys
-import numpy
 import json
 import threading
 import queue
@@ -66,7 +65,6 @@ def start_obj(port):
     except Exception as e:
         logger.error(f'Error connecting: {e}')
 
-
 def connect_arduino_to_get_dist(s):
     s.flushInput() # Cleaning buffer of Serial Port
     s.flushOutput() # Cleaning output buffer of Serial Port
@@ -82,7 +80,7 @@ def connect_arduino_to_get_dist(s):
 
 def post_request(event_time, feed_time, animal_id, end_weight, feed_weight):
     try:
-        feeder_type = cfg.get_setting("Parameters", "feeder_type")
+        feeder_type = cfg.get_setting("Parameters", "type")
         serial_number = cfg.get_setting("Parameters", "serial_number")
         payload = {
             "Eventdatetime": event_time,
@@ -207,32 +205,53 @@ def input_with_timeout(message, timeout):   # Функция создания в
 #     except ValueError as e:
 #         logger.error(f'Instant_weight function Error: {e}')
 
+def calibrate_or_start():
+    try:
+        logger.info(f'("[1] to calibrate\n" "[2] to start measure\n>")')
+        choice = '2'
+        choice = input_with_timeout("Choice:", 5)
+        time.sleep(5)
+
+        if choice == '1':
+            offset, scale = calibrate()
+            cfg.update_setting("Calibration", "Offset", offset)
+            cfg.update_setting("Calibration", "Scale", scale)
+
+    except Exception as e:
+        logger.error(f'Calibrate or start Error: {e}')
+
 
 def calibrate():
     try:
-        GPIO.setmode(GPIO.BCM)  
         logger.info('Start calibrate function')
-        hx = HX711(21, 20, gain=128)
-        readyCheck = input("Remove any items from scale. Press any key when ready.")
-        offset = hx.read_average()
+        port = cfg.get_setting("Parameters", "arduino_port")
+        arduino = ADC.ArduinoSerial(port, 9600, timeout=1)
+        arduino.connect()
+        logger.info(f"Remove any items from scale. Press any key when ready.")
+        time.sleep(1)
+        input()
+        offset = arduino.calib_read()
         logger.info("Value at zero (offset): {}".format(offset))
-        hx.set_offset(offset)
+        arduino.set_offset(offset)
         logger.info("Please place an item of known weight on the scale.")
-        readyCheck = input("Press any key to continue when ready.")
-        measured_weight = (hx.read_average()-hx.get_offset())
-        item_weight = input("Please enter the item's weight in kg.\n>")
+
+        input()
+        measured_weight = (arduino.calib_read()-arduino.get_offset())
+        logger.info("Please enter the item's weight in kg.\n>")
+        item_weight = input()
         scale = int(measured_weight)/int(item_weight)
-        hx.set_scale(scale)
-        logger.info("Scale adjusted for kilograms: {}".format(scale))
+        arduino.set_scale(scale)
+        logger.info(f"Scale adjusted for kilograms: {scale}")
         logger.info(f'Offset: {offset}, set_scale(scale): {scale}')
-        print("calibrate: offset", offset)
-        print("calibrate: scale", scale)
-        GPIO.cleanup()
+
         cfg.update_setting("Calibration", "Offset", offset)
         cfg.update_setting("Calibration", "Scale", scale)
+        arduino.disconnect()
+        del arduino
         return offset, scale
     except:
         logger.error(f'calibrate Fail')
+        arduino.disconnect()
 
 
 def cleanAndExit():
@@ -241,23 +260,13 @@ def cleanAndExit():
     logger.info("Bye!")
     sys.exit()
 
-
-def measure():
+def measure_weight(obj):
     try:
-        GPIO.setmode(GPIO.BCM)  
-        hx = HX711(21, 20, gain=128)
-        offset = float(cfg.get_setting("Calibration", "Offset"))
-        scale = float(cfg.get_setting("Calibration", "Scale"))
-        hx.set_scale(scale)
-        hx.set_offset(offset)
-        val = hx.get_grams()
-        hx.power_down()
-        time.sleep(.001)
-        hx.power_up()
-        GPIO.cleanup()
-        return round(val,2)
-    except (KeyboardInterrupt, SystemExit):
-        cleanAndExit()
+        weight = obj.calc_mean()
+        #logger.debug(f'{type(weight_finall)}, {type(weight_arr)}, {type(start_timedate)}')
+        return weight
+    except Exception as e:
+        logger.error(f'measure_weight Error: {e}')
 
 
 def __function_timer(timeout_time):
