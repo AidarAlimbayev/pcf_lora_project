@@ -6,7 +6,7 @@
 #!/usr/bin/sudo python3
 
 import feeder_module as fdr
-import config as cfg
+import _config as cfg
 import sqlite3
 import os
 from loguru import logger

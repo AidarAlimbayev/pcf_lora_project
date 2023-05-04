@@ -8,7 +8,7 @@ from requests.exceptions import HTTPError
 from datetime import datetime
 from loguru import logger
 import sql_database as sql
-import config as cfg
+import _config as cfg
 import statistics
 import adc_data as ADC
 import time
@@ -79,7 +79,8 @@ def send_post(postData):
     url = cfg.get_setting("Parameters", "url")
     headers = {'Content-type': 'application/json'}
     try:
-        requests.post(url, data = json.dumps(postData), headers = headers, timeout=5)
+        post = requests.post(url, data = json.dumps(postData), headers = headers, timeout=30)
+        logger.info(f'{post.status_code}')
     except HTTPError as http_err:
         logger.error(f'HTTP error occurred: {http_err}')
     except Exception as err:

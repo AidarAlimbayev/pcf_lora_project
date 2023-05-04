@@ -13,7 +13,7 @@ from datetime import datetime
 import feeder_module as fdr
 from loguru import logger
 from time import sleep
-import config as cfg
+import _config as cfg
 import os
 import timeit
 import time
@@ -84,7 +84,7 @@ def main():
                         post_data = fdr.post_request(eventTime, feed_time_rounded, animal_id, final_weight_rounded, end_weight)    #400
                         fdr.send_post(post_data)
                     arduino.disconnect()
-        except (KeyboardInterrupt, SystemExit) as e:
+        except Exception as e:
             logger.error(f'Error: {e}')
             arduino.disconnect()
 
