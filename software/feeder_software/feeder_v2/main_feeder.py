@@ -83,7 +83,7 @@ def main():
                     if feed_time > 10: # Если корова стояла больше 10 секунд то отправляем данные
                         post_data = fdr.post_request(eventTime, feed_time_rounded, animal_id, final_weight_rounded, end_weight)    #400
                         fdr.send_post(post_data)
-                    arduino.disconnect()
+                arduino.disconnect()
         except Exception as e:
             logger.error(f'Error: {e}')
             arduino.disconnect()
