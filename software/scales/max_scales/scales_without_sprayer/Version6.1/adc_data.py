@@ -4,7 +4,7 @@ import time
 from collections import Counter
 from loguru import logger
 
-@logger.catch()
+#@logger.catch()
 class ArduinoSerial:
 
     def __init__(self, port, baud_rate=9600, timeout = 1, window = 50):
@@ -110,6 +110,9 @@ class ArduinoSerial:
     def calib_read(self, times = 20):  # Функция для калибровки
         """Use only in calibration"""
         self.calib_arr = []
+        for i in range(5):
+            self.read_data()
+            self.set_arr([])
         for i in range(times):
             self.calib_arr.append(self.read_data())
         counter = Counter(self.calib_arr)

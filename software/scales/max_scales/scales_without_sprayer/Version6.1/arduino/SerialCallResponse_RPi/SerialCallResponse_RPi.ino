@@ -23,13 +23,13 @@ void setup() {
 void loop() {
   int inByte = 0; 
   // if we get a valid byte, read analog ins:
-  long adc_val = scale.read();
+  long adc_val = scale.read(); 
         //float w = 70.0 * ((float)reading - 63000.0)/238000.0;
   char array[] = {};
   array[0] = (adc_val >> 24)*0xFF;
   array[1] = (adc_val >> 16)*0xFF;
   array[2] = (adc_val >> 8)*0xFF;
-  array[3] = adc_val*0xFF;
+  array[3] = adc_val*0xFF; 
         
   if (Serial.available() > 0) {
     // get incoming byte:

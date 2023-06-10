@@ -32,8 +32,8 @@ null_id = "b'435400040001'"
 @logger.catch
 def main():
     fdr.calibrate_or_start()
+    logger.debug(f"------------------Start while True cycle---------------------")
     while True:
-        logger.debug(f"------------------Start while True cycle---------------------")
         try:        
             #if time.time()%3600 == 0:
             #    fdr.check_internet()

@@ -23,17 +23,24 @@ def start_obj(port):
     except Exception as e:
         logger.error(f'Error connecting: {e}')
 
+def start_filter(obj):
+    try:
+        for i in range(5):
+            obj.calc_mean()
+            obj.set_arr([])
+    except Exception as e:
+        logger.error(f'start filter function Error: {e}')
+
 def measure_weight(obj):
     try:
         weight_arr = []
+        start_filter(obj)
         weight = obj.calc_mean()
+        logger.debug(f'{obj.get_arr()}')
         start_timedate = str(datetime.datetime.now())
-        next_time = time.time()+1
-        i = 0
+        next_time = time.time()+1       
         while weight > 10:
-            weight = obj.calc_mean()
-            if i < 5:
-                obj.set_arr([])
+            weight = obj.calc_mean()          
             current_time = time.time()
             time_to_wait = next_time - current_time
             if time_to_wait < 0:
@@ -66,7 +73,6 @@ def calibrate():
         logger.info("Value at zero (offset): {}".format(offset))
         arduino.set_offset(offset)
         logger.info("Please place an item of known weight on the scale.")
-
         input()
         measured_weight = (arduino.calib_read()-arduino.get_offset())
         logger.info("Please enter the item's weight in kg.\n>")
@@ -81,8 +87,8 @@ def calibrate():
         arduino.disconnect()
         del arduino
         return offset, scale
-    except:
-        logger.error(f'calibrate Fail')
+    except Exception as e:
+        logger.error(f'calibrate Fail: {e}')
         arduino.disconnect()
 
 
