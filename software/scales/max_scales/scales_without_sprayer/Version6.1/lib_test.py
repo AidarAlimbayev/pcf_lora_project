@@ -35,18 +35,18 @@ def measure_weight(obj):
     try:
         weight_arr = []
         start_filter(obj)
-        weight = obj.calc_mean()
-        logger.debug(f'{obj.get_arr()}')
         start_timedate = str(datetime.datetime.now())
         next_time = time.time()+1       
-        while weight > 10:
-            weight = obj.calc_mean()          
+        weight_on_moment = obj.get_measure()
+        while weight_on_moment > 10:
+            obj.calc_mean()          
             current_time = time.time()
             time_to_wait = next_time - current_time
             if time_to_wait < 0:
                 weight_arr.append(obj.calc_mean())
                 next_time = time.time()+1
                 logger.debug(f'Array weights: {weight_arr}')
+            weight_on_moment = obj.get_measure()
 
         if not weight_arr:
             logger.error("Error, null weight list")
