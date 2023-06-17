@@ -1,4 +1,4 @@
-Idea's author: Baiguanish Sanat
+
 Code's author: Suieubayev Maxat
 
 Version 3 differs from version 2 in that in this project there was a need to add Arduino. 

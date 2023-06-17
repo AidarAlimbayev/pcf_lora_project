@@ -95,7 +95,7 @@ def __spray_json_get(request_get_json, values, get_object=0):  # Convert data fr
 def __spray(position, values) -> bool:  # Start spray function
     try:
         logger.info(f"Start spray")
-        spray_time = values.volume / 8.3
+        spray_time = values.volume / 8.3 # 50 / 6(сек) = 8.3
         values.spray_duration = values.drink_start_time + spray_time  # Convert volume to time
         if values.spray_duration >= timeit.default_timer():
             # logger.error(f'Time is {spray_duration} {timeit.default_timer()}')   
