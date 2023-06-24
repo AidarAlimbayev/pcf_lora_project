@@ -36,7 +36,7 @@ def main():
     while True:
         try:        
             port = cfg.get_setting("Parameters", "arduino_port")     
-            relay_pin = 17 # cfg.get_setting("Relay", "sensor_pin")
+            relay_pin = cfg.get_setting("Relay", "sensor_pin")
 
             if fdr.get_relay_state(relay_pin):  # переделать
                 arduino = fdr.start_obj(port)
