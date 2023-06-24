@@ -38,7 +38,7 @@ def main():
             port = cfg.get_setting("Parameters", "arduino_port")     
             relay_pin = cfg.get_setting("Relay", "sensor_pin")
 
-            if fdr.get_relay_state(relay_pin):  # переделать
+            if fdr.get_relay_state(int(relay_pin)):  # переделать
                 arduino = fdr.start_obj(port)
                 start_weight = fdr.measure_weight(arduino)       # Nachalnii ves 150 kg
                 logger.info(f'Start weight: {start_weight}')    
@@ -52,12 +52,12 @@ def main():
                 if animal_id != '435400040001':
                     logger.info(f'Here is start while cycle')
                     
-                    while (fdr.get_relay_state(relay_pin)):
+                    while fdr.get_relay_state(int(relay_pin)):
                         end_time = timeit.default_timer()       
                         end_weight = fdr.measure_weight(arduino) 
                         logger.info(f'Feed weight: {end_weight}')
                         time.sleep(1)
-                        if fdr.get_relay_state(relay_pin) == False: # На всякий случай
+                        if fdr.get_relay_state(int(relay_pin)) == False: # На всякий случай
                             break
                         
                     logger.info(f'While ended.')
