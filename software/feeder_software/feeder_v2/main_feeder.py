@@ -58,7 +58,6 @@ def main():
                         end_weight = fdr.measure_weight(arduino) 
                         logger.info(f'Feed weight: {end_weight}')
                         time.sleep(1)
-                        ulrasonic_distance = fdr.connect_arduino_to_get_dist(s)
                         logger.info(f' Ultrasonic distance: {ulrasonic_distance}')
                         ulrasonic_distance = float(ulrasonic_distance)
                         if fdr.get_relay_state(relay_pin) == False: # На всякий случай
