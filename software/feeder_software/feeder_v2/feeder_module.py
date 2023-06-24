@@ -21,7 +21,15 @@ import threading
 import queue
 import time
 import re
+import RPi.GPIO as GPIO
 
+
+def get_relay_state(pin_number):
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(pin_number, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    relay_state = GPIO.input(pin_number)
+    GPIO.cleanup() 
+    return relay_state == GPIO.HIGH
 
 def start_obj(port):
     try:

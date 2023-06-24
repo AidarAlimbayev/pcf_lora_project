@@ -207,7 +207,7 @@ def measure_weight(obj, cow_id):
             else:
                 if time_to_wait < 0:
                     if round(time.time(), 0) % 5 == 0:
-                        values.flag = False
+                        values.flag = False              # Sprayer
             if time_to_wait < 0:
                 weight_arr.append(obj.calc_mean())
                 next_time = time.time()+1
@@ -220,7 +220,7 @@ def measure_weight(obj, cow_id):
             return 0, [], ''
         
         weight_finall = statistics.median(weight_arr)
-        gpio_state = fs.gpio_state_check(gpio_state, values)
+        gpio_state = fs.gpio_state_check(gpio_state, values) # Spryaer
         #logger.debug(f'{type(weight_finall)}, {type(weight_arr)}, {type(start_timedate)}')
         return weight_finall, weight_arr, start_timedate
 

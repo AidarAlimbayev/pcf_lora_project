@@ -35,17 +35,11 @@ def main():
     logger.debug(f"------------------Start while True cycle---------------------")
     while True:
         try:        
-            #if time.time()%3600 == 0:
-            #    fdr.check_internet()
-            try:
-                s = serial.Serial('/dev/ttyUSB_Dist',9600)
-            except Exception as e:
-                logger.error(f'Error: {e}')
             port = cfg.get_setting("Parameters", "arduino_port")     
-            ulrasonic_distance = float(fdr.connect_arduino_to_get_dist(s)) 
+            relay_pin = 17 # cfg.get_setting("Relay", "sensor_pin")
             logger.info(f'ultrasonic distance: {ulrasonic_distance}')
 
-            if ulrasonic_distance < 40:  # переделать
+            if fdr.get_relay_state(relay_pin):  # переделать
                 arduino = fdr.start_obj(port)
                 start_weight = fdr.measure_weight(arduino)       # Nachalnii ves 150 kg
                 logger.info(f'Start weight: {start_weight}')    
@@ -58,8 +52,8 @@ def main():
 
                 if animal_id != '435400040001':
                     logger.info(f'Here is start while cycle')
-                    while_flag = True
-                    while (while_flag == True):
+                    
+                    while (fdr.get_relay_state(relay_pin)):
                         end_time = timeit.default_timer()       
                         end_weight = fdr.measure_weight(arduino) 
                         logger.info(f'Feed weight: {end_weight}')
@@ -67,8 +61,7 @@ def main():
                         ulrasonic_distance = fdr.connect_arduino_to_get_dist(s)
                         logger.info(f' Ultrasonic distance: {ulrasonic_distance}')
                         ulrasonic_distance = float(ulrasonic_distance)
-                        while_flag = ulrasonic_distance < 40     # Переделать
-                        if while_flag == False:
+                        if fdr.get_relay_state(relay_pin) == False: # На всякий случай
                             break
                         
                     logger.info(f'While ended.')

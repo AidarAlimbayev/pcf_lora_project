@@ -46,6 +46,7 @@ def create_config():        # Функция создания конфиг фа�
         config.set("Calibration", "Scale", "5784.8" )
         config.set("DbId", "id", "0" ) 
         config.set("DbId", "version", "6.1" )        
+        config.set("Relay", "sensor_pin", "17" )
         with open(path, "w") as config_file:
             config.write(config_file)
     except ValueError as e:
