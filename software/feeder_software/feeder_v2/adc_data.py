@@ -110,6 +110,9 @@ class ArduinoSerial:
     def calib_read(self, times = 20):  # Функция для калибровки
         """Use only in calibration"""
         self.calib_arr = []
+        for i in range(5):
+            self.read_data()
+            self.set_arr([])
         for i in range(times):
             self.calib_arr.append(self.read_data())
         counter = Counter(self.calib_arr)

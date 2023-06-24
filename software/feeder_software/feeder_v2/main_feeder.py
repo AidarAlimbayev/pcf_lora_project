@@ -40,7 +40,7 @@ def main():
 
             if fdr.get_relay_state(int(relay_pin)):  # переделать
                 arduino = fdr.start_obj(port)
-                start_weight = fdr.measure_weight(arduino)       # Nachalnii ves 150 kg
+                start_weight = fdr.first_weight(arduino)       # Nachalnii ves 150 kg
                 logger.info(f'Start weight: {start_weight}')    
                 start_time = timeit.default_timer()             # 15:30:40 datetime.datetime.now()
                 logger.info(f'Start time: {start_time}')
@@ -54,7 +54,7 @@ def main():
                     
                     while fdr.get_relay_state(int(relay_pin)):
                         end_time = timeit.default_timer()       
-                        end_weight = fdr.measure_weight(arduino) 
+                        end_weight = arduino.get_measure()
                         logger.info(f'Feed weight: {end_weight}')
                         time.sleep(1)
                         if fdr.get_relay_state(int(relay_pin)) == False: # На всякий случай

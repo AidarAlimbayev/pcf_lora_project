@@ -211,7 +211,6 @@ def calibrate():
         logger.info("Value at zero (offset): {}".format(offset))
         arduino.set_offset(offset)
         logger.info("Please place an item of known weight on the scale.")
-
         input()
         measured_weight = (arduino.calib_read()-arduino.get_offset())
         logger.info("Please enter the item's weight in kg.\n>")
@@ -226,18 +225,18 @@ def calibrate():
         arduino.disconnect()
         del arduino
         return offset, scale
-    except:
-        logger.error(f'calibrate Fail')
+    except Exception as e:
+        logger.error(f'calibrate Fail: {e}')
         arduino.disconnect()
 
 
-def measure_weight(obj):
+def first_weight(obj):
     try:
-        weight = obj.calc_mean()
-        #logger.debug(f'{type(weight_finall)}, {type(weight_arr)}, {type(start_timedate)}')
-        return weight
+        for i in range(5):
+            obj.get_measure()
+        return obj.get_measure()
     except Exception as e:
-        logger.error(f'measure_weight Error: {e}')
+        logger.error(f'start_weight Error: {e}')
 
 
 def __function_timer(timeout_time):
