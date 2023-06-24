@@ -4,7 +4,7 @@ import time
 from collections import Counter
 from loguru import logger
 
-@logger.catch()
+#@logger.catch()
 class ArduinoSerial:
 
     def __init__(self, port, baud_rate=9600, timeout = 1, window = 50):

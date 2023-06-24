@@ -29,7 +29,7 @@ null_id = "b'435400040001'"
 #weight_finall = 0     
        
 
-@logger.catch
+#@logger.catch
 def main():
     fdr.calibrate_or_start()
     logger.debug(f"------------------Start while True cycle---------------------")
