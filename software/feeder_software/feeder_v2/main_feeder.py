@@ -37,7 +37,6 @@ def main():
         try:        
             port = cfg.get_setting("Parameters", "arduino_port")     
             relay_pin = 17 # cfg.get_setting("Relay", "sensor_pin")
-            logger.info(f'ultrasonic distance: {ulrasonic_distance}')
 
             if fdr.get_relay_state(relay_pin):  # переделать
                 arduino = fdr.start_obj(port)
@@ -58,8 +57,6 @@ def main():
                         end_weight = fdr.measure_weight(arduino) 
                         logger.info(f'Feed weight: {end_weight}')
                         time.sleep(1)
-                        logger.info(f' Ultrasonic distance: {ulrasonic_distance}')
-                        ulrasonic_distance = float(ulrasonic_distance)
                         if fdr.get_relay_state(relay_pin) == False: # На всякий случай
                             break
                         
