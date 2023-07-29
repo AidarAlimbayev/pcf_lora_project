@@ -7,8 +7,8 @@ import binascii
 @logger.catch
 def __request_get():  # Get data from the server
     try:
-        cow_id = "50103003d612" # Это бирка
-        type_scales = "scales0623v61-18-rasp" # Это серийный номер весов
+        cow_id = "025920704078" # Это бирка
+        type_scales = "scales0623v61-6-rasp" # Это серийный номер весов
         url = 'https://smart-farm.kz:8502/api/v2/Sprayings?scalesSerialNumber=' + type_scales + \
               '&animalRfidNumber=' + cow_id # Когда отправляет запрос учитывается сериый номер и бирка cow_id 
         request_get = requests.get(url, timeout=5).json()

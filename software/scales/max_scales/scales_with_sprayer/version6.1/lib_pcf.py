@@ -86,7 +86,7 @@ def post_median_data(animal_id, weight_finall, type_scales): # Sending data into
         url = cfg.get_setting("Parameters", "median_url")
         headers = {'Content-type': 'application/json'}
         data = {"AnimalNumber" : animal_id,
-                "Date" : str(datetime.datetime.now()),
+                "Date" : str(datetime.now()),
                 "Weight" : weight_finall,
                 "ScalesModel" : type_scales}
         answer = requests.post(url, data=json.dumps(data), headers=headers, timeout=3)
