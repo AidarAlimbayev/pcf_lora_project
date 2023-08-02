@@ -28,7 +28,7 @@ def __spray_gpio_off(values) -> bool:  # Pump turn off function
         end_time = timeit.default_timer()
         values.new_volume = (end_time - values.drink_start_time) * 8.3  # calculation of poured liquid
         post_data = __spray_json_payload(values)  # Dict for post to server
-        post_res = requests.post(spray_post, data=json.dumps(post_data), headers=headers, timeout=0.5)
+        post_res = requests.post(spray_post, data=json.dumps(post_data), headers=headers, timeout=3)
         logger.info(f'Post status code {post_res.status_code}')
         logger.info(f'GPIO is off. Pin number is {values.pin}')
         return position
