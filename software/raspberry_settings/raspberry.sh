@@ -5,8 +5,7 @@ script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 echo "Введите пароль для системы Raspbian."
 echo "Введите пароль: 321" 
 
-apt update                          #Проверка обновлении
-apt -y upgrade                      #Установка обновлении 
+apt update && apt upgrade -y                    #Установка обновлении 
 apt-get dist-upgrade                #Обновление raspbian до последней версии
 
 #Внешний ip адрес
@@ -14,6 +13,8 @@ wget -qO- eth0.me >> myip.txt
 
 #Установка Git
 apt-get install git
+apt install software-properties-common -y
+add-apt-repository ppa:deadsnakes/ppa
 
 #Локали 
 # apt-get install locales
@@ -22,8 +23,15 @@ apt-get install git
 # locale-gen #Чтобы проверить ввести `locale -a`. На выходе должно быть POSIX en_US.utf8 ru_RU 
 
 #Установка Python
-echo `python3 -V`
-apt install python2
+#apt install python2
+apt install python3.10
+apt update
+wget https://www.python.org/ftp/python/3.10.6/Python-3.10.6.tgz
+tar -xf Python-3.10.*.tgz
+cd Python-3.10.*/
+./configure --enable-optimizations
+make -j $(nproc)
+make altinstall
 apt install -y python3-pip
 echo `python3 -V`
 echo 'The Python has loaded'
@@ -33,14 +41,15 @@ do
 echo "...$i"
 sleep 1
 done 
+cd ..
 
-mkdir /home/pi/Update
-cd /home/pi/Update/
-git clone https://github.com/pcfkazatu/pcf_kazatu_project.git
+#mkdir /home/pi/Update
+#cd /home/pi/Update/
+#git clone https://github.com/pcfkazatu/pcf_kazatu_project.git
 
 #Установка проекта
-cd /home/pi/Documents/
-git clone https://github.com/AidarAlimbayev/pcf_lora_project.git
+#cd /home/pi/Documents/
+#git clone https://github.com/AidarAlimbayev/pcf_lora_project.git
 #cp software/main/main_pcf_ver4.py /home/pi/
 #chmod +x /home/pi/main_pcf_ver4.py
 #cp software/main/lib_pcf_ver4.py /home/pi/
@@ -65,24 +74,24 @@ git clone https://github.com/AidarAlimbayev/pcf_lora_project.git
 #pip install jsonlib         # - Не уверен /import json 
 #pip install requests        #import requests
 #pip install pycopy-binascii #import binascii
-pip install serial          #import serial
-pip install python-time     #import time
-pip install sockets         #import socket
-pip install python-csv      #import csv
-pip install regex           #import re
+# pip install serial          #import serial
+# pip install python-time     #import time
+# pip install sockets         #import socket
+# pip install python-csv      #import csv
+# pip install regex           #import re
 #pip3 install firmata
-pip install httplib2 --upgrade
+# pip install httplib2 --upgrade
 #pip install logging         #import logging
 #pip install statistics      #import statistics
-echo 'All libraries has loaded'
-echo '####################'
-for ((i = 1; i <= 3; i++))
-do
-echo "...$i"
-sleep 1
-done 
+# echo 'All libraries has loaded'
+# echo '####################'
+# for ((i = 1; i <= 3; i++))
+# do
+# echo "...$i"
+# sleep 1
+# done 
 
-#Установка Arduino IDE. *Примечание, перед установкой соединить с raspberry
+#Установка Arduino IDE. *Примечание, перед установкой arduino соединить с raspberry
 mkdir /home/pi/arduino
 cd /home/pi/arduino/
 wget https://downloads.arduino.cc/arduino-1.8.19-linuxarm.tar.xz

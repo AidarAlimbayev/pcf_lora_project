@@ -1,111 +1,164 @@
-"""Feeder version 1. Edition by Suieubayev Maxat.
+"""Feeder version 3. Edition by Suieubayev Maxat.
+main_feeder.py - это файл с основной логикой работы кормушки. 
 Contact number +7 775 818 48 43. Email maxat.suieubayev@gmail.com"""
-#!/usr/bin/sudo python
+
+#!/usr/bin/sudo python3
+
 import headers as hdr
 
-requirement_list = ['loguru', 'requests', 'numpy', 'RPi.GPIO', 'pyserial', 'hx711']
+requirement_list = ['loguru', 'requests', 'numpy', 'RPi.GPIO']
 hdr.install_packages(requirement_list)
 
-import lib_feeder as fdr
+from datetime import datetime
+import feeder_module as fdr
 from loguru import logger
+import RPi.GPIO as GPIO
+from time import sleep
+from hx7 import HX711
+import config as cfg
+import lib_pcf as pcf
+import os
 import timeit
 import requests
-import serial
+import time
 import json
-from time import sleep
-from requests.exceptions import HTTPError
-import RPi.GPIO as GPIO
-from hx711 import HX711
 import sys, select
+import serial 
 
-GPIO.setmode(GPIO.BCM)                 # set GPIO pin mode to BCM numbering
-hx = HX711(dout_pin=21, pd_sck_pin=20)
-
-i, o, e = select.select( [sys.stdin], [], [], 2 )
-if (i): ratio = fdr.hx711_calibrate(hx)
-
-calibrated_ratio = 3060.740740
-
-
-
+"""Инициализация logger для хранения записи о всех действиях программы"""
 logger.add('feeder.log', format="{time} {level} {message}", 
 level="DEBUG", rotation="1 day", compression="zip")  
 
+if not os.path.exists("config.ini"):    # Если конфиг файла не существует
+    cfg.create_config("config.ini")     # Создать конфиг файл
+
 sleep(1)
 
-feeder_type = "feeder_model_1"
-type = "Feeder"
-serial_number = "65545180001"
-animal_id = "b'435400040001'"       #???????????????????
-null_id = "b'435400040001'"         #???????????????????
-weight_finall = 0                   #???????????????????
-url = "https://smart-farm.kz:8502/api/v2/RawFeedings"
-headers = {'Content-type': 'application/json'}
+
+animal_id = "b'435400040001'"       
+null_id = "b'435400040001'"        
+#weight_finall = 0                  
+
+# Connection to arduino
+try:
+    s = serial.Serial('/dev/ttyACM0',9600) # path inside rapberry pi to arduino into dev folder
+    logger.info(f'Connect arduino {s.name}')
+    logger.info(f'Configuration of serial, {s}')
+except Exception as e:
+    logger.info(f'Error to connection to arduino, there is no file: /dev/ttyACM0 {e}')
+else:
+    logger.info(f'Success: Arduino connected')
 
 
-#try:
-#    s = serial.Serial('/dev/ttyACM0',9600) 
-#    logger.info(f'Connect arduino {s.name}')
-#    logger.info(f'Configuration of serial: {s}')
-#except Exception as e:
-#    logger.error(f'Error to connection to arduino, there is no file: /dev/ttyACM0 {e}')
-#else:
-#    logger.error(f'Success: Arduino connected')
-
+@logger.catch
 def main():
-#Tara
-    err = hx.zero()
-    # check if successful
-    hx.set_scale_ratio(calibrated_ratio)
-    if err:
-        raise ValueError('Tare is unsuccessful.')
-    while True:
-        dist = fdr.distance()
-        print("dist")
-        print(dist)
-        #distance = fdr.measuring_start(dist)
-        #logger.info("measuring dist", distance)
-        #print(distance)
-        if dist<=10:
-            start_weight = fdr.raspberry_weight()
-            print("Start weight")
-            print(start_weight)
-            start_time = timeit.default_timer
-            print("Start time")
-            print(start_time)
-            animal_id = fdr.rfid_label()
-            print("RFID label")
-            print(animal_id)
-            logger.info(f'First step cow ID :{animal_id}')
 
-            #sleep(1)
-            
-            if animal_id != '435400040001':  #?????????????????????
-                logger.info(f'After read cow ID :{animal_id}')
-                while dist <= 10:
-                    print("While True")
-                    sleep(1)
-                    dist = fdr.distance()
-                    print("dist")
-                    print(dist)
-                end_time = timeit.default_timer
-                end_weight = fdr.raspberry_weight()
-                print("end weight")
-                print(end_weight)
-                feed_time = int(start_time) - int(end_time)
-                print("feed_time")
-                print(feed_time)
-                final_weight = int(start_weight) - int(end_weight)
-                print("final_weight")
-                print(final_weight)
-                post_data = fdr.post_request(feeder_type, serial_number, feed_time, animal_id, final_weight, end_weight)
-                try:
-                    post = requests.post(url, data = json.dumps(post_data), headers = headers, timeout=0.5)
-                    print(post)
-                    #post.raise_for_status()
-                except HTTPError as http_err:
-                    logger.error(f'HTTP error occurred: {http_err}')
-                except Exception as err:
-                    logger.error(f'Other error occurred: {err}')
+    print("------------Start main function------------------")
+    GPIO.setmode(GPIO.BCM)  
+    logger.info(f'("[1] to calibrate\n" "[2] to start measure\n>")')
+    choice = '2'
+    choice = fdr.input_with_timeout("Choice:", 5)
+    time.sleep(5)
+    i = 0
+
+
+    if choice == '1':
+        offset, scale = fdr.calibrate()
+        cfg.update_setting("Calibration", "Offset", offset)
+        cfg.update_setting("Calibration", "Scale", scale)
+    else:
+        print("---------------Start main after calibration---------------")
+        logger.info(f'Start main')
+        logger.info(f'Start measure')
+        while True:
+            print("------------------Start while True function---------------------")
+            try:        
+                if time.time()%3600 == 0:
+                    fdr.check_internet()
+                sensor_distance = fdr.connect_arduino_to_get_dist(s) 
+                logger.info(f'ultrasonic distance: {sensor_distance}')
+                sensor_distance = float(sensor_distance)
+                logger.info(f'ultrasonic distance: {sensor_distance}')
+                logger.info(f'Distance: {sensor_distance}') 
+                animal_id = "b'435400040001'"
+
+                if animal_id == "b'435400040001'":
+                #if sensor_distance > 10 or sensor_distance < 40:  # переделать
+                #if sensor_distance < 40: 
+                    logger.info(f'Let start begin')  
+                    start_weight = fdr.measure()       # Nachalnii ves 150 kg
+                    logger.info(f'Start weight: {start_weight}')    
+                    start_time = timeit.default_timer()             # 15:30:40 datetime.datetime.now()
+                    logger.info(f'Start time: {start_time}')
+                    animal_id = "b'435400040001'"
+                    animal_id = fdr.__connect_rfid_reader()
+                    #animal_id_new = fdr.__connect_rfid_reader()                    # rfid 
+                    logger.info(f'Animal_id: {animal_id}')
+                    #logger.info(f'Animal_id: {animal_id_new}')
+                    end_time = start_time      # 15:45:30
+                    end_weight = start_weight
+
+
+                    print("start time", start_time)
+                    print("end_time", end_time)
+                    print("end_weight", end_weight)
+                    logger.info(f'start time: {start_time}')
+                    logger.info(f'end_time : {end_time}')
+                    logger.info(f'end_weight: {end_weight}')
+
+                    if sensor_distance < 40:
+                    #if animal_id_new != "b'435400040001'":
+                    #if animal_id != "b'435400040001'":
+                        logger.info(f'Here is start while cycle')
+                        logger.info(f'Check animal id: {animal_id}')
+                        while_flag = True
+                        while (while_flag == True):
+                            
+                            end_time = timeit.default_timer()       
+                            end_weight = fdr.measure() 
+                            logger.info(f'Feed weight: {end_weight}')
+                            time.sleep(1)
+                            sensor_distance = fdr.connect_arduino_to_get_dist(s)
+                            print(f'{sensor_distance}')
+                            logger.info(f' Ultrasonic distance: {sensor_distance}')
+                            sensor_distance = float(sensor_distance)
+                            while_flag = sensor_distance < 50    # Переделать
+                            logger.info(f'white flag: {while_flag}')
+                            #if while_flag == False:
+                            #    break
+                            #if sensor_distance < 10 or sensor_distance > 50:
+                            #    while_flag = True
+                            #else:
+                            #    while_flag = False
+                            
+                        logger.info(f'While ended.')
+                        feed_time = end_time - start_time           
+                        feed_time_rounded = round(feed_time, 2)
+                        final_weight = start_weight - end_weight    
+                        final_weight_rounded = round(final_weight, 2)
+                        logger.info(f'Finall result')
+                        logger.info(f'finall weight: {final_weight_rounded}')
+                        logger.info(f'feed_time: {feed_time_rounded}')
+                        eventTime = str(str(datetime.now()))
+                        post_data = fdr.post_request(eventTime, feed_time_rounded, animal_id, final_weight_rounded, end_weight)    #400
+                        logger.info(f'{animal_id}')
+                        #logger.info(f'{animal_id_new}')
+                        fdr.send_post(post_data)
+                        
+                        # Clean up on variables 
+                        eventTime = 0
+                        logger.info(f'{eventTime}')
+                        feed_time_rounded = 0  
+                        logger.info(f'{feed_time_rounded}')   
+                        animal_id = "b'435400040001'"
+                        logger.info(f'{animal_id}')
+                        final_weight_rounded = 0
+                        end_weight = 0
+
+                        
+
+            except (KeyboardInterrupt, SystemExit):
+                fdr.cleanAndExit()
+
 
 main()

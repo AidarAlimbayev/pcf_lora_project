@@ -1,0 +1,24 @@
+2022-09-24T11:05:13.971041+0600 INFO main: Start script
+2022-09-24T11:05:13.974073+0600 DEBUG Connect arduino /dev/ttyACM0
+2022-09-24T11:05:13.975135+0600 DEBUG Configuration of serial: Serial<id=0xb5ad4df0, open=True>(port='/dev/ttyACM0', baudrate=9600, bytesize=8, parity='N', stopbits=1, timeout=None, xonxoff=False, rtscts=False, dsrdtr=False)
+2022-09-24T11:05:13.975853+0600 INFO Else step Arduino
+2022-09-24T11:05:13.976722+0600 DEBUG Start main script
+2022-09-24T11:05:13.977464+0600 DEBUG START RFID FUNCTION
+2022-09-24T11:05:13.978215+0600 DEBUG START Animal ID animal_id: b'435400040001'
+2022-09-24T11:05:13.979059+0600 DEBUG START Null id null_id : b'435400040001'
+2022-09-24T11:07:26.382879+0600 ERROR Error connect to Arduino [Errno 110] Connection timed out
+2022-09-24T11:07:26.384332+0600 INFO After read cow ID :
+2022-09-24T11:07:26.488610+0600 INFO weight type: <class 'str'>!!!!!!!!!!!!!! weight valueb'-0.8\r\n'
+2022-09-24T11:07:26.490359+0600 ERROR Error, null weight list
+2022-09-24T11:07:26.491216+0600 INFO main: weight_finall
+2022-09-24T11:07:26.491968+0600 DEBUG START RFID FUNCTION
+2022-09-24T11:07:26.492681+0600 DEBUG START Animal ID animal_id: b'435400040001'
+2022-09-24T11:07:26.493374+0600 DEBUG START Null id null_id : b'435400040001'
+2022-09-24T11:09:39.492866+0600 ERROR Error connect to Arduino [Errno 110] Connection timed out
+2022-09-24T11:09:39.494312+0600 INFO After read cow ID :
+2022-09-24T11:09:40.502687+0600 INFO weight type: <class 'str'>!!!!!!!!!!!!!! weight valueb'-1.7\r\n'
+2022-09-24T11:09:40.503735+0600 ERROR Error, null weight list
+2022-09-24T11:09:40.504486+0600 INFO main: weight_finall
+2022-09-24T11:09:40.505229+0600 DEBUG START RFID FUNCTION
+2022-09-24T11:09:40.505893+0600 DEBUG START Animal ID animal_id: b'435400040001'
+2022-09-24T11:09:40.506559+0600 DEBUG START Null id null_id : b'435400040001'

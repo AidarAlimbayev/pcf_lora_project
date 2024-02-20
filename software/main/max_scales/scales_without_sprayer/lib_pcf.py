@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import datetime
 import json
-from types import NoneType
+
 import requests
 import socket
 import binascii
@@ -12,7 +12,7 @@ from loguru import logger
 
 
 #########################################################################################################################
-def Connect_RFID_reader():                                      # Connection to RFID Reader through TCP and getting cow ID in str format
+def connect_rfid_reader():                                      # Connection to RFID Reader through TCP and getting cow ID in str format
     try:    
         logger.debug(f'START RFID FUNCTION')
         TCP_IP = '192.168.1.250'                                #chafon 5300 reader address
@@ -37,19 +37,19 @@ def Connect_RFID_reader():                                      # Connection to 
             logger.debug(f'Null id null_id : {str(null_id)}')
             s.close()             
         if animal_id_new == null_id: # Id null return(0)
-            Connect_RFID_reader()
+            connect_rfid_reader()
         else: # Id checkt return(1)
             animal_id = "b'435400040001'"
             logger.debug(f'Success step 2 RFID. animal id new: {animal_id_new}')
             return(animal_id_new)
     except Exception as e:
-        logger.error(f'Error connect to Arduino {e}')
+        logger.error(f'Error connect to RFID {e}')
     else: 
         logger.debug(f'2 step RFID')
 #########################################################################################################################
 
 #########################################################################################################################
-def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data into Igor's server through JSON
+def post_median_data(animal_id, weight_finall, type_scales): # Sending data into Igor's server through JSON
     try:
         logger.debug(f'START SEND DATA TO SERVER:')
         url = 'http://194.4.56.86:8501/api/weights'
@@ -68,7 +68,7 @@ def Send_data_to_server(animal_id, weight_finall, type_scales): # Sending data i
 #########################################################################################################################
 
 #########################################################################################################################
-def post_data(type_scales, animal_id, weight_list, weighing_start_time, weighing_end_time):
+def post_array_data(type_scales, animal_id, weight_list, weighing_start_time, weighing_end_time):
     try:
         logger.debug(f'Post data function start')
         url = 'https://smart-farm.kz:8502/v2/OneTimeWeighings'
@@ -88,25 +88,24 @@ def post_data(type_scales, animal_id, weight_list, weighing_start_time, weighing
 #########################################################################################################################
 
 #########################################################################################################################
-def Connect_ARD_get_weight(s): # Connection to aruino through USB by Serial Port
+def connect_ard_get_weight(s): # Connection to aruino through USB by Serial Port
     try:
         s.flushInput() 
         s.flushOutput()
         weight = (str(s.readline())) # Start of collecting weight data from Arduino
-        logger.info(f'weight type: {type(weight)}!!!!!!!!!!!!!! weight value{weight}')
-        weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
+        weight_new = re.sub("b|'|\r|\n", "", weight[:-5]) # 35.55 
         weight_list = []
         start_timedate = str(datetime.datetime.now())        
 
         while (float(weight_new) > 10): # Collecting weight to array 
-            weight = (str(s.readline()))
-            logger.info(f'weight type: {type(weight)}!!!!!!!!!!!!!! weight value{weight}')
-            weight_new = re.sub("b|'|\r|\n", "", weight[:-5])
+            weight = (str(s.readline())) # wait something from arduino 
+            weight_new = re.sub("b|'|\r|\n", "", weight[:-5]) # convert data from ard
             weight_list.append(float(weight_new))
             logger.debug(f'{weight_list}')
 
         if not weight_list:
             logger.error("Error, null weight list")
+            return 0, [], ''
 
         else:
             if len(weight_list) > 1: # Here must added check on weight array null value and one element array
