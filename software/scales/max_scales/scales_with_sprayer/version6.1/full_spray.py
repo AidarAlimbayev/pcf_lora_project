@@ -55,7 +55,7 @@ def __spray_json_payload(values) -> dict:  # Data collection in json
     try:
         logger.debug(f"Start spray_json_payload function")
         data = {
-            "EventDate": values.server_time,
+            "EventDate": '2024-07-04T09:51:35.046Z',
             "TaskId": values.task_id,
             "ScalesSerialNumber": values.type_scales,
             "SpayerSerialNumber": "s01000001",
@@ -63,6 +63,7 @@ def __spray_json_payload(values) -> dict:  # Data collection in json
             "SprayingType": values.spraying_type,
             "Volume": values.new_volume
         }
+
         return data
     except Exception as e:
         logger.error(f"Error in __spray_json_payload func: {e}")
